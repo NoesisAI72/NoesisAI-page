@@ -43,9 +43,7 @@ export const TRUST_TITLE = "Ils nous font confiance";
 export const CLIENT_LOGOS: { name: string; src: string; label?: string }[] = [
   { name: "Muller", src: "/logos/clients/muller-w.png" },
   { name: "ISCI International", src: "/logos/clients/isci-w.png" },
-  { name: "Homelok", src: "/logos/clients/homelok-w.png" },
   { name: "FastParts", src: "/logos/clients/fastparts-w.png" },
-  { name: "BT Propre Nettoyage", src: "/logos/clients/bt-propre-w.png" },
   { name: "Bungazur", src: "/logos/clients/bungazur-w.png" },
   { name: "NRGY UP", src: "/logos/clients/nrgy-up-w.png" },
   { name: "Bunker Game", src: "/logos/clients/bunker-game-w.png" },
