@@ -1,21 +1,20 @@
 import { Section, SectionHeading, Reveal } from "./ui/Section";
-import { Card } from "./ui/Card";
 import { PROBLEM } from "../data/content";
 
 export function Problem() {
   return (
-    <Section id="probleme" className="bg-white/[0.02]">
-      <SectionHeading badge={PROBLEM.badge} title={PROBLEM.title} subtitle={PROBLEM.subtitle} />
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
+    <Section id="probleme" className="bg-white">
+      <SectionHeading badge={PROBLEM.badge} title={PROBLEM.title} subtitle={PROBLEM.subtitle} tone="light" />
+      <div className="mt-12 grid gap-4 md:grid-cols-3">
         {PROBLEM.pains.map((p, i) => (
           <Reveal key={p.title} delay={i * 0.08}>
-            <Card className="h-full">
-              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-500/15 text-lg font-bold text-brand-300">
+            <div className="h-full rounded-3xl border border-black/5 bg-[#f7f6fb] p-7">
+              <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white font-display text-lg font-semibold text-brand-600 shadow-sm">
                 {i + 1}
               </div>
-              <h3 className="text-lg font-bold text-white">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{p.text}</p>
-            </Card>
+              <h3 className="font-display text-lg font-semibold tracking-tight">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.text}</p>
+            </div>
           </Reveal>
         ))}
       </div>

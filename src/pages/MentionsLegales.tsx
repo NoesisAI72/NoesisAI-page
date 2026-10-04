@@ -9,13 +9,13 @@ export function MentionsLegales() {
           Le site noesisai.fr est édité par NOESIS AI. Pour toute question, vous pouvez nous
           contacter à l'adresse <a className="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
-        <p className="text-slate-400">
+        <p className="text-slate-500">
           [À compléter : raison sociale, forme juridique, capital, SIREN/SIRET, adresse du siège,
           numéro de TVA intracommunautaire, directeur de la publication.]
         </p>
       </LegalBlock>
       <LegalBlock heading="Hébergement">
-        <p className="text-slate-400">[À compléter : nom et adresse de l'hébergeur.]</p>
+        <p className="text-slate-500">[À compléter : nom et adresse de l'hébergeur.]</p>
       </LegalBlock>
       <LegalBlock heading="Propriété intellectuelle">
         <p>

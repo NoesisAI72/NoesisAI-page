@@ -17,7 +17,7 @@ export function Cgu() {
         </p>
       </LegalBlock>
       <LegalBlock heading="Responsabilité">
-        <p className="text-slate-400">
+        <p className="text-slate-500">
           [À compléter : modalités de paiement, durée, résiliation, garanties, limitation de
           responsabilité, droit applicable et juridiction compétente.]
         </p>

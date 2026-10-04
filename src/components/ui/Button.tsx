@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { cn } from "./cn";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "dark" | "outlineLight" | "white";
 type Size = "md" | "lg";
 
 const base =
@@ -12,6 +13,13 @@ const variants: Record<Variant, string> = {
   secondary:
     "bg-white/5 text-white border border-white/15 hover:border-white/30 hover:bg-white/10 backdrop-blur hover:-translate-y-0.5",
   ghost: "text-white hover:bg-white/10",
+  // Variantes pour fond clair (hero, navbar)
+  dark:
+    "!rounded-xl bg-[#0b0b0f] font-display font-semibold text-white shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] hover:-translate-y-0.5 hover:bg-black",
+  white:
+    "!rounded-xl bg-white font-display font-semibold text-[#0b0b0f] shadow-[0_10px_24px_-10px_rgba(0,0,0,0.5)] hover:-translate-y-0.5",
+  outlineLight:
+    "!rounded-xl border-2 border-dashed border-black/20 bg-white font-display font-semibold text-[#0b0b0f] shadow-[0_10px_24px_-14px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 hover:border-black/40",
 };
 
 const sizes: Record<Size, string> = {
@@ -41,6 +49,14 @@ export function Button({
   type = "button",
 }: Props) {
   const classes = cn(base, variants[variant], sizes[size], className);
+  // Lien interne : navigation sans rechargement via le routeur.
+  if (href && href.startsWith("/") && !external) {
+    return (
+      <Link to={href} className={classes}>
+        {children}
+      </Link>
+    );
+  }
   if (href) {
     return (
       <a

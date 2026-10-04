@@ -42,6 +42,108 @@
     -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
     mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   }
+  /* Hero clair : faisceaux de lumière verticaux floutés (rideau) */
+  .hero-beams {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0px,
+      rgba(255, 255, 255, 0.9) 70px,
+      rgba(255, 255, 255, 0) 150px,
+      rgba(124, 58, 237, 0.05) 230px,
+      rgba(255, 255, 255, 0) 300px
+    );
+    filter: blur(22px);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 90%);
+    mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 90%);
+  }
+  /* Logos des outils IA : petit rebond au survol de la pastille */
+  .group:hover .tool-logo {
+    animation: tool-wiggle 0.7s ease-in-out;
+  }
+  @keyframes tool-wiggle {
+    0% {
+      transform: rotate(0) scale(1);
+    }
+    25% {
+      transform: rotate(-14deg) scale(1.2);
+    }
+    50% {
+      transform: rotate(10deg) scale(1.15);
+    }
+    75% {
+      transform: rotate(-5deg) scale(1.08);
+    }
+    100% {
+      transform: rotate(0) scale(1);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .group:hover .tool-logo {
+      animation: none;
+    }
+  }
+  /* Animation « automatisation » : flux sur les lignes, tuiles qui flottent */
+  .auto-flow {
+    animation: auto-flow 1.8s linear infinite;
+  }
+  .auto-float {
+    animation: auto-float 4.5s ease-in-out infinite;
+  }
+  .auto-breathe {
+    animation: auto-breathe 3.2s ease-in-out infinite;
+  }
+  @keyframes auto-travel {
+    0% {
+      left: 3rem;
+      opacity: 0;
+    }
+    15%,
+    85% {
+      opacity: 1;
+    }
+    100% {
+      left: calc(100% - 3rem);
+      opacity: 0;
+    }
+  }
+  @keyframes auto-flow {
+    to {
+      stroke-dashoffset: -32;
+    }
+  }
+  @keyframes auto-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.9cqw);
+    }
+  }
+  @keyframes auto-breathe {
+    0%,
+    100% {
+      opacity: 0.7;
+      transform: translate(-50%, -50%) scale(0.92);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.06);
+    }
+  }
+  /* Fondu progressif (courbe adoucie) du hero clair vers le noir */
+  .hero-fade {
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(8, 6, 4, 0.04) 18%,
+      rgba(8, 6, 4, 0.14) 34%,
+      rgba(8, 6, 4, 0.32) 50%,
+      rgba(4, 3, 2, 0.58) 66%,
+      rgba(0, 0, 0, 0.82) 82%,
+      #000 100%
+    );
+  }
   /* Dégradé du logo : bleu -> violet -> magenta (mots accentués, chiffres) */
   .text-gradient {
     background-image: linear-gradient(100deg, #4f9bff 0%, #8b5cf6 50%, #c026d3 100%);

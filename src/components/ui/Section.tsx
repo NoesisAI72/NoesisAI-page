@@ -13,7 +13,7 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={cn("scroll-mt-24 py-20 sm:py-28", className)}>
+    <section id={id} className={cn("scroll-mt-24 py-14 sm:py-20", className)}>
       <div className="container-page">{children}</div>
     </section>
   );
@@ -26,13 +26,20 @@ export function SectionHeading({
   subtitle,
   align = "center",
   className,
+  tone = "dark",
+  accent,
 }: {
   badge?: string;
   title: string;
   subtitle?: string;
   align?: "center" | "left";
   className?: string;
+  /** "light" : section sur fond clair (texte noir, accent violet). */
+  tone?: "dark" | "light";
+  /** Fin de titre mise en avant (violet sur fond clair). */
+  accent?: string;
 }) {
+  const light = tone === "light";
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -45,11 +52,26 @@ export function SectionHeading({
         className
       )}
     >
-      {badge && <Badge>{badge}</Badge>}
-      <h2 className="text-3xl font-extrabold leading-[1.1] text-white sm:text-4xl md:text-[2.75rem]">
+      {badge && <Badge tone={tone}>{badge}</Badge>}
+      <h2
+        className={cn(
+          "text-3xl leading-[1.1] sm:text-4xl md:text-[2.75rem]",
+          light ? "font-semibold tracking-[-0.04em] text-[#0b0b0f]" : "font-extrabold text-white"
+        )}
+      >
         {title}
+        {accent && (
+          <>
+            {" "}
+            <span className={light ? "text-brand-600" : "text-gradient"}>{accent}</span>
+          </>
+        )}
       </h2>
-      {subtitle && <p className="text-base leading-relaxed text-slate-300 sm:text-lg">{subtitle}</p>}
+      {subtitle && (
+        <p className={cn("text-base leading-relaxed sm:text-lg", light ? "text-slate-600" : "text-slate-300")}>
+          {subtitle}
+        </p>
+      )}
     </motion.div>
   );
 }

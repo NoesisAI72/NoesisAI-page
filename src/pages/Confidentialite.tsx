@@ -6,7 +6,7 @@ export function Confidentialite() {
     <LegalLayout title="Politique de confidentialité">
       <LegalBlock heading="Données collectées">
         <p>
-          Lorsque vous remplissez un formulaire (audit, contact, guide), nous collectons les
+          Lorsque vous remplissez un formulaire (demande de guide), nous collectons les
           informations que vous nous transmettez : prénom, société, secteur, téléphone, email et
           message. Ces données servent uniquement à traiter votre demande.
         </p>
