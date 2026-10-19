@@ -881,6 +881,15 @@ export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServiceP
 };
 
 export const HOME = {
+  /** Film de présentation (1 min) affiché sous le titre de l'accueil : démarre en muet, bouton pour activer le son. */
+  video: {
+    src: "/video/noesisai-presentation.mp4",
+    poster: "/video/noesisai-presentation-poster.webp",
+    label: "Film de présentation NoesisAI",
+    soundOn: "Activer le son",
+    soundOff: "Couper le son",
+    playLabel: "Lire la vidéo",
+  },
   services: {
     title: "Pensé pour vos équipes.",
     titleAccent: "Construit pour votre activité.",

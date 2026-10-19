@@ -13,6 +13,7 @@ import { ScreenshotFrame } from "../components/ui/ScreenshotFrame";
 import { AutomationNetwork } from "../components/page/AutomationNetwork";
 import { BeforeAfterPreview } from "../components/ui/BeforeAfter";
 import { Projets } from "../components/Projets";
+import { VideoPresentation } from "../components/ui/VideoPresentation";
 import { FAQ, FINAL_CTA, HERO, HOME, SERVICES_MENU } from "../data/content";
 
 const SERVICE_IMAGES: Record<string, string | undefined> = {
@@ -80,7 +81,7 @@ export function Home() {
         titleEnd="qui transforment votre entreprise"
         subtitle={HERO.subtitle}
         showRating
-        images={["/projets/muller-dashboard.webp", "/projets/odas-diffusion.webp", "/projets/hohiohen-dashboard.webp"]}
+        visual={<VideoPresentation />}
       />
       <ServicesGrid />
       <MethodSection />
