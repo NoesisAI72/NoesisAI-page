@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import type { RouteRecord } from "vite-react-ssg";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -25,6 +26,16 @@ function ScrollToTop() {
   return null;
 }
 
+/** Racine commune à toutes les routes. */
+function RootLayout() {
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+}
+
 /** Chrome public du site : barre de navigation + pied de page.
     Le titre et la description servent de repli aux pages qui ne
     déclarent pas leur propre <Helmet> (projets, témoignages, légal…). */
@@ -44,32 +55,34 @@ function SiteLayout() {
   );
 }
 
-export default function App() {
-  return (
-    <>
-      <ScrollToTop />
-      <Routes>
-        {/* Ressource cloisonnée : hors du layout public, donc sans
-            aucun lien de navigation vers ou depuis le reste du site.
-            Accessible uniquement via son URL directe. */}
-        <Route path="/diagnostic-ia" element={<DiagnosticIA />} />
-        <Route path="/guide-automatisation" element={<GuideAutomatisation />} />
-
-        <Route element={<SiteLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/logiciel-metier" element={<LogicielMetier />} />
-          {/* Ancienne page : les agents vocaux font désormais partie de l'automatisation. */}
-          <Route path="/agents-vocaux" element={<Navigate to="/automatisation" replace />} />
-          <Route path="/automatisation" element={<Automatisation />} />
-          <Route path="/formation-ia" element={<Formation />} />
-          <Route path="/projets" element={<ProjetsPage />} />
-          <Route path="/temoignages" element={<TemoignagesPage />} />
-          <Route path="/mentions-legales" element={<MentionsLegales />} />
-          <Route path="/confidentialite" element={<Confidentialite />} />
-          <Route path="/cgu" element={<Cgu />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
-    </>
-  );
-}
+/** Routes au format « data router » : vite-react-ssg pré-rend en HTML
+    chaque chemin statique de ce tableau au moment du build. */
+export const routes: RouteRecord[] = [
+  {
+    element: <RootLayout />,
+    children: [
+      // Ressources cloisonnées : hors du layout public, donc sans
+      // aucun lien de navigation vers ou depuis le reste du site.
+      // Accessibles uniquement via leur URL directe.
+      { path: "/diagnostic-ia", element: <DiagnosticIA /> },
+      { path: "/guide-automatisation", element: <GuideAutomatisation /> },
+      {
+        element: <SiteLayout />,
+        children: [
+          { path: "/", element: <Home /> },
+          { path: "/logiciel-metier", element: <LogicielMetier /> },
+          // Ancienne page : les agents vocaux font désormais partie de l'automatisation.
+          { path: "/agents-vocaux", element: <Navigate to="/automatisation" replace /> },
+          { path: "/automatisation", element: <Automatisation /> },
+          { path: "/formation-ia", element: <Formation /> },
+          { path: "/projets", element: <ProjetsPage /> },
+          { path: "/temoignages", element: <TemoignagesPage /> },
+          { path: "/mentions-legales", element: <MentionsLegales /> },
+          { path: "/confidentialite", element: <Confidentialite /> },
+          { path: "/cgu", element: <Cgu /> },
+          { path: "*", element: <NotFound /> },
+        ],
+      },
+    ],
+  },
+];

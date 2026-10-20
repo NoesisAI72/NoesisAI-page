@@ -1,16 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
-import App from "./App";
+import { ViteReactSSG } from "vite-react-ssg";
+import { routes } from "./routes";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
-  </React.StrictMode>
-);
+// vite-react-ssg crée le routeur et enveloppe l'application dans un
+// HelmetProvider : les <Helmet> des pages sont donc écrits dans le HTML
+// pré-rendu au build, puis repris par React côté navigateur.
+export const createRoot = ViteReactSSG({ routes, basename: "/" });

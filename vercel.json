@@ -16,5 +16,6 @@
       ]
     }
   ],
-  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/index.html" }]
+  "redirects": [{ "source": "/agents-vocaux", "destination": "/automatisation", "permanent": true }],
+  "rewrites": [{ "source": "/((?!api/).*)", "destination": "/404/index.html" }]
 }
