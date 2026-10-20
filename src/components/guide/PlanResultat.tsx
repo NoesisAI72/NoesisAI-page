@@ -39,7 +39,7 @@ function BoutonCopier({ texte }: { texte: string }) {
     <button
       type="button"
       onClick={copier}
-      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white transition-colors hover:border-white/30 hover:bg-white/10"
+      className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-black/10 bg-white px-3.5 py-1.5 text-xs font-medium text-[#0b0b0f] shadow-sm transition-colors hover:border-black/25"
     >
       {copie ? "✓ Copié" : "Copier"}
     </button>
@@ -53,10 +53,10 @@ function BoutonCopier({ texte }: { texte: string }) {
 function Difficulte({ niveau }: { niveau: Plan["difficulte"] }) {
   const couleur =
     niveau === "Simple"
-      ? "text-emerald-300 border-emerald-400/30 bg-emerald-400/10"
+      ? "text-emerald-700 border-emerald-600/20 bg-emerald-50"
       : niveau === "Intermédiaire"
-        ? "text-amber-300 border-amber-400/30 bg-amber-400/10"
-        : "text-rose-300 border-rose-400/30 bg-rose-400/10";
+        ? "text-amber-700 border-amber-600/20 bg-amber-50"
+        : "text-rose-700 border-rose-600/20 bg-rose-50";
   return (
     <span className={`rounded-full border px-3 py-1 text-xs font-medium ${couleur}`}>
       {niveau}
@@ -84,19 +84,19 @@ export function PlanResultat({
       transition={{ duration: 0.6 }}
     >
       {/* En-tête */}
-      <div className="rounded-3xl border border-white/10 bg-night-card p-7 sm:p-9">
-        <p className="text-sm font-medium text-slate-400">
+      <div className="rounded-3xl border border-black/5 bg-white shadow-card p-7 sm:p-9">
+        <p className="text-sm font-medium text-slate-500">
           {contact.prenom}, voici votre plan
         </p>
-        <h2 className="mt-2 text-2xl font-extrabold leading-tight text-white sm:text-[2rem]">
+        <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] leading-tight text-[#0b0b0f] sm:text-[2rem]">
           {plan.titre}
         </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
           {plan.resume}
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-3">
           <Difficulte niveau={plan.difficulte} />
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300">
+          <span className="rounded-full border border-black/5 bg-[#f7f6fb] px-3 py-1 text-xs font-medium text-slate-600">
             Gain estimé : {plan.gainEstime}
           </span>
         </div>
@@ -104,7 +104,7 @@ export function PlanResultat({
 
       {/* Outils recommandés */}
       <div className="mt-10">
-        <h3 className="text-xl font-extrabold text-white sm:text-2xl">
+        <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f] sm:text-2xl">
           Vos outils recommandés
         </h3>
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -114,13 +114,13 @@ export function PlanResultat({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
-              className="rounded-2xl border border-white/10 bg-night-card p-5"
+              className="rounded-2xl border border-black/5 bg-white shadow-card p-5"
             >
               <div className="flex items-baseline justify-between gap-3">
-                <h4 className="text-base font-bold text-white">{o.nom}</h4>
-                <span className="shrink-0 text-xs font-medium text-gradient">{o.role}</span>
+                <h4 className="text-base font-bold text-[#0b0b0f]">{o.nom}</h4>
+                <span className="shrink-0 text-xs font-medium text-brand-600">{o.role}</span>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-slate-300">{o.pourquoi}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{o.pourquoi}</p>
             </motion.div>
           ))}
         </div>
@@ -128,7 +128,7 @@ export function PlanResultat({
 
       {/* Étapes */}
       <div className="mt-10">
-        <h3 className="text-xl font-extrabold text-white sm:text-2xl">
+        <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f] sm:text-2xl">
           Le plan, étape par étape
         </h3>
         <div className="mt-5 flex flex-col gap-3">
@@ -138,14 +138,14 @@ export function PlanResultat({
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
-              className="flex gap-4 rounded-2xl border border-white/10 bg-night-card p-5"
+              className="flex gap-4 rounded-2xl border border-black/5 bg-white shadow-card p-5"
             >
               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-sm font-bold text-white">
                 {i + 1}
               </span>
               <div className="min-w-0">
-                <h4 className="text-sm font-bold text-white">{e.titre}</h4>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{e.detail}</p>
+                <h4 className="text-sm font-bold text-[#0b0b0f]">{e.titre}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{e.detail}</p>
                 {e.declencheur && (
                   <p className="mt-2 text-xs font-medium text-slate-500">→ {e.declencheur}</p>
                 )}
@@ -157,22 +157,22 @@ export function PlanResultat({
 
       {/* Intégrations & données */}
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-night-card p-5">
-          <h3 className="text-sm font-bold text-white">À connecter</h3>
+        <div className="rounded-2xl border border-black/5 bg-white shadow-card p-5">
+          <h3 className="text-sm font-bold text-[#0b0b0f]">À connecter</h3>
           <ul className="mt-3 flex flex-col gap-2">
             {plan.integrations.map((x, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                <span className="mt-1 text-white/40">→</span> {x}
+              <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                <span className="mt-1 text-brand-600/50">→</span> {x}
               </li>
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-night-card p-5">
-          <h3 className="text-sm font-bold text-white">Données à préparer</h3>
+        <div className="rounded-2xl border border-black/5 bg-white shadow-card p-5">
+          <h3 className="text-sm font-bold text-[#0b0b0f]">Données à préparer</h3>
           <ul className="mt-3 flex flex-col gap-2">
             {plan.donnees.map((x, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
-                <span className="mt-1 text-white/40">→</span> {x}
+              <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
+                <span className="mt-1 text-brand-600/50">→</span> {x}
               </li>
             ))}
           </ul>
@@ -181,10 +181,10 @@ export function PlanResultat({
 
       {/* Prompts prêts à copier */}
       <div className="mt-10">
-        <h3 className="text-xl font-extrabold text-white sm:text-2xl">
+        <h3 className="text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f] sm:text-2xl">
           Vos prompts prêts à l'emploi
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-slate-300">
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
           À copier-coller dans ChatGPT ou Claude pour construire et faire tourner votre
           automatisation.
         </p>
@@ -192,16 +192,16 @@ export function PlanResultat({
           {plan.prompts.map((p, i) => (
             <div
               key={p.titre + i}
-              className="rounded-2xl border border-white/10 bg-night-card p-5"
+              className="rounded-2xl border border-black/5 bg-white shadow-card p-5"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <h4 className="text-sm font-bold text-white">{p.titre}</h4>
+                  <h4 className="text-sm font-bold text-[#0b0b0f]">{p.titre}</h4>
                   <p className="mt-0.5 text-xs text-slate-500">Pour {p.pour}</p>
                 </div>
                 <BoutonCopier texte={p.contenu} />
               </div>
-              <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl border border-white/5 bg-black/30 p-4 font-sans text-sm leading-relaxed text-slate-300">
+              <pre className="mt-3 whitespace-pre-wrap break-words rounded-xl border border-black/5 bg-[#f7f6fb] p-4 font-sans text-sm leading-relaxed text-slate-600">
                 {p.contenu}
               </pre>
             </div>
@@ -210,12 +210,12 @@ export function PlanResultat({
       </div>
 
       {/* Prise de rendez-vous */}
-      <div className="mt-12 overflow-hidden rounded-4xl border border-brand-500/30 bg-gradient-to-br from-brand-800/50 via-night-card to-night px-7 py-10 shadow-[0_24px_60px_-24px_rgba(124,58,237,0.5)] sm:px-10 sm:py-12">
+      <div className="mt-12 overflow-hidden rounded-[2rem] border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-[#eef2ff] px-7 py-10 sm:px-10 sm:py-12">
         <div className="mx-auto max-w-2xl text-center">
-          <h3 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+          <h3 className="text-2xl font-semibold tracking-[-0.03em] leading-tight text-[#0b0b0f] sm:text-3xl">
             Vous voulez qu'on la mette en place pour vous ?
           </h3>
-          <p className="mt-4 text-base leading-relaxed text-white/70">
+          <p className="mt-4 text-base leading-relaxed text-slate-600">
             En 30 minutes, on valide ensemble le bon outil et on vous dit exactement comment
             construire cette automatisation — ou on la construit pour vous, clé en main.
           </p>
@@ -223,19 +223,19 @@ export function PlanResultat({
             href={ICLOSED_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-base font-medium text-white backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b0b0f] px-7 py-3.5 font-display text-base font-semibold text-white shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-black"
           >
             Réserver un échange de 30 min
             <span aria-hidden className="-mr-0.5 translate-y-px text-[0.95em] opacity-80">
               ››
             </span>
           </a>
-          <p className="mt-4 text-xs text-white/50">Sans engagement · En visio</p>
+          <p className="mt-4 text-xs text-slate-500">Sans engagement · En visio</p>
         </div>
       </div>
 
       {/* Note de méthode */}
-      <p className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-5 text-xs leading-relaxed text-slate-400">
+      <p className="mt-8 rounded-2xl border border-black/5 bg-[#f7f6fb] p-5 text-xs leading-relaxed text-slate-500">
         {source === "ia"
           ? "Plan généré sur-mesure à partir de votre besoin. C'est un point de départ fiable ; les détails exacts dépendent de vos outils et de vos règles métier."
           : "Plan-cadre établi à partir de votre besoin. Pour une version entièrement personnalisée et une mise en place accompagnée, réservez un échange ci-dessus."}

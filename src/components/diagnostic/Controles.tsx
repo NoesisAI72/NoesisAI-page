@@ -1,6 +1,6 @@
 // Contrôles réutilisables du questionnaire de diagnostic.
-// Ils reprennent le vocabulaire visuel du site (cartes sombres,
-// bordures blanches translucides, accent dégradé bleu → magenta).
+// Ils reprennent le vocabulaire visuel du site (cartes blanches,
+// bordures fines, boutons noirs, accent violet).
 
 import { cn } from "../ui/cn";
 
@@ -21,15 +21,15 @@ export function Progression({
   return (
     <div className="mb-10">
       <div className="flex items-baseline justify-between gap-4">
-        <p className="text-sm font-medium text-white">
-          <span className="text-gradient font-bold">{titres[etape]}</span>
+        <p className="text-sm font-medium text-[#0b0b0f]">
+          <span className="text-brand-600 font-bold">{titres[etape]}</span>
         </p>
-        <p className="shrink-0 text-xs font-medium text-slate-400">
+        <p className="shrink-0 text-xs font-medium text-slate-500">
           Étape {etape + 1} sur {total}
         </p>
       </div>
       <div
-        className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10"
+        className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-black/10"
         role="progressbar"
         aria-valuenow={etape + 1}
         aria-valuemin={1}
@@ -58,8 +58,8 @@ export function EnteteEtape({
 }) {
   return (
     <div className="mb-8">
-      <h2 className="text-2xl font-extrabold leading-tight text-white sm:text-3xl">{titre}</h2>
-      <p className="mt-2.5 text-sm leading-relaxed text-slate-300 sm:text-base">{sousTitre}</p>
+      <h2 className="text-2xl font-semibold tracking-[-0.03em] leading-tight text-[#0b0b0f] sm:text-3xl">{titre}</h2>
+      <p className="mt-2.5 text-sm leading-relaxed text-slate-600 sm:text-base">{sousTitre}</p>
     </div>
   );
 }
@@ -69,7 +69,7 @@ export function EnteteEtape({
  * -------------------------------------------------------------*/
 
 const champBase =
-  "w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-500 transition-colors focus:border-brand-500/60 focus:bg-white/10 focus:outline-none";
+  "w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-[#0b0b0f] placeholder:text-slate-500 shadow-sm transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/10";
 
 export function Champ({
   label,
@@ -90,9 +90,9 @@ export function Champ({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-slate-300">
+      <span className="mb-2 block text-sm font-medium text-slate-600">
         {label}
-        {requis && <span className="ml-1 text-brand-400">*</span>}
+        {requis && <span className="ml-1 text-brand-600">*</span>}
       </span>
       <input
         type={type}
@@ -123,9 +123,9 @@ export function Liste({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-slate-300">
+      <span className="mb-2 block text-sm font-medium text-slate-600">
         {label}
-        {requis && <span className="ml-1 text-brand-400">*</span>}
+        {requis && <span className="ml-1 text-brand-600">*</span>}
       </span>
       <select value={value} onChange={(e) => onChange(e.target.value)} className={champBase}>
         <option value="">{placeholder}</option>
@@ -160,11 +160,11 @@ export function Compteur({
 }) {
   const borne = (v: number) => Math.min(max, Math.max(min, v));
   const bouton =
-    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-lg font-medium text-white transition-colors hover:border-white/30 hover:bg-white/10 disabled:opacity-30 disabled:hover:border-white/15 disabled:hover:bg-white/5";
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-medium text-[#0b0b0f] shadow-sm transition-colors hover:border-black/25 disabled:opacity-30 disabled:hover:border-black/10";
 
   return (
     <div>
-      <span className="mb-2 block text-sm font-medium text-slate-300">{label}</span>
+      <span className="mb-2 block text-sm font-medium text-slate-600">{label}</span>
       <div className="flex items-center gap-3">
         <button
           type="button"
@@ -182,7 +182,7 @@ export function Compteur({
           min={min}
           max={max}
           onChange={(e) => onChange(borne(Number(e.target.value) || 0))}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-center text-base font-bold text-white focus:border-brand-500/60 focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-full rounded-xl border border-black/10 bg-white px-3 py-2 text-center text-base font-bold text-[#0b0b0f] shadow-sm focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-500/10 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <button
           type="button"
@@ -225,8 +225,8 @@ export function Curseur({
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-sm font-medium text-slate-300">{label}</span>
-        <span className="shrink-0 text-sm font-bold text-white">
+        <span className="text-sm font-medium text-slate-600">{label}</span>
+        <span className="shrink-0 text-sm font-bold text-[#0b0b0f]">
           {value}
           {suffixe ? ` ${suffixe}` : ""}
         </span>
@@ -239,7 +239,7 @@ export function Curseur({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         aria-label={label}
-        className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-brand-500"
+        className="mt-3 h-2 w-full cursor-pointer appearance-none rounded-full bg-black/10 accent-brand-600"
       />
       {aide && <p className="mt-2 text-xs leading-relaxed text-slate-500">{aide}</p>}
     </div>
@@ -268,8 +268,8 @@ export function CarteChoix({
       className={cn(
         "rounded-2xl border p-4 transition-all duration-200",
         actif
-          ? "border-brand-500/50 bg-brand-800/20 shadow-[0_12px_32px_-16px_rgba(124,58,237,0.6)]"
-          : "border-white/10 bg-night-card hover:border-white/25 hover:bg-white/5"
+          ? "border-brand-500/60 bg-brand-50 shadow-[0_12px_32px_-18px_rgba(76,29,149,0.45)]"
+          : "border-black/10 bg-white hover:border-black/20 hover:shadow-card"
       )}
     >
       <button
@@ -283,18 +283,18 @@ export function CarteChoix({
           className={cn(
             "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-[11px] font-bold transition-colors",
             actif
-              ? "border-transparent bg-brand-gradient text-white"
-              : "border-white/25 text-transparent"
+              ? "border-transparent bg-brand-600 text-white"
+              : "border-black/20 text-transparent"
           )}
         >
           ✓
         </span>
         <span className="min-w-0">
-          <span className="block text-sm font-semibold text-white">{titre}</span>
-          {hint && <span className="mt-0.5 block text-xs leading-relaxed text-slate-400">{hint}</span>}
+          <span className="block text-sm font-semibold text-[#0b0b0f]">{titre}</span>
+          {hint && <span className="mt-0.5 block text-xs leading-relaxed text-slate-500">{hint}</span>}
         </span>
       </button>
-      {actif && children && <div className="mt-4 border-t border-white/10 pt-4">{children}</div>}
+      {actif && children && <div className="mt-4 border-t border-black/5 pt-4">{children}</div>}
     </div>
   );
 }
@@ -324,7 +324,7 @@ export function Navigation({
         <button
           type="button"
           onClick={onPrecedent}
-          className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+          className="rounded-full px-4 py-2.5 text-sm font-medium text-slate-500 transition-colors hover:bg-black/5 hover:text-[#0b0b0f]"
         >
           ← Retour
         </button>
@@ -335,7 +335,7 @@ export function Navigation({
         type="button"
         onClick={onSuivant}
         disabled={desactive || chargement}
-        className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 text-base font-medium text-white shadow-[0_8px_24px_-8px_rgba(124,58,237,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 disabled:pointer-events-none disabled:opacity-40"
+        className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b0b0f] px-7 py-3.5 font-display text-base font-semibold text-white shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-black disabled:pointer-events-none disabled:opacity-30"
       >
         {chargement ? "Calcul en cours…" : libelleSuivant}
         {!chargement && (
