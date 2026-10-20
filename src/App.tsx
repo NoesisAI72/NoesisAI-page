@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -24,10 +25,16 @@ function ScrollToTop() {
   return null;
 }
 
-/** Chrome public du site : barre de navigation + pied de page. */
+/** Chrome public du site : barre de navigation + pied de page.
+    Le titre et la description servent de repli aux pages qui ne
+    déclarent pas leur propre <Helmet> (projets, témoignages, légal…). */
 function SiteLayout() {
   return (
     <>
+      <Helmet>
+        <title>NoesisAI – Agence d'automatisation IA sur-mesure</title>
+        <meta name="description" content="NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert." />
+      </Helmet>
       <Navbar />
       <div className="bg-white text-[#0b0b0f]">
         <Outlet />

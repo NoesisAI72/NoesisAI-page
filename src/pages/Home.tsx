@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Section, SectionHeading, Reveal } from "../components/ui/Section";
 import {
   LightPage,
@@ -74,6 +75,11 @@ function ServicesGrid() {
 export function Home() {
   return (
     <LightPage>
+      <Helmet>
+        <title>NoesisAI – Agence d'automatisation IA sur-mesure</title>
+        <meta name="description" content="NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert." />
+        <link rel="canonical" href="https://noesisai.fr/" />
+      </Helmet>
       <PageHero
         badge={HERO.badge}
         title="Des systèmes d'IA"

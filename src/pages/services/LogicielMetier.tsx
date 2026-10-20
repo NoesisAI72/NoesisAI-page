@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { LightPage, PageHero, TestimonialsSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { MethodTimeline } from "../../components/page/MethodTimeline";
 import { Logiciels, FeaturedProject } from "../../components/Logiciels";
@@ -8,6 +9,11 @@ export function LogicielMetier() {
   const p = PAGES.logiciel;
   return (
     <LightPage>
+      <Helmet>
+        <title>Logiciel Métier Sur-Mesure pour PME | NoesisAI</title>
+        <meta name="description" content="Devis, chantiers, heures, factures : un logiciel métier sur-mesure construit autour de votre activité, avec IA intégrée (devis à la voix, CR auto)." />
+        <link rel="canonical" href="https://noesisai.fr/logiciel-metier" />
+      </Helmet>
       <PageHero {...p.hero} />
       <Logiciels />
       <MethodTimeline />
