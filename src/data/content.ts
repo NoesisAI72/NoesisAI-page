@@ -760,12 +760,12 @@ const AUTO_FAQ = FAQ.items;
 export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServicePage> = {
   logiciel: {
     hero: {
-      badge: "Web-application, outil métiers & SaaS",
-      title: "Votre activité centralisée dans un logiciel",
+      badge: "Logiciel métier sur-mesure · PME & indépendants",
+      title: "Un logiciel métier",
       boxed: "sur-mesure",
-      titleEnd: "",
+      titleEnd: "pour PME, construit autour de votre activité",
       subtitle:
-        "Devis, chantiers, heures, factures, suivi client : on part de votre fonctionnement réel pour construire l'outil qui fait vraiment gagner du temps à vos équipes.",
+        "Devis, chantiers, heures, factures, suivi client : on part du fonctionnement réel de votre PME pour construire l'outil qui fait vraiment gagner du temps à vos équipes.",
       images: ["/projets/muller-dashboard.webp", "/projets/odas-diffusion.webp", "/projets/hohiohen-dashboard.webp"],
     },
     rules: { title: "", subtitle: "", items: [] },
