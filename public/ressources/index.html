@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ressources IA gratuites — NoesisAI</title>
+<meta name="description" content="La bibliothèque complète des ressources IA gratuites de NoesisAI : construire ses agents, déployer en prod, IA locale et sécurité, prospection et business, création de contenu. Guides, skills Claude et tutos, au même endroit.">
+<link rel="canonical" href="https://noesisai.fr/ressources">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ressources IA gratuites — NoesisAI">
+<meta property="og:description" content="La bibliothèque complète des ressources IA gratuites de NoesisAI : construire ses agents, déployer en prod, IA locale et sécurité, prospection et business, création de contenu. Guides, skills Claude et tutos, au même endroit.">
+<meta property="og:url" content="https://noesisai.fr/ressources">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2321B6FF'/%3E%3Cstop offset='1' stop-color='%238B5CF6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+*{box-sizing:border-box}
+:root{
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+  --maxwide:1120px;
+}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.13;letter-spacing:-0.02em;font-weight:700;margin:0}
+a{color:inherit;text-decoration:none}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:20px 0;border-bottom:1px solid var(--line-soft)}
+.topbar .wide{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:inline-flex;align-items:center;gap:11px;font-weight:600;font-size:15px}
+.brand .mark{width:30px;height:30px;border-radius:9px;background:var(--grad);box-shadow:0 8px 22px -8px rgba(33,182,255,.55)}
+.eyebrow-top{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:74px 0 30px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(58% 60% at 50% 0%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 72%);
+  pointer-events:none}
+.hero .wide{position:relative}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:20px}
+.hero h1{font-size:clamp(33px,5.4vw,56px);max-width:820px}
+.hero .sub{font-size:19px;color:var(--ink-2);max-width:660px;margin-top:22px}
+.hero .sub b{color:var(--ink);font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:26px;margin-top:34px}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .n{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700}
+.stat .l{font-size:13px;color:var(--ink-3)}
+
+/* ---------- toc chips ---------- */
+.toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
+.toc a{font-size:13.5px;color:var(--ink-2);border:1px solid var(--line);background:var(--bg-soft);
+  padding:8px 14px;border-radius:999px;transition:.18s}
+.toc a:hover{border-color:var(--accent-a);color:var(--ink);transform:translateY(-1px)}
+.toc a .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grad);margin-right:8px;vertical-align:middle}
+
+/* ---------- block ---------- */
+.block{padding:52px 0 6px}
+.block-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:26px}
+.block-num{flex:none;width:46px;height:46px;border-radius:13px;background:var(--card-2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px}
+.block-num.g{background:var(--grad);border:none;color:#fff;box-shadow:0 10px 26px -10px rgba(33,182,255,.5)}
+.block-head h2{font-size:24px}
+.block-head .desc{font-size:14.5px;color:var(--ink-3);margin-top:4px}
+.block-head .count{font-size:13px;color:var(--ink-3);margin-top:5px}
+
+/* ---------- grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line-soft);
+  border-radius:16px;padding:22px 22px 20px;transition:.2s;min-height:150px}
+.card::after{content:"";position:absolute;inset:0;border-radius:16px;padding:1px;
+  background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.2s;pointer-events:none}
+.card:hover{transform:translateY(-3px);border-color:transparent;background:var(--card-2)}
+.card:hover::after{opacity:1}
+.card h3{font-size:17px;letter-spacing:-0.01em;line-height:1.25}
+.card p{font-size:13.5px;color:var(--ink-2);margin:10px 0 0;flex:1}
+.card .go{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--accent-a)}
+.card .go svg{transition:transform .2s}
+.card:hover .go svg{transform:translate(3px,-3px)}
+
+/* ---------- footer ---------- */
+.foot{margin-top:64px;border-top:1px solid var(--line-soft);padding:34px 0 60px}
+.foot .wide{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.foot .sig{display:inline-flex;align-items:center;gap:11px;color:var(--ink-2);font-size:14px}
+.foot .sig .mark{width:26px;height:26px;border-radius:8px;background:var(--grad)}
+.foot .note{font-size:12.5px;color:var(--ink-3);max-width:520px}
+
+@media(max-width:560px){
+  .hero{padding:52px 0 20px}
+  .grid{grid-template-columns:1fr}
+  .stats{gap:20px}
+}
+</style></head>
+<body>
+
+<header class="topbar"><div class="wide">
+  <a class="brand" href="/" style="color:inherit;text-decoration:none"><span class="mark"></span> NoesisAI</a>
+  <span class="eyebrow-top">Ressources gratuites</span>
+</div></header>
+
+<section class="hero"><div class="wide">
+  <span class="eyebrow">Ressources gratuites</span>
+  <h1>Toutes mes ressources IA,<br><span class="grad-text">réunies au même endroit.</span></h1>
+  <p class="sub">Chaque post vient avec sa ressource offerte : un guide, un skill Claude, un serveur MCP, un tuto vidéo. <b>Tout est ici, au même endroit.</b> Rien à chercher — tu ouvres, tu appliques.</p>
+  <div class="stats">
+    <div class="stat"><span class="n grad-text">92</span><span class="l">outils &amp; guides</span></div>
+    <div class="stat"><span class="n grad-text">5</span><span class="l">blocs thématiques</span></div>
+    <div class="stat"><span class="n grad-text">100%</span><span class="l">gratuit</span></div>
+  </div>
+  <nav class="toc">
+    <a href="#b1"><span class="dot"></span>Construire tes agents IA</a>
+    <a href="#b2"><span class="dot"></span>Cloud &amp; prod (Hermes)</a>
+    <a href="#b3"><span class="dot"></span>IA locale &amp; sécurité</a>
+    <a href="#b4"><span class="dot"></span>Prospection &amp; business</a>
+    <a href="#b5"><span class="dot"></span>Contenu qui vend</a>
+  </nav>
+</div></section>
+
+<!-- ============ BLOC 1 ============ -->
+<section class="block" id="b1"><div class="wide">
+  <div class="block-head">
+    <div class="block-num g">1</div>
+    <div>
+      <h2>Construire et posséder tes propres agents IA</h2>
+      <div class="desc">Claude, Claude Code, orchestration, mémoire — la boîte à outils pour builder.</div>
+      <div class="count">57 ressources</div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card" href="/ressources/carte-claude-2026"><h3>Claude en 2026 : la carte complète</h3><p>L'écosystème Claude sans jargon : ce que fait chaque outil, installer connecteurs, Skills et plugins sans terminal, + 3 démos.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/18-fonctions-claude"><h3>18 fonctions de Claude que presque personne n'utilise</h3><p>Projets, mémoire, 5 rôles, Cowork, skills, Claude Design et les nouveaux mods : schémas en français et prompts à copier.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/mods-claude-code"><h3>Les mods de Claude Code : le guide complet</h3><p>Fais construire à Claude les fonctions qui te manquent, en une phrase : 9 schémas, 5 demandes à copier et les précautions avant d'installer.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/audit-historique-claude"><h3>Fais auditer ton historique Claude</h3><p>Conversation Analyzer repère tes tâches répétées et tes allers-retours, puis les transforme en skills : 6 demandes à copier, plan B claude.ai.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-whatsapp-claude-kapso"><h3>Claude a son propre numéro WhatsApp</h3><p>L'API officielle WhatsApp en 3 étapes avec Kapso et Claude Code : cahier des charges de l'agent, 4 cas concrets, passage de main à un humain et vrais coûts.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/logiciel-sur-mesure-ia"><h3>Le logiciel qui s'adapte à ton entreprise</h3><p>Tout réunir dans un seul outil, IA comprise : diagnostic, comptes et droits par salarié, agents, les 4 briques, la sécurité et la réunion méthode.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/boussole-ia"><h3>La Boussole des IA</h3><p>Le panorama complet des IA en 2026, outil par outil : ce que chacune sait vraiment faire, et comment en choisir une seule.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/panorama-2026-outils-ia"><h3>Panorama 2026 des outils IA</h3><p>Les 9 outils qui reviennent partout : lequel pour quoi, où chacun brille et où il plante, + 3 questions avant tout projet.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-code-bonnes-pratiques"><h3>Claude Code : les bonnes pratiques</h3><p>Mémoire, contexte, commandes, agents, workflows : pose une config propre en 3 décisions au lieu de lire 40 threads.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/memo-claude-code"><h3>Le mémo Claude Code</h3><p>La cheatsheet : ~68 commandes fiables, 27 à vérifier et ~80 raccourcis-prompts, classés et expliqués simplement.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/loop-claude-3-prompts"><h3>La loop Claude auto-correctrice</h3><p>Les 3 prompts prêts à coller : /spec planifie, /build construit, /review vérifie. Elle boucle jusqu'à ce que tout passe.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/llm-council"><h3>Force Claude à te dire la vérité</h3><p>Le LLM Council : 5 agents qui débattent, relecture à l'aveugle, synthèse présidentielle. + le SKILL.md complet.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/codex-orchestration"><h3>Orchestrer plusieurs IA</h3><p>Le principe conseiller / exécutant pour faire travailler plusieurs modèles ensemble, installable en une instruction.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/kimi-agent-swarm"><h3>Kimi Agent Swarm : 300 agents</h3><p>Le mode qui lance jusqu'à 300 sous-agents en parallèle. Ce que ça change, quand l'utiliser, le tuto et les limites honnêtes.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-curator"><h3>Ton agent IA grossit, personne ne range</h3><p>Les 3 boucles d'un agent qui apprend — mémoire, skills, Curator — et l'erreur qui fait disparaître tes procédures.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/memoire-entreprise"><h3>Monte ta mémoire d'entreprise</h3><p>Transformer tes documents dormants en une mémoire interrogeable (RAG) : comment ça marche, l'archi type, les prérequis.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/llm-wiki"><h3>Le LLM Wiki</h3><p>La méthode de Karpathy pour décideurs : ranger tes données une fois, arrêter de faire relire le brut à ton IA.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-obsidian-boucles"><h3>Claude + Obsidian : les boucles</h3><p>Le système qui relit ton vault en continu pour repérer les idées que tu répètes et les projets jamais suivis.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/skills-sh-trouver-skill-claude"><h3>skills.sh : le bon skill Claude</h3><p>Des milliers de skills Claude regroupés : installe find-skills, décris ta tâche, fais auditer chaque skill avant install.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/10-niveaux-memoire-entreprise"><h3>Les 10 niveaux de la mémoire d'entreprise</h3><p>Le savoir de ton entreprise vit dans la tête de trois personnes. Les réglages concrets pour le transformer en quelque chose qui reste : les trois étages de consignes, le…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/5-briques-claude-metier"><h3>Les 5 briques qui transforment Claude en expert de ton métier</h3><p>Un Claude vierge répond comme à un inconnu. Voici les cinq briques du setup : le cerveau, les skills, les connecteurs, la mémoire, les tâches programmées. L'ordre de…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/5-etages-contexte-claude"><h3>Mémoire, CLAUDE.md, instructions : les 5 étages du contexte dans Claude</h3><p>La carte complète des 5 niveaux de contexte dans Claude : instructions de compte, instructions de projet, fichiers, CLAUDE.md et mémoire automatique. Qui écrit quoi, qui…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/5-reglages-claude"><h3>Les 5 réglages à faire en premier sur Claude</h3><p>Les 5 réglages à faire en premier sur Claude, avec les liens officiels et l'installation pas à pas, plus les skills et plugins à installer selon ton métier.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/6-agents-ia-claude"><h3>Monter une équipe de 6 agents IA dans Claude</h3><p>Un agent = une tâche planifiée + des connecteurs + une skill. Les 6 agents (marketing, prospection, relance, finance, devis, support client), leurs prompts de rôle prêts…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-vs-cowork"><h3>Claude vs Claude Cowork : le chatbot et l'agent, enfin clairs</h3><p>Le guide qui compare le chat Claude et l'agent Claude Cowork : comment organiser ton dossier de travail (contexte.md), la recette d'une bonne consigne, les niveaux…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/sources-branchees-claude"><h3>Les 4 sources à brancher sur Claude</h3><p>Guide gratuit : les 4 sources à brancher sur Claude (Perplexity, Firecrawl, data.gouv.fr, Légifrance), avec les adresses exactes des connecteurs, la table de routage et…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/plugins-claude"><h3>Les plugins Claude : le guide de rentrée</h3><p>La bibliothèque officielle de plugins Claude couvre déjà 8 fonctions de l'entreprise. Voici ce que contient chaque plugin, lequel installer selon ton métier, et la…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/skills-claude-pme"><h3>Apprends une compétence à Claude en filmant ton écran</h3><p>Guide illustré Record a skill + catalogue 63 skills.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/prompt-claude-honnete"><h3>Le prompt système qui rend Claude brutalement honnête</h3><p>Le prompt système FR qui force Claude à 6 règles d'honnêteté : installation en 30 secondes, méthode de test en 4 questions, cas d'usage pro et limites connues.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/prompts-claude-code"><h3>La bibliothèque de prompts Claude Code, décodée</h3><p>Les 6 patterns derrière la bibliothèque officielle de prompts Claude Code, + les 5 prompts prêts à copier. Décrire le résultat, faire vérifier, pointer une référence…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/unlazy-claude-code"><h3>Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt</h3><p>La partial compliance expliquée, et le mode d'emploi complet d'Unlazy dans Claude Code : installation détaillée, prompt de parallélisme, checklists, définition de «…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/speckit"><h3>SpecKit : le guide complet pour arrêter de prompter à l'aveugle</h3><p>Le guide français de Spec Kit, l'outil open source de GitHub (128k+ étoiles) : installation pas à pas, l'enchaînement complet constitution → specify → clarify → plan →…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/markitdown"><h3>Arrête de donner tes PDF à Claude</h3><p>Pourquoi un PDF coûte double dans Claude, et comment le convertir en markdown propre avec MarkItDown (Microsoft, open source) : config MCP Claude Desktop et Claude Code…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claudetube"><h3>Claude Code peut maintenant regarder tes vidéos</h3><p>Claude ne lit plus seulement la description : il regarde la vidéo. Lien du repo claudetube, installation pas à pas et prompts prêts à copier.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/second-cerveau-claude"><h3>Ton second cerveau piloté par Claude</h3><p>Guide débutant pour monter un second cerveau avec Obsidian et Claude Code (Opus 5.5) : installation en 15 minutes, mode d'emploi CLAUDE.md, 6 commandes prêtes à copier…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/cockpit-ia"><h3>Ton cockpit IA : les 5 briques à installer avant de choisir ton modèle</h3><p>Guide gratuit : le fichier cerveau que Claude relit à chaque session, les 5 briques d'un cockpit IA (Skills, connecteurs, Cowork, tâches programmées, Office), un modèle…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/guide-automatisation-2026"><h3>Automatiser son entreprise avec Claude et l'orchestration IA</h3><p>Guide 2026 (45 pages) : passer de l'IA que tu pilotes aux automatisations qui tournent sans toi. 7 chapitres, 9 études de cas, méthode en 4 étapes + générateur…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-google-workspace"><h3>Claude s'installe dans Google Workspace</h3><p>Guide complet de Claude dans Google Docs, Sheets et Slides : installation, prompts prêts à l'emploi, garde-fous et déploiement en équipe.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-microsoft-365"><h3>Claude dans l'écosystème Microsoft : la carte complète</h3><p>La carte complète de Claude dans Microsoft 365 : app par app, l'installation des add-ins, le réglage cross-app, le connecteur M365, 10 cas d'usage prompt par prompt et…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-excel-powerpoint"><h3>Claude dans Excel et PowerPoint : ce qu'il fait vraiment</h3><p>Le guide du complément Claude pour Excel et PowerPoint : installation depuis le Microsoft Marketplace, les usages qui font gagner le plus de temps, les prompts à copier…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-logiciels-sans-api"><h3>Claude dans tes logiciels sans API</h3><p>Guide pour faire travailler Claude dans un logiciel sans API ni connecteur : computer use, Claude in Chrome, installation, exemples et garde-fous.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-crm"><h3>Brancher ton CRM sur Claude</h3><p>Salesforce, Pipedrive, HubSpot, Notion, Airtable, Folk : ton CRM se branche sur Claude. Le guide complet — ce qu'est vraiment un connecteur, le bon pour ton CRM, les 6…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/compte-rendu-reunion-claude"><h3>Le compte rendu prêt avant ton café</h3><p>Guide pas à pas : brancher Fathom, Plaud ou Granola à Claude, créer la routine du soir (décisions, actions, mails de suivi en brouillon) et la revue du vendredi dans…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/tri-cv-claude-cowork"><h3>Trier tes candidatures avec Claude</h3><p>Guide pour trier des CV contre une fiche de poste avec Claude dans Cowork : réécrire la fiche, prompt de tri prêt à copier, skill, compte rendu, fiche profil, diffusion…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-balance-comptable"><h3>Claude relit ta balance comptable en 30 secondes</h3><p>Installer Claude dans ton tableur, coller un seul prompt, et obtenir un onglet d'anomalies à contrôler avant la révision.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/paperasse-claude"><h3>Installer Paperasse sur Claude en 5 minutes</h3><p>Le guide pas à pas pour transformer Claude en copilote de ton administratif français : les 6 skills Paperasse, les deux méthodes d'installation, les prompts de test, et…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/claude-legifrance"><h3>Faire lire la loi à Claude, au lieu de la lui faire réciter</h3><p>Brancher Claude sur Légifrance pour obtenir des réponses juridiques sourcées : le guide écran par écran et 4 prompts pour traduire ta question en langage juridique.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/analyse-cctp-claude"><h3>Analyser un CCTP avec Claude avant de répondre à un appel d'offres</h3><p>Guide gratuit : les pièces à réunir, le prompt complet pour analyser un CCTP avec Claude (exigences sourcées, alertes par priorité, trame de mémoire technique) et les 3…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/btp-metre-devis-appel-offres"><h3>Métré, devis, appel d'offres : le guide BTP</h3><p>Le guide complet pour le BTP : les prompts exacts (métré Excel avec formules vivantes, devis lot par lot, dépouillement de DCE, mémoire technique, CCTP, compte rendu de…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-immo-claude"><h3>J'ai transformé Claude en agent immo</h3><p>Le guide pas à pas : alertes mail, Gmail et data.gouv.fr branchés à Claude Cowork, un prompt, et chaque matin un Excel des biens notés sur 100 avec rendement, cashflow…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-finances-finary"><h3>L'agent IA qui pilote mes finances, perso et pro</h3><p>Le setup complet : le connecteur Finary en lecture seule, le cadre a ecrire avant la premiere question, les 24 prompts ranges par usage et la routine de 10 minutes par…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/whatsapp-registres-etat"><h3>Monte ton agent WhatsApp branché sur les registres de l'État</h3><p>Pas à pas : cloner le kit WhatsApp open source, le faire construire par Claude Code, puis le brancher sur Légifrance, le RNE et data.gouv.fr. Liens, réglages, coûts…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-reach"><h3>Donne Internet à ton agent IA — gratuitement</h3><p>Agent-Reach expliqué simplement : comment donner à ton agent IA un accès gratuit à X, Reddit, YouTube et GitHub, avec 4 usages business concrets et les limites à…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/chatgpt-ecosysteme-2026"><h3>ChatGPT en 2026 : l'écosystème complet pour dirigeants</h3><p>Le mode agent n'existe plus, les GPT personnalisés ferment et ChatGPT sait désormais se déclencher sur un mail. La carte complète de l'écosystème, sans jargon, avec 6…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/audit-stockage-mac"><h3>Récupère des Go sur ton Mac — sans rien casser</h3><p>Le guide pour repérer et libérer l'espace disque gaspillé sur ton Mac (caches, logs, node_modules, Xcode, Docker) en toute sécurité — avec les niveaux de risque et…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/llm-council-instagram"><h3>Force Claude à te dire la vérité, pas à te flatter (version Instagram)</h3><p>Force Claude à te contredire au lieu de te flatter : le LLM Council, 5 Claude indépendants qui débattent et tranchent. Skill complet à copier-coller, branché en 5 min…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/panorama-2026-outils-ia-instagram"><h3>Panorama 2026 des outils IA : lequel pour quoi (et où ça plante) (version Instagram)</h3><p>Le panorama 2026 des 9 outils IA qui reviennent partout : Claude, ChatGPT, Cursor, Claude Code, Codex, OpenClaw, Hermes, Claude Cowork, n8n. Lequel pour quoi, où chacun…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+  </div>
+</div></section>
+
+<!-- ============ BLOC 2 ============ -->
+<section class="block" id="b2"><div class="wide">
+  <div class="block-head">
+    <div class="block-num g">2</div>
+    <div>
+      <h2>Déployer des agents dans le cloud et en prod</h2>
+      <div class="desc">Hermes Agent, Cowork, n8n — passer du build au 24/7 en production.</div>
+      <div class="count">9 ressources</div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card" href="/ressources/hermes-cloud"><h3>Déploie ton premier employé numérique 24/7</h3><p>Déployer un agent autonome Hermes Cloud en 60 s, le connecter à Telegram / Slack / WhatsApp, et l'automatiser en langage naturel.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/hermes-agent-cloud"><h3>Un agent IA en 2 clics</h3><p>Hermes passe dans le cloud : 3 cas d'usage d'agents à vendre en indé ou agence — pour qui, quel résultat, quels prix.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/hermes-17-prompts"><h3>Hermes : les 17 prompts</h3><p>17 prompts, 2 réglages, 3 erreurs à éviter : transforme un install vide en une infra qui bosse pendant que tu dors.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/hermes-automation-templates"><h3>Hermes : templates d'automatisation</h3><p>Cron, webhooks GitHub, API : 10 recettes copy-paste DEV / DevOps / Research, 2 astuces coût, et le fichier SOUL.md expliqué.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/agent-ia-whatsapp-production"><h3>Hermes passe sur WhatsApp (en prod)</h3><p>Intégration WhatsApp Business Cloud qualité prod : API officielle Meta, sans QR code ni risque de ban. Le guide complet.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/cowork-sans-toi"><h3>Ton IA continue, laptop fermé</h3><p>Claude Cowork sur mobile et web : l'IA finit le travail ordi éteint. Ce qui se délègue, ce que tu pilotes, comment démarrer.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/150-templates-n8n-claude"><h3>150+ automatisations n8n</h3><p>Les 150+ templates n8n, comment en importer un, et comprendre quand utiliser Claude — et quand surtout pas.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/carte-hermes-agent"><h3>Hermes Agent : la carte complète</h3><p>Bot Mode, Skills, MCP, sous-agents, Group Chat, Routines, Gateway, Sandbox : les 8 briques d'Hermes Agent expliquées sans jargon, captures de l'application à l'appui…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/hermes-livrables-office"><h3>Hermes Agent sait maintenant produire tes livrables Word, Excel et PDF</h3><p>Le guide NoesisAI sur Hermes Agent : le tuto de démarrage en 4 étapes, les 4 formats bureautiques ajoutés en juillet 2026, le contrôle qualité qui change tout, ce qui se…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+  </div>
+</div></section>
+
+<!-- ============ BLOC 3 ============ -->
+<section class="block" id="b3"><div class="wide">
+  <div class="block-head">
+    <div class="block-num g">3</div>
+    <div>
+      <h2>IA locale, souveraineté, RGPD et sécurité</h2>
+      <div class="desc">Posséder son IA, la faire tourner en local, protéger ses données.</div>
+      <div class="count">8 ressources</div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card" href="/ressources/posseder-son-ia"><h3>L'IA que tu possèdes, pas celle que tu loues</h3><p>Le vrai virage pour les entreprises : souveraineté des données, indépendance, régulation. Le cadre de décision, sans jargon.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/ia-locale"><h3>Installe ton IA en local</h3><p>Setup IA locale : LM Studio, choisir son modèle selon son matériel, RAG privé, monter sa machine. Sans abonnement.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/presidio-sas-rgpd"><h3>Presidio : un sas RGPD devant l'IA</h3><p>Anonymiser noms, emails, téléphones et RIB AVANT qu'ils partent dans un LLM, avec Presidio (open source, Microsoft).</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/outils-securite-vibe-coding"><h3>10 outils de sécurité pour vibe coders</h3><p>Gitleaks, Bearer, Semgrep, Snyk, CodeRabbit, skills Claude Code, plugin Codex… ce que chacun fait, quand l'utiliser, le lien.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/couts-ia"><h3>Le vrai coût de ton IA (÷5)</h3><p>Les 5 leviers qui font vraiment varier ta facture, et comment passer d'un abonnement plafonné à un setup à 5-10 $/mois.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/enterprise-managed-auth"><h3>Qui décide, et avec quel compte</h3><p>Le guide complet sur l'enterprise-managed auth de Claude : le schéma des deux décisions, les 10 connecteurs compatibles, les prérequis, la config écran par écran, le…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/memoire-ia"><h3>Mémoire IA : ce qu'il faut vérifier avant de l'ouvrir en interne</h3><p>Guide gratuit : les 3 points à vérifier, l'audit de départ, la règle interne, le plan des 4 premières semaines et la check-list avant d'ouvrir la mémoire IA à votre…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/scanner-skills-ia"><h3>Scanne tes skills IA avant de les installer</h3><p>SkillSpector, le scanner open source de NVIDIA : 71 motifs de risque, un score sur 100, et les 4 prompts prêts à copier pour auditer tous tes skills IA.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+  </div>
+</div></section>
+
+<!-- ============ BLOC 4 ============ -->
+<section class="block" id="b4"><div class="wide">
+  <div class="block-head">
+    <div class="block-num g">4</div>
+    <div>
+      <h2>Prospection, acquisition et business</h2>
+      <div class="desc">Trouver des clients, remplir ton pipe, monétiser tes compétences IA.</div>
+      <div class="count">15 ressources</div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card" href="/ressources/16-canaux-acquisition"><h3>Les 16 canaux d'acquisition triés</h3><p>Cold email, contenu, ads, partenariats… classés par famille et notés sur le délai, le coût et la scalabilité. + ceux à activer d'abord.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/attirer-clients-sans-demarcher"><h3>Attirer des clients sans démarcher à froid</h3><p>Remplacer le cold calling : constituer une liste de leads, créer une audience similaire Meta, lancer des pubs qui font venir des prospects déjà qualifiés.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/prospects-google-maps"><h3>Google Maps, ta base de prospection</h3><p>Construire une liste de prospects locaux depuis Google Maps avec un kit gratuit et open source piloté par Claude.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/scrapegraph-prospection"><h3>Claude remplit ton fichier de prospection</h3><p>ScrapeGraphAI, outil open source qui tourne en local : tu décris ta cible, le tableau se remplit (site, téléphone, dirigeant). 3 demandes à copier, routine du matin et cadre CNIL.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/obscura-scraper"><h3>obscura : le scraper discret</h3><p>Le navigateur headless Rust léger : install, mode stealth, branchement MCP sur Claude, et le framework scraping propre de NoesisAI.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/niches-ia-2026"><h3>Les 5 niches IA les plus rentables</h3><p>Pour chaque verticale : le problème du client, la solution à vendre, le modèle de revenu et comment signer le premier contrat.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/monetiser-competences-ia"><h3>Monétiser tes compétences IA</h3><p>Tu sais faire, mais tu n'en tires pas un euro. Les 3 façons de monétiser : formation, conseil, implémentation — et comment les vendre.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/5-solutions"><h3>Les 5 solutions IA que les entreprises s'arrachent</h3><p>Les 5 offres IA les plus demandées en 2026 : ce que les entreprises veulent vraiment acheter, et comment te positionner.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/scraping-open-source"><h3>10 repos open source pour extraire la data dont ton IA a besoin</h3><p>Panorama vulgarisé de 10 outils open source de scraping et d'extraction de données (Firecrawl, Crawl4AI, MarkItDown, Browser Use, Scrapy...) : à quoi sert chacun, quand…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/3-paliers-agents-ia"><h3>Agent IA à 500 €, 4 000 € ou 12 000 € : les 3 paliers</h3><p>Les 3 paliers d'agents IA : l'agent d'avis Google (~500 €), le réceptionniste IA (~4 000 € + abonnement) et le système complet à 12 000 € qui compile avis, réception…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/7-canaux-clients-ia"><h3>Décrocher tes premiers clients IA : les 7 canaux triés</h3><p>Les 7 canaux pour décrocher des clients en conseil et automatisation IA, triés par droit d'entrée : réseau chaud, plateformes freelance, ateliers, démarchage à froid…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/marche-formation-conseil-ia"><h3>Le marché IA que personne ne prospecte</h3><p>82 % des entreprises françaises n'utilisent aucune IA. Le décryptage complet de l'étude Insee 2025 et les segments concrets à prospecter pour vendre de la formation et…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/implementation-ia-parfaite"><h3>Comment réussir une implémentation IA parfaite</h3><p>Le process complet d'une implémentation IA en entreprise : les 5 phases sur 90 jours, les 7 questions pour cartographier ta donnée, la grille absorber/garder/supprimer…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/diagnostic-ia"><h3>Tu es dans les 18 % ou dans les 82 % ?</h3><p>82 % des entreprises françaises n'utilisent aucune IA en 2025 (Insee). Le guide de diagnostic : taux d'adoption par secteur, usages concrets par métier, les 4 questions…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/score-ia-metier"><h3>Ton métier a un score. Voilà quoi en faire.</h3><p>Le test qui donne un score de remplacement par l'IA à ton métier — et la méthode en 4 semaines pour en faire un plan d'action concret.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+  </div>
+</div></section>
+
+<!-- ============ BLOC 5 ============ -->
+<section class="block" id="b5"><div class="wide">
+  <div class="block-head">
+    <div class="block-num g">5</div>
+    <div>
+      <h2>Création de contenu qui vend</h2>
+      <div class="desc">Produire du contenu qui attire et convertit, avec l'IA.</div>
+      <div class="count">3 ressources</div>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="card" href="/ressources/kumar-method"><h3>Kumar Method : ton reel cinématique IA</h3><p>Génère des reels cinématiques en noir &amp; blanc avec ton propre visage. La skill : entraînement du clone, 10 plans 4K, fiche de montage.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/linkedin-skills-claude"><h3>11 skills LinkedIn pour Claude : ce que chacune fait vraiment</h3><p>Audit du pack de 11 skills LinkedIn pour Claude : ce que fait chaque skill, ses prérequis, les écarts avec la documentation, et le pack à télécharger.</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+    <a class="card" href="/ressources/chatcut-claude-code"><h3>Le monteur vidéo gratuit piloté par Claude Code</h3><p>Installe ChatCut ou OpenChatCut, branche-le sur Claude Code en 3 commandes, et monte tes vidéos en parlant : coupe des silences, sous-titres, traduction, export local.…</p><span class="go">Ouvrir <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></span></a>
+  </div>
+</div></section>
+
+<footer class="foot"><div class="wide">
+  <span class="sig"><span class="mark"></span> <b>NoesisAI</b> · Ugo Sartini</span>
+  <span class="note">La boîte à outils complète que j'aurais voulu avoir en démarrant. Toutes ces ressources restent gratuites et évoluent — reviens quand tu veux.</span>
+</div></footer>
+
+</body></html>
