@@ -247,6 +247,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://noesisai.fr/ressources/implementer-ia-entreprise</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://noesisai.fr/ressources/claude-duet</loc>
     <lastmod>2026-10-24</lastmod>
     <changefreq>monthly</changefreq>
