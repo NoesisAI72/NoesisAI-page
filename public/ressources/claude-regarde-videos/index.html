@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claude-regarde-videos">
 <title>Claude sait enfin regarder des vidéos : le guide pour tout décortiquer — NoesisAI</title>
-<meta name="description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et ce qui se délègue.">
+<meta name="description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation en quelques clics.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Claude sait enfin regarder des vidéos : le guide pour tout décortiquer">
-<meta property="og:description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et ce qui se délègue.">
+<meta property="og:description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation en quelques clics.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -303,57 +303,64 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Jusqu'ici, quand tu donnais un lien YouTube à Claude, il lisait le titre et la description. <strong>La vidéo elle-même, jamais.</strong> Un développeur indépendant a réglé ça avec un outil gratuit et open source, claudetube. Claude récupère la vidéo, écoute tout ce qui est dit, regarde les images au moment exact qui compte, et te répond à partir de ce qu'il a vu. Voici ce que ça change, les 4 usages qui font gagner des heures, les consignes prêtes à copier, et ce que tu peux déléguer.</p>
+    <p class="lead reveal">Jusqu'ici, quand tu donnais un lien YouTube à Claude, il lisait le titre et la description. <strong>La vidéo elle-même, jamais.</strong> Un développeur a réglé ça avec un outil gratuit et open source, claude-video, qui ajoute à Claude une compétence baptisée <strong>Watch</strong>. Claude découpe la vidéo image par image, récupère tout ce qui est dit, et te répond à partir de ce qu'il a vu. Voici ce que ça change, les 4 usages qui font gagner des heures, les consignes prêtes à copier, et l'installation en quelques clics.</p>
 
     <div class="callout reveal"><b>La bascule en une phrase :</b> avant, Claude lisait l'étiquette de la boîte. Maintenant, il ouvre la boîte.</div>
 
-    <div class="callout win reveal"><b>Le lien de l'outil :</b> <a href="https://github.com/thoughtpunch/claudetube" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">github.com/thoughtpunch/claudetube</a>. C'est la page officielle du projet, gratuit et open source : c'est ce lien que tu transmets à ton technicien pour l'installation.</div>
+    <div class="callout win reveal"><b>Le lien de l'outil :</b> <a href="https://github.com/bradautomates/claude-video" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">github.com/bradautomates/claude-video</a>. C'est la page officielle du projet, gratuit et open source. C'est aussi l'adresse que tu colleras dans Claude pour l'installer (étape 6).</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Ce que ça change, en clair</h2>
     <p class="reveal"><strong>Avant.</strong> Les outils de « résumé de vidéo » se contentaient des sous-titres. Tout ce qui était montré et pas dit passait à la trappe : le texte incrusté à l'écran, le produit en gros plan, le tableau affiché pendant une démo.</p>
-    <p class="reveal"><strong>Maintenant.</strong> Claude fait trois choses. Il récupère la vidéo. Il écoute et retranscrit tout ce qui est dit, même quand il n'y a pas de sous-titres. Et il prend des images au moment précis que tu lui demandes, assez nettes pour lire le texte à l'écran. Ses réponses arrivent avec les minutages, donc tu peux toujours aller vérifier.</p>
-    <p class="reveal"><strong>Où ça marche.</strong> YouTube bien sûr, mais aussi les reels Instagram, TikTok, Vimeo, X et des centaines d'autres sites vidéo, tant que la vidéo est publique.</p>
-    <div class="callout win reveal"><b>Combien ça coûte :</b> rien. L'outil est gratuit et open source (licence MIT). Tu consommes seulement ton abonnement Claude habituel.</div>
+    <p class="reveal"><strong>Maintenant.</strong> Claude récupère la vidéo, en extrait des images à chaque changement de plan, et y ajoute tout ce qui est dit. Il répond à partir des deux, avec les minutages, donc tu peux toujours aller vérifier.</p>
+    <p class="reveal"><strong>Où ça marche.</strong> Un lien de vidéo publique (YouTube, et la plupart des sites vidéo) ou un fichier vidéo posé sur ton ordinateur, par exemple l'enregistrement d'un de tes webinaires.</p>
+    <div class="callout win reveal"><b>Combien ça coûte :</b> l'outil est gratuit (licence MIT). Tu consommes ton abonnement Claude habituel, et aucune option payante n'est obligatoire.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Démonter un reel viral</h2>
     <p class="reveal"><strong>Ce que tu obtiens.</strong> Tu lui donnes un reel de 30 secondes, il te rend la structure exacte : ce qui est dit et montré dans les trois premières secondes, le découpage plan par plan, le rythme des coupes, le texte à l'écran, le moment où arrive l'appel à l'action. Et surtout, pourquoi ça accroche.</p>
-    <div class="callout reveal"><b>Consigne à copier :</b> « Voici un reel : [lien]. Décortique-le plan par plan avec les minutages : ce qui est dit, ce qui est montré, le texte à l'écran. Explique-moi pourquoi les 3 premières secondes accrochent. Puis donne-moi la même structure, adaptée à mon métier : [ton métier]. »</div>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Utilise watch sur ce reel : [lien]. Décortique-le plan par plan avec les minutages : ce qui est dit, ce qui est montré, le texte à l'écran. Explique-moi pourquoi les 3 premières secondes accrochent. Puis donne-moi la même structure, adaptée à mon métier : [ton métier]. »</div>
     <p class="reveal"><strong>Mon premier test.</strong> Le premier reel que je lui ai donné, c'était un des miens. Il a trouvé mon hook trop lent. Il n'avait pas tort.</p>
     <div class="callout win reveal"><b>Le bon réflexe :</b> commence par tes propres vidéos. C'est là que le retour est le plus utile, et le moins agréable à entendre.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Trouver le bon passage d'un tuto d'une heure</h2>
     <p class="reveal"><strong>Le problème.</strong> Une formation, une conférence ou un webinaire d'une heure, dont seules dix minutes te concernent. Tu ne sais pas lesquelles.</p>
-    <p class="reveal"><strong>La méthode.</strong> D'abord un résumé avec les minutages, puis tu creuses les deux ou trois moments qui t'intéressent. C'est bien plus efficace que de demander « analyse tout en détail » d'un coup.</p>
-    <div class="callout reveal"><b>Consignes à enchaîner :</b><br>1. « Résume cette vidéo en points clés, avec les minutages : [lien]. »<br>2. « À quel moment parle-t-il de [sujet] ? Résume-moi seulement ce passage. »<br>3. « Que montre-t-il à l'écran à 23:40 ? Recopie ce qui est affiché. »</div>
+    <p class="reveal"><strong>La méthode.</strong> D'abord un résumé avec les minutages, puis tu le fais zoomer sur le passage qui t'intéresse. L'auteur de l'outil le dit lui-même : les réponses sont plus précises sur une vidéo de moins de 10 minutes ou sur un passage ciblé.</p>
+    <div class="callout reveal"><b>Consignes à enchaîner :</b><br>1. « Utilise watch pour résumer cette vidéo en points clés, avec les minutages : [lien]. »<br>2. « Regarde seulement le passage entre 23:00 et 27:00 et résume-moi ce qu'il montre. »<br>3. « Que montre-t-il à l'écran à 24:10 ? Recopie ce qui est affiché. »</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Décortiquer la pub d'un concurrent</h2>
     <p class="reveal"><strong>Ce que tu lui demandes.</strong> La promesse principale, à qui elle parle, l'objection qu'elle traite, la preuve qu'elle montre, l'offre, et la façon dont elle se termine. Ensuite, la vraie question : où est l'angle qu'elle laisse libre pour toi.</p>
-    <div class="callout reveal"><b>Consigne à copier :</b> « Voici la pub d'un concurrent : [lien]. Dis-moi à qui elle s'adresse, quelle promesse elle fait, quelle preuve elle montre et quel appel à l'action elle utilise. Puis propose-moi 3 angles qu'elle n'exploite pas et que je pourrais prendre. »</div>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Utilise watch sur la pub de ce concurrent : [lien]. Dis-moi à qui elle s'adresse, quelle promesse elle fait, quelle preuve elle montre et quel appel à l'action elle utilise. Puis propose-moi 3 angles qu'elle n'exploite pas et que je pourrais prendre. »</div>
     <div class="callout warn reveal"><b>Analyser, oui. Copier, non.</b> La vidéo ne t'appartient pas. Pour la veille et l'inspiration, aucun souci. Pour republier ou reprendre des passages, c'est une autre histoire.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>La démo produit que tu n'as jamais eu le temps de regarder</h2>
     <p class="reveal"><strong>Avant d'acheter un logiciel.</strong> L'éditeur t'a envoyé une démo de 40 minutes. Tu veux juste savoir s'il fait ce dont tu as besoin.</p>
-    <div class="callout reveal"><b>Consigne à copier :</b> « Dans cette démo : [lien], est-ce que l'outil montre qu'il sait faire [ton besoin] ? Si oui, donne-moi le moment exact et décris ce qu'on voit à l'écran. Si non, dis-le clairement. »</div>
-    <p class="reveal"><strong>Et tes propres vidéos.</strong> Un webinaire ou un live que tu as déjà fait devient de la matière première : idées clés, questions posées par le public, découpage en publications. Ce que tu as déjà dit une fois n'a pas à être réécrit de zéro.</p>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Utilise watch sur cette démo : [lien]. Est-ce que l'outil montre qu'il sait faire [ton besoin] ? Si oui, donne-moi le moment exact et décris ce qu'on voit à l'écran. Si non, dis-le clairement. »</div>
+    <p class="reveal"><strong>Et tes propres vidéos.</strong> Un webinaire ou un live que tu as enregistré devient de la matière première : idées clés, questions posées par le public, découpage en publications. Ce que tu as déjà dit une fois n'a pas à être réécrit de zéro.</p>
 
-    <h2 class="reveal"><span class="numtag">6</span>Ce que tu pilotes, ce qui se délègue</h2>
-    <p class="reveal">Bonne nouvelle : la partie technique se fait une seule fois. Après, tu ne fais que coller des liens et poser des questions.</p>
+    <h2 class="reveal"><span class="numtag">6</span>L'installation, en quelques clics</h2>
+    <p class="reveal">Pas de terminal, pas de ligne de code. Tout se passe dans l'application Claude sur ton ordinateur (Mac ou PC).</p>
+    <p class="reveal"><strong>1. Ouvre les plugins.</strong> Dans l'application Claude de bureau, clique sur <em>Personnaliser</em> dans la barre de gauche, puis sur <em>Plugins</em>.</p>
+    <p class="reveal"><strong>2. Ajoute le catalogue.</strong> Clique sur <em>Ajouter</em>, puis <em>Ajouter une marketplace</em> (un catalogue de plugins), puis <em>Ajouter depuis un dépôt</em>.</p>
+    <p class="reveal"><strong>3. Colle l'adresse.</strong> github.com/bradautomates/claude-video, puis clique sur <em>Synchroniser</em>.</p>
+    <p class="reveal"><strong>4. Installe Watch.</strong> Trouve <em>Watch</em> dans le catalogue ajouté et installe-le. Ajouter le catalogue ne suffit pas : il faut bien installer Watch.</p>
+    <p class="reveal"><strong>5. Ouvre une session Code.</strong> C'est l'onglet <em>Code</em> de l'application, pas le chat. Demande « Utilise watch sur [lien] ». Au premier lancement, Claude vérifie qu'il ne manque rien et te pose deux ou trois questions de réglage.</p>
+    <div class="callout reveal"><b>Si un outil manque :</b> Watch a besoin de quelques programmes vidéo sur ton ordinateur. Demande simplement à Claude : « Vérifie ce qui manque pour watch et aide-moi à l'installer ». Sur Mac, il s'en charge lui-même. Sur un ordinateur d'entreprise verrouillé, il faudra peut-être ton service informatique. Les libellés des menus peuvent varier légèrement selon la version de l'application.</div>
+
+    <h2 class="reveal"><span class="numtag">7</span>Le réglage qui compte : rapide ou 100 % local</h2>
+    <p class="reveal">Au premier lancement, Watch te propose deux façons de regarder une vidéo.</p>
     <table class="matrix reveal">
-      <thead><tr><th>Étape</th><th>Qui</th><th>À savoir</th></tr></thead>
+      <thead><tr><th>Mode</th><th>Comment ça marche</th><th>Pour quoi</th></tr></thead>
       <tbody>
-        <tr><td>Installer l'outil</td><td>Un technicien, une fois</td><td>Il tourne sur ton ordinateur, avec Claude Code ou l'application Claude de bureau. Pas sur le téléphone.</td></tr>
-        <tr><td>Coller un lien, poser ta question</td><td><span class="star">★</span> Toi</td><td>En français, comme à un collègue. Aucune commande à retenir.</td></tr>
-        <tr><td>Choisir les vidéos et en tirer des décisions</td><td><span class="star">★</span> Toi</td><td>C'est là qu'est toute la valeur.</td></tr>
-        <tr><td>Mettre à jour quand ça casse</td><td>Un technicien</td><td>YouTube change régulièrement ses protections.</td></tr>
+        <tr><td>Rapide</td><td>Avec une clé Google gratuite, la vidéo est analysée par le modèle vidéo de Google, et Claude te relaie sa réponse.</td><td>Les vidéos publiques, quand tu veux aller vite.</td></tr>
+        <tr><td><span class="star">★</span> Local</td><td>Rien ne sort de ton ordinateur : Claude découpe lui-même la vidéo en images et en texte.</td><td>Tout ce qui est confidentiel : réunion interne, démo client, vidéo privée.</td></tr>
       </tbody>
     </table>
-    <p class="reveal">Si tu veux t'en occuper toi-même ou le transmettre à ton technicien, l'installation est détaillée pas à pas dans <a href="/ressources/claudetube" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">le guide d'installation de claudetube</a>.</p>
+    <div class="callout warn reveal"><b>Règle simple :</b> une vidéo que tu ne publierais pas, tu la passes en mode local. En mode rapide, un fichier envoyé passe par les serveurs de Google, même s'il est supprimé après la réponse.</div>
 
     <h2 class="reveal">À savoir avant de te lancer</h2>
-    <p class="reveal"><strong>Ce n'est pas instantané.</strong> La première fois, Claude récupère et écoute toute la vidéo. Les questions suivantes sur la même vidéo sont rapides.</p>
-    <p class="reveal"><strong>Vérifie la langue.</strong> Sur une vidéo en français sans sous-titres, comme beaucoup de reels, l'outil a tendance à retranscrire en anglais. Pour analyser un hook mot pour mot, demande à ton technicien de forcer le français : sinon tu perds les formulations exactes.</p>
-    <p class="reveal"><strong>Vidéos publiques seulement.</strong> Une vidéo privée ou réservée aux abonnés ne passera pas.</p>
-    <p class="reveal"><strong>Ça prend de la place.</strong> Les vidéos analysées restent stockées sur ton ordinateur. Pense à faire le ménage de temps en temps.</p>
+    <p class="reveal"><strong>Pas dans le chat, pas sur le téléphone.</strong> Watch fonctionne dans une session Code de l'application Claude de bureau. Ni le chat classique, ni Cowork, ni l'appli mobile.</p>
+    <p class="reveal"><strong>Sous-titres d'abord.</strong> Si la vidéo a des sous-titres, Claude les lit directement. Sans sous-titres, comme beaucoup de reels, il faut activer la transcription de la voix : gratuite et sur ton ordinateur (prévois environ 3 Go d'espace libre et 8 Go de mémoire), ou via un service en ligne payant. Pour une vidéo en français, demande-lui de régler la langue sur le français : sinon il peut se tromper de langue et tu perds les formulations exactes du hook.</p>
+    <p class="reveal"><strong>Ce n'est pas instantané.</strong> Il faut le temps de récupérer la vidéo et de la découper. D'où l'intérêt de cibler un passage sur les vidéos longues.</p>
+    <p class="reveal"><strong>Si un site bloque.</strong> Les plateformes vidéo changent souvent leurs protections. Claude met à jour son outil de téléchargement et réessaie tout seul. Si ça bloque encore, la vidéo n'est probablement pas publique.</p>
 
     <h2 class="reveal">Ce que ça dit du reste</h2>
     <p class="reveal">Le plus intéressant n'est pas l'outil, c'est le principe. Claude n'a pas d'yeux : quelqu'un lui en a branché une paire. Le même mécanisme lui donne accès à ton agenda, ton CRM, tes documents ou ta boîte mail. C'est exactement comme ça qu'on rend l'IA utile dans une entreprise : pas en attendant qu'elle sache tout faire, mais en la branchant sur les bons outils, un par un.</p>
