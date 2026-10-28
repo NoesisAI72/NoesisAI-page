@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claude-regarde-videos">
 <title>Claude sait enfin regarder des vidéos : le guide pour tout décortiquer — NoesisAI</title>
-<meta name="description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation en quelques clics.">
+<meta name="description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation pas à pas.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Claude sait enfin regarder des vidéos : le guide pour tout décortiquer">
-<meta property="og:description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation en quelques clics.">
+<meta property="og:description" content="Le guide pour faire regarder n'importe quelle vidéo à Claude : l'outil gratuit qui lui donne des yeux, 4 usages (reel viral, tuto d'une heure, pub concurrente, démo produit), les consignes prêtes à copier et l'installation pas à pas.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -303,11 +303,11 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Jusqu'ici, quand tu donnais un lien YouTube à Claude, il lisait le titre et la description. <strong>La vidéo elle-même, jamais.</strong> Un développeur a réglé ça avec un outil gratuit et open source, claude-video, qui ajoute à Claude une compétence baptisée <strong>Watch</strong>. Claude découpe la vidéo image par image, récupère tout ce qui est dit, et te répond à partir de ce qu'il a vu. Voici ce que ça change, les 4 usages qui font gagner des heures, les consignes prêtes à copier, et l'installation en quelques clics.</p>
+    <p class="lead reveal">Jusqu'ici, quand tu donnais un lien YouTube à Claude, il lisait le titre et la description. <strong>La vidéo elle-même, jamais.</strong> Un développeur a réglé ça avec un outil gratuit et open source, claude-video, qui ajoute à Claude une compétence baptisée <strong>Watch</strong>. Claude découpe la vidéo image par image, récupère tout ce qui est dit, et te répond à partir de ce qu'il a vu. Voici ce que ça change, les 4 usages qui font gagner des heures, les consignes prêtes à copier, et l'installation pas à pas.</p>
 
     <div class="callout reveal"><b>La bascule en une phrase :</b> avant, Claude lisait l'étiquette de la boîte. Maintenant, il ouvre la boîte.</div>
 
-    <div class="callout win reveal"><b>Le lien de l'outil :</b> <a href="https://github.com/bradautomates/claude-video" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">github.com/bradautomates/claude-video</a>. C'est la page officielle du projet, gratuit et open source. C'est aussi l'adresse que tu colleras dans Claude pour l'installer (étape 6).</div>
+    <div class="callout win reveal"><b>Le lien de l'outil :</b> <a href="https://github.com/bradautomates/claude-video" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">github.com/bradautomates/claude-video</a>. C'est la page officielle du projet, gratuit et open source. C'est aussi l'adresse que tu colleras dans Claude pour l'installer (section 7).</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Ce que ça change, en clair</h2>
     <p class="reveal"><strong>Avant.</strong> Les outils de « résumé de vidéo » se contentaient des sous-titres. Tout ce qui était montré et pas dit passait à la trappe : le texte incrusté à l'écran, le produit en gros plan, le tableau affiché pendant une démo.</p>
@@ -336,31 +336,50 @@ body.gate-on .gate-card{transform:none}
     <div class="callout reveal"><b>Consigne à copier :</b> « Utilise watch sur cette démo : [lien]. Est-ce que l'outil montre qu'il sait faire [ton besoin] ? Si oui, donne-moi le moment exact et décris ce qu'on voit à l'écran. Si non, dis-le clairement. »</div>
     <p class="reveal"><strong>Et tes propres vidéos.</strong> Un webinaire ou un live que tu as enregistré devient de la matière première : idées clés, questions posées par le public, découpage en publications. Ce que tu as déjà dit une fois n'a pas à être réécrit de zéro.</p>
 
-    <h2 class="reveal"><span class="numtag">6</span>L'installation, en quelques clics</h2>
-    <p class="reveal">Pas de terminal, pas de ligne de code. Tout se passe dans l'application Claude sur ton ordinateur (Mac ou PC).</p>
+    <h2 class="reveal"><span class="numtag">6</span>Avant de commencer : ce qu'il te faut</h2>
+    <p class="reveal"><strong>Un abonnement Claude Pro ou Max.</strong> Watch tourne dans Claude Code, et Claude Code n'est pas inclus dans l'offre gratuite.</p>
+    <p class="reveal"><strong>L'application Claude de bureau, à jour.</strong> Sur Mac ou sur PC, à télécharger sur <a href="https://claude.com/download" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">claude.com/download</a>. Si tu ne vois pas les menus décrits plus bas, commence par la mettre à jour.</p>
+    <p class="reveal"><strong>Sur Mac : Homebrew.</strong> C'est le petit installateur grâce auquel Claude ajoutera tout seul les programmes vidéo dont Watch a besoin. Si tu ne l'as pas, va sur <a href="https://brew.sh" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">brew.sh</a>, copie la ligne affichée, colle-la dans l'application Terminal, puis tape ton mot de passe Mac. C'est la seule étape qui passe par le terminal, et tu peux la confier à quelqu'un.</p>
+    <p class="reveal"><strong>Sur PC.</strong> Pas besoin de Homebrew : Claude te donnera les commandes à lancer pour installer les programmes manquants.</p>
+    <div class="callout reveal"><b>Ordinateur d'entreprise verrouillé ?</b> Si tu n'as pas le droit d'installer des logiciels, il faudra passer par ton service informatique pour les programmes vidéo.</div>
+
+    <h2 class="reveal"><span class="numtag">7</span>L'installation, pas à pas</h2>
     <p class="reveal"><strong>1. Ouvre les plugins.</strong> Dans l'application Claude de bureau, clique sur <em>Personnaliser</em> dans la barre de gauche, puis sur <em>Plugins</em>.</p>
     <p class="reveal"><strong>2. Ajoute le catalogue.</strong> Clique sur <em>Ajouter</em>, puis <em>Ajouter une marketplace</em> (un catalogue de plugins), puis <em>Ajouter depuis un dépôt</em>.</p>
     <p class="reveal"><strong>3. Colle l'adresse.</strong> github.com/bradautomates/claude-video, puis clique sur <em>Synchroniser</em>.</p>
     <p class="reveal"><strong>4. Installe Watch.</strong> Trouve <em>Watch</em> dans le catalogue ajouté et installe-le. Ajouter le catalogue ne suffit pas : il faut bien installer Watch.</p>
-    <p class="reveal"><strong>5. Ouvre une session Code.</strong> C'est l'onglet <em>Code</em> de l'application, pas le chat. Demande « Utilise watch sur [lien] ». Au premier lancement, Claude vérifie qu'il ne manque rien et te pose deux ou trois questions de réglage.</p>
-    <div class="callout reveal"><b>Si un outil manque :</b> Watch a besoin de quelques programmes vidéo sur ton ordinateur. Demande simplement à Claude : « Vérifie ce qui manque pour watch et aide-moi à l'installer ». Sur Mac, il s'en charge lui-même. Sur un ordinateur d'entreprise verrouillé, il faudra peut-être ton service informatique. Les libellés des menus peuvent varier légèrement selon la version de l'application.</div>
-
-    <h2 class="reveal"><span class="numtag">7</span>Le réglage qui compte : rapide ou 100 % local</h2>
-    <p class="reveal">Au premier lancement, Watch te propose deux façons de regarder une vidéo.</p>
+    <p class="reveal"><strong>5. Ouvre une session Code.</strong> C'est l'onglet <em>Code</em> de l'application, pas le chat ni Cowork. Il te demande un dossier de travail : crée par exemple un dossier « Vidéos » sur ton bureau. Si tu veux analyser un fichier vidéo de ton ordinateur, glisse-le dans ce dossier.</p>
+    <p class="reveal"><strong>6. Fais vérifier ce qui manque.</strong> Colle cette demande et accepte quand Claude te demande l'autorisation d'installer :</p>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Utilise l'outil de vérification de watch pour voir ce qui manque sur mon ordinateur, et aide-moi à l'installer. »</div>
+    <p class="reveal">Il vérifie trois programmes (Python, FFmpeg et yt-dlp, l'outil qui télécharge les vidéos) et installe ceux qui manquent. Sur Mac, il passe par Homebrew. Une fois l'installation finie, ferme et rouvre la session pour qu'il les voie.</p>
+    <p class="reveal"><strong>7. Réponds aux questions de réglage.</strong> À la première utilisation, Watch te pose quelques questions. Voici quoi répondre :</p>
     <table class="matrix reveal">
-      <thead><tr><th>Mode</th><th>Comment ça marche</th><th>Pour quoi</th></tr></thead>
+      <thead><tr><th>Question</th><th>Réponse conseillée</th><th>Pourquoi</th></tr></thead>
       <tbody>
-        <tr><td>Rapide</td><td>Avec une clé Google gratuite, la vidéo est analysée par le modèle vidéo de Google, et Claude te relaie sa réponse.</td><td>Les vidéos publiques, quand tu veux aller vite.</td></tr>
-        <tr><td><span class="star">★</span> Local</td><td>Rien ne sort de ton ordinateur : Claude découpe lui-même la vidéo en images et en texte.</td><td>Tout ce qui est confidentiel : réunion interne, démo client, vidéo privée.</td></tr>
+        <tr><td>La clé Google (Gemini)</td><td><span class="star">★</span> passer, pour rester en <em>local</em></td><td>Sans clé, rien ne sort de ton ordinateur. Avec, c'est plus rapide, mais la vidéo passe par Google (détails plus bas).</td></tr>
+        <tr><td>Le niveau de détail</td><td><span class="star">★</span> <em>balanced</em> (équilibré)</td><td>Une image à chaque changement de plan, sans exploser ta consommation.</td></tr>
+        <tr><td>La transcription quand il n'y a pas de sous-titres</td><td><em>none</em> pour un premier essai, puis <em>whisperx</em></td><td>WhisperX est gratuit et tourne sur ton ordinateur (étape 8). Groq et OpenAI existent aussi, mais demandent une clé payante.</td></tr>
       </tbody>
     </table>
+    <p class="reveal"><strong>8. Active la transcription de la voix.</strong> Indispensable pour les vidéos sans sous-titres, comme beaucoup de reels. Prévois environ 3 Go d'espace libre et 8 Go de mémoire. C'est testé sur les Mac récents (puces Apple) ; sur PC ou sur un Mac plus ancien, ça peut coincer.</p>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Installe la transcription locale WhisperX pour watch, et règle la langue de transcription sur le français. »</div>
+    <div class="callout warn reveal"><b>N'oublie pas la langue.</b> Sans ce réglage, la transcription peut se tromper de langue sur une vidéo en français, et tu perds les formulations exactes du hook.</div>
+    <p class="reveal"><strong>9. Fais ton premier test.</strong> Prends une vidéo courte, de moins de 10 minutes.</p>
+    <div class="callout reveal"><b>Consigne à copier :</b> « Utilise watch sur [lien]. Résume ce qu'on voit à l'écran, avec les minutages. »</div>
+    <div class="callout win reveal"><b>C'est réussi quand :</b> Claude te rend un résumé de ce qu'il a vu, minute par minute. Tu peux aussi taper <em>/watch</em> dans la session et choisir la commande proposée, au lieu d'écrire « Utilise watch ».</div>
+
+    <h2 class="reveal">Le mode rapide, avec une clé Google</h2>
+    <p class="reveal">Avec une clé Google gratuite, Watch confie la vidéo entière, image et son, au modèle vidéo de Google, et Claude te relaie sa réponse. Pour une vidéo YouTube, il n'y a même rien d'autre à installer.</p>
+    <p class="reveal"><strong>Obtenir la clé.</strong> Va sur <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">aistudio.google.com/apikey</a>, connecte-toi avec ton compte Google et crée une clé. Quand Watch te la demande, demande plutôt à Claude d'ouvrir son fichier de réglages et colle-la toi-même : ta clé ne passe pas par la conversation.</p>
     <div class="callout warn reveal"><b>Règle simple :</b> une vidéo que tu ne publierais pas, tu la passes en mode local. En mode rapide, un fichier envoyé passe par les serveurs de Google, même s'il est supprimé après la réponse.</div>
 
     <h2 class="reveal">À savoir avant de te lancer</h2>
     <p class="reveal"><strong>Pas dans le chat, pas sur le téléphone.</strong> Watch fonctionne dans une session Code de l'application Claude de bureau. Ni le chat classique, ni Cowork, ni l'appli mobile.</p>
-    <p class="reveal"><strong>Sous-titres d'abord.</strong> Si la vidéo a des sous-titres, Claude les lit directement. Sans sous-titres, comme beaucoup de reels, il faut activer la transcription de la voix : gratuite et sur ton ordinateur (prévois environ 3 Go d'espace libre et 8 Go de mémoire), ou via un service en ligne payant. Pour une vidéo en français, demande-lui de régler la langue sur le français : sinon il peut se tromper de langue et tu perds les formulations exactes du hook.</p>
     <p class="reveal"><strong>Ce n'est pas instantané.</strong> Il faut le temps de récupérer la vidéo et de la découper. D'où l'intérêt de cibler un passage sur les vidéos longues.</p>
     <p class="reveal"><strong>Si un site bloque.</strong> Les plateformes vidéo changent souvent leurs protections. Claude met à jour son outil de téléchargement et réessaie tout seul. Si ça bloque encore, la vidéo n'est probablement pas publique.</p>
+    <p class="reveal"><strong>Mettre Watch à jour.</strong> Dans <em>Personnaliser</em>, <em>Plugins</em>, <em>Ajouter</em>, puis <em>Gérer les marketplaces</em> : sélectionne claude-video et mets-le à jour, puis ouvre une nouvelle session.</p>
+    <p class="reveal"><strong>Les menus peuvent varier.</strong> Leurs libellés changent légèrement d'une version de l'application à l'autre.</p>
+
 
     <h2 class="reveal">Ce que ça dit du reste</h2>
     <p class="reveal">Le plus intéressant n'est pas l'outil, c'est le principe. Claude n'a pas d'yeux : quelqu'un lui en a branché une paire. Le même mécanisme lui donne accès à ton agenda, ton CRM, tes documents ou ta boîte mail. C'est exactement comme ça qu'on rend l'IA utile dans une entreprise : pas en attendant qu'elle sache tout faire, mais en la branchant sur les bons outils, un par un.</p>
