@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/outil-metier-claude">
-<title>Construis ton propre outil métier dans Claude — NoesisAI</title>
-<meta name="description" content="Un exemple, tes données, tes connecteurs, un lien de partage : le guide pour construire ton outil métier dans Claude (juridique, finance, RH, commercial).">
+<title>Claude for Legal : comment marchent les nouveaux outils prêts à l&#x27;emploi — NoesisAI</title>
+<meta name="description" content="Tabular review, playbook deviation board, cite check, horizon scan… Ce que contient la galerie d&#x27;outils de Claude for Legal (28 octobre 2026), comment elle fonctionne, les pièges de partage, et comment l&#x27;appliquer à la finance ou aux RH.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Construis ton propre outil métier dans Claude">
-<meta property="og:description" content="Un exemple, tes données, tes connecteurs, un lien de partage : le guide pour construire ton outil métier dans Claude (juridique, finance, RH, commercial).">
+<meta property="og:title" content="Claude for Legal : comment marchent les nouveaux outils prêts à l&#x27;emploi">
+<meta property="og:description" content="Tabular review, playbook deviation board, cite check, horizon scan… Ce que contient la galerie d&#x27;outils de Claude for Legal (28 octobre 2026), comment elle fonctionne, les pièges de partage, et comment l&#x27;appliquer à la finance ou aux RH.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -290,8 +290,8 @@ body.gate-on .gate-card{transform:none}
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
-    <h1>Construis ton propre outil métier dans Claude</h1>
-    <p class="sub">La recette en 4 ingrédients qu&#x27;Anthropic a utilisée pour les juristes, appliquée à ton service.</p>
+    <h1>Claude for Legal : comment marchent les nouveaux outils prêts à l&#x27;emploi</h1>
+    <p class="sub">Les 6 outils de la galerie d&#x27;Anthropic, comment les ouvrir, les brancher et les partager sans fuite, puis comment copier la recette pour ton service.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -303,63 +303,79 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Anthropic a commencé par les juristes : des outils prêts à l'emploi qui s'ouvrent dans la conversation (un tableau de clauses, un comparateur de contrats, une frise réglementaire, un vérificateur de sources). Mais la recette n'a rien de juridique. Elle tient en <strong>quatre ingrédients</strong> : un exemple, tes données, tes connecteurs, un lien de partage. Voici comment construire le tien, pour ton service, dès cette semaine.</p>
+    <p class="lead reveal">Le 28 octobre 2026, Anthropic a ajouté une <strong>galerie d'outils prêts à l'emploi</strong> à Claude for Legal. Ce ne sont pas des réponses en texte : ce sont de petites applis (tableaux, trackers, frises) qui s'ouvrent dans Claude et se partagent à toute l'équipe. Voici ce qu'il y a dedans, comment ça fonctionne concrètement, ce qu'il faut surveiller avant de le déployer, et comment copier la recette pour un autre service.</p>
 
-    <div class="callout reveal"><b>Règle qui te suit sur tout le guide :</b> un bon outil métier, c'est une décision que ton équipe prend chaque semaine, avec un tableau propre autour. Si tu ne peux pas nommer la décision, tu n'as pas encore d'outil.</div>
+    <div class="callout reveal"><b>L'idée en une phrase :</b> Anthropic les appelle des « artifacts ». Un artifact, c'est un outil interactif fabriqué par Claude, qui s'ouvre avec un exemple déjà rempli, se branche sur tes documents et se partage par lien. La galerie juridique est un catalogue de ces outils, déjà construits pour les juristes.</div>
 
-    <h2 class="reveal"><span class="numtag">1</span>Choisir le bon cas d'usage</h2>
-    <p class="reveal"><strong>Le test des 3 questions.</strong> Avant de construire quoi que ce soit, ton cas doit cocher les trois : (1) la tâche revient <em>au moins chaque semaine</em> ; (2) l'entrée, ce sont des documents (contrats, factures, CV, mails, comptes rendus) ; (3) la sortie tient dans un tableau, une liste ou une alerte.</p>
-    <p class="reveal"><strong>Pourquoi ça marche.</strong> C'est exactement le terrain des outils juridiques du post : des piles de PDF à lire, un tableau à produire. Le logiciel qui « met un tableau autour d'un PDF », tu peux maintenant le construire toi-même.</p>
+    <h2 class="reveal"><span class="numtag">1</span>D'où ça vient</h2>
+    <p class="reveal"><strong>Mai 2026 : Claude for Legal.</strong> Anthropic lance une version de Claude pour les juristes : des plugins par domaine du droit (contrats, sociétés, travail, données personnelles, contentieux…) et des connecteurs vers les logiciels de la profession.</p>
+    <p class="reveal"><strong>Octobre 2026 : la galerie.</strong> Les plugins donnaient à Claude la méthode du juriste. La galerie ajoute le format : au lieu d'une réponse à copier-coller, le juriste obtient un outil qu'il garde, réutilise sur le dossier suivant et partage. Depuis mai, Anthropic annonce aussi plus de 60 connecteurs juridiques ajoutés, dont Bloomberg Law, Filevine, Ivo, Legora et Patlytics.</p>
+
+    <h2 class="reveal"><span class="numtag">2</span>Les 6 outils de la galerie, un par un</h2>
+    <p class="reveal">Ce sont les six outils « maison » d'Anthropic. Pour chacun : ce que tu lui donnes, ce qu'il te rend.</p>
     <table class="matrix reveal">
-      <thead><tr><th>Service</th><th>Entrée</th><th>Outil à construire</th></tr></thead>
+      <thead><tr><th>Outil</th><th>Tu lui donnes</th><th>Il te rend</th></tr></thead>
       <tbody>
-        <tr><td>Juridique</td><td>Contrats</td><td>Tableau des clauses (préavis, non-concurrence) avec la phrase source</td></tr>
-        <tr><td>Finance</td><td>Factures fournisseurs</td><td>Écarts entre facture, devis et conditions négociées</td></tr>
-        <tr><td>RH</td><td>CV, contrats de travail</td><td>Grille de tri des candidatures, suivi des fins de période d'essai</td></tr>
-        <tr><td>Commercial</td><td>Comptes rendus d'appels</td><td>Tracker des objections et des prochaines étapes par compte</td></tr>
-        <tr><td>Direction</td><td>Veille, textes officiels</td><td>Frise des échéances à venir, classées par impact</td></tr>
+        <tr><td><b>Tabular review</b></td><td>Une pile de contrats + les points à chercher (ex. indemnités de départ, non-concurrence)</td><td><span class="star">★</span> Un tableau, contrat par contrat, avec un lien vers la phrase exacte</td></tr>
+        <tr><td><b>Playbook deviation board</b></td><td>Des contrats + tes conditions standard</td><td>Chaque clause qui s'en écarte, envoyée à la personne qui valide les exceptions</td></tr>
+        <tr><td><b>Regulatory horizon scan</b></td><td>Ton activité + les pays où tu opères</td><td>Une frise des réglementations à venir, classées par impact, avec les sources</td></tr>
+        <tr><td><b>Cite check</b></td><td>Un document juridique + ses sources</td><td>Les citations mal recopiées, les mauvaises pages, les sources qui ne disent pas ce qu'on leur fait dire</td></tr>
+        <tr><td><b>Jurisdiction survey matrix</b></td><td>Un sujet (ex. notification d'une fuite de données) + les pays ou États à comparer</td><td>Un seul tableau comparatif, avec des liens vers les textes</td></tr>
+        <tr><td><b>Matter board</b></td><td>Lettres de mission, emails ou tableurs</td><td>Un tableau de bord des dossiers ouverts : responsable, prochaine étape, prochaine échéance</td></tr>
       </tbody>
     </table>
+    <div class="callout reveal"><b>Ce qui les relie :</b> chaque résultat pointe vers sa source. C'est le cœur du produit. Claude fait le premier passage, le juriste vérifie en un clic au lieu de tout relire. Anthropic l'écrit d'ailleurs noir sur blanc : c'est l'avocat qui exerce son jugement sur le résultat.</div>
 
-    <h2 class="reveal"><span class="numtag">2</span>Ingrédient 1 — l'exemple déjà rempli</h2>
-    <p class="reveal"><strong>Le principe.</strong> Chaque outil de la galerie s'ouvre avec un exemple prêt. Ce n'est pas un détail : personne n'adopte une page vide. Ton collègue doit voir l'outil <em>fonctionner</em> avant d'y mettre ses propres documents.</p>
-    <p class="reveal"><strong>Construire.</strong> Demande à Claude de générer l'outil sur 3 à 5 documents fictifs mais réalistes (un faux contrat, une fausse facture). Tu valides les colonnes, le rendu, les filtres. Ensuite seulement, tu passes aux vraies données.</p>
-    <div class="callout reveal"><b>Astuce :</b> l'exemple sert aussi de spécification. Si le tableau d'exemple n'est pas celui que tu voudrais montrer en réunion, corrige-le maintenant. Plus tard, ce sera plus cher.</div>
+    <h2 class="reveal"><span class="numtag">3</span>Comment ça fonctionne, étape par étape</h2>
+    <p class="reveal"><strong>1. Ouvrir la galerie.</strong> Dans Claude, tu parcours la galerie et tu filtres sur les modèles juridiques. Tu peux aussi partir de la page Claude for Legal.</p>
+    <p class="reveal"><strong>2. Regarder l'exemple.</strong> Chaque outil s'ouvre avec des données d'exemple déjà remplies. Tu vois le résultat final avant d'y mettre quoi que ce soit de confidentiel. C'est voulu : personne n'adopte une page vide.</p>
+    <p class="reveal"><strong>3. Mettre tes documents.</strong> Tu remplaces l'exemple par tes contrats, ton playbook, tes sources.</p>
+    <p class="reveal"><strong>4. L'adapter en parlant à Claude.</strong> Pas de code : tu demandes en français d'ajouter une colonne, de changer un seuil, de suivre ta façon de travailler. L'outil se modifie dans la conversation.</p>
+    <p class="reveal"><strong>5. Brancher tes connecteurs.</strong> Au lieu de glisser des fichiers à la main, l'outil va chercher le playbook ou les sources de recherche là où ils sont déjà stockés.</p>
+    <p class="reveal"><strong>6. Partager.</strong> Un lien, et l'outil est utilisé par les collègues des autres services, et même par des clients ou partenaires. Tu le réutilises ensuite sur les dossiers suivants.</p>
 
-    <h2 class="reveal"><span class="numtag">3</span>Ingrédient 2 — tes données, avec la source</h2>
-    <p class="reveal"><strong>Définir les colonnes.</strong> Écris noir sur blanc ce que l'outil doit extraire : « durée de préavis », « clause de non-concurrence oui/non », « montant HT », « date d'échéance ». Une colonne floue donne un tableau flou.</p>
-    <p class="reveal"><strong>Exiger la preuve.</strong> C'est ce qui rend les outils du post crédibles : chaque valeur pointe vers <strong>la phrase exacte</strong> du document. Demande systématiquement à Claude de citer le passage et la page pour chaque cellule.</p>
-    <div class="callout warn reveal"><b>Sans source, pas de confiance :</b> un tableau qui ne dit pas d'où viennent ses chiffres sera revérifié à la main… et abandonné en deux semaines. La citation, c'est ce qui fait gagner le temps.</div>
-
-    <h2 class="reveal"><span class="numtag">4</span>Ingrédient 3 — tes connecteurs</h2>
-    <p class="reveal"><strong>Le principe.</strong> Un outil où il faut glisser les fichiers à la main, c'est un outil qui sera utilisé trois fois. Les connecteurs de Claude permettent d'aller chercher les documents là où ils vivent déjà : ton drive, ta messagerie, ton espace de documentation.</p>
-    <p class="reveal"><strong>Construire.</strong> Branche le connecteur qui contient la source (le dossier « Contrats », la boîte « Factures »), puis décris à l'outil où regarder et quoi ignorer.</p>
-    <div class="callout warn reveal"><b>Attention aux droits :</b> l'outil voit ce que le connecteur voit. Avant de partager, vérifie que le dossier branché ne contient rien qui ne doit pas circuler (salaires, dossiers disciplinaires, données clients sensibles).</div>
-
-    <h2 class="reveal"><span class="numtag">5</span>Ingrédient 4 — le lien de partage</h2>
-    <p class="reveal"><strong>Le principe.</strong> L'outil ne vaut quelque chose que s'il sort de ta conversation. Un lien, et toute l'équipe l'utilise, sans formation ni licence logicielle de plus.</p>
-    <p class="reveal"><strong>Aller plus loin : router les exceptions.</strong> Le comparateur de contrats du post envoie chaque écart à la personne qui valide. Fais pareil : décide <em>qui</em> reçoit quoi. Écart de prix &gt; X % → la direction financière. Clause hors standard → le juriste. L'outil ne décide pas, il trie.</p>
-
-    <h2 class="reveal"><span class="numtag">6</span>Le prompt de départ (à copier)</h2>
-    <p class="reveal">Colle ce prompt dans Claude, remplace les crochets, et tu as ta première version en une conversation.</p>
-    <div class="callout reveal"><b>Prompt :</b> « Construis-moi un outil interactif pour [mon service]. Il reçoit des [type de documents] et produit un tableau avec les colonnes suivantes : [colonne 1], [colonne 2], [colonne 3]. Pour chaque cellule, cite la phrase exacte et la page du document source. Signale en rouge tout écart avec ces conditions standard : [mes règles]. Ajoute un filtre par [critère]. Commence par un exemple rempli avec 3 documents fictifs réalistes pour que je valide le rendu. »</div>
-
-    <h2 class="reveal"><span class="numtag">7</span>Le réflexe qui change tout : le vérificateur</h2>
-    <p class="reveal"><strong>Le principe.</strong> Le quatrième outil juridique du post est un vérificateur : il repère la mauvaise page, ou la source qui ne dit pas ce qu'on lui fait dire. Ajoute cette étape à <em>tous</em> tes outils.</p>
-    <p class="reveal"><strong>Construire.</strong> Une fois le tableau produit, demande une seconde passe : « Relis chaque citation et confirme qu'elle justifie bien la valeur de la cellule. Liste celles qui ne collent pas. » C'est simple, et c'est ce qui sépare un gadget d'un outil sur lequel ton équipe peut s'appuyer.</p>
-
-    <h2 class="reveal">Par lequel commencer ?</h2>
-    <p class="reveal">Ne construis pas cinq outils. Construis-en un, fais-le adopter, puis duplique la recette.</p>
+    <h2 class="reveal"><span class="numtag">4</span>Les outils des partenaires</h2>
+    <p class="reveal">La galerie ne contient pas que les outils d'Anthropic. Des cabinets et éditeurs y ont publié les leurs :</p>
     <table class="matrix reveal">
-      <thead><tr><th>Ingrédient</th><th>À faire cette semaine</th><th>Erreur à éviter</th></tr></thead>
+      <thead><tr><th>Outil</th><th>Par</th><th>Ce qu'il fait</th></tr></thead>
       <tbody>
-        <tr><td>1. L'exemple</td><td><span class="star">★</span> 3 à 5 documents fictifs, rendu validé</td><td>Démarrer sur une page vide</td></tr>
-        <tr><td>2. Tes données</td><td>Colonnes écrites + citation obligatoire</td><td>Un tableau sans source</td></tr>
-        <tr><td>3. Tes connecteurs</td><td>Un seul dossier source, droits vérifiés</td><td>Brancher tout le drive</td></tr>
-        <tr><td>4. Le partage</td><td><span class="star">★</span> Un lien + qui reçoit les exceptions</td><td>Garder l'outil pour soi</td></tr>
+        <tr><td><b>Harvey Intake</b></td><td>Harvey</td><td>Un guichet unique dans Claude pour poser une question au service juridique. Les questions courantes reçoivent la réponse validée par le juridique, les autres partent à un avocat dont la réponse revient dans Claude.</td></tr>
+        <tr><td><b>Obligations Checker</b></td><td>Foley &amp; Lardner</td><td>Liste les obligations des deux parties d'un contrat, pour les valider avant signature puis les suivre après.</td></tr>
+        <tr><td><b>AI Governance Benchmark</b></td><td>Goodwin</td><td>Compare ta gouvernance de l'IA à un référentiel pour faire ressortir les manques.</td></tr>
+        <tr><td><b>Subpoena Response Tool</b></td><td>PwC</td><td>Transforme les précédents, objections types et modèles d'une équipe en premiers projets de réponse à une injonction.</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Lecture rapide :</b> un cas répété chaque semaine, un exemple rempli, une citation par cellule, un lien partagé. Si tes quatre cases sont cochées, tu viens de remplacer un abonnement logiciel par un outil fait pour ton équipe.</div>
+    <p class="reveal"><strong>Et aussi.</strong> Neuf outils d'accès au droit, dont cinq construits par des associations (lecture de papiers d'immigration, vérification d'un relevé de loyers dans un contentieux d'expulsion, éligibilité à l'effacement d'un casier…). Ils reposent sur le droit américain (New York, Washington D.C.) : à regarder comme modèles, pas à utiliser tels quels en France ou en Suisse. D'autres outils sont annoncés chez Legora et Orrick.</p>
+
+    <h2 class="reveal"><span class="numtag">5</span>Partage et droits d'accès : ce qu'il faut savoir</h2>
+    <p class="reveal">Anthropic dit que les réglages de partage protègent la confidentialité et permettent des cloisons entre équipes. Le site eWeek, qui a épluché la documentation d'Anthropic, apporte des précisions utiles :</p>
+    <p class="reveal"><strong>Pas de lien public ouvert</strong> pour un outil qui utilise Claude ou un connecteur. <strong>Les invités extérieurs sont limités</strong> : un client invité n'a pas accès aux fonctions qui passent par Claude ou par un logiciel connecté, ni automatiquement aux fichiers sources. <strong>Les droits suivent les fichiers</strong> : si l'outil lit un espace documentaire privé, un collègue sans accès à ces fichiers peut tomber sur des erreurs.</p>
+    <div class="callout warn reveal"><b>Le piège à connaître :</b> ce qu'on saisit dans un tracker partagé (des notes de dossier, par exemple) peut être visible par des collègues qui n'ont pas accès aux dossiers clients d'origine. Avant de déployer, teste l'outil avec des comptes qui ont des droits différents, et vérifie les réglages d'invitation et de stockage partagé.</div>
+
+    <h2 class="reveal"><span class="numtag">6</span>Pour qui, et les limites</h2>
+    <p class="reveal"><strong>Disponibilité.</strong> L'annonce est rattachée à l'offre Claude Enterprise. Anthropic ne donne ni prix, ni détail par abonnement, ni disponibilité par pays. Pour un déploiement encadré, Anthropic renvoie vers ses équipes commerciales et des intégrateurs partenaires (Deloitte, KPMG, PwC, Accenture…).</p>
+    <p class="reveal"><strong>Ce qu'on ne sait pas.</strong> Aucun chiffre de précision n'est publié. Les descriptions des outils, y compris ceux des partenaires, viennent d'Anthropic et des partenaires eux-mêmes, sans test indépendant à ce jour.</p>
+    <div class="callout reveal"><b>Ma lecture :</b> c'est justement pour ça que le lien vers la source est si important. Il ne rend pas l'outil infaillible, il rend la vérification rapide. Un outil sans source, tu le revérifies à la main ; un outil avec source, tu contrôles en un clic.</div>
+
+    <h2 class="reveal"><span class="numtag">7</span>Copier la recette pour ton service</h2>
+    <p class="reveal">Rien dans ces outils n'est propre au droit. Chacun est un tableau intelligent posé sur des documents. La même logique s'applique ailleurs :</p>
+    <table class="matrix reveal">
+      <thead><tr><th>Outil juridique</th><th>Équivalent ailleurs</th></tr></thead>
+      <tbody>
+        <tr><td>Tabular review</td><td>Finance : extraire montants, échéances et conditions d'une pile de factures fournisseurs</td></tr>
+        <tr><td>Playbook deviation board</td><td>Achats : repérer les écarts entre devis reçus et conditions négociées</td></tr>
+        <tr><td>Matter board</td><td>RH : suivre les recrutements ou les fins de période d'essai ; commercial : les comptes et prochaines étapes</td></tr>
+        <tr><td>Regulatory horizon scan</td><td>Direction : les échéances réglementaires de ton secteur</td></tr>
+        <tr><td>Cite check</td><td>Toute équipe : vérifier qu'un rapport dit bien ce que disent ses sources</td></tr>
+      </tbody>
+    </table>
+    <p class="reveal"><strong>Le prompt de départ.</strong> Colle-le dans Claude et remplace les crochets :</p>
+    <div class="callout reveal"><b>Prompt :</b> « Construis-moi un outil interactif pour [mon service]. Il reçoit des [type de documents] et produit un tableau avec les colonnes : [colonne 1], [colonne 2], [colonne 3]. Pour chaque cellule, cite la phrase exacte et la page du document source. Signale tout écart avec ces règles : [mes règles]. Commence par un exemple rempli avec 3 documents fictifs réalistes pour que je valide le rendu. »</div>
+    <div class="callout win reveal"><b>La recette en quatre mots :</b> un exemple, tes données, tes connecteurs, un lien de partage. Anthropic l'a appliquée au juridique ; elle marche pour la finance, les RH ou le commercial dès aujourd'hui.</div>
+
+    <h2 class="reveal">Sources officielles</h2>
+    <p class="reveal"><a href="https://claude.com/resources/articles/introducing-artifacts-for-legal-work" target="_blank" rel="noopener">L'annonce d'Anthropic (28 octobre 2026)</a> · <a href="https://claude.com/solutions/legal" target="_blank" rel="noopener">La page Claude for Legal</a> · <a href="https://www.eweek.com/news/anthropic-claude-legal-ai-tools/" target="_blank" rel="noopener">L'analyse d'eWeek sur le partage et les droits</a></p>
+
 
 
   </div>
