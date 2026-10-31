@@ -32,6 +32,8 @@ type Props = {
   size?: Size;
   href?: string;
   external?: boolean;
+  /** Page du même site servie hors du routeur (ex. /ressources, HTML statique) : lien classique, même onglet. */
+  reload?: boolean;
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
@@ -43,6 +45,7 @@ export function Button({
   size = "md",
   href,
   external,
+  reload,
   className,
   children,
   onClick,
@@ -50,7 +53,7 @@ export function Button({
 }: Props) {
   const classes = cn(base, variants[variant], sizes[size], className);
   // Lien interne : navigation sans rechargement via le routeur.
-  if (href && href.startsWith("/") && !external) {
+  if (href && href.startsWith("/") && !external && !reload) {
     return (
       <Link to={href} className={classes}>
         {children}

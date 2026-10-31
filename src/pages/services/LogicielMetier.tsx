@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import { LightPage, PageHero, TestimonialsSection, FaqSection, CtaSection } from "../../components/page/Blocks";
+import { LightPage, PageHero, TestimonialsSection, GuidesSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { MethodTimeline } from "../../components/page/MethodTimeline";
 import { Logiciels, FeaturedProject } from "../../components/Logiciels";
 import { Section, SectionHeading } from "../../components/ui/Section";
-import { PAGES } from "../../data/content";
+import { GUIDES, PAGES } from "../../data/content";
 
 export function LogicielMetier() {
   const p = PAGES.logiciel;
@@ -25,6 +25,11 @@ export function LogicielMetier() {
         </div>
       </Section>
       <TestimonialsSection />
+      <GuidesSection
+        title="Préparer votre projet"
+        subtitle="Nos guides pour cadrer un logiciel métier et une implémentation IA."
+        items={[GUIDES.implementation, GUIDES.logiciel, GUIDES.premierChantier]}
+      />
       <FaqSection {...p.faq} />
       <CtaSection {...p.cta} />
     </LightPage>

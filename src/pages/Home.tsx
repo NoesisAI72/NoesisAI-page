@@ -6,6 +6,7 @@ import {
   PageHero,
   MethodSection,
   TestimonialsSection,
+  GuidesSection,
   FaqSection,
   CtaSection,
 } from "../components/page/Blocks";
@@ -15,7 +16,7 @@ import { AutomationNetwork } from "../components/page/AutomationNetwork";
 import { BeforeAfterPreview } from "../components/ui/BeforeAfter";
 import { Projets } from "../components/Projets";
 import { VideoPresentation } from "../components/ui/VideoPresentation";
-import { FAQ, FINAL_CTA, HERO, HOME, SERVICES_MENU } from "../data/content";
+import { FAQ, FINAL_CTA, GUIDES, HERO, HOME, SERVICES_MENU } from "../data/content";
 
 const SERVICE_IMAGES: Record<string, string | undefined> = {
   "/logiciel-metier": "/projets/muller-dashboard.webp",
@@ -93,6 +94,11 @@ export function Home() {
       <MethodSection />
       <Projets badge="Projets" title={HOME.projectsTitle} limit={6} showAllLink />
       <TestimonialsSection />
+      <GuidesSection
+        title="Nos guides pour passer à l'IA"
+        subtitle="Méthodes, chiffres et retours de terrain, en accès libre."
+        items={[GUIDES.implementation, GUIDES.premierChantier, GUIDES.couts]}
+      />
       <FaqSection title={FAQ.title} items={FAQ.items} />
       <CtaSection title={FINAL_CTA.title} subtitle={FINAL_CTA.subtitle} />
     </LightPage>

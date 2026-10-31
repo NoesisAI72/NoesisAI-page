@@ -39,6 +39,12 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              {/* /ressources est servi en HTML statique, hors du routeur : lien classique. */}
+              <li>
+                <a href="/ressources" className="text-sm text-slate-600 transition-colors hover:text-[#0b0b0f]">
+                  Ressources gratuites
+                </a>
+              </li>
             </ul>
           </div>
 

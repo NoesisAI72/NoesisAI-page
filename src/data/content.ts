@@ -745,6 +745,30 @@ export const MAIN_MENU = [
   { label: "Témoignages", to: "/temoignages" },
 ];
 
+/** Guides de /ressources mis en avant sur le site (pages statiques : liens <a>, pas le routeur). */
+export const GUIDES = {
+  implementation: {
+    href: "/ressources/implementation-ia-parfaite",
+    title: "Réussir une implémentation IA",
+    text: "Les 5 phases sur 90 jours, les 7 questions pour cartographier vos données et les 5 causes d'échec.",
+  },
+  premierChantier: {
+    href: "/ressources/implementer-ia-entreprise",
+    title: "Implémenter l'IA sans se tromper de chantier",
+    text: "Écrire vos process, choisir le bon premier chantier, outil sur-mesure ou formation, avec un cas réel.",
+  },
+  couts: {
+    href: "/ressources/couts-ia",
+    title: "Le vrai coût de l'IA",
+    text: "Les 5 leviers qui font varier votre facture d'IA, et comment la diviser par 5.",
+  },
+  logiciel: {
+    href: "/ressources/logiciel-sur-mesure-ia",
+    title: "Un logiciel qui s'adapte à votre entreprise",
+    text: "Diagnostic, droits par salarié, agents IA et stack type pour tout réunir dans un seul outil.",
+  },
+};
+
 export type FaqItem = { q: string; a: string };
 
 export type ServicePage = {

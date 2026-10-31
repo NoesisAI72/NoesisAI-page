@@ -419,6 +419,38 @@ export function FaqSection({ title, items }: { title: string; items: FaqItem[] }
   );
 }
 
+type Guide = { href: string; title: string; text: string };
+
+/** Guides gratuits de /ressources : relie les pages du site aux ressources (maillage interne).
+    Ce sont des pages HTML statiques, hors du routeur : liens <a> classiques. */
+export function GuidesSection({ title, subtitle, items }: { title: string; subtitle?: string; items: Guide[] }) {
+  return (
+    <Section id="ressources" className="bg-white">
+      <SectionHeading badge="Ressources gratuites" title={title} subtitle={subtitle} tone="light" />
+      <div className="mt-10 grid gap-4 md:grid-cols-3">
+        {items.map((g) => (
+          <a
+            key={g.href}
+            href={g.href}
+            className="flex flex-col gap-2 rounded-2xl border border-black/5 bg-[#f7f6fb] p-6 transition-colors hover:border-black/15"
+          >
+            <span className="font-display text-base font-semibold text-[#0b0b0f]">{g.title}</span>
+            <span className="text-sm leading-relaxed text-slate-600">{g.text}</span>
+            <span className="mt-auto pt-2 text-sm font-medium text-brand-600">
+              Lire le guide <Chevrons />
+            </span>
+          </a>
+        ))}
+      </div>
+      <div className="mt-10 flex justify-center">
+        <Button href="/ressources" reload variant="outlineLight" size="lg">
+          Voir toutes les ressources
+        </Button>
+      </div>
+    </Section>
+  );
+}
+
 /** Appel à l'action final : grande carte claire teintée violet. */
 export function CtaSection({ title, subtitle }: { title: string; subtitle: string }) {
   return (
