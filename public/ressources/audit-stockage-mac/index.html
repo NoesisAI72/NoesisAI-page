@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/audit-stockage-mac">
-<title>Récupère des Go sur ton Mac — sans rien casser — NoesisAI</title>
-<meta name="description" content="Le guide pour repérer et libérer l'espace disque gaspillé sur ton Mac (caches, logs, node_modules, Xcode, Docker) en toute sécurité — avec les niveaux de risque et l'audit en une commande.">
+<title>Récupère des Go sur ton Mac, sans rien casser - NoesisAI</title>
+<meta name="description" content="Le guide pour repérer et libérer l'espace disque gaspillé sur ton Mac (caches, logs, node_modules, Xcode, Docker) en toute sécurité, avec les niveaux de risque et l'audit en une commande.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Récupère des Go sur ton Mac — sans rien casser">
-<meta property="og:description" content="Le guide pour repérer et libérer l'espace disque gaspillé sur ton Mac (caches, logs, node_modules, Xcode, Docker) en toute sécurité — avec les niveaux de risque et l'audit en une commande.">
+<meta property="og:title" content="Récupère des Go sur ton Mac, sans rien casser">
+<meta property="og:description" content="Le guide pour repérer et libérer l'espace disque gaspillé sur ton Mac (caches, logs, node_modules, Xcode, Docker) en toute sécurité, avec les niveaux de risque et l'audit en une commande.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -260,7 +260,7 @@ body.gate-on .gate-card{transform:none}
       <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
-    <h1>Récupère des Go sur ton Mac — sans rien casser</h1>
+    <h1>Récupère des Go sur ton Mac, sans rien casser</h1>
     <p class="sub">Où se cache vraiment l'espace disque gaspillé, ce qui est safe à supprimer, et comment auditer ton Mac en une seule commande.</p>
     <div class="byline">
       <span class="av">US</span>
@@ -273,7 +273,7 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Ton Mac affiche « disque presque plein » et tu n'oses rien supprimer de peur de tout casser. La bonne nouvelle : la plupart de l'espace gaspillé se cache dans des fichiers <strong>régénérables</strong> — l'ordinateur les recrée tout seul. Voici où il part vraiment, ce qui est safe à effacer, et comment auditer ton Mac en une commande.</p>
+    <p class="lead reveal">Ton Mac affiche « disque presque plein » et tu n'oses rien supprimer de peur de tout casser. La bonne nouvelle : la plupart de l'espace gaspillé se cache dans des fichiers <strong>régénérables</strong>, l'ordinateur les recrée tout seul. Voici où il part vraiment, ce qui est safe à effacer, et comment auditer ton Mac en une commande.</p>
 
     <div class="callout reveal"><b>La règle d'or :</b> ne supprime jamais un fichier que tu ne comprends pas. Vise d'abord ce qui se recrée seul (caches, logs, artefacts de build). Le reste, tu le laisses tranquille.</div>
 
@@ -283,7 +283,7 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">2</span>Les caches : le plus gros gaspillage récupérable</h2>
     <p class="reveal"><strong>Où ça vit.</strong> <code>~/Library/Caches</code> et <code>/Library/Caches</code>. Chaque appli (navigateur, messagerie, outils créatifs) y stocke des données temporaires pour aller plus vite.</p>
-    <p class="reveal"><strong>Pourquoi c'est safe.</strong> Un cache, par définition, se reconstruit tout seul à la prochaine ouverture de l'appli. Tu perds au pire quelques secondes de rechargement — jamais tes données.</p>
+    <p class="reveal"><strong>Pourquoi c'est safe.</strong> Un cache, par définition, se reconstruit tout seul à la prochaine ouverture de l'appli. Tu perds au pire quelques secondes de rechargement, jamais tes données.</p>
     <div class="callout win reveal"><b>Le réflexe :</b> ferme l'appli concernée avant de vider son cache, jamais pendant qu'elle tourne.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Logs, téléchargements et vieux installeurs</h2>
@@ -291,30 +291,30 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Les installeurs oubliés.</strong> Ton dossier Téléchargements est un cimetière de <code>.dmg</code>, <code>.pkg</code> et <code>.zip</code> : l'appli est déjà installée, l'installeur ne sert plus à rien. Tri rapide, gain immédiat.</p>
 
     <h2 class="reveal"><span class="numtag">4</span>Si tu codes : les gouffres cachés du dev</h2>
-    <p class="reveal"><strong>node_modules.</strong> Chaque projet JavaScript traîne son dossier <code>node_modules</code> — souvent plusieurs centaines de Mo, et tu en as des dizaines. Ils se recréent en une commande (<code>npm install</code>). Les vieux projets dormants n'en ont plus besoin.</p>
+    <p class="reveal"><strong>node_modules.</strong> Chaque projet JavaScript traîne son dossier <code>node_modules</code>, souvent plusieurs centaines de Mo, et tu en as des dizaines. Ils se recréent en une commande (<code>npm install</code>). Les vieux projets dormants n'en ont plus besoin.</p>
     <p class="reveal"><strong>Xcode &amp; artefacts de build.</strong> <code>~/Library/Developer/Xcode/DerivedData</code>, les supports d'anciens iPhone, les caches de compilation : c'est souvent le plus gros poste chez un dev Mac. Tout se régénère à la prochaine compilation.</p>
     <p class="reveal"><strong>Docker.</strong> Images, volumes et couches inutilisées s'empilent silencieusement. Un nettoyage des ressources dormantes libère de l'espace sans casser tes conteneurs actifs.</p>
 
     <h2 class="reveal">Le vrai secret : classer par niveau de risque</h2>
-    <p class="reveal">Nettoyer n'est dangereux que si tu supprimes à l'aveugle. La méthode fiable : trier chaque poste en trois niveaux — <strong>faible</strong> (se recrée seul), <strong>moyen</strong> (safe si tu sais ce que c'est), <strong>protégé</strong> (on ne touche pas).</p>
+    <p class="reveal">Nettoyer n'est dangereux que si tu supprimes à l'aveugle. La méthode fiable : trier chaque poste en trois niveaux, <strong>faible</strong> (se recrée seul), <strong>moyen</strong> (safe si tu sais ce que c'est), <strong>protégé</strong> (on ne touche pas).</p>
     <table class="matrix reveal">
       <thead><tr><th>Type de fichier</th><th>Où ça vit</th><th>Se recrée seul ?</th><th>Niveau de risque</th></tr></thead>
       <tbody>
         <tr><td>Caches d'applis</td><td>~/Library/Caches</td><td>Oui</td><td><span class="star">★</span> Faible</td></tr>
         <tr><td>Logs</td><td>~/Library/Logs</td><td>Oui</td><td><span class="star">★</span> Faible</td></tr>
-        <tr><td>Vieux installeurs</td><td>~/Downloads (.dmg/.pkg)</td><td>—</td><td>Faible</td></tr>
+        <tr><td>Vieux installeurs</td><td>~/Downloads (.dmg/.pkg)</td><td>-</td><td>Faible</td></tr>
         <tr><td>node_modules dormants</td><td>tes dossiers de projets</td><td>Oui (npm install)</td><td>Moyen</td></tr>
         <tr><td>DerivedData Xcode</td><td>~/Library/Developer/Xcode</td><td>Oui</td><td>Moyen</td></tr>
         <tr><td>Ressources Docker inutilisées</td><td>Docker</td><td>Oui</td><td>Moyen</td></tr>
-        <tr><td>Système &amp; données d'app</td><td>zones protégées macOS</td><td>Non</td><td>Protégé — ne pas toucher</td></tr>
+        <tr><td>Système &amp; données d'app</td><td>zones protégées macOS</td><td>Non</td><td>Protégé : ne pas toucher</td></tr>
       </tbody>
     </table>
-    <div class="callout warn reveal"><b>La règle qui t'évite la catastrophe :</b> un bon audit te donne le <b>chemin exact</b> + l'<b>espace estimé</b> avant toute action, et te <b>demande confirmation</b> avant de supprimer quoi que ce soit. Un rapport en lecture seule d'abord, l'action ensuite — jamais l'inverse.</div>
+    <div class="callout warn reveal"><b>La règle qui t'évite la catastrophe :</b> un bon audit te donne le <b>chemin exact</b> + l'<b>espace estimé</b> avant toute action, et te <b>demande confirmation</b> avant de supprimer quoi que ce soit. Un rapport en lecture seule d'abord, l'action ensuite, jamais l'inverse.</div>
 
     <h2 class="reveal">Faire tout l'audit en une seule commande</h2>
-    <p class="reveal">Faire ce tri à la main prend des heures et fait peur. C'est exactement pour ça que j'ai créé une skill Codex qui audite ton Mac à ta place : elle scanne caches, logs, téléchargements, artefacts de build, node_modules, données Xcode et restes Docker, puis te rend un rapport clair — chemins exacts, espace récupérable, niveaux de risque.</p>
-    <div class="callout win reveal"><b>En pratique :</b> une seule commande — <code>npx --yes codex-mac-storage-cleanup</code>. Rapport en lecture seule par défaut, elle demande <b>toujours</b> avant de supprimer, et c'est <b>100 % open source</b> → <a href="https://github.com/Kappaemme-git/codex-mac-storage-cleanup" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:700">voir le repo sur GitHub</a>.</div>
-    <p class="reveal">Récupérer de l'espace disque, c'est le genre de petit outil qui change ta journée. Mais la vraie compétence 2026, c'est de savoir <strong>construire ce type de skill toi-même</strong> — et le vendre. C'est tout l'objet de ce qui suit.</p>
+    <p class="reveal">Faire ce tri à la main prend des heures et fait peur. C'est exactement pour ça que j'ai créé une skill Codex qui audite ton Mac à ta place : elle scanne caches, logs, téléchargements, artefacts de build, node_modules, données Xcode et restes Docker, puis te rend un rapport clair, chemins exacts, espace récupérable, niveaux de risque.</p>
+    <div class="callout win reveal"><b>En pratique :</b> une seule commande, <code>npx --yes codex-mac-storage-cleanup</code>. Rapport en lecture seule par défaut, elle demande <b>toujours</b> avant de supprimer, et c'est <b>100 % open source</b> → <a href="https://github.com/Kappaemme-git/codex-mac-storage-cleanup" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:700">voir le repo sur GitHub</a>.</div>
+    <p class="reveal">Récupérer de l'espace disque, c'est le genre de petit outil qui change ta journée. Mais la vraie compétence 2026, c'est de savoir <strong>construire ce type de skill toi-même</strong>, et le vendre. C'est tout l'objet de ce qui suit.</p>
 
   
     <!-- lien service noesisai.fr -->
@@ -327,7 +327,7 @@ body.gate-on .gate-card{transform:none}
 <nav class="resource" aria-label="À lire aussi"><div class="wrap">
   <h2>À lire aussi</h2>
   <ul>
-    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method — ton reel cinématique IA en noir &amp; blanc</a></li>
+    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method : ton reel cinématique IA en noir &amp; blanc</a></li>
     <li><a href="/ressources/claude-code-bonnes-pratiques" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Code sans le casse-tête : la carte des bonnes pratiques</a></li>
     <li><a href="/ressources/memo-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le mémo Claude Code</a></li>
     <li><a href="/ressources/prompts-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">La bibliothèque de prompts Claude Code, décodée</a></li>
@@ -336,6 +336,7 @@ body.gate-on .gate-card{transform:none}
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -343,7 +344,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -375,9 +376,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -463,11 +464,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -476,14 +477,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

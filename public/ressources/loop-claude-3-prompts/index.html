@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/loop-claude-3-prompts">
-<title>Le loop Claude qui corrige son propre travail (les 3 prompts) — NoesisAI</title>
+<title>Le loop Claude qui corrige son propre travail (les 3 prompts) - NoesisAI</title>
 <meta name="description" content="Les 3 prompts prêts à coller pour monter une loop auto-correctrice dans Claude Code : /spec planifie, /build construit, /review vérifie. Il boucle jusqu'à ce que tout passe.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Le loop Claude qui corrige son propre travail (les 3 prompts)">
@@ -317,7 +317,7 @@ body.gate-on .gate-card{transform:none}
 
     <p class="lead reveal">Tu as vu le principe dans la vidéo. Voilà les 3 prompts, prêts à coller dans Claude Code. 😎</p>
 
-    <div class="callout reveal"><b>L'idée :</b> trois commandes — <code>/spec</code> planifie, <code>/build</code> construit, <code>/review</code> vérifie contre le plan. Tu les crées une fois, puis tu boucles <code>/build</code> ↔ <code>/review</code> jusqu'à ce que tout passe. Prêts à coller, zéro terminal.</div>
+    <div class="callout reveal"><b>L'idée :</b> trois commandes, <code>/spec</code> planifie, <code>/build</code> construit, <code>/review</code> vérifie contre le plan. Tu les crées une fois, puis tu boucles <code>/build</code> ↔ <code>/review</code> jusqu'à ce que tout passe. Prêts à coller, zéro terminal.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le prompt qui écrit le plan</h2>
     <p class="reveal">La première commande t'<strong>interviewe</strong> avant de toucher à quoi que ce soit, puis fige un plan clair sur lequel le reste de la loop va s'appuyer.</p>
@@ -327,7 +327,7 @@ body.gate-on .gate-card{transform:none}
     </div>
 
     <h2 class="reveal"><span class="numtag">2</span>Le prompt qui construit (sans déborder)</h2>
-    <p class="reveal">La deuxième commande lit le plan et construit <strong>exactement</strong> ce qui est écrit — rien de plus — puis rend des comptes sur ce qu'elle a couvert.</p>
+    <p class="reveal">La deuxième commande lit le plan et construit <strong>exactement</strong> ce qui est écrit, rien de plus, puis rend des comptes sur ce qu'elle a couvert.</p>
     <div class="prompt reveal">
       <div class="prompt-bar"><span class="prompt-tag">Prompt à coller · /build</span><button class="copy" type="button">Copier</button></div>
       <pre>Crée une commande Claude Code /build : tu lis specs/projet.md et tu construis exactement ce qui est écrit, rien de plus. À la fin, tu listes les besoins du plan que tu as couverts.</pre>
@@ -365,7 +365,7 @@ body.gate-on .gate-card{transform:none}
       <li><strong>Une gate.</strong> Le test, le type-check ou le build qui recale automatiquement le mauvais travail. C'est cette brique qui décide si la loop t'aide ou si elle ne fait que brûler des tokens.</li>
     </ul>
     <div class="callout reveal"><b>L'ordre compte :</b> fiabilise d'abord un run manuel. Transforme-le en skill. Emballe-le dans une loop. Et seulement après, programme-le. Sauter des étapes, c'est exactement comme ça que les loops échouent en production.</div>
-    <div class="callout warn reveal"><b>La métrique qui tranche :</b> c'est le <strong>coût par changement accepté</strong> — pas les tokens dépensés, pas les tâches tentées, pas les loops programmées. Si ton taux de changements acceptés est sous les <strong>50 %</strong>, tu refais le travail de relecture que la loop était censée t'épargner : la loop te fait perdre, pas gagner.</div>
+    <div class="callout warn reveal"><b>La métrique qui tranche :</b> c'est le <strong>coût par changement accepté</strong>, pas les tokens dépensés, pas les tâches tentées, pas les loops programmées. Si ton taux de changements acceptés est sous les <strong>50 %</strong>, tu refais le travail de relecture que la loop était censée t'épargner : la loop te fait perdre, pas gagner.</div>
 
     <script>
       (function(){
@@ -401,6 +401,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -481,7 +482,7 @@ body.gate-on .gate-card{transform:none}
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

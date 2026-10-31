@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/outils-securite-vibe-coding">
-<title>10 outils de sécurité que tout vibe coder devrait utiliser — NoesisAI</title>
-<meta name="description" content="La liste des 10 outils de sécurité pour vibe coders : Gitleaks, Bearer, Semgrep, Snyk, CodeRabbit, skills Claude Code, plugin Codex et plus — ce que chacun fait, quand l'utiliser, et le lien.">
+<title>10 outils de sécurité que tout vibe coder devrait utiliser - NoesisAI</title>
+<meta name="description" content="La liste des 10 outils de sécurité pour vibe coders : Gitleaks, Bearer, Semgrep, Snyk, CodeRabbit, skills Claude Code, plugin Codex et plus, ce que chacun fait, quand l'utiliser, et le lien.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10 outils de sécurité que tout vibe coder devrait utiliser">
-<meta property="og:description" content="La liste des 10 outils de sécurité pour vibe coders : Gitleaks, Bearer, Semgrep, Snyk, CodeRabbit, skills Claude Code, plugin Codex et plus — ce que chacun fait, quand l'utiliser, et le lien.">
+<meta property="og:description" content="La liste des 10 outils de sécurité pour vibe coders : Gitleaks, Bearer, Semgrep, Snyk, CodeRabbit, skills Claude Code, plugin Codex et plus, ce que chacun fait, quand l'utiliser, et le lien.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>10 outils de sécurité que tout vibe coder devrait utiliser</h1>
-    <p class="sub">45 % du code généré par IA contient des failles. Voici les 10 outils — avec leurs liens — pour sécuriser tes projets de vibe coding.</p>
+    <p class="sub">45 % du code généré par IA contient des failles. Voici les 10 outils, avec leurs liens, pour sécuriser tes projets de vibe coding.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -273,11 +273,11 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">D'après l'analyse <a href="https://www.veracode.com/blog/genai-code-security-report" target="_blank" rel="noopener">Veracode</a>, près de <strong>45 % du code généré par IA contient des failles de sécurité</strong>. Les coupables reviennent toujours : secrets et identifiants en clair dans le code, authentification gérée uniquement côté navigateur (ou absente), entrées utilisateur non protégées, et dépendances obsolètes avec des vulnérabilités connues. Voici 10 outils — gratuits ou en ligne — pour réduire ces erreurs et sécuriser tes projets de vibe coding. Pour chacun : ce qu'il fait, quand l'utiliser, et le lien.</p>
+    <p class="lead reveal">D'après l'analyse <a href="https://www.veracode.com/blog/genai-code-security-report" target="_blank" rel="noopener">Veracode</a>, près de <strong>45 % du code généré par IA contient des failles de sécurité</strong>. Les coupables reviennent toujours : secrets et identifiants en clair dans le code, authentification gérée uniquement côté navigateur (ou absente), entrées utilisateur non protégées, et dépendances obsolètes avec des vulnérabilités connues. Voici 10 outils, gratuits ou en ligne, pour réduire ces erreurs et sécuriser tes projets de vibe coding. Pour chacun : ce qu'il fait, quand l'utiliser, et le lien.</p>
 
-    <div class="callout warn reveal"><b>Les 4 erreurs les plus fréquentes en vibe coding :</b> 1) des secrets (clés, tokens, mots de passe) écrits en dur — souvent parce que l'agent IA les recopie du <code>.env</code> ; 2) une authentification factice, qui ne tient qu'au front ; 3) des entrées utilisateur jamais validées ; 4) des librairies vieilles et trouées. Les outils ci-dessous attaquent précisément ces angles morts.</div>
+    <div class="callout warn reveal"><b>Les 4 erreurs les plus fréquentes en vibe coding :</b> 1) des secrets (clés, tokens, mots de passe) écrits en dur, souvent parce que l'agent IA les recopie du <code>.env</code> ; 2) une authentification factice, qui ne tient qu'au front ; 3) des entrées utilisateur jamais validées ; 4) des librairies vieilles et trouées. Les outils ci-dessous attaquent précisément ces angles morts.</div>
 
-    <h2 class="reveal">Empêcher les fuites — secrets &amp; données personnelles</h2>
+    <h2 class="reveal">Empêcher les fuites : secrets &amp; données personnelles</h2>
 
     <h2 class="reveal"><span class="numtag">1</span>Gitleaks</h2>
     <p class="reveal"><strong>Ce qu'il fait.</strong> Bloque les fuites accidentelles de mots de passe, tokens et clés dans le dépôt. Dès qu'un commit contient quelque chose qui ressemble à un secret, il l'arrête et indique exactement où est le problème.</p>
@@ -287,10 +287,10 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Ce qu'il fait.</strong> Suit le parcours des données personnelles (emails, téléphones, mots de passe) à travers ton code. Il signale si ces données finissent dans des logs, des services tiers ou des endroits où elles ne devraient pas être.</p>
     <p class="reveal"><strong>Quand.</strong> Pour tout projet avec inscription, formulaires ou traitement de données d'utilisateurs. → <a href="https://github.com/bearer/bearer" target="_blank" rel="noopener">github.com/bearer/bearer</a></p>
 
-    <h2 class="reveal">Auditer dans Claude Code — skills &amp; agents</h2>
+    <h2 class="reveal">Auditer dans Claude Code : skills &amp; agents</h2>
 
     <h2 class="reveal"><span class="numtag">3</span>Production Audit Skill</h2>
-    <p class="reveal"><strong>Ce qu'il fait.</strong> Vérifie le projet avant le déploiement : variables d'environnement bien configurées, gestion d'erreurs en place, code de debug oublié, protection contre la surcharge — bref, tout ce qui peut casser juste après la mise en ligne.</p>
+    <p class="reveal"><strong>Ce qu'il fait.</strong> Vérifie le projet avant le déploiement : variables d'environnement bien configurées, gestion d'erreurs en place, code de debug oublié, protection contre la surcharge, bref, tout ce qui peut casser juste après la mise en ligne.</p>
     <p class="reveal"><strong>Quand.</strong> Juste avant de pousser en production. → <a href="https://github.com/affaan-m/ECC/tree/main/skills/production-audit" target="_blank" rel="noopener">github.com/affaan-m/ECC · skills/production-audit</a></p>
 
     <h2 class="reveal"><span class="numtag">4</span>Trail of Bits Skills</h2>
@@ -302,18 +302,18 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Quand.</strong> Particulièrement utile dès qu'il y a login de compte, paiements, ou intégrations avec des services externes. → <a href="https://github.com/affaan-m/ECC/tree/main/.agents/skills/security-review" target="_blank" rel="noopener">github.com/affaan-m/ECC · security-review</a></p>
 
     <h2 class="reveal"><span class="numtag">6</span>Santa Method</h2>
-    <p class="reveal"><strong>Ce qu'il fait.</strong> Lance plusieurs agents IA qui vérifient le même code indépendamment. L'effet : comme plusieurs paires d'yeux sur un même projet — chacune repère ce que les autres ont raté.</p>
+    <p class="reveal"><strong>Ce qu'il fait.</strong> Lance plusieurs agents IA qui vérifient le même code indépendamment. L'effet : comme plusieurs paires d'yeux sur un même projet, chacune repère ce que les autres ont raté.</p>
     <p class="reveal"><strong>Quand.</strong> Pour une revue plus robuste, quand un seul passage ne te suffit pas. → <a href="https://github.com/affaan-m/ECC/tree/main/skills/santa-method" target="_blank" rel="noopener">github.com/affaan-m/ECC · santa-method</a></p>
 
     <h2 class="reveal"><span class="numtag">7</span>Plugin Codex pour Claude</h2>
     <p class="reveal"><strong>Ce qu'il fait.</strong> Combine deux des meilleurs modèles de code pour la revue de sécurité. Idéal si tu vibe codes dans Claude.</p>
-    <div class="callout reveal"><b>Les commandes :</b> <code>/codex:review</code> — vérif rapide après une modif. <code>/codex:adversarial-review</code> — analyse plus profonde avant une release importante : ne cherche pas que les bugs, mais aussi les points faibles de l'architecture.</div>
+    <div class="callout reveal"><b>Les commandes :</b> <code>/codex:review</code>, vérif rapide après une modif. <code>/codex:adversarial-review</code>, analyse plus profonde avant une release importante : ne cherche pas que les bugs, mais aussi les points faibles de l'architecture.</div>
     <p class="reveal">→ <a href="https://github.com/openai/codex-plugin-cc" target="_blank" rel="noopener">github.com/openai/codex-plugin-cc</a></p>
 
-    <h2 class="reveal">Scanner en continu — services en ligne</h2>
+    <h2 class="reveal">Scanner en continu : services en ligne</h2>
 
     <h2 class="reveal"><span class="numtag">8</span>Semgrep</h2>
-    <p class="reveal"><strong>Ce qu'il fait.</strong> Scanne automatiquement le code à chaque mise à jour sur GitHub. Des milliers de règles prêtes à l'emploi pour détecter les vulnérabilités classiques et les patterns dangereux — rien à configurer à la main, tu le branches et il tourne en arrière-plan.</p>
+    <p class="reveal"><strong>Ce qu'il fait.</strong> Scanne automatiquement le code à chaque mise à jour sur GitHub. Des milliers de règles prêtes à l'emploi pour détecter les vulnérabilités classiques et les patterns dangereux : rien à configurer à la main, tu le branches et il tourne en arrière-plan.</p>
     <p class="reveal"><strong>Quand.</strong> Pour un filet de sécurité automatique sur chaque push. → <a href="https://semgrep.dev/" target="_blank" rel="noopener">semgrep.dev</a></p>
 
     <h2 class="reveal"><span class="numtag">9</span>CodeRabbit</h2>
@@ -321,7 +321,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Quand.</strong> Sur chaque PR, pour un premier passage de revue avant l'humain. → <a href="https://coderabbit.ai/" target="_blank" rel="noopener">coderabbit.ai</a></p>
 
     <h2 class="reveal"><span class="numtag">10</span>Snyk Code</h2>
-    <p class="reveal"><strong>Ce qu'il fait.</strong> Scanne tout le projet et cherche les vulnérabilités connues — pas seulement dans ton code, mais aussi dans les librairies que tu utilises. Il comprend les liens entre fichiers et trouve des problèmes complexes qu'une analyse simple raterait.</p>
+    <p class="reveal"><strong>Ce qu'il fait.</strong> Scanne tout le projet et cherche les vulnérabilités connues, pas seulement dans ton code, mais aussi dans les librairies que tu utilises. Il comprend les liens entre fichiers et trouve des problèmes complexes qu'une analyse simple raterait.</p>
     <p class="reveal"><strong>Quand.</strong> Pour couvrir aussi tes dépendances (le 4ᵉ angle mort des 4 erreurs ci-dessus). → <a href="https://snyk.io/" target="_blank" rel="noopener">snyk.io</a></p>
 
     <h2 class="reveal">Le récap en un coup d'œil</h2>
@@ -343,7 +343,7 @@ body.gate-on .gate-card{transform:none}
 
     <div class="callout win reveal"><b>Par où commencer :</b> installe <span class="star">★</span> <strong>Gitleaks</strong> aujourd'hui (5 minutes, et plus jamais de secret poussé par erreur), branche <strong>Semgrep</strong> ou <strong>Snyk</strong> sur ton repo pour le scan continu, puis fais tourner une <strong>Security Review</strong> avant chaque mise en ligne. Le reste se rajoute selon la sensibilité du projet.</div>
 
-    <div class="callout reveal"><b>Bonus — pour construire propre dès le départ :</b> le plugin <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">/superpowers</a> t'aide à cadrer les étapes de ton idée, écrit ses propres tests et corrige une bonne partie des bugs au passage — ce qui améliore la sécurité en amont, avant même la phase d'audit.</div>
+    <div class="callout reveal"><b>Bonus, pour construire propre dès le départ :</b> le plugin <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener">/superpowers</a> t'aide à cadrer les étapes de ton idée, écrit ses propres tests et corrige une bonne partie des bugs au passage, ce qui améliore la sécurité en amont, avant même la phase d'audit.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -358,12 +358,13 @@ body.gate-on .gate-card{transform:none}
   <ul>
     <li><a href="/ressources/claudetube" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Code peut maintenant regarder tes vidéos</a></li>
     <li><a href="/ressources/chatcut-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le monteur vidéo gratuit piloté par Claude Code</a></li>
-    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac — sans rien casser</a></li>
-    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method — ton reel cinématique IA en noir &amp; blanc</a></li>
+    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac, sans rien casser</a></li>
+    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method : ton reel cinématique IA en noir &amp; blanc</a></li>
   </ul>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -372,7 +373,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -404,9 +405,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -492,11 +493,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -505,14 +506,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

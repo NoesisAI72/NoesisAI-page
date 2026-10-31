@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/chatcut-claude-code">
-<title>Le monteur vidéo gratuit piloté par Claude Code — NoesisAI</title>
+<title>Le monteur vidéo gratuit piloté par Claude Code - NoesisAI</title>
 <meta name="description" content="Installe ChatCut ou OpenChatCut, branche-le sur Claude Code en 3 commandes, et monte tes vidéos en parlant : coupe des silences, sous-titres, traduction, export local. Le tuto complet, et ce qui est vraiment gratuit.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Le monteur vidéo gratuit piloté par Claude Code">
@@ -248,17 +248,17 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
       .resource .inline-code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
     </style>
 
-    <p class="lead reveal">Tu vas installer un vrai monteur vidéo — timeline, pistes, transitions, sous-titres, export — et le piloter <strong>en parlant à Claude Code</strong>. Tu dis « coupe les silences, sous-titre en français, traduis en anglais », l'agent écrit les modifications dans le projet, tu relis, tu corriges, tu exportes sur ta machine. Voici le tuto complet, les deux chemins possibles, et surtout : ce qui est réellement gratuit et ce qui ne l'est pas.</p>
+    <p class="lead reveal">Tu vas installer un vrai monteur vidéo (timeline, pistes, transitions, sous-titres, export) et le piloter <strong>en parlant à Claude Code</strong>. Tu dis « coupe les silences, sous-titre en français, traduis en anglais », l'agent écrit les modifications dans le projet, tu relis, tu corriges, tu exportes sur ta machine. Voici le tuto complet, les deux chemins possibles, et surtout : ce qui est réellement gratuit et ce qui ne l'est pas.</p>
 
-    <div class="callout reveal"><b>Le principe à retenir :</b> l'agent ne « génère » pas une vidéo figée. Il modifie un projet qui reste éditable — chaque coupe, chaque sous-titre, chaque transition atterrit sur une piste que tu peux reprendre à la main ou annuler.</div>
+    <div class="callout reveal"><b>Le principe à retenir :</b> l'agent ne « génère » pas une vidéo figée. Il modifie un projet qui reste éditable : chaque coupe, chaque sous-titre, chaque transition atterrit sur une piste que tu peux reprendre à la main ou annuler.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Deux chemins, choisis le tien</h2>
     <p class="reveal">Il existe deux applications différentes. Elles se ressemblent, elles ne sont pas éditées par les mêmes personnes, et elles ne se paient pas pareil. Ne les confonds pas.</p>
-    <p class="reveal"><strong>Chemin A — ChatCut.</strong> Le produit commercial (chatcut.io). Tu télécharges l'app, tu crées un compte, et un plugin officiel branche Claude Code ou Codex dessus. Le plus simple : rien à compiler, l'authentification est gérée pour toi, <strong>tu n'as pas de clé API à fournir</strong>.</p>
-    <p class="reveal"><strong>Chemin B — OpenChatCut.</strong> Une alternative <em>open source indépendante</em> (openchatcut.com, licence AGPL-3.0), non affiliée au produit commercial. Tout tourne chez toi, tes projets et tes médias restent sur ton disque. Gratuit au sens strict — mais si tu veux les fonctions IA (transcription, génération), c'est toi qui branches tes propres services.</p>
+    <p class="reveal"><strong>Chemin A : ChatCut.</strong> Le produit commercial (chatcut.io). Tu télécharges l'app, tu crées un compte, et un plugin officiel branche Claude Code ou Codex dessus. Le plus simple : rien à compiler, l'authentification est gérée pour toi, <strong>tu n'as pas de clé API à fournir</strong>.</p>
+    <p class="reveal"><strong>Chemin B : OpenChatCut.</strong> Une alternative <em>open source indépendante</em> (openchatcut.com, licence AGPL-3.0), non affiliée au produit commercial. Tout tourne chez toi, tes projets et tes médias restent sur ton disque. Gratuit au sens strict, mais si tu veux les fonctions IA (transcription, génération), c'est toi qui branches tes propres services.</p>
 
     <table class="matrix reveal">
-      <thead><tr><th>&nbsp;</th><th>Chemin A — ChatCut</th><th>Chemin B — OpenChatCut</th></tr></thead>
+      <thead><tr><th>&nbsp;</th><th>Chemin A, ChatCut</th><th>Chemin B, OpenChatCut</th></tr></thead>
       <tbody>
         <tr><td>Installation</td><td><span class="star">★</span> App + plugin, 3 commandes</td><td>Installeur, ou build depuis la source</td></tr>
         <tr><td>Compte requis</td><td>Oui (compte ChatCut)</td><td><span class="star">★</span> Non</td></tr>
@@ -269,7 +269,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
       </tbody>
     </table>
 
-    <h2 class="reveal"><span class="numtag">2</span>Chemin A — brancher ChatCut sur Claude Code</h2>
+    <h2 class="reveal"><span class="numtag">2</span>Chemin A : brancher ChatCut sur Claude Code</h2>
     <p class="reveal"><strong>Ce qu'il te faut.</strong> Claude Code en version 2.x (l'app desktop ou le terminal), <em>git</em> installé, et un compte sur chatcut.io. Vérifie d'abord que la commande répond :</p>
     <div class="callout reveal"><b>À coller dans ton terminal :</b><code class="cmd">claude --version</code></div>
 
@@ -282,13 +282,13 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 
     <p class="reveal"><strong>Tu es sur Codex plutôt que Claude Code ?</strong> Le même dépôt contient un dossier <span class="inline-code">codex/</span> avec le plugin équivalent, et la marche à suivre est sur chatcut.io/chatgpt. La connexion se fait avec <span class="inline-code">codex mcp login chatcut</span>.</p>
 
-    <div class="callout warn reveal"><b>Deux détails qui coincent :</b> (1) la connexion demande un vrai terminal interactif — si tu la lances depuis une session web ou un environnement distant, ça échoue, il faut être sur ta machine ; (2) l'expérience complète (voir l'éditeur en direct pendant que l'agent travaille) passe par l'app desktop de Claude Code. En terminal seul, tu installes et tu pilotes, mais tu ouvres l'éditeur à la main.</div>
+    <div class="callout warn reveal"><b>Deux détails qui coincent :</b> (1) la connexion demande un vrai terminal interactif, si tu la lances depuis une session web ou un environnement distant, ça échoue, il faut être sur ta machine ; (2) l'expérience complète (voir l'éditeur en direct pendant que l'agent travaille) passe par l'app desktop de Claude Code. En terminal seul, tu installes et tu pilotes, mais tu ouvres l'éditeur à la main.</div>
 
-    <h2 class="reveal"><span class="numtag">3</span>Chemin B — OpenChatCut, 100 % chez toi</h2>
+    <h2 class="reveal"><span class="numtag">3</span>Chemin B : OpenChatCut, 100 % chez toi</h2>
     <p class="reveal"><strong>Le plus rapide :</strong> télécharger l'installeur depuis la <a href="https://github.com/0xsline/OpenChatCut/releases/latest" target="_blank" rel="noopener">page Releases du projet</a>. Il y a un DMG pour Mac Apple Silicon, un pour Mac Intel, et un installeur Windows x64.</p>
-    <div class="callout warn reveal"><b>Sur Mac, prépare-toi à un blocage.</b> Les paquets macOS ne sont pas encore signés ni notarisés : au premier lancement, le système va refuser d'ouvrir l'app. Il faut l'autoriser manuellement (clic droit &gt; Ouvrir, puis confirmer dans Réglages &gt; Confidentialité et sécurité). Ce sont des builds jeunes, en développement actif — assume-le avant de mettre un projet client dessus.</div>
+    <div class="callout warn reveal"><b>Sur Mac, prépare-toi à un blocage.</b> Les paquets macOS ne sont pas encore signés ni notarisés : au premier lancement, le système va refuser d'ouvrir l'app. Il faut l'autoriser manuellement (clic droit &gt; Ouvrir, puis confirmer dans Réglages &gt; Confidentialité et sécurité). Ce sont des builds jeunes, en développement actif : assume-le avant de mettre un projet client dessus.</div>
 
-    <p class="reveal"><strong>La version « depuis la source »</strong>, si tu veux la dernière version et voir tourner le code. Il te faut Node.js en version 24 — pas 22, pas 26, la 24, le projet le vérifie.</p>
+    <p class="reveal"><strong>La version « depuis la source »</strong>, si tu veux la dernière version et voir tourner le code. Il te faut Node.js en version 24, pas 22, pas 26, la 24, le projet le vérifie.</p>
     <div class="callout reveal"><b>Installation depuis la source :</b><code class="cmd">git clone https://github.com/0xsline/OpenChatCut.git<br>cd OpenChatCut<br>npm install<br>cp .env.example .env.local<br>npm run dev</code>L'éditeur s'ouvre ensuite sur <b>http://localhost:5199</b>. Pour la version bureau : <span class="inline-code">npm run desktop:dev</span>.</div>
 
     <p class="reveal"><strong>Brancher Claude Code dessus.</strong> OpenChatCut expose une porte d'entrée locale pour les agents. Une seule commande suffit à l'y connecter :</p>
@@ -296,10 +296,10 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 
     <div class="callout win reveal"><b>Le réflexe qui évite 90 % des « ça marche pas » :</b> lance OpenChatCut <em>et ouvre le projet concerné</em> avant de demander quoi que ce soit à l'agent. Lister ou créer des projets fonctionne à distance, mais toucher à la timeline exige que le projet soit ouvert.</div>
 
-    <p class="reveal"><strong>Sur les deux liens que je t'ai envoyés.</strong> Le dépôt <a href="https://github.com/frog923/openchatcut" target="_blank" rel="noopener">frog923/openchatcut</a> est une copie (un « fork ») du projet original. Pour être sûr d'avoir les mises à jour, pars du dépôt source : <a href="https://github.com/0xsline/OpenChatCut" target="_blank" rel="noopener">github.com/0xsline/OpenChatCut</a>. Et <a href="https://github.com/ChatCut-Inc/agent-plugin" target="_blank" rel="noopener">ChatCut-Inc/agent-plugin</a>, c'est le dépôt officiel du plugin du chemin A — celui que la commande d'installation va chercher.</p>
+    <p class="reveal"><strong>Sur les deux liens que je t'ai envoyés.</strong> Le dépôt <a href="https://github.com/frog923/openchatcut" target="_blank" rel="noopener">frog923/openchatcut</a> est une copie (un « fork ») du projet original. Pour être sûr d'avoir les mises à jour, pars du dépôt source : <a href="https://github.com/0xsline/OpenChatCut" target="_blank" rel="noopener">github.com/0xsline/OpenChatCut</a>. Et <a href="https://github.com/ChatCut-Inc/agent-plugin" target="_blank" rel="noopener">ChatCut-Inc/agent-plugin</a>, c'est le dépôt officiel du plugin du chemin A : celui que la commande d'installation va chercher.</p>
 
     <h2 class="reveal"><span class="numtag">4</span>Les phrases qui font le boulot</h2>
-    <p class="reveal">Une fois branché, tu ne cliques plus, tu demandes. Voici des consignes qui fonctionnent bien — remarque qu'elles sont <strong>précises et vérifiables</strong>, c'est là toute la différence entre un montage utilisable et une bouillie.</p>
+    <p class="reveal">Une fois branché, tu ne cliques plus, tu demandes. Voici des consignes qui fonctionnent bien : remarque qu'elles sont <strong>précises et vérifiables</strong>, c'est là toute la différence entre un montage utilisable et une bouillie.</p>
     <ul class="reveal">
       <li>« Transcris la vidéo, puis supprime les silences et les hésitations directement depuis le texte. »</li>
       <li>« Génère les sous-titres en français, style lisible, puis traduis-les en anglais sur une seconde piste. »</li>
@@ -319,20 +319,20 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
         <tr><td>Transitions, effets, zooms, étalonnage</td><td><span class="star">★</span> Non</td></tr>
         <tr><td>Sous-titres, traduction, export SRT</td><td>Selon le service branché</td></tr>
         <tr><td>Export local (MP4, audio, SRT, projet)</td><td><span class="star">★</span> Non</td></tr>
-        <tr><td>Générer de la vidéo IA, une voix, de la musique</td><td>Oui — c'est là que ça se paie</td></tr>
+        <tr><td>Générer de la vidéo IA, une voix, de la musique</td><td>Oui : c'est là que ça se paie</td></tr>
       </tbody>
     </table>
-    <div class="callout warn reveal"><b>La nuance à ne pas rater :</b> côté ChatCut, ton compte gère l'accès, tu n'as aucune clé à fournir. Côté OpenChatCut, le montage local ne demande rien du tout — mais les fonctions connectées (transcription, génération d'images ou de voix) restent éteintes tant que tu n'as pas renseigné toi-même les services correspondants. L'app te le dira explicitement plutôt que d'échouer en silence.</div>
+    <div class="callout warn reveal"><b>La nuance à ne pas rater :</b> côté ChatCut, ton compte gère l'accès, tu n'as aucune clé à fournir. Côté OpenChatCut, le montage local ne demande rien du tout, mais les fonctions connectées (transcription, génération d'images ou de voix) restent éteintes tant que tu n'as pas renseigné toi-même les services correspondants. L'app te le dira explicitement plutôt que d'échouer en silence.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Les 4 pièges à connaître avant de te lancer</h2>
     <ul class="reveal">
       <li><strong>Version de Node.</strong> Le chemin B exige Node 24. Une autre version et l'installation refuse de démarrer.</li>
       <li><strong>Mac non signé.</strong> Prévois l'étape d'autorisation manuelle au premier lancement d'OpenChatCut.</li>
-      <li><strong>Ne publie pas ta porte d'entrée locale.</strong> Le pont pour agents est prévu pour <em>une</em> personne sur <em>une</em> machine. Si tu l'exposes sur Internet, protège-le par un jeton — sinon n'importe qui pilote ton éditeur.</li>
+      <li><strong>Ne publie pas ta porte d'entrée locale.</strong> Le pont pour agents est prévu pour <em>une</em> personne sur <em>une</em> machine. Si tu l'exposes sur Internet, protège-le par un jeton, sinon n'importe qui pilote ton éditeur.</li>
       <li><strong>Licence AGPL.</strong> Tu utilises OpenChatCut librement pour ton propre contenu. Si un jour tu le redistribues ou le proposes en service à des clients, cette licence t'impose des obligations : lis-la avant de bâtir une offre dessus.</li>
     </ul>
 
-    <div class="callout win reveal"><b>Par où commencer, concrètement :</b> si tu veux monter ta prochaine vidéo <em>ce soir</em>, prends le chemin A — trois commandes et tu parles à ton monteur. Si ton sujet c'est la maîtrise (données sensibles, zéro dépendance, code auditable), prends le chemin B et compte une soirée d'installation. Dans les deux cas, la compétence que tu construis est la même : savoir <strong>donner des consignes exécutables à un agent</strong>. C'est ça qui se transfère à tout le reste de ton activité.</div>
+    <div class="callout win reveal"><b>Par où commencer, concrètement :</b> si tu veux monter ta prochaine vidéo <em>ce soir</em>, prends le chemin A, trois commandes et tu parles à ton monteur. Si ton sujet c'est la maîtrise (données sensibles, zéro dépendance, code auditable), prends le chemin B et compte une soirée d'installation. Dans les deux cas, la compétence que tu construis est la même : savoir <strong>donner des consignes exécutables à un agent</strong>. C'est ça qui se transfère à tout le reste de ton activité.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -345,14 +345,15 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <nav class="resource" aria-label="À lire aussi"><div class="wrap">
   <h2>À lire aussi</h2>
   <ul>
-    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac — sans rien casser</a></li>
-    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method — ton reel cinématique IA en noir &amp; blanc</a></li>
+    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac, sans rien casser</a></li>
+    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method : ton reel cinématique IA en noir &amp; blanc</a></li>
     <li><a href="/ressources/claude-code-bonnes-pratiques" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Code sans le casse-tête : la carte des bonnes pratiques</a></li>
     <li><a href="/ressources/memo-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le mémo Claude Code</a></li>
   </ul>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -361,7 +362,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -393,9 +394,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -481,11 +482,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -494,14 +495,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

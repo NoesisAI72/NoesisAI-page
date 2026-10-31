@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/scanner-skills-ia">
-<title>Scanne tes skills IA avant de les installer — NoesisAI</title>
+<title>Scanne tes skills IA avant de les installer - NoesisAI</title>
 <meta name="description" content="SkillSpector, le scanner open source de NVIDIA : 71 motifs de risque, un score sur 100, et les 4 prompts prêts à copier pour auditer tous tes skills IA.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scanne tes skills IA avant de les installer">
@@ -309,17 +309,17 @@ body.gate-on .gate-card{transform:none}
 
 <p class="lead reveal">Un « skill », c'est une extension qu'on ajoute à son assistant IA pour lui apprendre un savoir-faire : rédiger tes devis, trier tes mails, préparer tes comptes rendus. On les installe en dix secondes, souvent trouvés sur GitHub ou dans un post LinkedIn. Et <strong>personne ne les lit avant de les brancher</strong>. C'est exactement le trou que NVIDIA vient de combler avec un scanner gratuit.</p>
 
-<div class="callout warn reveal"><b>Le chiffre qui pique.</b> Dans le dépôt officiel de SkillSpector, NVIDIA cite une recherche selon laquelle <strong>26,1 % des skills contiennent des vulnérabilités</strong> et <strong>5,2 % présentent un comportement probablement malveillant</strong>. Un skill sur vingt est piégé — et rien, aujourd'hui, ne t'en avertit au moment de l'installer.</div>
+<div class="callout warn reveal"><b>Le chiffre qui pique.</b> Dans le dépôt officiel de SkillSpector, NVIDIA cite une recherche selon laquelle <strong>26,1 % des skills contiennent des vulnérabilités</strong> et <strong>5,2 % présentent un comportement probablement malveillant</strong>. Un skill sur vingt est piégé, et rien, aujourd'hui, ne t'en avertit au moment de l'installer.</div>
 
 <h2 class="reveal"><span class="numtag">1</span>Pourquoi c'est un vrai sujet de dirigeant</h2>
-<p class="reveal"><strong>Ce qu'est un skill, sans jargon.</strong> C'est un dossier qui contient des instructions écrites en français ou en anglais — parfois accompagnées de petits programmes. Quand tu l'installes, ton assistant IA lit ces instructions et les applique comme si c'était toi qui les avais écrites.</p>
+<p class="reveal"><strong>Ce qu'est un skill, sans jargon.</strong> C'est un dossier qui contient des instructions écrites en français ou en anglais, parfois accompagnées de petits programmes. Quand tu l'installes, ton assistant IA lit ces instructions et les applique comme si c'était toi qui les avais écrites.</p>
 <p class="reveal"><strong>Là où ça coince.</strong> Un skill ne tourne pas dans une bulle isolée, comme une application sur ton téléphone. Il hérite de <em>tes</em> accès : tes fichiers, tes dossiers clients, tes mots de passe stockés, tes outils connectés (mail, CRM, Drive, comptabilité). Il n'y a ni App Store, ni comité de validation, ni éditeur responsable. Tu télécharges, ça s'exécute.</p>
-<p class="reveal"><strong>Le risque concret.</strong> Un skill malveillant n'affiche pas « je suis un virus ». Il fait son travail correctement — et, au passage, glisse une instruction invisible : recopier une clé d'API, envoyer le contenu d'une conversation vers un serveur extérieur, ou modifier discrètement les consignes de ton assistant pour toutes les fois suivantes.</p>
+<p class="reveal"><strong>Le risque concret.</strong> Un skill malveillant n'affiche pas « je suis un virus ». Il fait son travail correctement, et, au passage, glisse une instruction invisible : recopier une clé d'API, envoyer le contenu d'une conversation vers un serveur extérieur, ou modifier discrètement les consignes de ton assistant pour toutes les fois suivantes.</p>
 <div class="callout warn reveal"><b>À retenir :</b> installer un skill, ce n'est pas installer une application dans un bac à sable. C'est <strong>donner à un inconnu le clavier de ton assistant</strong>, avec tes droits.</div>
 
 <h2 class="reveal"><span class="numtag">2</span>Ce que SkillSpector regarde à ta place</h2>
-<p class="reveal">SkillSpector est le scanner de sécurité open source publié par NVIDIA (licence Apache 2.0, gratuit). Il ouvre le skill, le décortique, et cherche <strong>71 motifs de vulnérabilité répartis en 17 familles</strong>. Il fonctionne sur un dossier local, un fichier, une archive ZIP ou directement sur une adresse GitHub — donc <em>avant</em> que quoi que ce soit n'arrive chez toi.</p>
-<p class="reveal"><strong>Deux niveaux d'analyse.</strong> D'abord une lecture automatique et instantanée du code et du texte. Ensuite, en option, une seconde passe où une IA relit le skill pour comprendre son <em>intention</em> — c'est elle qui attrape les formulations tordues qu'une simple recherche de mots-clés laisse passer.</p>
+<p class="reveal">SkillSpector est le scanner de sécurité open source publié par NVIDIA (licence Apache 2.0, gratuit). Il ouvre le skill, le décortique, et cherche <strong>71 motifs de vulnérabilité répartis en 17 familles</strong>. Il fonctionne sur un dossier local, un fichier, une archive ZIP ou directement sur une adresse GitHub, donc <em>avant</em> que quoi que ce soit n'arrive chez toi.</p>
+<p class="reveal"><strong>Deux niveaux d'analyse.</strong> D'abord une lecture automatique et instantanée du code et du texte. Ensuite, en option, une seconde passe où une IA relit le skill pour comprendre son <em>intention</em> : c'est elle qui attrape les formulations tordues qu'une simple recherche de mots-clés laisse passer.</p>
 <p class="reveal">Voici les principales familles, traduites en langage clair :</p>
 <table class="matrix reveal">
   <thead><tr><th>Ce que le scanner traque</th><th>Ce que ça veut dire concrètement</th></tr></thead>
@@ -347,10 +347,10 @@ body.gate-on .gate-card{transform:none}
     <tr><td>81 – 100</td><td>Critique</td><td>Ne pas installer</td><td>Tu passes ton tour</td></tr>
   </tbody>
 </table>
-<p class="reveal"><strong>Comment le score se construit.</strong> Chaque problème détecté ajoute des points : +50 pour un problème critique, +25 pour un problème élevé, +10 pour un moyen, +5 pour un mineur. Et si le skill embarque des programmes exécutables, le total est multiplié par 1,3 — parce qu'un skill qui peut lancer du code fait bien plus de dégâts qu'un skill qui ne fait que parler.</p>
+<p class="reveal"><strong>Comment le score se construit.</strong> Chaque problème détecté ajoute des points : +50 pour un problème critique, +25 pour un problème élevé, +10 pour un moyen, +5 pour un mineur. Et si le skill embarque des programmes exécutables, le total est multiplié par 1,3, parce qu'un skill qui peut lancer du code fait bien plus de dégâts qu'un skill qui ne fait que parler.</p>
 <div class="callout win reveal"><b>La règle à graver :</b> au-dessus de 50, tu n'installes pas, point. Entre 21 et 50, tu lis le rapport avant de décider. En dessous de 20, tu y vas.</div>
 
-<h2 class="reveal"><span class="numtag">4</span>Prompt 1 — Installe SkillSpector</h2>
+<h2 class="reveal"><span class="numtag">4</span>Prompt 1 : Installe SkillSpector</h2>
 <p class="reveal">Copie-colle ce prompt dans Claude Code. Il se charge de tout : téléchargement, installation, configuration et scan de test. Tu n'as rien à taper d'autre.</p>
 <pre class="code reveal">Installe la dernière version de SkillSpector depuis le repo officiel
 https://github.com/NVIDIA/SkillSpector avec uv. Vérifie que la commande
@@ -359,7 +359,7 @@ actuelle pour l'analyse sémantique et lance un scan test. À la fin, donne-moi
 le chemin d'installation et confirme la version installée.</pre>
 <div class="callout reveal"><b>Bon à savoir :</b> en le branchant sur ta session Claude Code existante, l'analyse intelligente ne te coûte <strong>aucune clé d'API supplémentaire</strong>. Tu réutilises l'accès que tu as déjà.</div>
 
-<h2 class="reveal"><span class="numtag">5</span>Prompt 2 — Scanne un skill avant de l'installer</h2>
+<h2 class="reveal"><span class="numtag">5</span>Prompt 2 : Scanne un skill avant de l'installer</h2>
 <p class="reveal">C'est le réflexe à prendre. Quelqu'un te partage un skill ? Tu le passes au scanner <em>avant</em> de cliquer sur installer.</p>
 <pre class="code reveal">Analyse ce skill avec SkillSpector avant toute installation :
 [COLLE L'URL GITHUB OU LE CHEMIN].
@@ -368,7 +368,7 @@ Donne-moi son score de risque sur 100, les problèmes trouvés avec leur niveau
 de gravité, les fichiers et lignes concernés, puis une conclusion claire :
 faible, moyen, élevé ou critique.</pre>
 
-<h2 class="reveal"><span class="numtag">6</span>Prompt 3 — Audite tous les skills déjà installés</h2>
+<h2 class="reveal"><span class="numtag">6</span>Prompt 3 : Audite tous les skills déjà installés</h2>
 <p class="reveal">Celui-là, c'est le grand ménage. Il retrouve tout ce que tu as accumulé au fil des mois et te sort un classement du plus risqué au plus sûr. À lancer une fois, puis à répéter tous les trimestres.</p>
 <pre class="code reveal">Trouve tous les skills installés sur cette machine pour Claude Code et mes
 autres agents IA, puis analyse-les avec SkillSpector. Crée un rapport Markdown
@@ -377,14 +377,14 @@ risque et problèmes détectés. Termine par un classement du plus risqué au
 plus sûr.</pre>
 <div class="callout warn reveal"><b>Prépare-toi :</b> c'est souvent à ce moment-là qu'on découvre trois ou quatre skills installés « pour tester » il y a six mois, jamais désinstallés, et qui ont toujours tous les accès.</div>
 
-<h2 class="reveal"><span class="numtag">7</span>Prompt 4 — Rends le scan automatique</h2>
+<h2 class="reveal"><span class="numtag">7</span>Prompt 4 : Rends le scan automatique</h2>
 <p class="reveal">Le meilleur contrôle est celui que tu n'as pas besoin de penser à faire. Ce prompt inscrit la règle dans les instructions permanentes de ton assistant : plus aucun skill externe n'est installé sans passer par le scanner.</p>
 <pre class="code reveal">Ajoute à mes instructions globales Claude Code la règle suivante : avant
 d'installer ou d'activer un nouveau skill provenant de GitHub ou d'une autre
 source externe, lance d'abord SkillSpector sur le repo complet et affiche-moi
 le score ainsi que le rapport. Après l'ajout, montre-moi le fichier modifié et
 le texte exact de la règle.</pre>
-<div class="callout win reveal"><b>C'est le vrai gain.</b> Les trois premiers prompts, c'est du one-shot. Celui-ci transforme une bonne intention en <strong>règle qui s'applique toute seule</strong>, y compris quand tu es pressé — c'est-à-dire précisément quand on saute les vérifications.</div>
+<div class="callout win reveal"><b>C'est le vrai gain.</b> Les trois premiers prompts, c'est du one-shot. Celui-ci transforme une bonne intention en <strong>règle qui s'applique toute seule</strong>, y compris quand tu es pressé, c'est-à-dire précisément quand on saute les vérifications.</div>
 
 <h2 class="reveal">Les commandes utiles, si tu veux la main</h2>
 <p class="reveal">Tu n'en as pas besoin : les quatre prompts ci-dessus font le travail. Elles sont là pour la personne technique de ton équipe, ou pour toi si tu aimes comprendre ce qui tourne.</p>
@@ -411,7 +411,7 @@ skillspector scan ./mon-skill/ --no-llm</pre>
     <tr><td>La règle : aucun skill externe installé sans scan préalable</td><td>L'installation et la configuration de l'outil</td></tr>
     <tr><td>Le seuil d'acceptation (par défaut : rien au-dessus de 50)</td><td>Le lancement des scans et la lecture des rapports techniques</td></tr>
     <tr><td>Qui, dans l'équipe, a le droit d'ajouter un skill</td><td>La production de l'audit trimestriel de tout le parc</td></tr>
-    <tr><td>La revue du classement final — cinq minutes par trimestre</td><td>Le tri des fausses alertes et la mise à jour de l'outil</td></tr>
+    <tr><td>La revue du classement final : cinq minutes par trimestre</td><td>Le tri des fausses alertes et la mise à jour de l'outil</td></tr>
   </tbody>
 </table>
 
@@ -419,7 +419,7 @@ skillspector scan ./mon-skill/ --no-llm</pre>
 <p class="reveal">Ne cherche pas à tout faire ce soir. Trois mouvements suffisent, dans cet ordre.</p>
 <div class="callout reveal"><b>Aujourd'hui :</b> prompt 1 (installation), puis prompt 3 (audit de l'existant). Tu sais où tu en es en moins d'une heure.</div>
 <div class="callout reveal"><b>Cette semaine :</b> prompt 4. Tu inscris la règle une bonne fois, elle s'applique ensuite sans toi.</div>
-<div class="callout win reveal"><b>À partir de maintenant :</b> prompt 2, à chaque nouveau skill. C'est le réflexe qui remplace la confiance aveugle — et il coûte trente secondes.</div>
+<div class="callout win reveal"><b>À partir de maintenant :</b> prompt 2, à chaque nouveau skill. C'est le réflexe qui remplace la confiance aveugle, et il coûte trente secondes.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -440,6 +440,7 @@ skillspector scan ./mon-skill/ --no-llm</pre>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>

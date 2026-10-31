@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/presidio-sas-rgpd">
-<title>Presidio : poser un sas RGPD devant ChatGPT et Claude — NoesisAI</title>
-<meta name="description" content="Guide gratuit NoesisAI — anonymiser noms, emails, téléphones et RIB AVANT qu'ils partent dans un LLM, avec Presidio (open source, Microsoft).">
+<title>Presidio : poser un sas RGPD devant ChatGPT et Claude - NoesisAI</title>
+<meta name="description" content="Guide gratuit NoesisAI : anonymiser noms, emails, téléphones et RIB AVANT qu'ils partent dans un LLM, avec Presidio (open source, Microsoft).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Presidio : poser un sas RGPD devant ChatGPT et Claude">
-<meta property="og:description" content="Guide gratuit NoesisAI — anonymiser noms, emails, téléphones et RIB AVANT qu'ils partent dans un LLM, avec Presidio (open source, Microsoft).">
+<meta property="og:description" content="Guide gratuit NoesisAI : anonymiser noms, emails, téléphones et RIB AVANT qu'ils partent dans un LLM, avec Presidio (open source, Microsoft).">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -302,7 +302,7 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Tes équipes utilisent déjà l'IA. Les interdire ne marche pas — elles continuent en cachette. La vraie réponse tient en une phrase : <strong>anonymiser le document AVANT qu'il parte dans le LLM</strong>. Ce guide t'explique comment, avec Presidio — l'outil open source de Microsoft conçu exactement pour ça. Zéro jargon, et tu peux le tester en 5 minutes sans rien installer.</p>
+    <p class="lead reveal">Tes équipes utilisent déjà l'IA. Les interdire ne marche pas : elles continuent en cachette. La vraie réponse tient en une phrase : <strong>anonymiser le document AVANT qu'il parte dans le LLM</strong>. Ce guide t'explique comment, avec Presidio : l'outil open source de Microsoft conçu exactement pour ça. Zéro jargon, et tu peux le tester en 5 minutes sans rien installer.</p>
 
     <div class="callout reveal"><b>L'idée en une ligne :</b> tu ne bloques pas l'IA, tu mets un filtre entre tes équipes et elle. Le filtre remplace les noms, emails, téléphones et RIB par des étiquettes neutres. Le LLM reçoit le sens du document, jamais l'identité des gens.</div>
 
@@ -313,7 +313,7 @@ body.gate-on .gate-card{transform:none}
     <div class="callout reveal"><b>Bon à savoir :</b> Presidio ne se limite pas au texte. Il existe aussi une brique <em>Image Redactor</em> (flouter les données sur une capture d'écran ou un scan) et une brique <em>Structured</em> (nettoyer un export tableur / une base avec des colonnes nom, email, etc.).</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Ce qu'il repère dans un texte</h2>
-    <p class="reveal">Presidio détecte une longue liste de données sensibles « universelles ». Chaque type porte un nom technique (en majuscules) — utile à connaître, car c'est ce nom qui s'affiche dans la démo et dans le code. Les plus utiles au quotidien d'une PME :</p>
+    <p class="reveal">Presidio détecte une longue liste de données sensibles « universelles ». Chaque type porte un nom technique (en majuscules) : utile à connaître, car c'est ce nom qui s'affiche dans la démo et dans le code. Les plus utiles au quotidien d'une PME :</p>
     <table class="matrix reveal">
       <thead><tr><th>Nom technique</th><th>Ce que c'est</th><th>Exemple repéré</th></tr></thead>
       <tbody>
@@ -329,7 +329,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td>CRYPTO</td><td>Portefeuille crypto (Bitcoin)</td><td>1A1zP1eP…</td></tr>
       </tbody>
     </table>
-    <p class="reveal">S'ajoutent des détecteurs propres à certains pays (numéros d'identité US, UK, Espagne, Italie…). Et tu peux créer tes <strong>propres règles</strong> : un format de matricule interne, une référence client maison — Presidio apprend à les repérer aussi.</p>
+    <p class="reveal">S'ajoutent des détecteurs propres à certains pays (numéros d'identité US, UK, Espagne, Italie…). Et tu peux créer tes <strong>propres règles</strong> : un format de matricule interne, une référence client maison : Presidio apprend à les repérer aussi.</p>
 
     <h2 class="reveal"><span class="numtag">3</span>Comment il masque : 6 façons de neutraliser une donnée</h2>
     <p class="reveal">Une fois la donnée repérée, tu choisis quoi en faire. Presidio propose plusieurs « modes » (appelés <em>opérateurs</em>). Les six les plus utiles :</p>
@@ -340,32 +340,32 @@ body.gate-on .gate-card{transform:none}
         <tr><td><span class="star">mask</span></td><td>Cache une partie des caractères</td><td>Jean D*****</td></tr>
         <tr><td>redact</td><td>Supprime purement la donnée</td><td>(rien)</td></tr>
         <tr><td>hash</td><td>Transforme en empreinte illisible (irréversible)</td><td>a3f9c1…</td></tr>
-        <tr><td>encrypt</td><td>Chiffre — récupérable avec une clé</td><td>kT8p…== (déchiffrable)</td></tr>
+        <tr><td>encrypt</td><td>Chiffre : récupérable avec une clé</td><td>kT8p…== (déchiffrable)</td></tr>
         <tr><td>keep</td><td>Laisse la donnée intacte (au cas par cas)</td><td>Jean Dupont</td></tr>
       </tbody>
     </table>
-    <div class="callout reveal"><b>Le plus utilisé pour l'IA :</b> <code>replace</code>. Le LLM voit &lt;PERSON&gt; à la place du vrai nom — il comprend toujours « il y a un client ici », mais ne connaît jamais son identité. Garde <code>encrypt</code> pour les cas où tu dois pouvoir réafficher la vraie valeur ensuite.</div>
+    <div class="callout reveal"><b>Le plus utilisé pour l'IA :</b> <code>replace</code>. Le LLM voit &lt;PERSON&gt; à la place du vrai nom : il comprend toujours « il y a un client ici », mais ne connaît jamais son identité. Garde <code>encrypt</code> pour les cas où tu dois pouvoir réafficher la vraie valeur ensuite.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Le tester en 5 minutes, sans rien installer</h2>
     <p class="reveal">Avant de parler technique, Microsoft met à disposition une <strong>démo en ligne gratuite</strong>. Tu colles un texte, tu vois en direct ce qui est détecté et masqué. C'est la meilleure façon de comprendre l'outil en une pause-café.</p>
     <p class="reveal"><strong>1. Ouvre la démo</strong> → <a href="https://aka.ms/presidio-demo" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:2px"><code>aka.ms/presidio-demo</code></a> (lien officiel Microsoft, rien à installer).</p>
-    <p class="reveal"><strong>2. Colle un faux exemple</strong> (jamais une vraie donnée client sur un site, même de démo) — par exemple : <em>« Merci d'appeler John Smith au 212-555-0143, email john.smith@acme.com. »</em></p>
+    <p class="reveal"><strong>2. Colle un faux exemple</strong> (jamais une vraie donnée client sur un site, même de démo), par exemple : <em>« Merci d'appeler John Smith au 212-555-0143, email john.smith@acme.com. »</em></p>
     <p class="reveal"><strong>3. Regarde le résultat.</strong> Les entités détectées se surlignent, et tu vois le texte anonymisé. Joue avec les modes (replace, mask, redact…) pour voir la différence.</p>
-    <div class="callout warn reveal"><b>À savoir pour le français :</b> la démo et les modèles par défaut sont calés sur l'<strong>anglais</strong>. Teste donc d'abord avec un exemple en anglais pour voir le mécanisme. Pour analyser du texte <strong>français</strong>, il faut brancher un modèle de langue français — c'est prévu par l'outil, mais ça demande un peu de configuration (voir le point honnêteté plus bas).</div>
+    <div class="callout warn reveal"><b>À savoir pour le français :</b> la démo et les modèles par défaut sont calés sur l'<strong>anglais</strong>. Teste donc d'abord avec un exemple en anglais pour voir le mécanisme. Pour analyser du texte <strong>français</strong>, il faut brancher un modèle de langue français : c'est prévu par l'outil, mais ça demande un peu de configuration (voir le point honnêteté plus bas).</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Le placer devant ChatGPT ou Claude</h2>
     <p class="reveal">L'objectif : que le texte passe par Presidio <em>avant</em> d'atteindre le LLM. Concrètement, deux façons de t'y prendre selon ton niveau.</p>
-    <p class="reveal"><strong>Option simple — le copier-coller assisté.</strong> Tes équipes collent leur texte dans un petit outil interne (alimenté par Presidio) qui leur rend la version anonymisée. C'est cette version-là qu'elles envoient à ChatGPT/Claude. Aucun changement d'habitude, juste une étape « nettoyage » au milieu.</p>
-    <p class="reveal"><strong>Option intégrée — le sas automatique.</strong> Si tu appelles l'IA via une API (dans une appli, un workflow N8N…), tu glisses Presidio juste avant l'appel : chaque message est anonymisé automatiquement, sans que personne y pense. C'est le vrai « sas RGPD », invisible et systématique.</p>
+    <p class="reveal"><strong>Option simple : le copier-coller assisté.</strong> Tes équipes collent leur texte dans un petit outil interne (alimenté par Presidio) qui leur rend la version anonymisée. C'est cette version-là qu'elles envoient à ChatGPT/Claude. Aucun changement d'habitude, juste une étape « nettoyage » au milieu.</p>
+    <p class="reveal"><strong>Option intégrée, le sas automatique.</strong> Si tu appelles l'IA via une API (dans une appli, un workflow N8N…), tu glisses Presidio juste avant l'appel : chaque message est anonymisé automatiquement, sans que personne y pense. C'est le vrai « sas RGPD », invisible et systématique.</p>
     <div class="callout reveal"><b>Ce que ça donne, concrètement :</b><br>
     <b>Avant →</b> « Relire le contrat de Jean Dupont, jean.dupont@acme.fr, IBAN FR76 3000 6000 01. »<br>
     <b>Après →</b> « Relire le contrat de &lt;PERSON&gt;, &lt;EMAIL_ADDRESS&gt;, &lt;IBAN_CODE&gt;. »<br>
-    Le LLM fait exactement le même travail de relecture — sans jamais voir une seule vraie donnée.</div>
-    <p class="reveal"><strong>Côté installation.</strong> Presidio se pose via Python (<code>pip install presidio-analyzer presidio-anonymizer</code>) ou via Docker (images prêtes à lancer). Une brique technique, pas une appli en un clic — mais une fois en place, elle protège tous les envois, en continu.</p>
+    Le LLM fait exactement le même travail de relecture, sans jamais voir une seule vraie donnée.</div>
+    <p class="reveal"><strong>Côté installation.</strong> Presidio se pose via Python (<code>pip install presidio-analyzer presidio-anonymizer</code>) ou via Docker (images prêtes à lancer). Une brique technique, pas une appli en un clic, mais une fois en place, elle protège tous les envois, en continu.</p>
     <p class="reveal"><strong>Pour aller plus loin.</strong> Microsoft fournit un tutoriel pour héberger ta propre interface de test en interne (la même que la démo, mais chez toi) : <a href="https://microsoft.github.io/presidio/samples/python/streamlit/" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:2px">le guide Streamlit officiel</a>. Pratique pour donner un outil simple à tes équipes sans qu'elles touchent au code.</p>
 
     <h2 class="reveal"><span class="numtag">6</span>Ce que Presidio ne fait PAS (à lire avant de te lancer)</h2>
-    <p class="reveal">Pour rester honnête — et parce que c'est important pour le RGPD — voici les limites réelles :</p>
+    <p class="reveal">Pour rester honnête, et parce que c'est important pour le RGPD, voici les limites réelles :</p>
     <div class="callout warn reveal"><b>La détection n'est pas parfaite.</b> Microsoft le dit lui-même : aucune garantie que 100 % des données sensibles soient repérées. C'est de la détection automatique. Ça fait chuter le risque, ça ne remplace pas une relecture humaine sur les documents critiques.</div>
     <div class="callout warn reveal"><b>Le français demande un réglage.</b> Par défaut, Presidio raisonne en anglais. Pour le français, il faut lui adjoindre un modèle de langue français et adapter quelques règles. C'est faisable et documenté, mais ce n'est pas « actif tout seul » dès l'installation.</div>
     <div class="callout warn reveal"><b>Ce n'est pas une appli grand public.</b> Pas de bouton magique : c'est une brique à installer (Docker / Python) ou à brancher devant tes appels API. Le vrai travail, c'est de bien la régler pour TES données et de l'intégrer dans le flux de tes équipes.</div>
@@ -375,14 +375,14 @@ body.gate-on .gate-card{transform:none}
       <thead><tr><th>Question</th><th>Réponse courte</th></tr></thead>
       <tbody>
         <tr><td>Ça sert à quoi ?</td><td>Masquer les données perso avant l'envoi dans un LLM</td></tr>
-        <tr><td>C'est payant ?</td><td>Non — open source, licence MIT</td></tr>
+        <tr><td>C'est payant ?</td><td>Non : open source, licence MIT</td></tr>
         <tr><td>Où tourne la donnée ?</td><td>Chez toi (local), elle ne sort pas pour être analysée</td></tr>
         <tr><td>Je teste comment ?</td><td><a href="https://aka.ms/presidio-demo" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:2px">aka.ms/presidio-demo</a>, sans rien installer</td></tr>
-        <tr><td>Français géré nativement ?</td><td>Non — modèle FR à configurer</td></tr>
-        <tr><td>Ça remplace l'humain ?</td><td>Non — ça réduit le risque, la relecture reste utile</td></tr>
+        <tr><td>Français géré nativement ?</td><td>Non : modèle FR à configurer</td></tr>
+        <tr><td>Ça remplace l'humain ?</td><td>Non : ça réduit le risque, la relecture reste utile</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Le bon réflexe :</b> commence par tester la démo en ligne aujourd'hui, sur de faux exemples, pour voir le mécanisme. Si l'enjeu est réel chez toi — données clients, contrats, RH — la vraie valeur est dans l'intégration : brancher ce sas devant tes outils, en français, et l'adapter à tes documents. C'est exactement ce type de chantier qu'on cadre ensemble.</div>
+    <div class="callout win reveal"><b>Le bon réflexe :</b> commence par tester la démo en ligne aujourd'hui, sur de faux exemples, pour voir le mécanisme. Si l'enjeu est réel chez toi (données clients, contrats, RH) la vraie valeur est dans l'intégration : brancher ce sas devant tes outils, en français, et l'adapter à tes documents. C'est exactement ce type de chantier qu'on cadre ensemble.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -403,6 +403,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -483,7 +484,7 @@ body.gate-on .gate-card{transform:none}
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/speckit">
-<title>SpecKit : le guide complet pour arrêter de prompter à l'aveugle — NoesisAI</title>
+<title>SpecKit : le guide complet pour arrêter de prompter à l'aveugle - NoesisAI</title>
 <meta name="description" content="Le guide français de Spec Kit, l'outil open source de GitHub (128k+ étoiles) : installation pas à pas, l'enchaînement complet constitution → specify → clarify → plan → tasks → implement, et les 4 erreurs à éviter.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpecKit : le guide complet pour arrêter de prompter à l'aveugle">
@@ -240,40 +240,40 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">GitHub a publié un outil qui change la façon de travailler avec l'IA : <strong>Spec Kit</strong>. Plus de 128 000 étoiles sur le repo, et quasiment personne ne le montre en français. Ce qui fait la différence, ce n'est pas la puissance du modèle — c'est <strong>ce que tu poses avant de lancer la machine</strong>. Voici le guide d'installation et l'enchaînement complet des étapes. Le repo est ici : <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:600">github.com/github/spec-kit</a>.</p>
+    <p class="lead reveal">GitHub a publié un outil qui change la façon de travailler avec l'IA : <strong>Spec Kit</strong>. Plus de 128 000 étoiles sur le repo, et quasiment personne ne le montre en français. Ce qui fait la différence, ce n'est pas la puissance du modèle : c'est <strong>ce que tu poses avant de lancer la machine</strong>. Voici le guide d'installation et l'enchaînement complet des étapes. Le repo est ici : <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:600">github.com/github/spec-kit</a>.</p>
 
     <div class="callout reveal"><b>La règle de tout le document :</b> tu ne prompts plus « fais-moi une app ». Tu écris d'abord ce que tu veux, tu le fais signer, et l'IA exécute dans l'ordre. C'est ce que GitHub appelle le <em>spec-driven development</em> : le cahier des charges devient la source de vérité, le code n'est que sa traduction.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le problème que ça règle (avant même la technique)</h2>
-    <p class="reveal"><strong>Aujourd'hui tu as deux galères.</strong> Soit tu lances l'IA au hasard : ça part vite, tu rattrapes derrière, et au bout de trois jours le projet part en vrille parce que personne — ni toi ni la machine — n'a jamais écrit ce qu'on construisait vraiment. Soit tu écris chaque ligne toi-même, et tu y passes tes soirées.</p>
+    <p class="reveal"><strong>Aujourd'hui tu as deux galères.</strong> Soit tu lances l'IA au hasard : ça part vite, tu rattrapes derrière, et au bout de trois jours le projet part en vrille parce que personne, ni toi ni la machine, n'a jamais écrit ce qu'on construisait vraiment. Soit tu écris chaque ligne toi-même, et tu y passes tes soirées.</p>
     <p class="reveal"><strong>La troisième voie.</strong> Spec Kit force un ordre : d'abord les règles du projet, ensuite le besoin en langage normal, ensuite les questions sur tes zones floues, ensuite seulement la technique, le découpage et l'exécution. L'IA n'a plus le droit d'improviser : elle a un document à respecter.</p>
     <p class="reveal"><strong>Et ça dépasse largement le code.</strong> Poser le plan avant de bâtir, tous les bons opérateurs font ça depuis toujours. La nouveauté, c'est que GitHub vient de l'outiller. Quand raconter suffit à produire, la vitesse ne vaut plus rien : c'est la clarté qui paye.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>Installer Spec Kit (10 minutes)</h2>
-    <p class="reveal"><strong>Ce qu'il te faut avant.</strong> Python 3.11 ou plus, Git, le gestionnaire de paquets <strong>uv</strong> (d'Astral), et un assistant de code que tu utilises déjà — Spec Kit s'intègre à plus de 30 outils (Claude Code, GitHub Copilot, Codex CLI, et d'autres). Mac, Linux ou Windows.</p>
-    <p class="reveal"><strong>Étape 1 — installer l'outil en ligne de commande.</strong> Une seule fois sur ta machine :</p>
+    <p class="reveal"><strong>Ce qu'il te faut avant.</strong> Python 3.11 ou plus, Git, le gestionnaire de paquets <strong>uv</strong> (d'Astral), et un assistant de code que tu utilises déjà : Spec Kit s'intègre à plus de 30 outils (Claude Code, GitHub Copilot, Codex CLI, et d'autres). Mac, Linux ou Windows.</p>
+    <p class="reveal"><strong>Étape 1, installer l'outil en ligne de commande.</strong> Une seule fois sur ta machine :</p>
     <div class="callout reveal"><b>uv tool install specify-cli</b></div>
-    <p class="reveal"><strong>Étape 2 — créer ton projet</strong> en indiquant l'assistant que tu utilises. Remplace <em>copilot</em> par ton intégration (la liste exacte de ta version s'affiche avec <b>specify integration list</b>) :</p>
+    <p class="reveal"><strong>Étape 2 : créer ton projet</strong> en indiquant l'assistant que tu utilises. Remplace <em>copilot</em> par ton intégration (la liste exacte de ta version s'affiche avec <b>specify integration list</b>) :</p>
     <div class="callout reveal"><b>specify init mon-projet --integration copilot</b><br>puis <b>cd mon-projet</b></div>
-    <p class="reveal"><strong>Étape 3 — vérifier.</strong> <b>specify self check</b> te dit si une version plus récente existe, sans rien modifier. À partir de là, tout se joue dans ton assistant : Spec Kit y a installé une série de commandes, toutes préfixées <b>/speckit.</b></p>
+    <p class="reveal"><strong>Étape 3 : vérifier.</strong> <b>specify self check</b> te dit si une version plus récente existe, sans rien modifier. À partir de là, tout se joue dans ton assistant : Spec Kit y a installé une série de commandes, toutes préfixées <b>/speckit.</b></p>
     <div class="callout warn reveal"><b>Le piège classique :</b> ne lance pas <b>specify init</b> dans un dossier qui contient déjà ton projet sans savoir ce que ça pose. Fais un premier essai sur un projet neuf, regarde les fichiers créés, et seulement ensuite branche-le sur du réel.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>L'enchaînement complet des étapes</h2>
     <p class="reveal">Six commandes dans l'ordre. Chacune produit un document que tu relis et valides avant de passer à la suivante. C'est là qu'est toute la valeur : <strong>tu es le point de contrôle entre chaque étape.</strong></p>
 
-    <p class="reveal"><strong>1. <b>/speckit.constitution</b> — la charte.</strong> Tu poses les principes que l'IA n'aura pas le droit de casser sur tout le projet : niveau de test exigé, contraintes de sécurité, simplicité imposée, conventions. Écrit une fois, ça s'applique à toutes les fonctionnalités qui suivent. C'est l'étape que tout le monde saute — et c'est celle qui tient le projet.</p>
+    <p class="reveal"><strong>1. <b>/speckit.constitution</b>, la charte.</strong> Tu poses les principes que l'IA n'aura pas le droit de casser sur tout le projet : niveau de test exigé, contraintes de sécurité, simplicité imposée, conventions. Écrit une fois, ça s'applique à toutes les fonctionnalités qui suivent. C'est l'étape que tout le monde saute, et c'est celle qui tient le projet.</p>
 
-    <p class="reveal"><strong>2. <b>/speckit.specify</b> — le besoin, en français.</strong> Tu racontes ton produit comme à un humain : « je veux un outil qui classe mes photos par date, en glisser-déposer ». Le <em>quoi</em> et le <em>pourquoi</em>, jamais la technique. Pas de langage de programmation, pas de base de données, pas d'architecture : ça vient plus tard.</p>
+    <p class="reveal"><strong>2. <b>/speckit.specify</b>, le besoin, en français.</strong> Tu racontes ton produit comme à un humain : « je veux un outil qui classe mes photos par date, en glisser-déposer ». Le <em>quoi</em> et le <em>pourquoi</em>, jamais la technique. Pas de langage de programmation, pas de base de données, pas d'architecture : ça vient plus tard.</p>
 
-    <p class="reveal"><strong>3. <b>/speckit.clarify</b> — les questions.</strong> L'IA relit ton brief et te renvoie tous ses trous, marqués <em>[NEEDS CLARIFICATION]</em> : « que se passe-t-il si deux photos ont la même date ? », « combien d'utilisateurs en même temps ? ». Tu réponds. Tant qu'il reste un trou, on n'avance pas. C'est exactement le moment où un projet classique dérape en silence — ici il s'arrête et te demande.</p>
+    <p class="reveal"><strong>3. <b>/speckit.clarify</b>, les questions.</strong> L'IA relit ton brief et te renvoie tous ses trous, marqués <em>[NEEDS CLARIFICATION]</em> : « que se passe-t-il si deux photos ont la même date ? », « combien d'utilisateurs en même temps ? ». Tu réponds. Tant qu'il reste un trou, on n'avance pas. C'est exactement le moment où un projet classique dérape en silence : ici il s'arrête et te demande.</p>
 
-    <p class="reveal"><strong>4. <b>/speckit.plan</b> — la technique.</strong> Maintenant seulement tu donnes ta stack et tes choix d'architecture. L'IA rédige le plan d'implémentation en respectant la charte de l'étape 1 et la spec de l'étape 2.</p>
+    <p class="reveal"><strong>4. <b>/speckit.plan</b> : la technique.</strong> Maintenant seulement tu donnes ta stack et tes choix d'architecture. L'IA rédige le plan d'implémentation en respectant la charte de l'étape 1 et la spec de l'étape 2.</p>
 
-    <p class="reveal"><strong>5. <b>/speckit.tasks</b> — le découpage.</strong> Le plan est transformé en lots de travail concrets, numérotés, ordonnés. Tu vois le chantier avant qu'il commence, et tu peux couper ou réordonner.</p>
+    <p class="reveal"><strong>5. <b>/speckit.tasks</b> : le découpage.</strong> Le plan est transformé en lots de travail concrets, numérotés, ordonnés. Tu vois le chantier avant qu'il commence, et tu peux couper ou réordonner.</p>
 
-    <p class="reveal"><strong>6. <b>/speckit.implement</b> — l'exécution.</strong> L'IA attaque les tâches dans l'ordre, en s'appuyant sur les trois documents précédents. Elle ne réinvente rien : elle exécute ce que tu as signé.</p>
+    <p class="reveal"><strong>6. <b>/speckit.implement</b> : l'exécution.</strong> L'IA attaque les tâches dans l'ordre, en s'appuyant sur les trois documents précédents. Elle ne réinvente rien : elle exécute ce que tu as signé.</p>
 
-    <div class="callout win reveal"><b>Deux commandes bonus qui valent le détour :</b> <b>/speckit.analyze</b> vérifie la cohérence entre la charte, la spec, le plan et les tâches avant de lancer la construction — à passer juste avant l'étape 6. Et <b>/speckit.checklist</b> génère une liste de contrôle qualité sur mesure pour valider que le résultat répond bien à la demande de départ.</div>
+    <div class="callout win reveal"><b>Deux commandes bonus qui valent le détour :</b> <b>/speckit.analyze</b> vérifie la cohérence entre la charte, la spec, le plan et les tâches avant de lancer la construction, à passer juste avant l'étape 6. Et <b>/speckit.checklist</b> génère une liste de contrôle qualité sur mesure pour valider que le résultat répond bien à la demande de départ.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Ce que ça pose sur ton disque</h2>
     <p class="reveal">Chaque étape laisse une trace écrite. C'est ça qui rend le projet relisable par un humain, transmissible à un prestataire, et défendable devant un client.</p>
@@ -291,10 +291,10 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <p class="reveal">Les fonctionnalités sont numérotées automatiquement (001, 002, 003…). Une fonctionnalité = un dossier = une histoire complète, du besoin jusqu'aux tâches.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>Les 4 erreurs qui font rater le truc</h2>
-    <p class="reveal"><strong>Erreur 1 — sauter la charte.</strong> Sans constitution, l'IA prend ses propres décisions à chaque fonctionnalité, et ton projet devient un patchwork de conventions contradictoires. Dix minutes à l'étape 1 t'économisent des jours à l'étape 6.</p>
-    <p class="reveal"><strong>Erreur 2 — mettre de la technique dans la spec.</strong> Si tu écris « avec une base Postgres et du React » dans le <em>specify</em>, tu as déjà tranché avant d'avoir décrit le besoin. Le quoi d'abord, le comment ensuite. C'est tout l'intérêt d'avoir deux documents séparés.</p>
-    <p class="reveal"><strong>Erreur 3 — répondre vite aux clarifications.</strong> C'est l'étape la plus rentable et la plus ennuyeuse. Chaque question esquivée redevient un bug trois jours plus tard. Prends-les au sérieux.</p>
-    <p class="reveal"><strong>Erreur 4 — valider sans lire.</strong> Le système ne vaut que par ton contrôle entre les étapes. Si tu enchaînes les six commandes sans relire les documents, tu as juste remplacé le prompt à l'aveugle par un pipeline à l'aveugle. Plus rapide, mais tout aussi aveugle.</p>
+    <p class="reveal"><strong>Erreur 1 : sauter la charte.</strong> Sans constitution, l'IA prend ses propres décisions à chaque fonctionnalité, et ton projet devient un patchwork de conventions contradictoires. Dix minutes à l'étape 1 t'économisent des jours à l'étape 6.</p>
+    <p class="reveal"><strong>Erreur 2 : mettre de la technique dans la spec.</strong> Si tu écris « avec une base Postgres et du React » dans le <em>specify</em>, tu as déjà tranché avant d'avoir décrit le besoin. Le quoi d'abord, le comment ensuite. C'est tout l'intérêt d'avoir deux documents séparés.</p>
+    <p class="reveal"><strong>Erreur 3 : répondre vite aux clarifications.</strong> C'est l'étape la plus rentable et la plus ennuyeuse. Chaque question esquivée redevient un bug trois jours plus tard. Prends-les au sérieux.</p>
+    <p class="reveal"><strong>Erreur 4 : valider sans lire.</strong> Le système ne vaut que par ton contrôle entre les étapes. Si tu enchaînes les six commandes sans relire les documents, tu as juste remplacé le prompt à l'aveugle par un pipeline à l'aveugle. Plus rapide, mais tout aussi aveugle.</p>
 
     <h2 class="reveal">Ce que tu pilotes, ce que tu délègues</h2>
     <p class="reveal">Même si tu ne codes pas une ligne, ce découpage est directement utilisable pour cadrer un projet avec un prestataire ou une équipe interne.</p>
@@ -309,9 +309,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
         <tr><td>Construction</td><td>IA</td><td>Contrôle par lot</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Lecture rapide :</b> ton temps se déplace vers l'avant. Une heure de cadrage au début remplace trois jours de rattrapage à la fin. Ce qui sort n'est pas une démo qui tient avec du scotch — c'est un produit tenu, du premier écran jusqu'au dernier.</div>
+    <div class="callout win reveal"><b>Lecture rapide :</b> ton temps se déplace vers l'avant. Une heure de cadrage au début remplace trois jours de rattrapage à la fin. Ce qui sort n'est pas une démo qui tient avec du scotch : c'est un produit tenu, du premier écran jusqu'au dernier.</div>
 
-    <div class="callout reveal"><b>Le repo officiel :</b> <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:600">github.com/github/spec-kit</a> — projet open source de GitHub, documentation complète et à jour en anglais. Les noms de commandes évoluent avec les versions : vérifie toujours celles de ta version installée.</div>
+    <div class="callout reveal"><b>Le repo officiel :</b> <a href="https://github.com/github/spec-kit" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;font-weight:600">github.com/github/spec-kit</a>, projet open source de GitHub, documentation complète et à jour en anglais. Les noms de commandes évoluent avec les versions : vérifie toujours celles de ta version installée.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -333,6 +333,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -340,7 +341,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -372,9 +373,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -460,11 +461,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -473,14 +474,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

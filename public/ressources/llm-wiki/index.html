@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/llm-wiki">
-<title>Le LLM Wiki : arrête de faire relire les mêmes fichiers à ton IA — NoesisAI</title>
+<title>Le LLM Wiki : arrête de faire relire les mêmes fichiers à ton IA - NoesisAI</title>
 <meta name="description" content="Le LLM Wiki de Karpathy expliqué pour décideurs : ranger tes données une fois, arrêter de faire relire le brut à ton IA. + le lien vers sa note d'origine.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Le LLM Wiki : arrête de faire relire les mêmes fichiers à ton IA">
@@ -290,7 +290,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Le LLM Wiki : arrête de faire relire les mêmes fichiers à ton IA</h1>
-    <p class="sub">L'idée d'Andrej Karpathy (ex-OpenAI) expliquée simplement — le raisonnement, les 3 dossiers, les 3 gestes, et comment savoir si c'est pour toi ou s'il te faut du RAG.</p>
+    <p class="sub">L'idée d'Andrej Karpathy (ex-OpenAI) expliquée simplement : le raisonnement, les 3 dossiers, les 3 gestes, et comment savoir si c'est pour toi ou s'il te faut du RAG.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -302,19 +302,19 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Tu redonnes les mêmes documents à ton IA, semaine après semaine. Et à chaque fois, elle repart de zéro : elle relit tout, oublie ce qu'elle avait compris la fois d'avant, et rate les liens entre tes infos. Andrej Karpathy (ex-OpenAI, ex-Tesla) a partagé une idée simple pour arrêter ça : le <strong>LLM Wiki</strong>. Voici le raisonnement complet, en clair — et comment savoir si c'est pour toi.</p>
+    <p class="lead reveal">Tu redonnes les mêmes documents à ton IA, semaine après semaine. Et à chaque fois, elle repart de zéro : elle relit tout, oublie ce qu'elle avait compris la fois d'avant, et rate les liens entre tes infos. Andrej Karpathy (ex-OpenAI, ex-Tesla) a partagé une idée simple pour arrêter ça : le <strong>LLM Wiki</strong>. Voici le raisonnement complet, en clair, et comment savoir si c'est pour toi.</p>
 
     <div class="callout reveal"><b>La note d'origine (à garder) :</b> Karpathy l'a écrite pour être copiée-collée directement dans ton assistant IA. <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener" style="color:var(--accent-b);text-decoration:underline;font-weight:600;">Ouvrir la note de Karpathy →</a></div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le problème, en clair</h2>
-    <p class="reveal"><strong>La scène du quotidien.</strong> Tu prépares un point client. Tu redonnes à ton IA les douze comptes-rendus de réunion, les mails, le devis. Elle relit les douze — en entier — comme si elle les découvrait. Demain, même question, même relecture intégrale.</p>
+    <p class="reveal"><strong>La scène du quotidien.</strong> Tu prépares un point client. Tu redonnes à ton IA les douze comptes-rendus de réunion, les mails, le devis. Elle relit les douze, en entier, comme si elle les découvrait. Demain, même question, même relecture intégrale.</p>
     <p class="reveal"><strong>Le coût caché.</strong> Elle refait le même travail de lecture en boucle (et ça se paie, à chaque fois), elle perd le fil d'un document à l'autre, et elle ne voit pas les liens entre deux sources. Résultat : des réponses plus lentes, plus chères, et moins fines qu'elles ne devraient l'être.</p>
     <div class="callout warn reveal"><b>Le vrai sujet :</b> ton IA travaille toujours sur du brut. Or le brut, c'est le désordre. Tant qu'elle bosse dessus, elle refait le tri à chaque question au lieu d'avancer.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>L'idée : ranger une fois, pas mille fois</h2>
-    <p class="reveal"><strong>Le principe.</strong> Au lieu de refouiller le brut à chaque question, l'IA nettoie, résume et relie tes données <em>une seule fois</em>, dans une base propre. Ensuite, elle travaille sur cette base rangée — plus jamais sur le tas de départ.</p>
-    <div class="callout reveal"><b>L'image simple :</b> arrête de faire relire toute l'armoire à ton assistant à chaque question. Demande-lui d'en tirer un carnet de synthèse propre, une fois — puis de le tenir à jour tout seul.</div>
-    <p class="reveal"><strong>Pourquoi ça marche.</strong> Tenir une base à jour, c'est un travail d'archiviste : croiser, résumer, corriger quand une info nouvelle en contredit une ancienne. Un humain s'en lasse et finit par abandonner (c'est pour ça que 90 % des wikis d'entreprise meurent). Une IA, non : elle ne se fatigue pas et peut retoucher quinze fiches d'un coup. Le ménage lui coûte quasi rien — donc il est fait, tout le temps.</p>
+    <p class="reveal"><strong>Le principe.</strong> Au lieu de refouiller le brut à chaque question, l'IA nettoie, résume et relie tes données <em>une seule fois</em>, dans une base propre. Ensuite, elle travaille sur cette base rangée, plus jamais sur le tas de départ.</p>
+    <div class="callout reveal"><b>L'image simple :</b> arrête de faire relire toute l'armoire à ton assistant à chaque question. Demande-lui d'en tirer un carnet de synthèse propre, une fois, puis de le tenir à jour tout seul.</div>
+    <p class="reveal"><strong>Pourquoi ça marche.</strong> Tenir une base à jour, c'est un travail d'archiviste : croiser, résumer, corriger quand une info nouvelle en contredit une ancienne. Un humain s'en lasse et finit par abandonner (c'est pour ça que 90 % des wikis d'entreprise meurent). Une IA, non : elle ne se fatigue pas et peut retoucher quinze fiches d'un coup. Le ménage lui coûte quasi rien, donc il est fait, tout le temps.</p>
     <div class="callout win reveal"><b>Le déclic :</b> ta base ne se dégrade pas avec le temps, elle se bonifie. Chaque source ajoutée la rend plus riche, pas plus lourde.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Comment c'est rangé : 3 dossiers</h2>
@@ -322,8 +322,8 @@ body.gate-on .gate-card{transform:none}
     <table class="matrix reveal">
       <thead><tr><th>Dossier</th><th>Ce qu'il contient</th><th>Qui écrit dedans</th></tr></thead>
       <tbody>
-        <tr><td><b>Sources</b></td><td>Tes documents d'origine (PDF, pages, notes, tableurs)</td><td>Toi seulement — jamais modifié à la main, c'est ta seule vérité</td></tr>
-        <tr><td><b>Base de connaissances</b></td><td>Les fiches propres : résumées, croisées, reliées entre elles</td><td>L'IA seulement — elle la crée et l'entretient</td></tr>
+        <tr><td><b>Sources</b></td><td>Tes documents d'origine (PDF, pages, notes, tableurs)</td><td>Toi seulement, jamais modifié à la main, c'est ta seule vérité</td></tr>
+        <tr><td><b>Base de connaissances</b></td><td>Les fiches propres : résumées, croisées, reliées entre elles</td><td>L'IA seulement : elle la crée et l'entretient</td></tr>
         <tr><td><b>Règles</b></td><td>Comment nettoyer, quels liens créer, comment mettre à jour</td><td>Toi une fois, puis l'IA les applique</td></tr>
       </tbody>
     </table>
@@ -331,13 +331,13 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">4</span>Les 3 gestes du quotidien</h2>
     <p class="reveal">Une fois en place, tout se résume à trois gestes. Simples, répétables.</p>
-    <p class="reveal"><strong>1. Nourrir.</strong> Tu ajoutes une source. L'IA ne se contente pas de la ranger : elle la lit et met à jour <em>toutes</em> les fiches concernées. Un seul document peut en toucher dix ou quinze d'un coup — un travail que personne ne ferait à la main.</p>
+    <p class="reveal"><strong>1. Nourrir.</strong> Tu ajoutes une source. L'IA ne se contente pas de la ranger : elle la lit et met à jour <em>toutes</em> les fiches concernées. Un seul document peut en toucher dix ou quinze d'un coup : un travail que personne ne ferait à la main.</p>
     <p class="reveal"><strong>2. Interroger.</strong> Tu poses une question. L'IA répond en croisant tes fiches (les liens sont déjà faits), puis elle range la réponse utile dans la base. Autrement dit : même tes questions enrichissent ta base.</p>
     <p class="reveal"><strong>3. Entretenir.</strong> De temps en temps, tu demandes un « ménage » : repérer les contradictions, les infos périmées qu'une source récente a remplacées, les fiches orphelines, les trous. C'est ce qui empêche la base de pourrir en silence.</p>
-    <div class="callout win reveal"><b>Lecture rapide :</b> tu déposes, tu demandes, tu fais faire le ménage. Le reste — lire, résumer, relier, corriger — n'est plus ton problème.</div>
+    <div class="callout win reveal"><b>Lecture rapide :</b> tu déposes, tu demandes, tu fais faire le ménage. Le reste (lire, résumer, relier, corriger) n'est plus ton problème.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Ce que tu pilotes / ce que tu délègues</h2>
-    <p class="reveal">C'est le vrai partage des rôles — et ce qui rend la méthode tenable dans la durée.</p>
+    <p class="reveal">C'est le vrai partage des rôles, et ce qui rend la méthode tenable dans la durée.</p>
     <table class="matrix reveal">
       <thead><tr><th>Toi, tu pilotes</th><th>L'IA, elle exécute</th></tr></thead>
       <tbody>
@@ -347,7 +347,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Donner le cap</td><td>Mettre à jour et repérer les contradictions</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Lecture rapide :</b> ton rôle, c'est le jugement — quoi ranger, quoi demander. Le travail d'archivage, tu le délègues à 100 %.</div>
+    <div class="callout win reveal"><b>Lecture rapide :</b> ton rôle, c'est le jugement, quoi ranger, quoi demander. Le travail d'archivage, tu le délègues à 100 %.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Où ça change vraiment la donne</h2>
     <p class="reveal">La méthode brille sur les corpus <em>à toi</em> : personnels, stables, que tu consultes souvent. Quelques usages concrets :</p>
@@ -355,10 +355,10 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Mémoire d'équipe.</strong> Comptes-rendus de réunion, échanges clients, notes d'appels → une base vivante à la place de fichiers éparpillés que personne ne relit.</p>
     <p class="reveal"><strong>Recherche approfondie.</strong> Un sujet creusé sur des semaines : la synthèse grossit et se relie, au lieu de repartir de zéro à chaque session.</p>
     <p class="reveal"><strong>Notes de lecture / formation.</strong> Livres, cours, podcasts → des fiches reliées entre elles (idées, personnes, thèmes) que tu retrouves d'un coup.</p>
-    <div class="callout reveal"><b>Avant / après (préparer un point client) :</b> <em>avant</em>, tu redonnes douze comptes-rendus et l'IA relit tout ; <em>après</em>, elle tient déjà une fiche client à jour qui croise les douze — tu poses ta question, tu as la réponse, sourcée.</div>
+    <div class="callout reveal"><b>Avant / après (préparer un point client) :</b> <em>avant</em>, tu redonnes douze comptes-rendus et l'IA relit tout ; <em>après</em>, elle tient déjà une fiche client à jour qui croise les douze, tu poses ta question, tu as la réponse, sourcée.</div>
 
     <h2 class="reveal"><span class="numtag">7</span>La limite que personne ne dit</h2>
-    <p class="reveal"><strong>Le seuil.</strong> Karpathy le précise lui-même : la méthode tient jusqu'à ~100 sources, sans aucune machinerie technique. Parfait pour une base perso, stable, à toi. Au-delà, il rebranche un vrai moteur de recherche — ce qu'on appelle le RAG (l'IA va rechercher dans tes documents à chaque question, au lieu de tout garder en tête).</p>
+    <p class="reveal"><strong>Le seuil.</strong> Karpathy le précise lui-même : la méthode tient jusqu'à ~100 sources, sans aucune machinerie technique. Parfait pour une base perso, stable, à toi. Au-delà, il rebranche un vrai moteur de recherche : ce qu'on appelle le RAG (l'IA va rechercher dans tes documents à chaque question, au lieu de tout garder en tête).</p>
     <table class="matrix reveal">
       <thead><tr><th>Ta situation</th><th>LLM Wiki</th><th>RAG (moteur de recherche)</th></tr></thead>
       <tbody>
@@ -375,10 +375,10 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal">Ceux qui l'ont mis en place à grande échelle reviennent toujours sur les mêmes points :</p>
     <p class="reveal"><strong>Bâcler le fichier de règles.</strong> C'est lui qui décide de la qualité de toute la base. Prends le temps de le soigner : comment nommer les fiches, quand en créer une nouvelle plutôt que mettre à jour l'existante. C'est le cœur du réacteur.</p>
     <p class="reveal"><strong>Confondre fiche et copie.</strong> Si l'IA recopie juste tes documents, tu n'as rien gagné. La valeur vient du <em>croisement</em> : plusieurs sources fondues en une fiche plus riche que chacune prise à part.</p>
-    <p class="reveal"><strong>Sauter le ménage.</strong> Sans entretien régulier, la base dérive : de vieilles infos traînent et polluent les réponses. C'est le seul vrai point de vigilance — mais il est non négociable.</p>
+    <p class="reveal"><strong>Sauter le ménage.</strong> Sans entretien régulier, la base dérive : de vieilles infos traînent et polluent les réponses. C'est le seul vrai point de vigilance, mais il est non négociable.</p>
 
     <h2 class="reveal">Par où commencer</h2>
-    <p class="reveal"><strong>1.</strong> Ouvre la note de Karpathy et colle-la dans ton assistant IA. Ça marche avec Claude, GPT ou Gemini — rien de propriétaire.</p>
+    <p class="reveal"><strong>1.</strong> Ouvre la note de Karpathy et colle-la dans ton assistant IA. Ça marche avec Claude, GPT ou Gemini : rien de propriétaire.</p>
     <p class="reveal"><strong>2.</strong> Rassemble tes sources dans un seul dossier, et laisse l'IA en tirer la première version de ta base.</p>
     <p class="reveal"><strong>3.</strong> Cale tes règles (nommage, mises à jour), puis prends le rythme : tu déposes, tu demandes, tu fais le ménage. La base s'enrichit sans que tu ne ranges rien à la main.</p>
     <div class="callout reveal"><b>Le point de départ :</b> <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noopener" style="color:var(--accent-b);text-decoration:underline;font-weight:600;">la note de Karpathy sur GitHub →</a></div>
@@ -402,6 +402,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -482,7 +483,7 @@ body.gate-on .gate-card{transform:none}
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

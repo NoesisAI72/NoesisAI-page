@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/prospects-google-maps">
-<title>Google Maps, ta base de prospection locale — NoesisAI</title>
+<title>Google Maps, ta base de prospection locale - NoesisAI</title>
 <meta name="description" content="Comment construire une liste de prospects locaux depuis Google Maps avec un kit gratuit et open source piloté par Claude : ce que tu décides, ce qui se délègue, et le cadre légal.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Google Maps, ta base de prospection locale">
@@ -275,12 +275,12 @@ body.gate-on .gate-card{transform:none}
 
     <p class="lead reveal">Tu veux 300 fleuristes de Lyon, ou tous les garages de Bordeaux, avec leurs téléphones et leurs sites. Aujourd'hui tu paies un outil au mois, ou tu fais copier-coller pendant deux soirées. Il existe une troisième voie : un kit <strong>gratuit et open source</strong> que Claude pilote pour toi, qui tourne sur <strong>ton</strong> ordinateur. Voici comment le cadrer, le nettoyer et l'utiliser proprement.</p>
 
-    <div class="callout reveal"><b>Le kit :</b> <a href="https://github.com/Mahanaicoach/google-maps-scraper-kit" target="_blank" rel="noopener">github.com/Mahanaicoach/google-maps-scraper-kit</a> — licence MIT, gratuit, sans compte à créer. Il s'appuie sur le scraper open source <a href="https://github.com/gosom/google-maps-scraper" target="_blank" rel="noopener">gosom/google-maps-scraper</a>.</div>
+    <div class="callout reveal"><b>Le kit :</b> <a href="https://github.com/Mahanaicoach/google-maps-scraper-kit" target="_blank" rel="noopener">github.com/Mahanaicoach/google-maps-scraper-kit</a>, licence MIT, gratuit, sans compte à créer. Il s'appuie sur le scraper open source <a href="https://github.com/gosom/google-maps-scraper" target="_blank" rel="noopener">gosom/google-maps-scraper</a>.</div>
 
-    <h2 class="reveal"><span class="numtag">1</span>Ce qu'il fait — et ce qu'il ne fait pas</h2>
-    <p class="reveal"><strong>Ce qu'il fait.</strong> Tu lui donnes une zone et un métier. Il te rend une liste de fiches d'établissements avec, pour chacune : nom, téléphone, site web, adresse, catégorie, note et nombre d'avis. Une option facultative va lire le site de chaque entreprise pour y récupérer un email et les liens Instagram / Facebook / LinkedIn — sans surcoût, mais plus lent.</p>
-    <p class="reveal"><strong>Ce qu'il ne fait pas.</strong> Il ne te donne pas le nom ni l'email du dirigeant. Il ne devine pas les coordonnées absentes : si une entreprise n'a pas de site, tu n'auras pas d'email. Et il ne qualifie rien — une fiche n'est pas un prospect, c'est une porte.</p>
-    <div class="callout warn reveal"><b>À savoir avant de lancer :</b> extraire des données de Google Maps va à l'encontre des conditions d'utilisation de Google. En pratique, ton compte Google n'est pas concerné : c'est ton adresse internet qui peut être ralentie temporairement si tu tires trop fort. Le risque est bas et réversible — mais il faut le savoir, pas le découvrir.</div>
+    <h2 class="reveal"><span class="numtag">1</span>Ce qu'il fait, et ce qu'il ne fait pas</h2>
+    <p class="reveal"><strong>Ce qu'il fait.</strong> Tu lui donnes une zone et un métier. Il te rend une liste de fiches d'établissements avec, pour chacune : nom, téléphone, site web, adresse, catégorie, note et nombre d'avis. Une option facultative va lire le site de chaque entreprise pour y récupérer un email et les liens Instagram / Facebook / LinkedIn, sans surcoût, mais plus lent.</p>
+    <p class="reveal"><strong>Ce qu'il ne fait pas.</strong> Il ne te donne pas le nom ni l'email du dirigeant. Il ne devine pas les coordonnées absentes : si une entreprise n'a pas de site, tu n'auras pas d'email. Et il ne qualifie rien : une fiche n'est pas un prospect, c'est une porte.</p>
+    <div class="callout warn reveal"><b>À savoir avant de lancer :</b> extraire des données de Google Maps va à l'encontre des conditions d'utilisation de Google. En pratique, ton compte Google n'est pas concerné : c'est ton adresse internet qui peut être ralentie temporairement si tu tires trop fort. Le risque est bas et réversible, mais il faut le savoir, pas le découvrir.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Ce que tu pilotes, ce qui se délègue</h2>
     <p class="reveal">C'est là que la plupart des gens se trompent : ils croient que l'outil décide. Non. L'outil exécute. La qualité de ta liste dépend à 100 % de ce que <em>toi</em> tu as tranché avant.</p>
@@ -298,22 +298,22 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">3</span>Le brief : une zone, un métier, une profondeur</h2>
     <p class="reveal"><strong>La bonne façon de demander.</strong> Tu parles normalement : « construis-moi une liste de dentistes à Nantes ». Pas de code, pas de paramètre à retenir. C'est tout l'intérêt du kit : la demande en français déclenche le travail.</p>
-    <p class="reveal"><strong>La profondeur.</strong> C'est le seul réglage qui compte vraiment : jusqu'où l'outil descend dans les résultats. Commence bas — l'équivalent des premières pages — et une seule recherche à la fois. Tu vérifies la qualité sur 30 fiches avant d'en lancer 500. Si tu vois des résultats qui reviennent vides d'un coup, ce n'est pas un bug : c'est le signal que tu tires trop fort. Tu attends, tu reprends plus doucement.</p>
-    <div class="callout reveal"><b>Pour les gros volumes :</b> le kit accepte des relais d'adresse internet (des « proxies ») qu'il fait tourner automatiquement. C'est ce qui sépare un test du samedi d'une prospection continue. Ça, en revanche, c'est payant chez un fournisseur tiers — pas dans le kit.</div>
+    <p class="reveal"><strong>La profondeur.</strong> C'est le seul réglage qui compte vraiment : jusqu'où l'outil descend dans les résultats. Commence bas, l'équivalent des premières pages, et une seule recherche à la fois. Tu vérifies la qualité sur 30 fiches avant d'en lancer 500. Si tu vois des résultats qui reviennent vides d'un coup, ce n'est pas un bug : c'est le signal que tu tires trop fort. Tu attends, tu reprends plus doucement.</p>
+    <div class="callout reveal"><b>Pour les gros volumes :</b> le kit accepte des relais d'adresse internet (des « proxies ») qu'il fait tourner automatiquement. C'est ce qui sépare un test du samedi d'une prospection continue. Ça, en revanche, c'est payant chez un fournisseur tiers, pas dans le kit.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Une liste brute n'est pas une liste exploitable</h2>
     <p class="reveal">Sortie du scraper, ta liste contient des doublons, des établissements fermés, des chaînes que tu ne veux pas démarcher et des fiches sans aucun moyen de contact. La transformer en outil de vente prend cinq minutes si tu sais quoi demander.</p>
-    <p class="reveal"><strong>Les quatre passes à faire faire.</strong> Dédoublonner (même enseigne, plusieurs fiches). Écarter les fiches sans téléphone <em>ni</em> site : elles ne sont contactables par aucun canal. Retirer les grandes enseignes si ta cible est l'indépendant. Puis trier selon <em>ton</em> angle — par exemple les entreprises bien notées mais sans site web, si c'est ce que tu vends.</p>
+    <p class="reveal"><strong>Les quatre passes à faire faire.</strong> Dédoublonner (même enseigne, plusieurs fiches). Écarter les fiches sans téléphone <em>ni</em> site : elles ne sont contactables par aucun canal. Retirer les grandes enseignes si ta cible est l'indépendant. Puis trier selon <em>ton</em> angle : par exemple les entreprises bien notées mais sans site web, si c'est ce que tu vends.</p>
     <div class="callout win reveal"><b>Le vrai gain :</b> ce n'est pas d'avoir 500 lignes. C'est d'avoir 40 lignes dont tu sais <em>pourquoi</em> elles sont là. Une liste courte et argumentée se travaille ; une liste longue et floue finit dans un onglet jamais rouvert.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Le cadre légal : ton meilleur argument commercial</h2>
-    <p class="reveal">Les coordonnées que tu récupères sont des <strong>données personnelles</strong> dès qu'elles permettent d'identifier quelqu'un. Le RGPD s'applique — y compris en B2B. Ce n'est pas un frein, c'est un filtre : les concurrents qui envoient en masse se grillent, toi tu construis quelque chose de durable.</p>
+    <p class="reveal">Les coordonnées que tu récupères sont des <strong>données personnelles</strong> dès qu'elles permettent d'identifier quelqu'un. Le RGPD s'applique, y compris en B2B. Ce n'est pas un frein, c'est un filtre : les concurrents qui envoient en masse se grillent, toi tu construis quelque chose de durable.</p>
     <p class="reveal"><strong>Les réflexes de base.</strong> Une finalité claire et écrite (« prospection commerciale pour tel service »). Une information visible dès le premier contact : qui tu es, où tu as trouvé la coordonnée. Un moyen simple de dire non, respecté immédiatement. Et tu ne gardes pas la donnée éternellement.</p>
-    <div class="callout warn reveal"><b>Attention au téléphone.</b> Le démarchage téléphonique est bien plus encadré que l'email, et les règles françaises ont bougé récemment. Google Maps mélange professionnels et très petites structures où le numéro est aussi celui du dirigeant. Avant de lancer une campagne d'appels, fais valider ton cadre — c'est le seul point de cette page où je te dis de ne pas improviser.</div>
+    <div class="callout warn reveal"><b>Attention au téléphone.</b> Le démarchage téléphonique est bien plus encadré que l'email, et les règles françaises ont bougé récemment. Google Maps mélange professionnels et très petites structures où le numéro est aussi celui du dirigeant. Avant de lancer une campagne d'appels, fais valider ton cadre : c'est le seul point de cette page où je te dis de ne pas improviser.</div>
 
     <h2 class="reveal">Par où commencer, concrètement</h2>
-    <p class="reveal">Si tu ne devais faire qu'une chose ce week-end : prends <strong>une</strong> ville, <strong>un</strong> métier, et sors 30 fiches. Pas 500. L'objectif n'est pas la liste, c'est de vérifier que ton angle tient debout — que tu sais quoi dire à ces 30 entreprises précises. Si tu ne sais pas, aucun volume ne te sauvera. Si tu sais, tu as trouvé une machine à répéter.</p>
-    <div class="callout win reveal"><b>Lecture rapide :</b> l'extraction, c'est 10 % du travail et c'est la partie que la machine fait le mieux. Les 90 % restants — choisir la cible, trouver l'angle, écrire le message — restent ta valeur. Le kit ne remplace pas ton commercial : il lui rend ses soirées.</div>
+    <p class="reveal">Si tu ne devais faire qu'une chose ce week-end : prends <strong>une</strong> ville, <strong>un</strong> métier, et sors 30 fiches. Pas 500. L'objectif n'est pas la liste, c'est de vérifier que ton angle tient debout : que tu sais quoi dire à ces 30 entreprises précises. Si tu ne sais pas, aucun volume ne te sauvera. Si tu sais, tu as trouvé une machine à répéter.</p>
+    <div class="callout win reveal"><b>Lecture rapide :</b> l'extraction, c'est 10 % du travail et c'est la partie que la machine fait le mieux. Les 90 % restants (choisir la cible, trouver l'angle, écrire le message) restent ta valeur. Le kit ne remplace pas ton commercial : il lui rend ses soirées.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -335,6 +335,7 @@ body.gate-on .gate-card{transform:none}
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -342,7 +343,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -374,9 +375,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -462,11 +463,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -475,14 +476,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

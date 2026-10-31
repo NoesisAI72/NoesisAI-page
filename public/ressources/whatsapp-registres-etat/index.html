@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/whatsapp-registres-etat">
-<title>Monte ton agent WhatsApp branché sur les registres de l'État — NoesisAI</title>
+<title>Monte ton agent WhatsApp branché sur les registres de l'État - NoesisAI</title>
 <meta name="description" content="Pas à pas : cloner le kit WhatsApp open source, le faire construire par Claude Code, puis le brancher sur Légifrance, le RNE et data.gouv.fr. Liens, réglages, coûts réels et limites.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Monte ton agent WhatsApp branché sur les registres de l'État">
@@ -290,7 +290,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Monte ton agent WhatsApp branché sur les registres de l'État</h1>
-    <p class="sub">Le mode d'emploi complet : les prérequis, les 3 commandes, les 5 étapes guidées, le branchement aux sources officielles — et les 4 points de vigilance.</p>
+    <p class="sub">Le mode d'emploi complet : les prérequis, les 3 commandes, les 5 étapes guidées, le branchement aux sources officielles, et les 4 points de vigilance.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -318,20 +318,20 @@ body.gate-on .gate-card{transform:none}
     <div class="callout reveal"><b>Compte une soirée.</b> Le montage de base tient en vingt minutes si tes prérequis sont en place. Le reste du temps part dans les comptes à créer et dans les réglages que tu veux ajuster.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Ce qu'il te faut avant de commencer</h2>
-    <p class="reveal">Quatre choses. Si l'une manque, tu te bloqueras à la première commande — c'est l'erreur la plus fréquente, et le point que les guides trouvés en ligne oublient systématiquement.</p>
+    <p class="reveal">Quatre choses. Si l'une manque, tu te bloqueras à la première commande : c'est l'erreur la plus fréquente, et le point que les guides trouvés en ligne oublient systématiquement.</p>
     <table class="matrix reveal">
       <thead><tr><th>Prérequis</th><th>Où</th><th>Remarque</th></tr></thead>
       <tbody>
         <tr><td><strong>Python 3.11 ou plus</strong></td><td><a href="https://python.org/downloads" target="_blank" rel="noopener">python.org</a></td><td>Vérifie avec <code>python3 --version</code>. Le script refuse de démarrer en dessous</td></tr>
         <tr><td><strong>Claude Code</strong></td><td><code>npm install -g @anthropic-ai/claude-code</code></td><td>Demande <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js</a> installé avant</td></tr>
         <tr><td><strong>Une clé API Anthropic</strong></td><td><a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">Réglages → API Keys</a></td><td>Distincte de ton abonnement Claude. C'est un compte à part, facturé à l'usage</td></tr>
-        <tr><td><strong>Un accès WhatsApp Business</strong></td><td>Zernio ou Meta</td><td>Le choix se fait pendant le setup — voir l'étape 4</td></tr>
+        <tr><td><strong>Un accès WhatsApp Business</strong></td><td>Zernio ou Meta</td><td>Le choix se fait pendant le setup : voir l'étape 4</td></tr>
       </tbody>
     </table>
     <div class="callout warn reveal"><b>Le piège de la clé API.</b> Beaucoup pensent que leur abonnement Claude suffit. Non : un agent qui tourne sur un serveur passe par l'API, qui a sa propre facturation à l'usage. C'est le premier poste de coût du projet, et il est détaillé plus bas.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Les trois commandes de départ</h2>
-    <p class="reveal">Le dépôt est ici : <a href="https://github.com/Hainrixz/whatsapp-agentkit" target="_blank" rel="noopener">github.com/Hainrixz/whatsapp-agentkit</a> — open source, licence MIT, gratuit. Tu l'ouvres dans ton terminal :</p>
+    <p class="reveal">Le dépôt est ici : <a href="https://github.com/Hainrixz/whatsapp-agentkit" target="_blank" rel="noopener">github.com/Hainrixz/whatsapp-agentkit</a>, open source, licence MIT, gratuit. Tu l'ouvres dans ton terminal :</p>
     <pre class="reveal"><code>git clone https://github.com/Hainrixz/whatsapp-agentkit.git
 cd whatsapp-agentkit
 bash start.sh</code></pre>
@@ -345,25 +345,25 @@ bash start.sh</code></pre>
     <h2 class="reveal"><span class="numtag">3</span>Les cinq étapes que Claude Code déroule</h2>
     <p class="reveal">À partir de <code>/build-agent</code>, tu n'as plus qu'à répondre. Voici ce qui se passe, pour que tu saches où tu en es.</p>
 
-    <h3 class="reveal">Étape 1 — Il prépare le terrain</h3>
+    <h3 class="reveal">Étape 1 : Il prépare le terrain</h3>
     <p class="reveal">Contrôle de Python, création des dossiers, installation des dépendances, préparation du fichier de configuration. Automatique.</p>
 
-    <h3 class="reveal">Étape 2 — Il t'interroge</h3>
+    <h3 class="reveal">Étape 2 : Il t'interroge</h3>
     <p class="reveal">Dix questions, posées une par une : le nom de ton activité, ce que tu fais, à quoi doit servir l'agent, comment il s'appelle, quel ton il adopte, tes horaires, tes fichiers de tarifs ou de documentation, ta clé API, et par quel service tu connectes WhatsApp.</p>
-    <div class="callout reveal"><b>C'est l'étape qui compte.</b> Tout le reste est de la mécanique. La qualité de ton agent se joue ici, dans la précision de tes réponses — c'est la seule partie que personne ne peut faire à ta place.</div>
+    <div class="callout reveal"><b>C'est l'étape qui compte.</b> Tout le reste est de la mécanique. La qualité de ton agent se joue ici, dans la précision de tes réponses : c'est la seule partie que personne ne peut faire à ta place.</div>
 
-    <h3 class="reveal">Étape 3 — Il construit</h3>
+    <h3 class="reveal">Étape 3 : Il construit</h3>
     <p class="reveal">Il écrit le serveur qui reçoit les messages, la connexion à Claude, l'historique par client, les fichiers de configuration de ton activité, et de quoi déployer. Tu regardes défiler.</p>
 
-    <h3 class="reveal">Étape 4 — Tu testes, sans WhatsApp</h3>
+    <h3 class="reveal">Étape 4 : Tu testes, sans WhatsApp</h3>
     <p class="reveal">Un simulateur de conversation dans ton terminal : tu écris comme si tu étais un client, l'agent répond. Rien n'est encore en ligne, aucun vrai message n'est envoyé. Si une réponse ne te plaît pas, tu le dis à Claude Code en français et il ajuste sur-le-champ.</p>
     <div class="callout win reveal"><b>Ne saute pas cette étape.</b> C'est là que tu vois si ton agent tient la route, avant qu'un client ne l'ait vu. Pose-lui vingt vraies questions de ton quotidien, y compris les tordues.</div>
 
-    <h3 class="reveal">Étape 5 — Tu le mets en ligne</h3>
+    <h3 class="reveal">Étape 5 : Tu le mets en ligne</h3>
     <p class="reveal">Il te guide pour publier sur GitHub, brancher un hébergeur (Railway par défaut), charger tes clés et configurer la réception des messages. À partir de là, ton numéro répond.</p>
 
     <h2 class="reveal"><span class="numtag">4</span>Le choix à faire : par où passe ton WhatsApp</h2>
-    <p class="reveal">Question posée pendant l'entretien. Deux chemins, et ce n'est pas un détail technique — c'est un choix de confidentialité.</p>
+    <p class="reveal">Question posée pendant l'entretien. Deux chemins, et ce n'est pas un détail technique : c'est un choix de confidentialité.</p>
     <table class="matrix reveal">
       <thead><tr><th></th><th>Zernio</th><th>Meta Cloud API</th></tr></thead>
       <tbody>
@@ -374,7 +374,7 @@ bash start.sh</code></pre>
         <tr><td>Tes messages transitent par</td><td>Un tiers, puis Meta</td><td>Meta uniquement</td></tr>
       </tbody>
     </table>
-    <div class="callout warn reveal"><b>Mon avis, et il n'engage que moi.</b> Zernio est le chemin court, c'est celui que le dépôt recommande. Mais je ne connais pas cette société, et faire transiter les conversations WhatsApp de tes clients par un intermédiaire n'est pas une décision technique : c'est une décision de confidentialité. Pour tester chez toi, va au plus simple. Pour un vrai client, renseigne-toi d'abord sur qui héberge quoi et où — ou passe en direct par Meta.</div>
+    <div class="callout warn reveal"><b>Mon avis, et il n'engage que moi.</b> Zernio est le chemin court, c'est celui que le dépôt recommande. Mais je ne connais pas cette société, et faire transiter les conversations WhatsApp de tes clients par un intermédiaire n'est pas une décision technique : c'est une décision de confidentialité. Pour tester chez toi, va au plus simple. Pour un vrai client, renseigne-toi d'abord sur qui héberge quoi et où, ou passe en direct par Meta.</div>
     <p class="reveal">Bonne nouvelle : changer d'avis plus tard tient en une phrase adressée à Claude Code. Tu n'es pas enfermé.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>Brancher les sources officielles</h2>
@@ -382,9 +382,9 @@ bash start.sh</code></pre>
     <p class="reveal">C'est l'étape que <strong>le dépôt ne fait pas</strong>, et il l'assume : les fonctions prévues pour aller chercher de l'information existent, mais elles ne sont pas reliées à l'agent. Voilà comment on les relie.</p>
 
     <h3 class="reveal">Les adresses à connaître</h3>
-    <p class="reveal"><strong>data.gouv.fr — public, sans compte, sans clé.</strong> La plateforme d'open data de l'État expose son propre point d'accès à l'adresse <code>https://mcp.data.gouv.fr/mcp</code>, en lecture seule. C'est le meilleur endroit pour tester, puisqu'il n'y a ni inscription ni carte bancaire. <a href="https://guides.data.gouv.fr/intelligence-artificielle/le-serveur-mcp-de-data.gouv.fr" target="_blank" rel="noopener">Documentation officielle</a>.</p>
-    <div class="callout warn reveal"><b>Ce que l'équipe dit elle-même :</b> le service est <b>encore expérimental</b>, son périmètre peut évoluer, et les réponses peuvent être incomplètes ou erronées. Pour un usage sérieux, ils recommandent leurs API structurées. C'est écrit dans leur propre documentation — dis-le à ton client avant qu'il ne le découvre.</div>
-    <p class="reveal"><strong>OpenLegi — le juridique et les entreprises.</strong> Service tiers (<a href="https://www.openlegi.fr/" target="_blank" rel="noopener">openlegi.fr</a>), une adresse par périmètre :</p>
+    <p class="reveal"><strong>data.gouv.fr, public, sans compte, sans clé.</strong> La plateforme d'open data de l'État expose son propre point d'accès à l'adresse <code>https://mcp.data.gouv.fr/mcp</code>, en lecture seule. C'est le meilleur endroit pour tester, puisqu'il n'y a ni inscription ni carte bancaire. <a href="https://guides.data.gouv.fr/intelligence-artificielle/le-serveur-mcp-de-data.gouv.fr" target="_blank" rel="noopener">Documentation officielle</a>.</p>
+    <div class="callout warn reveal"><b>Ce que l'équipe dit elle-même :</b> le service est <b>encore expérimental</b>, son périmètre peut évoluer, et les réponses peuvent être incomplètes ou erronées. Pour un usage sérieux, ils recommandent leurs API structurées. C'est écrit dans leur propre documentation : dis-le à ton client avant qu'il ne le découvre.</div>
+    <p class="reveal"><strong>OpenLegi : le juridique et les entreprises.</strong> Service tiers (<a href="https://www.openlegi.fr/" target="_blank" rel="noopener">openlegi.fr</a>), une adresse par périmètre :</p>
     <table class="matrix reveal">
       <thead><tr><th>Périmètre</th><th>Ce que ça couvre</th><th>Adresse</th></tr></thead>
       <tbody>
@@ -395,7 +395,7 @@ bash start.sh</code></pre>
         <tr><td>EUR-Lex</td><td>Législation européenne</td><td><code>mcp.openlegi.fr/eurlex/mcp</code></td></tr>
       </tbody>
     </table>
-    <p class="reveal">Deux modes de connexion : <strong>OAuth</strong> (recommandé pour claude.ai) ou <strong>un jeton personnel</strong> placé dans l'adresse ou l'en-tête — c'est ce second mode qui convient à un agent qui tourne sur un serveur. <a href="https://www.openlegi.fr/documentation/demarrage-rapide/deux-modes-connexion/" target="_blank" rel="noopener">Leur guide de démarrage</a>. Attention, tous les périmètres ne sont pas au même régime : plusieurs sources annoncent RNE, EUR-Lex et Judilibre comme réservés à un abonnement. Confirme avant d'annoncer un budget.</p>
+    <p class="reveal">Deux modes de connexion : <strong>OAuth</strong> (recommandé pour claude.ai) ou <strong>un jeton personnel</strong> placé dans l'adresse ou l'en-tête, c'est ce second mode qui convient à un agent qui tourne sur un serveur. <a href="https://www.openlegi.fr/documentation/demarrage-rapide/deux-modes-connexion/" target="_blank" rel="noopener">Leur guide de démarrage</a>. Attention, tous les périmètres ne sont pas au même régime : plusieurs sources annoncent RNE, EUR-Lex et Judilibre comme réservés à un abonnement. Confirme avant d'annoncer un budget.</p>
 
     <h3 class="reveal">La modif, en une phrase à Claude Code</h3>
     <p class="reveal">Il n'y a pas de gros développement. L'API d'Anthropic sait se connecter seule à une source distante : tu lui donnes l'adresse, elle va y chercher l'information quand la question le demande. Concrètement, tu ouvres Claude Code dans ton projet et tu lui demandes de brancher la source. Trois réglages, dans le fichier qui fabrique la réponse :</p>
@@ -408,7 +408,7 @@ bash start.sh</code></pre>
     <p class="reveal">Un piège de raisonnement pour finir : <strong>les connecteurs que tu as branchés dans ton compte Claude ne suivent pas</strong>. Ce sont deux plomberies séparées. Ton compte, c'est pour tes conversations à toi. Ton agent WhatsApp tape sur l'API avec ses propres accès, qu'il faut lui donner explicitement.</p>
 
     <h2 class="reveal"><span class="numtag">6</span>Ce que ça coûte vraiment</h2>
-    <p class="reveal">Le dépôt est gratuit. Ce que tu paies, c'est l'usage. Un agent ne se facture pas au message mais au volume de texte traité — et à chaque échange, tout l'historique de la conversation est renvoyé. C'est ce qui fait grimper la note plus vite qu'on ne l'imagine.</p>
+    <p class="reveal">Le dépôt est gratuit. Ce que tu paies, c'est l'usage. Un agent ne se facture pas au message mais au volume de texte traité, et à chaque échange, tout l'historique de la conversation est renvoyé. C'est ce qui fait grimper la note plus vite qu'on ne l'imagine.</p>
     <p class="reveal">Les tarifs officiels par million d'unités de texte, entrée puis sortie :</p>
     <table class="matrix reveal">
       <thead><tr><th>Modèle</th><th>Tarif</th><th>Quand l'utiliser</th></tr></thead>
@@ -423,10 +423,10 @@ bash start.sh</code></pre>
 
     <h2 class="reveal"><span class="numtag">7</span>Les quatre points de vigilance</h2>
     <p class="reveal">Si tu ne retiens qu'une section, c'est celle-ci. C'est ce qui sépare une démo d'un outil qu'on laisse tourner devant des clients.</p>
-    <p class="reveal"><strong>La sécurité de ton adresse.</strong> Chaque message entrant est signé, et l'agent vérifie cette signature. Mais si tu laisses le champ correspondant vide dans ta configuration, <em>le serveur démarre quand même et laisse tout passer</em> — avec un simple avertissement dans les journaux. C'est prévu pour te laisser tester sans blocage. N'oublie pas de le remplir avant d'ouvrir à de vrais clients : sans lui, n'importe qui connaissant ton adresse peut faire parler ton agent à tes frais.</p>
-    <p class="reveal"><strong>L'agent ne peut pas écrire le premier.</strong> WhatsApp n'autorise le texte libre que dans les 24 heures suivant le dernier message du client. Au-delà, il faut un message type validé par Meta. Toute promesse de relance automatique ou de newsletter WhatsApp se heurte à cette règle — c'est faisable, mais bien plus lourd que ce qu'on te vendra.</p>
-    <p class="reveal"><strong>Il conseille, il n'agit pas.</strong> Le kit livre un agent qui comprend, répond et enregistre. Il n'écrit pas dans ton agenda, ne décrémente pas ton stock et n'encaisse pas. Le dépôt le dit lui-même : ces fonctions sont préparées mais pas reliées. Brancher chacune, c'est un chantier en plus. Méfie-toi des ressources qui vendent la prise de rendez-vous automatique comme incluse — elle ne l'est pas.</p>
-    <p class="reveal"><strong>La responsabilité de la réponse.</strong> Brancher une source officielle réduit fortement l'invention, mais ne la supprime pas — l'équipe de data.gouv.fr l'écrit noir sur blanc. Un agent qui cite l'article, c'est un outil de travail. Un agent qui rend un avis juridique, c'est un risque. La différence se décide dans ses instructions, avant la mise en ligne.</p>
+    <p class="reveal"><strong>La sécurité de ton adresse.</strong> Chaque message entrant est signé, et l'agent vérifie cette signature. Mais si tu laisses le champ correspondant vide dans ta configuration, <em>le serveur démarre quand même et laisse tout passer</em>, avec un simple avertissement dans les journaux. C'est prévu pour te laisser tester sans blocage. N'oublie pas de le remplir avant d'ouvrir à de vrais clients : sans lui, n'importe qui connaissant ton adresse peut faire parler ton agent à tes frais.</p>
+    <p class="reveal"><strong>L'agent ne peut pas écrire le premier.</strong> WhatsApp n'autorise le texte libre que dans les 24 heures suivant le dernier message du client. Au-delà, il faut un message type validé par Meta. Toute promesse de relance automatique ou de newsletter WhatsApp se heurte à cette règle : c'est faisable, mais bien plus lourd que ce qu'on te vendra.</p>
+    <p class="reveal"><strong>Il conseille, il n'agit pas.</strong> Le kit livre un agent qui comprend, répond et enregistre. Il n'écrit pas dans ton agenda, ne décrémente pas ton stock et n'encaisse pas. Le dépôt le dit lui-même : ces fonctions sont préparées mais pas reliées. Brancher chacune, c'est un chantier en plus. Méfie-toi des ressources qui vendent la prise de rendez-vous automatique comme incluse : elle ne l'est pas.</p>
+    <p class="reveal"><strong>La responsabilité de la réponse.</strong> Brancher une source officielle réduit fortement l'invention, mais ne la supprime pas : l'équipe de data.gouv.fr l'écrit noir sur blanc. Un agent qui cite l'article, c'est un outil de travail. Un agent qui rend un avis juridique, c'est un risque. La différence se décide dans ses instructions, avant la mise en ligne.</p>
 
     <h2 class="reveal">Ce que tu pilotes, ce qui se délègue</h2>
     <table class="matrix reveal">
@@ -442,7 +442,7 @@ bash start.sh</code></pre>
       </tbody>
     </table>
 
-    <div class="callout reveal"><b>L'ordre que je recommande :</b> monte-le d'abord pour toi, avec le bac à sable et une seule source — data.gouv.fr, qui ne demande ni compte ni carte. Pose-lui vingt vraies questions de ton quotidien. Tu sauras en une soirée si l'outil tient, et tu auras une démo qui vaut mille explications.</div>
+    <div class="callout reveal"><b>L'ordre que je recommande :</b> monte-le d'abord pour toi, avec le bac à sable et une seule source, data.gouv.fr, qui ne demande ni compte ni carte. Pose-lui vingt vraies questions de ton quotidien. Tu sauras en une soirée si l'outil tient, et tu auras une démo qui vaut mille explications.</div>
 
     <div class="callout warn reveal"><b>Un dernier point d'honnêteté.</b> Le dépôt est intégralement <b>en espagnol</b> : instructions, commentaires du code généré, messages d'erreur. Ça ne gêne pas pour construire, puisque tu dialogues avec Claude Code en français. Ça compte le jour où tu livres à un client et où quelqu'un d'autre doit relire. Prévois ce passage-là.</div>
 
@@ -457,7 +457,7 @@ bash start.sh</code></pre>
 <nav class="resource" aria-label="À lire aussi"><div class="wrap">
   <h2>À lire aussi</h2>
   <ul>
-    <li><a href="/ressources/agent-reach" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Donne Internet à ton agent IA — gratuitement</a></li>
+    <li><a href="/ressources/agent-reach" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Donne Internet à ton agent IA, gratuitement</a></li>
     <li><a href="/ressources/cowork-sans-toi" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Ton IA continue à bosser, laptop fermé</a></li>
     <li><a href="/ressources/6-agents-ia-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Monter une équipe de 6 agents IA dans Claude</a></li>
     <li><a href="/ressources/3-paliers-agents-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Agent IA à 500 €, 4 000 € ou 12 000 € : les 3 paliers</a></li>
@@ -465,6 +465,7 @@ bash start.sh</code></pre>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/obscura-scraper">
-<title>obscura : le scraper qui passe sous le radar — NoesisAI</title>
+<title>obscura : le scraper qui passe sous le radar - NoesisAI</title>
 <meta name="description" content="Le guide complet pour installer obscura, le navigateur headless Rust léger et discret : install, premières commandes, mode stealth, branchement MCP sur Claude, et le framework scraping propre de NoesisAI.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="obscura : le scraper qui passe sous le radar">
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>obscura : le scraper qui passe sous le radar</h1>
-    <p class="sub">Installé et opérationnel en 10 minutes — commande par commande, jusqu'au branchement sur Claude</p>
+    <p class="sub">Installé et opérationnel en 10 minutes : commande par commande, jusqu'au branchement sur Claude</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -273,12 +273,12 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-<p class="lead reveal">obscura, c'est un navigateur <em>headless</em> (sans fenêtre, qui tourne en arrière-plan) écrit en Rust, conçu pour une seule chose : visiter des sites et en extraire le contenu, vite et discrètement. Il exécute le vrai JavaScript des pages comme Chrome, mais pèse une fraction de son poids — et il est open source (Apache 2.0). Ce guide part du principe que tu n'as <strong>rien</strong> d'installé : ni Chrome, ni Node.js. Objectif : installé et opérationnel en moins de 10 minutes.</p>
+<p class="lead reveal">obscura, c'est un navigateur <em>headless</em> (sans fenêtre, qui tourne en arrière-plan) écrit en Rust, conçu pour une seule chose : visiter des sites et en extraire le contenu, vite et discrètement. Il exécute le vrai JavaScript des pages comme Chrome, mais pèse une fraction de son poids, et il est open source (Apache 2.0). Ce guide part du principe que tu n'as <strong>rien</strong> d'installé : ni Chrome, ni Node.js. Objectif : installé et opérationnel en moins de 10 minutes.</p>
 
 <div class="callout reveal"><b>Le fil rouge :</b> installer l'outil, c'est 10 minutes. Le faire tourner sans se faire bloquer ni se mettre en faute, c'est une méthode. Les deux sont dans ce guide.</div>
 
 <h2 class="reveal"><span class="numtag">1</span>Ce que fait obscura (en clair)</h2>
-<p class="reveal"><strong>Le problème.</strong> Un scraper basique télécharge le HTML brut d'une page. Mais une grande partie du web moderne charge son contenu en JavaScript après coup — tu récupères une page vide.</p>
+<p class="reveal"><strong>Le problème.</strong> Un scraper basique télécharge le HTML brut d'une page. Mais une grande partie du web moderne charge son contenu en JavaScript après coup : tu récupères une page vide.</p>
 <p class="reveal"><strong>La différence.</strong> obscura est un vrai moteur de navigateur : il charge la page, exécute le JavaScript, attend que le contenu apparaisse, puis te donne le résultat final. C'est la différence entre scraper Wikipédia et scraper une app React qui ne montre rien sans JS.</p>
 
 <table class="matrix reveal">
@@ -292,7 +292,7 @@ body.gate-on .gate-card{transform:none}
   </tbody>
 </table>
 
-<div class="callout warn reveal"><b>À border tout de suite :</b> ces chiffres viennent du README d'obscura — ce sont <strong>ses propres benchmarks</strong>, non vérifiés indépendamment. Prends-les comme un ordre de grandeur, pas comme une vérité gravée. Mesure sur ta machine avant d'en faire un argument commercial.</div>
+<div class="callout warn reveal"><b>À border tout de suite :</b> ces chiffres viennent du README d'obscura, ce sont <strong>ses propres benchmarks</strong>, non vérifiés indépendamment. Prends-les comme un ordre de grandeur, pas comme une vérité gravée. Mesure sur ta machine avant d'en faire un argument commercial.</div>
 
 <p class="reveal">Concrètement : tu peux faire tourner du scraping JavaScript sur un petit VPS au lieu d'une grosse machine, et lancer beaucoup d'instances en parallèle sans tout faire exploser.</p>
 
@@ -306,12 +306,12 @@ tar xzf obscura-x86_64-linux.tar.gz
 
 <p class="reveal">Autres cibles : <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura-aarch64-linux</code> (ARM), <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura-aarch64-macos</code> (Apple Silicon), <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura-x86_64-macos</code> (Intel), le <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">.zip</code> sur Windows, ou <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">yay -S obscura-browser</code> sur Arch. Pour un VPS propre, l'image Docker fait ~57 Mo : <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">docker run -d -p 127.0.0.1:9222:9222 h4ckf0r0day/obscura</code>.</p>
 
-<div class="callout warn reveal"><b>Deux pièges Linux à éviter :</b> (1) l'archive contient <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura</code> ET <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura-worker</code> — garde-les dans le même dossier, sinon la commande parallèle <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">scrape</code> ne marche pas. (2) Les builds ciblent Ubuntu 22.04 (glibc 2.35+) : sur un vieux serveur LTS, mets à jour ou passe par Docker.</div>
+<div class="callout warn reveal"><b>Deux pièges Linux à éviter :</b> (1) l'archive contient <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura</code> ET <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura-worker</code>, garde-les dans le même dossier, sinon la commande parallèle <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">scrape</code> ne marche pas. (2) Les builds ciblent Ubuntu 22.04 (glibc 2.35+) : sur un vieux serveur LTS, mets à jour ou passe par Docker.</div>
 
 <h2 class="reveal"><span class="numtag">3</span>Tes premières commandes</h2>
 <p class="reveal"><strong>Récupérer une page.</strong> Trois commandes à connaître : <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">fetch</code> (une page), <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">scrape</code> (plusieurs en parallèle), <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">serve</code> (serveur pour Puppeteer/Playwright).</p>
 
-<div class="callout reveal"><b>fetch — extraire d'une page :</b>
+<div class="callout reveal"><b>fetch, extraire d'une page :</b>
 <code style="display:block;margin-top:8px;padding:10px 12px;background:rgba(0,0,0,.25);border-radius:8px;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.6;color:var(--ink)"># le titre
 obscura fetch https://example.com --eval "document.title"
 
@@ -330,7 +330,7 @@ obscura fetch https://example.com --dump markdown</code></div>
 
 <p class="reveal"><strong>Contenu dynamique.</strong> Si la page charge son contenu après coup, attends-le : <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">--wait-until networkidle0</code> (réseau calme), <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">--selector ".price"</code> (un élément précis), ou <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">--timeout 10</code> (borner une page lente).</p>
 
-<div class="callout reveal"><b>scrape — plusieurs URLs en parallèle :</b>
+<div class="callout reveal"><b>scrape, plusieurs URLs en parallèle :</b>
 <code style="display:block;margin-top:8px;padding:10px 12px;background:rgba(0,0,0,.25);border-radius:8px;white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.6;color:var(--ink)">obscura scrape url1 url2 url3 \
   --concurrency 25 \
   --eval "document.querySelector('h1').textContent" \
@@ -350,7 +350,7 @@ obscura fetch https://example.com --stealth</code></div>
 
 <p class="reveal"><strong>Ce qu'il fait (d'après le repo).</strong> Anti-empreinte : randomisation par session du GPU, écran, canvas, audio, batterie. Faux signaux réalistes : <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">userAgentData</code> qui imite Chrome 145, <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">webdriver</code> masqué, événements « de confiance ». Blocage automatique de 3 520 domaines d'analytics, pub et fingerprinting.</p>
 
-<div class="callout warn reveal"><b>Le cadre, avant tout :</b> contourner les protections anti-bot d'un site touche à ses conditions d'utilisation, et si tu collectes des données personnelles, au RGPD. Ce n'est pas théorique pour une activité B2B francophone. obscura inclut un flag <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">--obey-robots</code> pour respecter le <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">robots.txt</code> : utilise-le quand tu n'as pas de raison explicite de t'en passer. Le « discret » sert à ne pas se faire jeter par des protections trop agressives — pas à aspirer n'importe quoi.</div>
+<div class="callout warn reveal"><b>Le cadre, avant tout :</b> contourner les protections anti-bot d'un site touche à ses conditions d'utilisation, et si tu collectes des données personnelles, au RGPD. Ce n'est pas théorique pour une activité B2B francophone. obscura inclut un flag <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">--obey-robots</code> pour respecter le <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">robots.txt</code> : utilise-le quand tu n'as pas de raison explicite de t'en passer. Le « discret » sert à ne pas se faire jeter par des protections trop agressives, pas à aspirer n'importe quoi.</div>
 
 <h2 class="reveal"><span class="numtag">5</span>Brancher obscura sur Claude</h2>
 <p class="reveal"><strong>C'est là que ça devient intéressant.</strong> obscura embarque un serveur MCP (Model Context Protocol) qui donne à un agent IA de vrais outils de navigation. C'est la voie la plus directe pour que Claude navigue et scrape lui-même.</p>
@@ -379,19 +379,19 @@ obscura mcp
 <table class="matrix reveal">
   <thead><tr><th>Situation</th><th>Stealth</th><th>Proxy</th><th>robots.txt</th></tr></thead>
   <tbody>
-    <tr><td>Ton propre site / ton API</td><td>Non</td><td>Non</td><td>—</td></tr>
+    <tr><td>Ton propre site / ton API</td><td>Non</td><td>Non</td><td>-</td></tr>
     <tr><td>Données publiques, faible volume</td><td>Non</td><td>Non</td><td>Oui (<code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;background:rgba(0,0,0,.2);padding:1px 5px;border-radius:4px">--obey-robots</code>)</td></tr>
     <tr><td>Anti-bot léger, volume modéré</td><td>Oui</td><td>Optionnel</td><td>À évaluer</td></tr>
     <tr><td>Gros volume, IP à faire tourner</td><td>Oui</td><td>Oui (résidentiel)</td><td>À évaluer</td></tr>
-    <tr><td>Données nominatives</td><td><span class="star">RGPD d'abord</span></td><td>—</td><td>Oui</td></tr>
+    <tr><td>Données nominatives</td><td><span class="star">RGPD d'abord</span></td><td>-</td><td>Oui</td></tr>
   </tbody>
 </table>
 
 <p class="reveal"><strong>Le pipeline en 5 étapes.</strong> 1 · <strong>Cadrer</strong> la cible et la légalité (CGU du site, RGPD si données perso, robots.txt). 2 · <strong>Tester en single</strong> avec <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">obscura fetch</code> sur 2-3 URLs. 3 · <strong>Passer en parallèle</strong> avec <code style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:rgba(0,0,0,.2);padding:1px 6px;border-radius:4px">scrape --concurrency</code>, en montant progressivement. 4 · <strong>Brancher la sortie</strong> : le JSON part dans un orchestrateur (N8N), puis vers une base ou un CRM (Supabase, HubSpot). 5 · <strong>Superviser</strong> : taux d'échec, pages vides, rotation de proxy si tu te fais bloquer.</p>
 
-<div class="callout reveal"><b>Cas d'usage NoesisAI :</b> c'est exactement la forme de nos pipelines de prospection — un étage de collecte (Lobstr/Apify, ou un moteur comme obscura), un orchestrateur N8N au milieu, Claude pour structurer et qualifier la donnée, un CRM au bout. obscura remplace ou complète l'étage de collecte quand on a besoin de rendu JavaScript et de discrétion sans payer une API de scraping au volume.</div>
+<div class="callout reveal"><b>Cas d'usage NoesisAI :</b> c'est exactement la forme de nos pipelines de prospection, un étage de collecte (Lobstr/Apify, ou un moteur comme obscura), un orchestrateur N8N au milieu, Claude pour structurer et qualifier la donnée, un CRM au bout. obscura remplace ou complète l'étage de collecte quand on a besoin de rendu JavaScript et de discrétion sans payer une API de scraping au volume.</div>
 
-<div class="callout win reveal"><b>Le filtre qui t'évite 90 % des emmerdes :</b> avant ton premier vrai run, écris en une phrase la finalité de ta collecte et la source des données. Si tu ne peux pas l'écrire, ne lance pas le scrape. La vraie valeur n'est jamais l'outil — c'est le pipeline qui qualifie et exploite la donnée tout seul derrière.</div>
+<div class="callout win reveal"><b>Le filtre qui t'évite 90 % des emmerdes :</b> avant ton premier vrai run, écris en une phrase la finalité de ta collecte et la source des données. Si tu ne peux pas l'écrire, ne lance pas le scrape. La vraie valeur n'est jamais l'outil : c'est le pipeline qui qualifie et exploite la donnée tout seul derrière.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -413,6 +413,7 @@ obscura mcp
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -420,7 +421,7 @@ obscura mcp
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -452,9 +453,9 @@ obscura mcp
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -540,11 +541,11 @@ obscura mcp
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -553,14 +554,14 @@ obscura mcp
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

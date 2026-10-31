@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claudetube">
-<title>Claude Code peut maintenant regarder tes vidéos — NoesisAI</title>
+<title>Claude Code peut maintenant regarder tes vidéos - NoesisAI</title>
 <meta name="description" content="Claude ne lit plus seulement la description : il regarde la vidéo. Lien du repo claudetube, installation pas à pas et prompts prêts à copier.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Claude Code peut maintenant regarder tes vidéos">
@@ -240,34 +240,34 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Claude ne sait pas « voir » une vidéo. Il lit du texte. <strong>claudetube</strong> est la pièce qui manquait : un outil open source, écrit par un développeur indépendant, qui télécharge une vidéo, la transcrit, et va chercher <em>les images</em> au moment exact que tu lui demandes. Résultat : tu colles un lien, tu poses ta question, Claude te répond — y compris sur le code affiché à l'écran. Voici le lien, l'installation, et les prompts qui servent vraiment.</p>
+    <p class="lead reveal">Claude ne sait pas « voir » une vidéo. Il lit du texte. <strong>claudetube</strong> est la pièce qui manquait : un outil open source, écrit par un développeur indépendant, qui télécharge une vidéo, la transcrit, et va chercher <em>les images</em> au moment exact que tu lui demandes. Résultat : tu colles un lien, tu poses ta question, Claude te répond, y compris sur le code affiché à l'écran. Voici le lien, l'installation, et les prompts qui servent vraiment.</p>
 
-    <div class="callout reveal"><b>Le repo :</b> <a href="https://github.com/thoughtpunch/claudetube" target="_blank" rel="noopener">github.com/thoughtpunch/claudetube</a> — licence MIT, gratuit, tu peux l'utiliser et le modifier librement.</div>
+    <div class="callout reveal"><b>Le repo :</b> <a href="https://github.com/thoughtpunch/claudetube" target="_blank" rel="noopener">github.com/thoughtpunch/claudetube</a>, licence MIT, gratuit, tu peux l'utiliser et le modifier librement.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Ce que ça change (et ce que ce n'est pas)</h2>
-    <p class="reveal"><strong>Ce que faisaient les outils « résumé de vidéo ».</strong> Ils récupèrent les sous-titres automatiques et te sortent un résumé. Si l'info est à l'écran et pas dans la voix — un schéma, un tableau de bord, une ligne de code — elle est perdue.</p>
+    <p class="reveal"><strong>Ce que faisaient les outils « résumé de vidéo ».</strong> Ils récupèrent les sous-titres automatiques et te sortent un résumé. Si l'info est à l'écran et pas dans la voix (un schéma, un tableau de bord, une ligne de code) elle est perdue.</p>
     <p class="reveal"><strong>Ce que fait claudetube.</strong> Il travaille sur trois couches : il télécharge la vidéo, il la transcrit avec Whisper (donc même sans sous-titres), et il extrait des <em>images</em> à la seconde près, en haute qualité quand il faut lire du texte à l'écran. Tu peux donc demander « montre-moi le code à 3:42 » et obtenir la réponse.</p>
     <p class="reveal"><strong>Ce n'est pas magique.</strong> Le dépôt le dit lui-même : c'est plus complexe qu'un résumeur classique, ça travaille en plusieurs étapes. En échange, tu passes d'un résumé approximatif à une vraie lecture de la vidéo.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>L'installation, ligne par ligne</h2>
-    <p class="reveal"><strong>Avant de commencer.</strong> Il te faut trois choses sur ta machine : <strong>Python 3.10 ou plus récent</strong>, <strong>ffmpeg</strong> (l'outil qui manipule l'audio et la vidéo), et <strong>deno</strong> — recommandé par l'auteur pour que YouTube continue de fonctionner. Sur Mac, ffmpeg et deno s'installent avec Homebrew.</p>
-    <p class="reveal"><strong>Étape 1 — installer l'outil.</strong> Dans ton terminal :</p>
+    <p class="reveal"><strong>Avant de commencer.</strong> Il te faut trois choses sur ta machine : <strong>Python 3.10 ou plus récent</strong>, <strong>ffmpeg</strong> (l'outil qui manipule l'audio et la vidéo), et <strong>deno</strong>, recommandé par l'auteur pour que YouTube continue de fonctionner. Sur Mac, ffmpeg et deno s'installent avec Homebrew.</p>
+    <p class="reveal"><strong>Étape 1, installer l'outil.</strong> Dans ton terminal :</p>
     <div class="callout reveal"><b>Version « je clone le repo » :</b><br>
     <code>git clone https://github.com/thoughtpunch/claudetube</code><br>
     <code>cd claudetube</code><br>
     <code>./install.sh</code></div>
     <div class="callout reveal"><b>Version « une seule ligne » (via pip) :</b><br>
     <code>pip install claudetube[mcp]</code></div>
-    <p class="reveal"><strong>Étape 2 — le brancher à Claude Code.</strong> claudetube est un <em>serveur MCP</em> : c'est le standard qui permet à Claude d'utiliser des outils externes. Une commande suffit pour le déclarer :</p>
+    <p class="reveal"><strong>Étape 2, le brancher à Claude Code.</strong> claudetube est un <em>serveur MCP</em> : c'est le standard qui permet à Claude d'utiliser des outils externes. Une commande suffit pour le déclarer :</p>
     <div class="callout reveal"><b>Branchement :</b><br>
     <code>claude mcp add --transport stdio claudetube -- claudetube-mcp</code></div>
-    <p class="reveal"><strong>Étape 3 — vérifier.</strong> Relance Claude Code, colle un lien de vidéo et pose une question. S'il se met à télécharger et transcrire, c'est branché. Rien d'autre à configurer : Claude choisit tout seul les bons outils (plus de 40 sont exposés par le serveur).</p>
-    <div class="callout warn reveal"><b>Si ça coince :</b> 9 fois sur 10 c'est ffmpeg qui manque, ou une version de Python trop ancienne. Vérifie ces deux points avant de chercher plus loin — et garde en tête que YouTube change souvent ses protections, d'où la recommandation d'installer deno.</div>
+    <p class="reveal"><strong>Étape 3 : vérifier.</strong> Relance Claude Code, colle un lien de vidéo et pose une question. S'il se met à télécharger et transcrire, c'est branché. Rien d'autre à configurer : Claude choisit tout seul les bons outils (plus de 40 sont exposés par le serveur).</p>
+    <div class="callout warn reveal"><b>Si ça coince :</b> 9 fois sur 10 c'est ffmpeg qui manque, ou une version de Python trop ancienne. Vérifie ces deux points avant de chercher plus loin, et garde en tête que YouTube change souvent ses protections, d'où la recommandation d'installer deno.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Les prompts qui servent vraiment</h2>
     <p class="reveal">Tu n'as aucune commande à retenir. Tu parles normalement, en collant l'URL. Les trois formulations qui couvrent la quasi-totalité des usages :</p>
     <p class="reveal"><strong>Le résumé exploitable.</strong> « Résume-moi cette vidéo : [lien]. Donne-moi les points clés avec les timestamps. » Les timestamps changent tout : tu peux retourner vérifier au bon endroit au lieu de faire confiance au résumé.</p>
-    <p class="reveal"><strong>Le saut dans le temps.</strong> « Que se passe-t-il à la minute 5 ? » — utile sur une conférence d'une heure dont seuls dix minutes t'intéressent.</p>
+    <p class="reveal"><strong>Le saut dans le temps.</strong> « Que se passe-t-il à la minute 5 ? » : utile sur une conférence d'une heure dont seuls dix minutes t'intéressent.</p>
     <p class="reveal"><strong>La lecture d'écran.</strong> « Montre-moi le code affiché à 3:42. » C'est là que l'outil se distingue : il extrait l'image en haute qualité pour que le texte à l'écran soit lisible.</p>
     <div class="callout win reveal"><b>Le bon réflexe :</b> enchaîne. Un résumé avec timestamps d'abord, puis tu creuses les 2-3 moments qui t'intéressent. Bien plus efficace que de demander « analyse tout en détail » d'un coup.</div>
 
@@ -276,14 +276,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <p class="reveal"><strong>Reproduire un tutoriel.</strong> Le tuto montre une manipulation à l'écran sans jamais donner le fichier ? Tu demandes les images aux bons moments et tu récupères ce qui est affiché, au lieu de faire pause toutes les dix secondes.</p>
     <p class="reveal"><strong>Recycler ton propre contenu.</strong> Tes vidéos deviennent une matière première : transcription propre, extraction des idées, découpage en publications. Ce que tu as déjà dit une fois n'a pas à être réécrit de zéro.</p>
     <p class="reveal"><strong>Analyser ce que font les autres.</strong> Structure d'une vidéo qui marche, enchaînement des séquences, ce qui est montré à l'écran : tu peux le faire décortiquer au lieu de le regarder en boucle.</p>
-    <p class="reveal">Et ce n'est pas limité à YouTube : l'outil s'appuie sur yt-dlp, ce qui lui ouvre <strong>plus de 1 500 sites vidéo</strong> — Vimeo, Dailymotion, Twitch, TikTok, X, Instagram, Reddit.</p>
+    <p class="reveal">Et ce n'est pas limité à YouTube : l'outil s'appuie sur yt-dlp, ce qui lui ouvre <strong>plus de 1 500 sites vidéo</strong> : Vimeo, Dailymotion, Twitch, TikTok, X, Instagram, Reddit.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>À savoir avant de te lancer</h2>
     <table class="matrix reveal">
       <thead><tr><th>Point</th><th>Ce qu'il faut retenir</th></tr></thead>
       <tbody>
         <tr><td>Temps de traitement</td><td>La première passe télécharge et transcrit : ce n'est pas instantané sur une longue vidéo.</td></tr>
-        <tr><td>Cache local</td><td>Les vidéos traitées sont stockées sur ta machine (<code>~/.claudetube/cache/</code>) — les questions suivantes sur la même vidéo sont rapides, mais ça occupe de l'espace disque.</td></tr>
+        <tr><td>Cache local</td><td>Les vidéos traitées sont stockées sur ta machine (<code>~/.claudetube/cache/</code>) : les questions suivantes sur la même vidéo sont rapides, mais ça occupe de l'espace disque.</td></tr>
         <tr><td>Coût</td><td>L'outil est gratuit et tourne chez toi. Ce que tu consommes, c'est ton usage habituel de Claude.</td></tr>
         <tr><td>Fiabilité</td><td>Projet open source récent et actif : ça bouge vite, et YouTube change régulièrement ses protections. Mets à jour si quelque chose casse.</td></tr>
         <tr><td>Droits</td><td>Tu télécharges du contenu qui ne t'appartient pas. Pour de l'analyse et de la veille, aucun souci. Pour republier, c'est une autre histoire.</td></tr>
@@ -291,7 +291,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     </table>
 
     <h2 class="reveal">Ce que ça dit du reste</h2>
-    <p class="reveal">Le point important n'est pas l'outil. C'est le mécanisme : <strong>Claude n'a pas d'yeux, quelqu'un lui en a branché une paire</strong> — sous forme d'un serveur MCP. Le même principe s'applique à ton téléphone, ton agenda, ton CRM, tes documents, ta base de données. C'est exactement comme ça qu'on construit un agent utile en entreprise : pas en attendant que le modèle sache tout faire, mais en lui donnant accès aux bons outils, un par un.</p>
+    <p class="reveal">Le point important n'est pas l'outil. C'est le mécanisme : <strong>Claude n'a pas d'yeux, quelqu'un lui en a branché une paire</strong>, sous forme d'un serveur MCP. Le même principe s'applique à ton téléphone, ton agenda, ton CRM, tes documents, ta base de données. C'est exactement comme ça qu'on construit un agent utile en entreprise : pas en attendant que le modèle sache tout faire, mais en lui donnant accès aux bons outils, un par un.</p>
     <div class="callout win reveal"><b>Si tu ne retiens qu'une chose :</b> installe-le sur une vidéo que tu as déjà regardée. Compare ce que Claude en sort avec ce que tu en avais retenu. C'est le test le plus rapide pour comprendre ce que l'outil sait vraiment faire.</div>
 
   
@@ -306,13 +306,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
   <h2>À lire aussi</h2>
   <ul>
     <li><a href="/ressources/chatcut-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le monteur vidéo gratuit piloté par Claude Code</a></li>
-    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac — sans rien casser</a></li>
-    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method — ton reel cinématique IA en noir &amp; blanc</a></li>
+    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac, sans rien casser</a></li>
+    <li><a href="/ressources/kumar-method" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kumar Method : ton reel cinématique IA en noir &amp; blanc</a></li>
     <li><a href="/ressources/claude-code-bonnes-pratiques" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Code sans le casse-tête : la carte des bonnes pratiques</a></li>
   </ul>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -321,7 +322,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -353,9 +354,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -441,11 +442,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -454,14 +455,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

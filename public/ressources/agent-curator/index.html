@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/agent-curator">
-<title>Ton agent IA grossit. Personne ne fait le ménage. — NoesisAI</title>
+<title>Ton agent IA grossit. Personne ne fait le ménage. - NoesisAI</title>
 <meta name="description" content="Comment fonctionnent les trois boucles d'un agent IA qui apprend : mémoire, compétences et Curator. Ce que Curator archive, ce qu'il ne touche jamais, et l'erreur qui fait disparaître tes procédures critiques.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ton agent IA grossit. Personne ne fait le ménage.">
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Ton agent IA grossit. Personne ne fait le ménage.</h1>
-    <p class="sub">Auto-memory retient. Auto-skill range. Curator élague. Les trois boucles qui décident si ton agent compose dans le temps — ou s'il stagne.</p>
+    <p class="sub">Auto-memory retient. Auto-skill range. Curator élague. Les trois boucles qui décident si ton agent compose dans le temps, ou s'il stagne.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -273,13 +273,13 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Un agent IA qui apprend, ça a l'air d'être une bonne nouvelle. Sauf que ce qu'il apprend s'empile — et qu'au bout de trois mois, tu ne sais plus ce qu'il sait, ce qu'il utilise, ni ce qui traîne. Trois boucles règlent ça : <strong>l'une retient</strong>, <strong>l'autre range</strong>, <strong>la troisième fait le ménage</strong>. Voici comment elles marchent, où les gens se plantent, et ce que tu dois vérifier aujourd'hui.</p>
+    <p class="lead reveal">Un agent IA qui apprend, ça a l'air d'être une bonne nouvelle. Sauf que ce qu'il apprend s'empile, et qu'au bout de trois mois, tu ne sais plus ce qu'il sait, ce qu'il utilise, ni ce qui traîne. Trois boucles règlent ça : <strong>l'une retient</strong>, <strong>l'autre range</strong>, <strong>la troisième fait le ménage</strong>. Voici comment elles marchent, où les gens se plantent, et ce que tu dois vérifier aujourd'hui.</p>
 
     <div class="callout reveal"><b>La règle qui tient tout :</b> un agent ne devient pas meilleur parce qu'il accumule. Il devient meilleur parce qu'il accumule <em>et</em> qu'il élague. Une seule des deux moitiés, et tu obtiens soit l'amnésie, soit l'obésité.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Les trois boucles, en une phrase chacune</h2>
     <p class="reveal"><strong>Auto-memory : l'agent retient les faits.</strong> Ton stack, tes préférences, tes contraintes, les décisions que tu as prises. Ce qui est vrai chez toi et qu'il n'a pas à te redemander à chaque session.</p>
-    <p class="reveal"><strong>Auto-skill : l'agent retient les procédures.</strong> Pas « ce qui est vrai », mais « comment on fait ». Tu lui montres une fois comment tu déploies, comment tu rédiges, comment tu accueilles un client — il en fait une compétence réutilisable.</p>
+    <p class="reveal"><strong>Auto-skill : l'agent retient les procédures.</strong> Pas « ce qui est vrai », mais « comment on fait ». Tu lui montres une fois comment tu déploies, comment tu rédiges, comment tu accueilles un client : il en fait une compétence réutilisable.</p>
     <p class="reveal"><strong>Curator : l'agent fait le ménage dans ce qu'il a créé.</strong> C'est la boucle que personne n'active et que personne ne surveille. C'est aussi celle qui décide, en silence, de ce qui survit.</p>
     <div class="callout win reveal"><b>Lecture rapide :</b> mémoire = le <em>quoi</em>. Skill = le <em>comment</em>. Curator = le <em>ce qui mérite de rester</em>. Les trois sont indépendantes : en couper une ne casse pas les autres, ça les rend juste inutiles à moyen terme.</div>
 
@@ -287,7 +287,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal">Curator ne juge pas la qualité d'une compétence. Il ne lit pas, il <strong>compte</strong>. Trois compteurs, par compétence :</p>
     <p class="reveal"><strong>Le nombre de consultations</strong> (<em>view_count</em>) : combien de fois la compétence a été ouverte.</p>
     <p class="reveal"><strong>Le nombre d'utilisations</strong> (<em>use_count</em>) : combien de fois elle a réellement servi.</p>
-    <p class="reveal"><strong>Le nombre de corrections</strong> (<em>patch_count</em>) : combien de fois elle a été retouchée — le signe qu'elle vit encore.</p>
+    <p class="reveal"><strong>Le nombre de corrections</strong> (<em>patch_count</em>) : combien de fois elle a été retouchée, le signe qu'elle vit encore.</p>
     <p class="reveal">Ensuite, une timeline. Elle est mécanique, sans nuance, et c'est exactement pour ça qu'elle est prévisible :</p>
     <table class="matrix reveal">
       <thead><tr><th>Sans usage depuis…</th><th>Ce que fait Curator</th><th>Réversible&nbsp;?</th></tr></thead>
@@ -297,7 +297,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Jamais</td><td>Suppression définitive</td><td>Curator ne supprime rien</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Le point rassurant :</b> archiver n'est pas supprimer. Une compétence archivée part dans <em>~/.hermes/skills/.archive/</em> et se récupère. Curator ne détruit rien — il déplace.</div>
+    <div class="callout win reveal"><b>Le point rassurant :</b> archiver n'est pas supprimer. Une compétence archivée part dans <em>~/.hermes/skills/.archive/</em> et se récupère. Curator ne détruit rien : il déplace.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Ce que Curator ne touche jamais</h2>
     <p class="reveal">C'est la partie que les gens ratent, et c'est celle qui devrait te détendre. Curator a un périmètre <strong>volontairement étroit</strong>. Il ne gère qu'une seule catégorie : les compétences que <strong>l'agent a écrites lui-même</strong> (marquées <em>created_by: "agent"</em>).</p>
@@ -306,37 +306,37 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Les compétences installées depuis le hub.</strong> Intouchables.</p>
     <p class="reveal"><strong>Les compétences que tu as écrites à la main.</strong> Intouchables.</p>
     <p class="reveal"><strong>Les compétences épinglées</strong> (pinned). Intouchables.</p>
-    <div class="callout reveal"><b>À retenir :</b> ton travail manuel est en sécurité. Curator ne fait le ménage que derrière l'agent, jamais derrière toi. Le risque n'est donc pas qu'il « casse ton setup » — le risque est ailleurs, et c'est la section suivante.</div>
+    <div class="callout reveal"><b>À retenir :</b> ton travail manuel est en sécurité. Curator ne fait le ménage que derrière l'agent, jamais derrière toi. Le risque n'est donc pas qu'il « casse ton setup » : le risque est ailleurs, et c'est la section suivante.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Là où les gens se plantent</h2>
     <p class="reveal"><strong>Erreur n°1 : ne pas savoir que Curator existe.</strong> C'est de loin la plus fréquente. La boucle tourne, la timeline avance, et personne ne regarde. Trois mois plus tard, des compétences utiles ont glissé dans l'archive sans que personne s'en aperçoive.</p>
-    <p class="reveal"><strong>Erreur n°2 : ne pas épingler ce qui est critique mais rare.</strong> C'est le vrai piège, et il est vicieux. Curator compte la <em>fréquence</em>, pas <em>l'importance</em>. Une compétence de déploiement que tu lances une fois par trimestre ? Entre deux utilisations, elle dépasse les 90 jours. Elle est archivée. Elle n'était pas peu importante — elle était peu <em>fréquente</em>. Curator ne fait pas la différence.</p>
+    <p class="reveal"><strong>Erreur n°2 : ne pas épingler ce qui est critique mais rare.</strong> C'est le vrai piège, et il est vicieux. Curator compte la <em>fréquence</em>, pas <em>l'importance</em>. Une compétence de déploiement que tu lances une fois par trimestre ? Entre deux utilisations, elle dépasse les 90 jours. Elle est archivée. Elle n'était pas peu importante : elle était peu <em>fréquente</em>. Curator ne fait pas la différence.</p>
     <div class="callout warn reveal"><b>Le test à faire maintenant :</b> liste tes procédures les plus critiques. Combien tournent moins d'une fois par trimestre ? Clôture annuelle, onboarding d'un gros client, procédure de crise, déploiement majeur… Chacune est un candidat à l'archivage automatique. Et tu ne t'en rendras compte que le jour où tu en auras besoin.</div>
-    <p class="reveal">Le paradoxe est cruel : <strong>plus une procédure est exceptionnelle, plus elle est précieuse — et plus elle est exposée.</strong> Les compétences que tu utilises tous les jours ne risquent rien. Ce sont celles que tu utilises deux fois par an qui disparaissent.</p>
+    <p class="reveal">Le paradoxe est cruel : <strong>plus une procédure est exceptionnelle, plus elle est précieuse, et plus elle est exposée.</strong> Les compétences que tu utilises tous les jours ne risquent rien. Ce sont celles que tu utilises deux fois par an qui disparaissent.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>Le correctif : trois commandes, dix minutes</h2>
     <p class="reveal">Tu n'as pas besoin de comprendre la mécanique interne. Tu as besoin de faire trois choses, dans cet ordre.</p>
     <p class="reveal"><strong>1. Épingle tout ce qui est important.</strong> Une compétence épinglée est protégée de <em>toutes</em> les transitions automatiques et de <em>toutes</em> les relectures par le modèle. C'est un verrou total, pas un délai supplémentaire.</p>
-    <div class="callout reveal"><b>La commande :</b> <em>hermes curator pin [nom-de-la-compétence]</em><br>Par exemple : <em>hermes curator pin deploy-app</em> — puis la même chose pour ta rédaction de contenu, ton onboarding client, et toute procédure que tu ne veux jamais reperdre.</div>
+    <div class="callout reveal"><b>La commande :</b> <em>hermes curator pin [nom-de-la-compétence]</em><br>Par exemple : <em>hermes curator pin deploy-app</em>, puis la même chose pour ta rédaction de contenu, ton onboarding client, et toute procédure que tu ne veux jamais reperdre.</div>
     <p class="reveal"><strong>2. Regarde ce qui est déjà parti.</strong> Si ton agent tourne depuis plus de trois mois, il y a de fortes chances qu'il y ait déjà du monde dans l'archive.</p>
     <div class="callout reveal"><b>La commande :</b> <em>hermes curator list-archived</em></div>
-    <p class="reveal"><strong>3. Restaure ce dont tu as besoin.</strong> Rien n'a été détruit — c'est tout l'intérêt du modèle.</p>
+    <p class="reveal"><strong>3. Restaure ce dont tu as besoin.</strong> Rien n'a été détruit : c'est tout l'intérêt du modèle.</p>
     <div class="callout reveal"><b>La commande :</b> <em>hermes curator restore [nom-de-la-compétence]</em></div>
     <div class="callout win reveal"><b>Le bon réflexe :</b> épingler d'abord, inspecter ensuite. Épingler est gratuit, instantané et sans effet de bord. Il n'y a aucune raison d'attendre d'avoir « fait le tri » pour protéger ce que tu sais déjà critique.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>L'option consolidation : à activer en connaissance de cause</h2>
     <p class="reveal">Par défaut, Curator fait un ménage <strong>déterministe</strong> : il compte, il compare à la timeline, il déplace. Aucun modèle n'intervient. <strong>Ce passage ne coûte rien en tokens.</strong> C'est de la mécanique pure.</p>
-    <p class="reveal">Il existe une option en plus : la <strong>consolidation</strong>. Elle fait relire les compétences par un modèle pour <strong>fusionner celles qui se recouvrent</strong> — trois variantes de la même procédure deviennent une seule, propre. C'est utile quand ton agent a créé dix compétences qui disent presque la même chose.</p>
+    <p class="reveal">Il existe une option en plus : la <strong>consolidation</strong>. Elle fait relire les compétences par un modèle pour <strong>fusionner celles qui se recouvrent</strong> : trois variantes de la même procédure deviennent une seule, propre. C'est utile quand ton agent a créé dix compétences qui disent presque la même chose.</p>
     <div class="callout reveal"><b>Pour l'activer, dans la configuration :</b><br><em>curator:</em><br>&nbsp;&nbsp;<em>consolidate: true</em></div>
-    <div class="callout warn reveal"><b>Le compromis, en clair :</b> le ménage déterministe coûte <b>zéro token</b>. La consolidation par modèle consomme des tokens du modèle auxiliaire. C'est pour ça qu'elle est <b>désactivée par défaut</b> — c'est un choix que tu fais, pas un réglage qu'on te met d'office.</div>
+    <div class="callout warn reveal"><b>Le compromis, en clair :</b> le ménage déterministe coûte <b>zéro token</b>. La consolidation par modèle consomme des tokens du modèle auxiliaire. C'est pour ça qu'elle est <b>désactivée par défaut</b> : c'est un choix que tu fais, pas un réglage qu'on te met d'office.</div>
     <p class="reveal">Ce qu'il faut comprendre : <strong>ce n'est pas une case « meilleur »</strong>. C'est un arbitrage entre un peu de propreté supplémentaire et un coût récurrent. Si ton agent crée peu de compétences, laisse-la éteinte. S'il en crée beaucoup et qu'elles se marchent dessus, elle devient rentable.</p>
 
     <h2 class="reveal"><span class="numtag">7</span>Ce que ça donne dans le temps</h2>
     <p class="reveal">Prises séparément, ces trois boucles ont l'air d'être des détails de configuration. C'est en les regardant sur trois mois qu'on comprend pourquoi elles décident de tout.</p>
-    <p class="reveal"><strong>Tour n°1 — tu apprends quelque chose à l'agent.</strong> La mémoire enregistre le fait. La compétence enregistre la procédure. Tu as payé le coût d'explication une fois.</p>
-    <p class="reveal"><strong>Semaine 2 — tu refais la même chose.</strong> L'agent se souvient du contexte grâce à la mémoire. Il suit la procédure grâce à la compétence. Résultat : plus rapide, moins de tokens, meilleure sortie. Tu n'as rien réexpliqué.</p>
-    <p class="reveal"><strong>Mois 2 — tu abandonnes un ancien workflow.</strong> Curator le marque obsolète au 30<sup>e</sup> jour. Il l'archive au 90<sup>e</sup>. Le contexte reste propre, le coût en tokens reste bas. Personne n'a rien fait manuellement.</p>
-    <p class="reveal"><strong>Mois 3 — l'agent connaît ton stack, tes préférences, tes procédures.</strong> Et surtout : les compétences qui ont survécu ont <em>mérité</em> leur place. Celles qui ne servaient pas ont été élaguées. Ce n'est plus le même outil qu'à la semaine 1.</p>
+    <p class="reveal"><strong>Tour n°1 : tu apprends quelque chose à l'agent.</strong> La mémoire enregistre le fait. La compétence enregistre la procédure. Tu as payé le coût d'explication une fois.</p>
+    <p class="reveal"><strong>Semaine 2 : tu refais la même chose.</strong> L'agent se souvient du contexte grâce à la mémoire. Il suit la procédure grâce à la compétence. Résultat : plus rapide, moins de tokens, meilleure sortie. Tu n'as rien réexpliqué.</p>
+    <p class="reveal"><strong>Mois 2 : tu abandonnes un ancien workflow.</strong> Curator le marque obsolète au 30<sup>e</sup> jour. Il l'archive au 90<sup>e</sup>. Le contexte reste propre, le coût en tokens reste bas. Personne n'a rien fait manuellement.</p>
+    <p class="reveal"><strong>Mois 3, l'agent connaît ton stack, tes préférences, tes procédures.</strong> Et surtout : les compétences qui ont survécu ont <em>mérité</em> leur place. Celles qui ne servaient pas ont été élaguées. Ce n'est plus le même outil qu'à la semaine 1.</p>
     <table class="matrix reveal">
       <thead><tr><th>Si tu coupes…</th><th>Ce que tu obtiens</th><th>Le symptôme que tu vois</th></tr></thead>
       <tbody>
@@ -349,11 +349,11 @@ body.gate-on .gate-card{transform:none}
     <div class="callout win reveal"><b>Le point que tout le monde manque :</b> le compounding n'est pas une propriété du modèle. C'est une propriété de <em>ton installation</em>. Deux personnes avec exactement le même agent obtiennent des résultats opposés au bout de trois mois, uniquement selon que les trois boucles tournaient ou non.</div>
 
     <h2 class="reveal">À faire aujourd'hui, dans l'ordre</h2>
-    <p class="reveal"><strong>1.</strong> Épingle tes procédures critiques — en commençant par celles que tu utilises <em>rarement</em>, ce sont les plus exposées.</p>
+    <p class="reveal"><strong>1.</strong> Épingle tes procédures critiques, en commençant par celles que tu utilises <em>rarement</em>, ce sont les plus exposées.</p>
     <p class="reveal"><strong>2.</strong> Liste ton archive. Regarde ce qui est déjà parti sans que tu le saches.</p>
-    <p class="reveal"><strong>3.</strong> Restaure, puis épingle immédiatement ce que tu récupères — sinon la même chose se reproduira dans 90 jours.</p>
+    <p class="reveal"><strong>3.</strong> Restaure, puis épingle immédiatement ce que tu récupères, sinon la même chose se reproduira dans 90 jours.</p>
     <p class="reveal"><strong>4.</strong> Vérifie que mémoire et compétences sont bien actives. Un Curator impeccable au-dessus d'un agent qui n'apprend rien ne sert à rien : il fera juste le ménage dans le vide.</p>
-    <div class="callout reveal"><b>La phrase à garder :</b> fais tourner les trois. Une seule qui manque, et l'agent ne compose pas — il stagne, ou il gonfle.</div>
+    <div class="callout reveal"><b>La phrase à garder :</b> fais tourner les trois. Une seule qui manque, et l'agent ne compose pas : il stagne, ou il gonfle.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -375,6 +375,7 @@ body.gate-on .gate-card{transform:none}
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -382,7 +383,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -414,9 +415,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -502,11 +503,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -515,14 +516,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

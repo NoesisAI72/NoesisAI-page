@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/hermes-automation-templates">
-<title>Hermes Agent : automatise ton dev avec des recettes copy-paste — NoesisAI</title>
+<title>Hermes Agent : automatise ton dev avec des recettes copy-paste - NoesisAI</title>
 <meta name="description" content="Le guide complet des templates d'automatisation Hermes Agent (Nous Research) : cron, webhooks GitHub, API. 10 recettes copy-paste DEV / DevOps / Research, 2 astuces coût, et le fichier SOUL.md expliqué.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hermes Agent : automatise ton dev avec des recettes copy-paste">
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Hermes Agent : automatise ton dev avec des recettes copy-paste</h1>
-    <p class="sub">3 déclencheurs, 10 templates prêts à coller, le système de webhooks que presque tout le monde rate — et le guide SOUL.md complet.</p>
+    <p class="sub">3 déclencheurs, 10 templates prêts à coller, le système de webhooks que presque tout le monde rate, et le guide SOUL.md complet.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -273,28 +273,28 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Hermes Agent (Nous Research) vient d'ajouter ce que la plupart des gens vont sous-estimer : des <strong>templates d'automatisation copy-paste</strong>. Des recettes prêtes à coller pour transformer ton agent en collègue qui tourne tout seul — sur planning, sur événement GitHub, ou sur appel API. N'importe quel modèle, n'importe quelle plateforme de livraison. Voici le guide complet : les 3 déclencheurs, les 10 templates livrés, le système de webhooks que presque tout le monde rate, les 2 astuces coût tirées des docs, et le fichier <strong>SOUL.md</strong> qui donne sa personnalité à l'agent.</p>
+    <p class="lead reveal">Hermes Agent (Nous Research) vient d'ajouter ce que la plupart des gens vont sous-estimer : des <strong>templates d'automatisation copy-paste</strong>. Des recettes prêtes à coller pour transformer ton agent en collègue qui tourne tout seul : sur planning, sur événement GitHub, ou sur appel API. N'importe quel modèle, n'importe quelle plateforme de livraison. Voici le guide complet : les 3 déclencheurs, les 10 templates livrés, le système de webhooks que presque tout le monde rate, les 2 astuces coût tirées des docs, et le fichier <strong>SOUL.md</strong> qui donne sa personnalité à l'agent.</p>
 
-    <div class="callout reveal"><b>Le principe.</b> Tu n'écris pas du code d'automatisation. Tu <b>décris une intention</b> en langage naturel, tu choisis un déclencheur et un canal de sortie — l'agent fait le reste. Chaque template est copy-paste ready et fonctionne avec le modèle de ton choix.</div>
+    <div class="callout reveal"><b>Le principe.</b> Tu n'écris pas du code d'automatisation. Tu <b>décris une intention</b> en langage naturel, tu choisis un déclencheur et un canal de sortie : l'agent fait le reste. Chaque template est copy-paste ready et fonctionne avec le modèle de ton choix.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Les 3 types de déclencheurs</h2>
     <p class="reveal">Tout part de la même question : <em>qu'est-ce qui réveille l'agent ?</em> Hermes en propose trois, et tu peux les combiner.</p>
-    <p class="reveal"><strong>SCHEDULE</strong> — l'agent tourne sur une cadence : toutes les heures, chaque nuit, chaque semaine. C'est le déclencheur du récurrent : veille, monitoring, rapports, digests.</p>
-    <p class="reveal"><strong>GITHUB EVENT</strong> — l'agent se déclenche sur une PR ouverte, un push, une issue, ou un résultat de CI. C'est le déclencheur du temps réel sur ton dépôt : review, triage, contrôle qualité, dès que l'événement arrive.</p>
-    <p class="reveal"><strong>API CALL</strong> — n'importe quel service externe envoie un POST JSON sur ton endpoint, et l'agent part. C'est le déclencheur ouvert : ton CRM, ton outil de paiement, ton formulaire, ton propre script peuvent réveiller Hermes.</p>
+    <p class="reveal"><strong>SCHEDULE</strong>, l'agent tourne sur une cadence : toutes les heures, chaque nuit, chaque semaine. C'est le déclencheur du récurrent : veille, monitoring, rapports, digests.</p>
+    <p class="reveal"><strong>GITHUB EVENT</strong> : l'agent se déclenche sur une PR ouverte, un push, une issue, ou un résultat de CI. C'est le déclencheur du temps réel sur ton dépôt : review, triage, contrôle qualité, dès que l'événement arrive.</p>
+    <p class="reveal"><strong>API CALL</strong> : n'importe quel service externe envoie un POST JSON sur ton endpoint, et l'agent part. C'est le déclencheur ouvert : ton CRM, ton outil de paiement, ton formulaire, ton propre script peuvent réveiller Hermes.</p>
 
-    <div class="callout reveal"><b>7 canaux de sortie, indépendants du déclencheur :</b> Telegram, Discord, Slack, SMS, email, commentaires GitHub, fichiers locaux. Tu choisis <em>où atterrit le résultat</em> sans changer ce qui le déclenche — un cron peut écrire dans un fichier, un webhook peut répondre dans Slack.</div>
+    <div class="callout reveal"><b>7 canaux de sortie, indépendants du déclencheur :</b> Telegram, Discord, Slack, SMS, email, commentaires GitHub, fichiers locaux. Tu choisis <em>où atterrit le résultat</em> sans changer ce qui le déclenche : un cron peut écrire dans un fichier, un webhook peut répondre dans Slack.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Les templates DEV</h2>
     <p class="reveal">Quatre recettes pour décharger ton quotidien de développeur.</p>
     <p class="reveal"><strong>Triage nocturne du backlog.</strong> Chaque nuit, l'agent passe les nouvelles issues, les labellise et les priorise. Tu arrives le matin sur un backlog déjà rangé.</p>
-    <p class="reveal"><strong>Code review automatique des PR.</strong> À chaque PR, l'agent poste une review. Sécurité, performance, qualité — un premier regard systématique avant le tien.</p>
+    <p class="reveal"><strong>Code review automatique des PR.</strong> À chaque PR, l'agent poste une review. Sécurité, performance, qualité : un premier regard systématique avant le tien.</p>
     <p class="reveal"><strong>Détection de docs obsolètes (docs drift).</strong> L'agent repère les changements de code qui n'ont pas été suivis d'une mise à jour de doc. Fini la doc qui ment six mois après.</p>
     <p class="reveal"><strong>Audit sécurité des dépendances.</strong> Scan CVE quotidien, filtré sur les vulnérabilités sérieuses (CVSS ≥ 7.0). Tu es alerté avant que ça devienne un incident.</p>
 
     <h2 class="reveal"><span class="numtag">3</span>Les templates DEVOPS</h2>
     <p class="reveal">Trois recettes pour surveiller ce qui tourne en production.</p>
-    <p class="reveal"><strong>Vérification de déploiement.</strong> Smoke tests automatiques après chaque deploy. Si quelque chose casse, tu le sais tout de suite — pas via un client mécontent.</p>
+    <p class="reveal"><strong>Vérification de déploiement.</strong> Smoke tests automatiques après chaque deploy. Si quelque chose casse, tu le sais tout de suite, pas via un client mécontent.</p>
     <p class="reveal"><strong>Triage d'alertes.</strong> L'agent corrèle les alertes avec les changements récents. Au lieu d'une alerte brute, tu reçois « voici ce qui a probablement causé ça ».</p>
     <p class="reveal"><strong>Monitoring uptime.</strong> Vérifie tes endpoints toutes les 30 min et <em>ne te notifie que si quelque chose tombe</em>. Le silence vaut « tout va bien » (voir l'astuce <span class="star">★</span> [SILENT] plus bas).</p>
 
@@ -314,16 +314,16 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Ce qui se passe.</strong> GitHub envoie un POST à ton instance Hermes à chaque PR → l'agent récupère le diff → applique le prompt et la skill → la réponse est postée sur le fil de la PR. Tu configures une fois, ça tourne pour toujours.</p>
 
     <h2 class="reveal"><span class="numtag">6</span>Les 2 astuces coût des docs</h2>
-    <p class="reveal">Deux détails qui changent la facture — et la fiabilité — sur les jobs qui tournent en boucle.</p>
-    <div class="callout win reveal"><b>1. Le pattern <code style="font-family:ui-monospace,monospace">[SILENT]</code>.</b> Mets dans le prompt : <em>« si rien n'a changé, réponds avec [SILENT] »</em>. L'agent se tait quand il n'y a rien à dire. Tu coupes le bruit des notifications sur les jobs de monitoring — tu n'es prévenu que quand ça compte.</div>
+    <p class="reveal">Deux détails qui changent la facture, et la fiabilité, sur les jobs qui tournent en boucle.</p>
+    <div class="callout win reveal"><b>1. Le pattern <code style="font-family:ui-monospace,monospace">[SILENT]</code>.</b> Mets dans le prompt : <em>« si rien n'a changé, réponds avec [SILENT] »</em>. L'agent se tait quand il n'y a rien à dire. Tu coupes le bruit des notifications sur les jobs de monitoring : tu n'es prévenu que quand ça compte.</div>
     <div class="callout win reveal"><b>2. Les cron jobs « script-only » pour la collecte.</b> Un script Python gère les requêtes HTTP et la lecture de fichiers ; l'agent ne voit que le <code style="font-family:ui-monospace,monospace">stdout</code> et applique son raisonnement dessus. Moins cher et plus fiable que de laisser l'agent aller chercher la donnée lui-même.</div>
     <div class="callout warn reveal"><b>La logique à retenir :</b> sépare la <b>collecte</b> (déterministe, faite par du code) du <b>raisonnement</b> (fait par l'agent). Tu paies des tokens pour réfléchir, pas pour faire un curl.</div>
 
-    <h2 class="reveal"><span class="numtag">7</span>SOUL.md — donne une âme à ton agent</h2>
+    <h2 class="reveal"><span class="numtag">7</span>SOUL.md : donne une âme à ton agent</h2>
     <p class="reveal">L'article renvoie au guide <strong>SOUL.md</strong>, et c'est lui qui fait la différence entre un agent générique et le tien. SOUL.md est l'<strong>identité primaire</strong> de l'agent : c'est la première chose injectée dans le system prompt (le slot #1), avant tout le reste. Son contenu remplace l'identité par défaut, et passe verbatim.</p>
     <p class="reveal"><strong>Où il vit.</strong> Dans <code style="font-family:ui-monospace,monospace">~/.hermes/SOUL.md</code>. Hermes en crée une version de départ s'il n'existe pas, mais n'écrase jamais le tien. Il n'est chargé que depuis le home, pas depuis le dossier courant.</p>
     <p class="reveal"><strong>Ce qu'on y met.</strong> Les éléments <em>durables</em> qui te suivent d'un projet à l'autre : ton ton, ton niveau de franchise, comment gérer l'incertitude, ce qu'il faut éviter stylistiquement. Quatre sections types : <b>Personality</b>, <b>Style</b>, <b>What to avoid</b>, <b>Technical posture</b>.</p>
-    <div class="callout reveal"><b>La règle SOUL.md vs AGENTS.md :</b> tout ce qui est <em>spécifique à un projet</em> (chemins de fichiers, conventions de repo) ne va PAS dans SOUL.md — ça va dans <code style="font-family:ui-monospace,monospace">AGENTS.md</code>. SOUL.md = qui est l'agent. AGENTS.md = le contexte du projet.</div>
+    <div class="callout reveal"><b>La règle SOUL.md vs AGENTS.md :</b> tout ce qui est <em>spécifique à un projet</em> (chemins de fichiers, conventions de repo) ne va PAS dans SOUL.md, ça va dans <code style="font-family:ui-monospace,monospace">AGENTS.md</code>. SOUL.md = qui est l'agent. AGENTS.md = le contexte du projet.</div>
     <p class="reveal">Le ton d'une seule ligne suffit à donner une vraie personnalité. Exemple tiré des docs :</p>
     <div class="callout reveal" style="background:var(--bg-soft);border-left-color:var(--accent-b)"><code style="display:block;white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.75;color:var(--ink)"># Personality
 You are a pragmatic senior engineer with strong taste.
@@ -372,6 +372,7 @@ politeness theater.</code></div>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -379,7 +380,7 @@ politeness theater.</code></div>
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -411,9 +412,9 @@ politeness theater.</code></div>
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -499,11 +500,11 @@ politeness theater.</code></div>
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -512,14 +513,14 @@ politeness theater.</code></div>
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

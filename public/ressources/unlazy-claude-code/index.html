@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/unlazy-claude-code">
-<title>Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt — NoesisAI</title>
+<title>Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt - NoesisAI</title>
 <meta name="description" content="La partial compliance expliquée, et le mode d'emploi complet d'Unlazy dans Claude Code : installation détaillée, prompt de parallélisme, checklists, définition de « terminé » et fichier gate.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt">
@@ -290,7 +290,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt</h1>
-    <p class="sub">Installation pas à pas, parallélisme des sous-agents et réglage du découpage — les 3 prompts prêts à copier.</p>
+    <p class="sub">Installation pas à pas, parallélisme des sous-agents et réglage du découpage : les 3 prompts prêts à copier.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -314,17 +314,17 @@ body.gate-on .gate-card{transform:none}
   .cmd{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.92em;background:var(--card-2);border:1px solid var(--line-soft);border-radius:6px;padding:2px 6px;color:var(--ink)}
 </style>
 
-<p class="lead reveal">Tu donnes une tâche à ton agent. Il travaille, il te répond « c'est terminé ». Et en vrai, il a sauté trois étapes. Ce comportement a un nom — la <strong>partial compliance</strong> — et il existe une skill gratuite, <strong>Unlazy</strong>, qui le tue. Elle découpe ton projet en petites tâches, donne à chacune sa checklist et une définition claire de « terminé », et interdit à l'agent d'annoncer la fin tant qu'il ne l'a pas prouvé. Tout se passe dans Claude Code. Voici le mode d'emploi complet, avec les 3 prompts à copier.</p>
+<p class="lead reveal">Tu donnes une tâche à ton agent. Il travaille, il te répond « c'est terminé ». Et en vrai, il a sauté trois étapes. Ce comportement a un nom, la <strong>partial compliance</strong>, et il existe une skill gratuite, <strong>Unlazy</strong>, qui le tue. Elle découpe ton projet en petites tâches, donne à chacune sa checklist et une définition claire de « terminé », et interdit à l'agent d'annoncer la fin tant qu'il ne l'a pas prouvé. Tout se passe dans Claude Code. Voici le mode d'emploi complet, avec les 3 prompts à copier.</p>
 
-<div class="callout reveal"><b>Le principe en une phrase :</b> tu n'as pas un problème de modèle, tu as un problème de <strong>critère de fin</strong>. Tant que « terminé » n'est pas défini quelque part, c'est l'agent qui le décide — et il le décide toujours trop tôt.</div>
+<div class="callout reveal"><b>Le principe en une phrase :</b> tu n'as pas un problème de modèle, tu as un problème de <strong>critère de fin</strong>. Tant que « terminé » n'est pas défini quelque part, c'est l'agent qui le décide, et il le décide toujours trop tôt.</div>
 
 <h2 class="reveal"><span class="numtag">1</span>Le vrai problème : la partial compliance</h2>
 
 <p class="reveal">Tu demandes cinq choses. L'agent en fait trois, correctement. Puis il rédige un résumé qui parle des cinq, sur un ton confiant, et te rend la main. Ce n'est pas un mensonge délibéré : c'est un agent qui, faute d'un critère explicite, considère qu'« avoir bien avancé » et « avoir fini » sont la même chose.</p>
 
-<p class="reveal"><strong>Pourquoi ça arrive.</strong> Une consigne longue contient plusieurs exigences implicites. L'agent traite les plus saillantes, celles qui ressemblent au cœur de la demande — et laisse tomber les périphériques : le cas limite, la vérification, la mise à jour du fichier voisin, le test qui prouve que ça marche. Rien dans le contexte ne lui dit qu'il a le droit de s'arrêter, donc il s'arrête quand il « sent » que c'est bon.</p>
+<p class="reveal"><strong>Pourquoi ça arrive.</strong> Une consigne longue contient plusieurs exigences implicites. L'agent traite les plus saillantes, celles qui ressemblent au cœur de la demande, et laisse tomber les périphériques : le cas limite, la vérification, la mise à jour du fichier voisin, le test qui prouve que ça marche. Rien dans le contexte ne lui dit qu'il a le droit de s'arrêter, donc il s'arrête quand il « sent » que c'est bon.</p>
 
-<p class="reveal"><strong>Ce que ça te coûte.</strong> Le coût n'est pas dans les étapes manquées : il est dans les allers-retours pour les découvrir. Tu relis, tu testes, tu repères un trou, tu le signales, l'agent répond « ah oui, bonne remarque, j'avais oublié », il corrige — et tu recommences. Trois fois. C'est là que part le temps que l'IA était censée te faire gagner.</p>
+<p class="reveal"><strong>Ce que ça te coûte.</strong> Le coût n'est pas dans les étapes manquées : il est dans les allers-retours pour les découvrir. Tu relis, tu testes, tu repères un trou, tu le signales, l'agent répond « ah oui, bonne remarque, j'avais oublié », il corrige, et tu recommences. Trois fois. C'est là que part le temps que l'IA était censée te faire gagner.</p>
 
 <div class="callout warn reveal"><b>Le signal à reconnaître :</b> chaque fois que tu entends « ah oui, bonne remarque », c'est une partial compliance qui vient d'être rattrapée <em>par toi</em>. Si ça t'arrive plusieurs fois par projet, tu es en train de jouer le rôle du contrôle qualité manuel.</div>
 
@@ -332,43 +332,43 @@ body.gate-on .gate-card{transform:none}
 
 <p class="reveal">Unlazy est une skill. Dans Claude Code, une skill est un dossier d'instructions que l'agent charge <strong>au démarrage de la session</strong> et applique quand le contexte s'y prête. L'installation est un one-shot : une fois posée, elle est là pour tous tes projets.</p>
 
-<p class="reveal"><strong>Avant de commencer — deux prérequis.</strong> Il te faut <span class="cmd">Node.js</span> installé sur ta machine (c'est lui qui fournit la commande <span class="cmd">npx</span>), et une session Claude Code ouverte dans un terminal. Rien d'autre : pas de compte à créer, pas de clé à configurer, la skill est gratuite.</p>
+<p class="reveal"><strong>Avant de commencer : deux prérequis.</strong> Il te faut <span class="cmd">Node.js</span> installé sur ta machine (c'est lui qui fournit la commande <span class="cmd">npx</span>), et une session Claude Code ouverte dans un terminal. Rien d'autre : pas de compte à créer, pas de clé à configurer, la skill est gratuite.</p>
 
 <p class="reveal"><strong>La méthode.</strong> Tu peux taper la commande toi-même, mais le plus simple est de laisser Claude Code la lancer : s'il y a un souci d'environnement (droits, chemin, version de Node), il le voit dans la sortie du terminal et le corrige lui-même. Colle ce prompt tel quel :</p>
 
 <div class="pbox reveal">
-  <div class="pbox-head"><span class="pbox-lbl">Prompt 1 — Installation</span><button class="pbox-copy" type="button">Copier</button></div>
+  <div class="pbox-head"><span class="pbox-lbl">Prompt 1 : Installation</span><button class="pbox-copy" type="button">Copier</button></div>
   <pre>Installe la skill Unlazy : exécute `npx skills add Leonxlnx/unlazy`. Si ça bloque, corrige le problème et réessaie. Confirme quand c'est bon et dis-moi comment relancer pour qu'elle soit prise en compte.</pre>
 </div>
 
-<p class="reveal"><strong>Ce qui se passe alors.</strong> La commande récupère la skill depuis son dépôt public et l'écrit dans un dossier de skills. Deux emplacements possibles selon la façon dont tu l'installes : au niveau <em>utilisateur</em> (<span class="cmd">~/.claude/skills/</span>) — la skill est alors disponible dans tous tes projets — ou au niveau <em>projet</em> (<span class="cmd">.claude/skills/</span> à la racine du dépôt) — elle ne vaut que pour ce projet. Demande à Claude de te dire <strong>où exactement</strong> il l'a posée : c'est la première chose à savoir quand tu voudras la retrouver, la mettre à jour ou la supprimer.</p>
+<p class="reveal"><strong>Ce qui se passe alors.</strong> La commande récupère la skill depuis son dépôt public et l'écrit dans un dossier de skills. Deux emplacements possibles selon la façon dont tu l'installes : au niveau <em>utilisateur</em> (<span class="cmd">~/.claude/skills/</span>), la skill est alors disponible dans tous tes projets, ou au niveau <em>projet</em> (<span class="cmd">.claude/skills/</span> à la racine du dépôt), elle ne vaut que pour ce projet. Demande à Claude de te dire <strong>où exactement</strong> il l'a posée : c'est la première chose à savoir quand tu voudras la retrouver, la mettre à jour ou la supprimer.</p>
 
-<p class="reveal"><strong>Vérifier que c'est réellement installé.</strong> Ne te contente pas du « c'est fait » de l'agent — ce serait ironique. Trois contrôles, dans l'ordre :</p>
+<p class="reveal"><strong>Vérifier que c'est réellement installé.</strong> Ne te contente pas du « c'est fait » de l'agent : ce serait ironique. Trois contrôles, dans l'ordre :</p>
 
 <ul class="reveal">
-  <li>le dossier existe et contient un fichier d'instructions (typiquement un <span class="cmd">SKILL.md</span>) — demande à Claude de te lister le contenu du dossier ;</li>
-  <li>la commande d'installation s'est terminée <strong>sans erreur</strong> — si tu vois un message d'échec réseau ou de permission, ce n'est pas installé, même si le dossier a été créé ;</li>
+  <li>le dossier existe et contient un fichier d'instructions (typiquement un <span class="cmd">SKILL.md</span>) : demande à Claude de te lister le contenu du dossier ;</li>
+  <li>la commande d'installation s'est terminée <strong>sans erreur</strong> : si tu vois un message d'échec réseau ou de permission, ce n'est pas installé, même si le dossier a été créé ;</li>
   <li>après relance, la skill est bien visible dans les skills disponibles de la session.</li>
 </ul>
 
-<p class="reveal"><strong>Relancer la session — l'étape qu'on oublie.</strong> Les skills sont chargées au démarrage. Tant que tu restes dans la session où tu viens de l'installer, Claude Code ne la « voit » pas. Ferme la session en cours et rouvre-la, puis vérifie que la skill apparaît. C'est aussi bête que ça, et c'est la raison n°1 des « je l'ai installée mais ça ne change rien ».</p>
+<p class="reveal"><strong>Relancer la session : l'étape qu'on oublie.</strong> Les skills sont chargées au démarrage. Tant que tu restes dans la session où tu viens de l'installer, Claude Code ne la « voit » pas. Ferme la session en cours et rouvre-la, puis vérifie que la skill apparaît. C'est aussi bête que ça, et c'est la raison n°1 des « je l'ai installée mais ça ne change rien ».</p>
 
 <div class="callout warn reveal"><b>Si l'installation coince.</b> Les trois causes classiques : Node.js absent ou trop ancien (<span class="cmd">node -v</span> pour vérifier), un cache <span class="cmd">npx</span> qui ressert une vieille version (relancer en forçant la récupération), ou un dossier de skills sur lequel tu n'as pas les droits d'écriture. Dans les trois cas, donne le message d'erreur brut à Claude Code et demande-lui de diagnostiquer : c'est exactement le genre de problème qu'il résout mieux que toi en trois lignes de terminal.</div>
 
 <h2 class="reveal"><span class="numtag">3</span>Avant un gros projet : autorise le parallélisme</h2>
 
-<p class="reveal">C'est l'étape la plus importante, et c'est celle que tout le monde saute. Par défaut, Claude Code enchaîne les tâches <strong>une par une</strong>. Sur un petit correctif, c'est parfait. Sur un projet découpé en douze tâches, tu attends que la 1 finisse pour que la 2 commence — alors que la moitié d'entre elles ne dépendent de rien.</p>
+<p class="reveal">C'est l'étape la plus importante, et c'est celle que tout le monde saute. Par défaut, Claude Code enchaîne les tâches <strong>une par une</strong>. Sur un petit correctif, c'est parfait. Sur un projet découpé en douze tâches, tu attends que la 1 finisse pour que la 2 commence, alors que la moitié d'entre elles ne dépendent de rien.</p>
 
 <p class="reveal">Claude Code sait lancer des <strong>sous-agents</strong> qui travaillent en parallèle, chacun avec son propre contexte. Mais il ne le fait pas spontanément sur un projet long : il faut l'y autoriser explicitement, et lui demander de <em>repérer</em> les tâches indépendantes avant de se lancer. Colle ce prompt <strong>au tout début du projet</strong>, avant même de décrire ce que tu veux :</p>
 
 <div class="pbox reveal">
-  <div class="pbox-head"><span class="pbox-lbl">Prompt 2 — Parallélisme (à coller en premier)</span><button class="pbox-copy" type="button">Copier</button></div>
+  <div class="pbox-head"><span class="pbox-lbl">Prompt 2 : Parallélisme (à coller en premier)</span><button class="pbox-copy" type="button">Copier</button></div>
   <pre>Pour ce projet, tu as le droit de lancer plusieurs agents en parallèle. Découpe d'abord le plan, repère les tâches indépendantes, et lance-les en même temps via des sous-agents séparés au lieu de les faire une par une.</pre>
 </div>
 
 <p class="reveal"><strong>Pourquoi l'ordre compte.</strong> Si tu colles ce prompt après avoir lancé la tâche, le plan est déjà figé et l'exécution a commencé en série. En le mettant avant, tu changes la façon dont le plan lui-même est construit : l'agent va structurer le découpage <em>pour</em> le parallélisme, en isolant ce qui peut avancer sans attendre.</p>
 
-<p class="reveal"><strong>Ce que ça change concrètement.</strong> Trois tâches indépendantes de dix minutes prennent dix minutes au lieu de trente. Et surtout, chaque sous-agent travaille avec un contexte propre, concentré sur sa tâche — au lieu d'un seul agent qui traîne l'historique complet du projet et se disperse.</p>
+<p class="reveal"><strong>Ce que ça change concrètement.</strong> Trois tâches indépendantes de dix minutes prennent dix minutes au lieu de trente. Et surtout, chaque sous-agent travaille avec un contexte propre, concentré sur sa tâche : au lieu d'un seul agent qui traîne l'historique complet du projet et se disperse.</p>
 
 <div class="callout reveal"><b>Le duo qui fait tout le boulot :</b> Unlazy garantit la <strong>qualité</strong> (rien n'est déclaré fini sans preuve), le parallélisme garantit la <strong>vitesse</strong>. Séparément, chacun est utile. Ensemble, tu changes de rythme de travail.</div>
 
@@ -378,22 +378,22 @@ body.gate-on .gate-card{transform:none}
 
 <p class="reveal"><strong>Le découpage en petites tâches avec checklist.</strong> Au lieu d'une grosse consigne floue traitée d'un bloc, le projet devient une liste de tâches réduites, chacune accompagnée de sa checklist. L'effet est double : l'agent ne peut plus « oublier » un item, puisqu'il est écrit ; et toi tu vois, en un coup d'œil, ce qui est réellement traité et ce qui reste.</p>
 
-<p class="reveal"><strong>La définition de « terminé ».</strong> Pour chaque tâche, la skill écrit ce que veut dire « fini » — de façon concrète et vérifiable, pas « la fonctionnalité marche » mais un critère observable. C'est le cœur du système : le critère est posé <em>avant</em> l'exécution, donc l'agent ne peut plus le redéfinir en cours de route pour se donner raison.</p>
+<p class="reveal"><strong>La définition de « terminé ».</strong> Pour chaque tâche, la skill écrit ce que veut dire « fini » : de façon concrète et vérifiable, pas « la fonctionnalité marche » mais un critère observable. C'est le cœur du système : le critère est posé <em>avant</em> l'exécution, donc l'agent ne peut plus le redéfinir en cours de route pour se donner raison.</p>
 
 <p class="reveal"><strong>Le fichier « gate ».</strong> C'est le verrou. Un fichier liste ce que l'agent doit vérifier avant d'avoir le droit de dire que c'est terminé. Tant que les points ne sont pas passés, il n'a pas l'autorisation de conclure. La conséquence est simple : « c'est fait » n'est plus une impression, c'est une <strong>sortie de contrôle</strong>.</p>
 
-<div class="callout win reveal"><b>Lecture rapide :</b> checklist = <em>on n'oublie rien</em>. Définition de terminé = <em>on sait quand s'arrêter</em>. Gate = <em>on le prouve avant de le dire</em>. C'est la même discipline qu'une recette de vérification en production — appliquée à un agent.</div>
+<div class="callout win reveal"><b>Lecture rapide :</b> checklist = <em>on n'oublie rien</em>. Définition de terminé = <em>on sait quand s'arrêter</em>. Gate = <em>on le prouve avant de le dire</em>. C'est la même discipline qu'une recette de vérification en production, appliquée à un agent.</div>
 
 <p class="reveal">Résultat : même travail, beaucoup moins d'allers-retours. Tu passes du rôle de relecteur qui traque les trous à celui de valideur qui lit un résultat déjà vérifié.</p>
 
 <h2 class="reveal"><span class="numtag">5</span>Régler la profondeur selon la taille du projet</h2>
 
-<p class="reveal">Le découpage n'est pas gratuit. Sur une petite demande, un découpage trop fin te fabrique dix sous-tâches pour un travail de quinze minutes : tu passes plus de temps à lire l'organisation qu'à lire le résultat. Sur un gros projet, à l'inverse, un découpage trop grossier laisse revenir exactement le problème qu'on cherchait à supprimer — des tâches assez larges pour qu'on puisse en sauter un morceau.</p>
+<p class="reveal">Le découpage n'est pas gratuit. Sur une petite demande, un découpage trop fin te fabrique dix sous-tâches pour un travail de quinze minutes : tu passes plus de temps à lire l'organisation qu'à lire le résultat. Sur un gros projet, à l'inverse, un découpage trop grossier laisse revenir exactement le problème qu'on cherchait à supprimer : des tâches assez larges pour qu'on puisse en sauter un morceau.</p>
 
 <p class="reveal">Tu peux donc dire explicitement à Unlazy jusqu'où découper. Une phrase suffit, à adapter au projet :</p>
 
 <div class="pbox reveal">
-  <div class="pbox-head"><span class="pbox-lbl">Prompt 3 — Profondeur de découpage</span><button class="pbox-copy" type="button">Copier</button></div>
+  <div class="pbox-head"><span class="pbox-lbl">Prompt 3 : Profondeur de découpage</span><button class="pbox-copy" type="button">Copier</button></div>
   <pre>Découpe ce projet en 3 branches parallèles maximum.</pre>
 </div>
 
@@ -411,16 +411,16 @@ body.gate-on .gate-card{transform:none}
 
 <h2 class="reveal">L'ordre d'exécution, en résumé</h2>
 
-<p class="reveal">Si tu ne dois retenir qu'une chose, retiens la séquence — c'est elle qui fait la différence, pas les prompts pris isolément :</p>
+<p class="reveal">Si tu ne dois retenir qu'une chose, retiens la séquence, c'est elle qui fait la différence, pas les prompts pris isolément :</p>
 
 <ul class="reveal">
   <li><strong>Une fois pour toutes :</strong> tu installes la skill avec le prompt 1, puis tu <strong>relances ta session</strong>.</li>
-  <li><strong>Au début de chaque gros projet :</strong> tu colles le prompt 2 pour autoriser le parallélisme — avant de décrire la tâche.</li>
+  <li><strong>Au début de chaque gros projet :</strong> tu colles le prompt 2 pour autoriser le parallélisme, avant de décrire la tâche.</li>
   <li><strong>Si besoin :</strong> tu ajoutes le prompt 3 pour caler la profondeur de découpage sur la taille du chantier.</li>
   <li><strong>Puis tu donnes ta tâche normalement.</strong> Unlazy fait le reste : checklists, définition de terminé, gate de vérification.</li>
 </ul>
 
-<div class="callout win reveal"><b>Le vrai déclic :</b> arrête d'espérer que l'agent soit rigoureux, et donne-lui les conditions de la rigueur. Un critère de fin écrit à l'avance et un contrôle avant conclusion — c'est tout ce qui sépare un agent qui « pense avoir fini » d'un agent qui a fini.</div>
+<div class="callout win reveal"><b>Le vrai déclic :</b> arrête d'espérer que l'agent soit rigoureux, et donne-lui les conditions de la rigueur. Un critère de fin écrit à l'avance et un contrôle avant conclusion : c'est tout ce qui sépare un agent qui « pense avoir fini » d'un agent qui a fini.</div>
 
 <script>
   document.querySelectorAll('.pbox-copy').forEach(function(btn){
@@ -457,6 +457,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/llm-council">
-<title>Force Claude à te dire la vérité, pas à te flatter — NoesisAI</title>
+<title>Force Claude à te dire la vérité, pas à te flatter - NoesisAI</title>
 <meta name="description" content="Force Claude à challenger tes décisions au lieu de te donner raison : la méthode du LLM Council (5 agents, relecture à l'aveugle, synthèse présidentielle) + le SKILL.md complet à télécharger, installable en 5 minutes.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Force Claude à te dire la vérité, pas à te flatter">
@@ -313,7 +313,7 @@ body.gate-on .gate-card{transform:none}
       .code-body code{font-family:inherit;color:inherit;background:none;padding:0}
     </style>
 
-    <p class="lead reveal">Tu demandes à une IA « c'est une bonne idée ? » — et elle te répond presque toujours <strong>oui</strong>. C'est la <em>sycophancy</em> : le réflexe du modèle à te donner raison. Pratique pour l'ego, dangereux quand tu décides vraiment. Voici une méthode concrète pour forcer Claude à te contredire — le <strong>LLM Council</strong> — avec le skill complet à copier-coller, branché en 5 minutes dans Claude Code.</p>
+    <p class="lead reveal">Tu demandes à une IA « c'est une bonne idée ? », et elle te répond presque toujours <strong>oui</strong>. C'est la <em>sycophancy</em> : le réflexe du modèle à te donner raison. Pratique pour l'ego, dangereux quand tu décides vraiment. Voici une méthode concrète pour forcer Claude à te contredire, le <strong>LLM Council</strong>, avec le skill complet à copier-coller, branché en 5 minutes dans Claude Code.</p>
 
     <div class="callout reveal"><b>L'idée en une phrase :</b> au lieu de répondre seul et de te flatter, Claude convoque 5 conseillers indépendants, les fait se noter à l'aveugle, puis tranche en président.</div>
 
@@ -343,11 +343,11 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">4</span>D'où ça vient</h2>
     <p class="reveal"><strong>Le concept vient d'Andrej Karpathy</strong> (repo <em>karpathy/llm-council</em>, ~13,8k étoiles). L'idée a été compactée en un seul skill prêt à coller dans Claude, traduit en français, avec un mode simple par défaut. Tout le mérite du concept lui revient.</p>
-    <p class="reveal"><strong>La différence avec l'original.</strong> Karpathy fait tourner plusieurs fournisseurs différents — GPT, Gemini, Claude, Grok — via OpenRouter. Cette version-ci fait tout en sous-agents Claude dans Claude Code : plus simple à installer (rien d'autre à brancher) et tout reste chez Anthropic.</p>
+    <p class="reveal"><strong>La différence avec l'original.</strong> Karpathy fait tourner plusieurs fournisseurs différents (GPT, Gemini, Claude, Grok) via OpenRouter. Cette version-ci fait tout en sous-agents Claude dans Claude Code : plus simple à installer (rien d'autre à brancher) et tout reste chez Anthropic.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>L'installer en 5 minutes</h2>
     <p class="reveal"><strong>Un skill = un dossier + un fichier.</strong> Dans Claude Code, un skill est un simple dossier contenant un fichier <strong>SKILL.md</strong>. Claude le lit et débloque une nouvelle capacité. Rien à coder.</p>
-    <p class="reveal"><strong>1. Crée le dossier</strong> nommé exactement <em>llm-council</em>. Mac / Linux : <strong>~/.claude/skills/llm-council/</strong> &nbsp;·&nbsp; Windows : <strong>%USERPROFILE%\.claude\skills\llm-council\</strong>. Le dossier <em>.claude</em> commence par un point, donc il est caché — c'est normal.</p>
+    <p class="reveal"><strong>1. Crée le dossier</strong> nommé exactement <em>llm-council</em>. Mac / Linux : <strong>~/.claude/skills/llm-council/</strong> &nbsp;·&nbsp; Windows : <strong>%USERPROFILE%\.claude\skills\llm-council\</strong>. Le dossier <em>.claude</em> commence par un point, donc il est caché : c'est normal.</p>
     <p class="reveal"><strong>2. Ajoute le fichier SKILL.md dedans.</strong> Soit tu le <strong>télécharges prêt à l'emploi</strong> (lien plus bas), soit tu crées un fichier et colles le bloc complet. Attention à l'extension : <strong>SKILL.md</strong> (en majuscules), pas SKILL.txt.</p>
     <p class="reveal"><strong>3. Vérifie</strong> que Claude le voit : tape <strong>/skills</strong>. <em>llm-council</em> doit apparaître dans la liste. S'il y est, c'est branché. 🎉</p>
     <div class="callout reveal"><b>Pas à l'aise avec le terminal ?</b> Tu peux tout faire à la souris : ouvre l'explorateur de fichiers, active l'affichage des fichiers cachés, entre dans <em>.claude</em> puis <em>skills</em>, crée un dossier <em>llm-council</em> et un <em>SKILL.md</em> dedans (Notepad, VS Code…), colle le contenu, sauvegarde.</div>
@@ -361,8 +361,8 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Choix de techno / d'architecture</td><td><span class="star">★</span> Oui</td></tr>
         <tr><td>Stratégie, arbitrage où tu hésites</td><td><span class="star">★</span> Oui</td></tr>
         <tr><td>« Est-ce vraiment une bonne idée ? »</td><td>Oui</td></tr>
-        <tr><td>Question factuelle simple</td><td>Non — artillerie inutile</td></tr>
-        <tr><td>Tâche rapide / routine</td><td>Non — artillerie inutile</td></tr>
+        <tr><td>Question factuelle simple</td><td>Non : artillerie inutile</td></tr>
+        <tr><td>Tâche rapide / routine</td><td>Non : artillerie inutile</td></tr>
       </tbody>
     </table>
 
@@ -370,7 +370,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Où ça tourne.</strong> 100 % dans Claude Code, avec des sous-agents Claude. Rien d'autre à installer, aucun autre service.</p>
     <p class="reveal"><strong>Coût.</strong> Gratuit, rien en plus de ton accès Claude Code. (Garde quand même le council pour les vraies décisions : 5 agents + une relecture, c'est puissant mais énergivore.)</p>
     <p class="reveal"><strong>Données.</strong> Rien ne sort d'Anthropic ; aucune question n'est envoyée à un autre fournisseur.</p>
-    <div class="callout warn reveal"><b>Le point honnête :</b> tes 5 conseillers sont tous des Claude — ils partagent donc les <strong>mêmes angles morts</strong> (ce qu'un Claude rate, les 5 peuvent le rater pareil). Le vrai gain ne vient pas de fournisseurs différents, mais des lentilles distinctes <em>plus</em> la relecture à l'aveugle.</div>
+    <div class="callout warn reveal"><b>Le point honnête :</b> tes 5 conseillers sont tous des Claude, ils partagent donc les <strong>mêmes angles morts</strong> (ce qu'un Claude rate, les 5 peuvent le rater pareil). Le vrai gain ne vient pas de fournisseurs différents, mais des lentilles distinctes <em>plus</em> la relecture à l'aveugle.</div>
 
     <h2 class="reveal">📄 Le skill complet</h2>
     <p class="reveal">Deux options, au choix. <strong>Le plus rapide :</strong> télécharge le fichier <strong>SKILL.md</strong> prêt à l'emploi et dépose-le dans le dossier <em>llm-council</em> créé à l'étape 5.</p>
@@ -383,11 +383,11 @@ body.gate-on .gate-card{transform:none}
       </div>
       <pre class="code-body"><code>---
 name: llm-council
-description: Convoque un conseil de 5 agents Claude indépendants, dans Claude Code uniquement, qui répondent séparément à une question difficile, se relisent et se classent à l'aveugle, puis synthétisent une réponse validée. Combat la sycophancy et le raisonnement à angle unique — à utiliser quand l'utilisateur veut une vraie réponse au lieu d'un acquiescement. Se déclenche sur "/llm-council", "convoque le conseil", "passe ça au conseil", "donne-moi un avis multi-agents / une seconde opinion", "stress-teste ça", "ne sois pas juste d'accord avec moi", "argumente les deux camps et dis-moi qui a raison", "est-ce vraiment une bonne idée", ou tout moment où il veut qu'une décision soit éprouvée plutôt que validée d'office.
+description: Convoque un conseil de 5 agents Claude indépendants, dans Claude Code uniquement, qui répondent séparément à une question difficile, se relisent et se classent à l'aveugle, puis synthétisent une réponse validée. Combat la sycophancy et le raisonnement à angle unique : à utiliser quand l'utilisateur veut une vraie réponse au lieu d'un acquiescement. Se déclenche sur "/llm-council", "convoque le conseil", "passe ça au conseil", "donne-moi un avis multi-agents / une seconde opinion", "stress-teste ça", "ne sois pas juste d'accord avec moi", "argumente les deux camps et dis-moi qui a raison", "est-ce vraiment une bonne idée", ou tout moment où il veut qu'une décision soit éprouvée plutôt que validée d'office.
 ---
 
 # LLM Council
-Une chaîne en 3 étapes (d'après karpathy/llm-council) qui produit une réponse validée au lieu d'une réponse complaisante. Cinq agents Claude indépendants répondent à l'aveugle, puis se relisent et classent le travail des autres à l'aveugle, puis la boucle principale (toi, en tant que Président) synthétise. Le gain, c'est la relecture par les pairs à l'aveugle entre raisonneurs indépendants — on juge au mérite, personne ne sait quelle réponse est à qui.
+Une chaîne en 3 étapes (d'après karpathy/llm-council) qui produit une réponse validée au lieu d'une réponse complaisante. Cinq agents Claude indépendants répondent à l'aveugle, puis se relisent et classent le travail des autres à l'aveugle, puis la boucle principale (toi, en tant que Président) synthétise. Le gain, c'est la relecture par les pairs à l'aveugle entre raisonneurs indépendants : on juge au mérite, personne ne sait quelle réponse est à qui.
 
 Tout se passe **dans Claude Code, avec des sous-agents Claude uniquement**. Aucun appel externe, aucun autre fournisseur, rien ne quitte Anthropic.
 
@@ -396,7 +396,7 @@ La question est ce que l'utilisateur a passé (l'argument de /llm-council, ou le
 ## Prérequis
 Ce skill utilise l'outil Agent de Claude Code pour lancer 5 sous-agents en parallèle. Il tourne donc dans Claude Code (ou tout environnement Claude qui expose les sous-agents). Si l'outil Agent n'est pas disponible, dis-le à l'utilisateur au lieu de simuler les membres toi-même.
 
-## Étape 1 — Réponses indépendantes (5 membres, en parallèle)
+## Étape 1 : Réponses indépendantes (5 membres, en parallèle)
 Lance les cinq appels Agent dans un seul message pour qu'ils tournent en parallèle. Chacun est un agent `general-purpose`. Donne à chacun la même question plus sa lentille. Les membres ne se voient jamais.
 
 | Membre | Lentille |
@@ -408,14 +408,14 @@ Lance les cinq appels Agent dans un seul message pour qu'ils tournent en parall�
 | Généraliste | Largeur de vue. Connecte les angles, pèse le tableau d'ensemble, réponds simplement. |
 
 Template de prompt pour chaque membre :
-&gt; Tu es un membre d'un conseil d'experts répondant à une question de façon indépendante. Ton job est de donner ta meilleure réponse sincère — la lentille ci-dessous est ce que tu dois mettre en avant, pas un personnage à jouer.
+&gt; Tu es un membre d'un conseil d'experts répondant à une question de façon indépendante. Ton job est de donner ta meilleure réponse sincère : la lentille ci-dessous est ce que tu dois mettre en avant, pas un personnage à jouer.
 &gt; Ta lentille : {lens}
 &gt; Question : {question}
 &gt; Donne une réponse directe et bien raisonnée. Énonce tes hypothèses clés et la plus forte objection à ta propre position. Sois précis et concis. Ne renvoie que ta réponse.
 
 Récupère les cinq réponses mot pour mot.
 
-## Étape 2 — Relecture à l'aveugle + classement (5 relecteurs, en parallèle)
+## Étape 2 : Relecture à l'aveugle + classement (5 relecteurs, en parallèle)
 Étiquette les cinq réponses de l'Étape 1 en Réponse A…E et retire toute identité. Garde ta propre table privée étiquette → membre.
 Lance cinq appels Agent relecteurs dans un seul message (agents `general-purpose`). Chaque relecteur voit les cinq réponses anonymisées.
 
@@ -423,7 +423,7 @@ Template de prompt relecteur :
 &gt; Tu évalues des réponses anonymisées à cette question :
 &gt; Question : {question}
 &gt; {Réponse A … Réponse E}
-&gt; Ta tâche : 1. Évalue chaque réponse individuellement — en jugeant sur l'exactitude et la pertinence uniquement, pas le style ni la longueur. 2. Puis donne un classement final, du meilleur au pire.
+&gt; Ta tâche : 1. Évalue chaque réponse individuellement, en jugeant sur l'exactitude et la pertinence uniquement, pas le style ni la longueur. 2. Puis donne un classement final, du meilleur au pire.
 &gt; Formate le classement EXACTEMENT comme ceci tout à la fin :
 &gt; FINAL RANKING:
 &gt; 1. Response C
@@ -432,20 +432,20 @@ Template de prompt relecteur :
 
 Parse chaque bloc FINAL RANKING. Agrège par position moyenne.
 
-## Étape 3 — Synthèse du Président (toi, la boucle principale)
+## Étape 3 : Synthèse du Président (toi, la boucle principale)
 Tu détiens les cinq réponses et les cinq relectures. Ne te contente pas de prendre la réponse n°1.
 - Construis la réponse finale à partir du raisonnement le plus solide parmi tous les membres.
 - Là où le conseil est vraiment divisé, dis-le et prends position.
 - Si le Red-teamer a montré que la prémisse de la question est fausse, c'est ça qui mène.
 
 ## Output
-1. La réponse — recommandation synthétisée, clairement.
-2. Notes du conseil — 3 à 5 lignes : là où ils étaient d'accord, le seul vrai désaccord (et quel camp tu as choisi), le classement agrégé, ce que tu as outrepassé.
+1. La réponse : recommandation synthétisée, clairement.
+2. Notes du conseil, 3 à 5 lignes : là où ils étaient d'accord, le seul vrai désaccord (et quel camp tu as choisi), le classement agrégé, ce que tu as outrepassé.
 
 Ne déverse pas les cinq réponses complètes par défaut. Si l'utilisateur dit "montre le travail", affiche-les à ce moment-là.
 
 ## Notes &amp; limites
-- Comme les 5 membres sont tous des Claude, ils partagent les mêmes angles morts — ce qu'un Claude rate, les 5 peuvent le rater pareil. Le gain vient des lentilles distinctes et de la relecture à l'aveugle, pas de fournisseurs différents.
+- Comme les 5 membres sont tous des Claude, ils partagent les mêmes angles morts : ce qu'un Claude rate, les 5 peuvent le rater pareil. Le gain vient des lentilles distinctes et de la relecture à l'aveugle, pas de fournisseurs différents.
 - Le nombre de membres et les lentilles sont faciles à ajuster.</code></pre>
     </div>
 
@@ -454,7 +454,7 @@ Ne déverse pas les cinq réponses complètes par défaut. Si l'utilisateur dit 
     <p class="reveal"><strong>Ça marche sur Claude gratuit ou payant ?</strong> Le council utilise des sous-agents Claude, donc il tourne dans Claude Code (l'environnement qui sait lancer plusieurs agents en parallèle). Tu colles le skill et tu testes avec <em>/skills</em>. Si l'outil des sous-agents n'est pas dispo dans ton environnement, le skill te le dira au lieu de bricoler.</p>
     <p class="reveal"><strong>Mes questions partent où ?</strong> Nulle part en dehors d'Anthropic. Tout se passe entre Claude et ses sous-agents, aucune question n'est envoyée à un autre fournisseur. Si la confidentialité compte, tu es tranquille.</p>
 
-    <div class="callout win reveal"><b>L'essentiel à retenir :</b> une IA qui te donne toujours raison est inutile au moment de décider. Le council met 5 cerveaux sur ta question, les fait se noter à l'aveugle, et te sort la réponse qui survit à la critique — pas celle qui te flatte. Installe-le une fois ; la prochaine fois que tu hésites, tape <strong>/llm-council "ta question"</strong>.</div>
+    <div class="callout win reveal"><b>L'essentiel à retenir :</b> une IA qui te donne toujours raison est inutile au moment de décider. Le council met 5 cerveaux sur ta question, les fait se noter à l'aveugle, et te sort la réponse qui survit à la critique, pas celle qui te flatte. Installe-le une fois ; la prochaine fois que tu hésites, tape <strong>/llm-council "ta question"</strong>.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -475,6 +475,7 @@ Ne déverse pas les cinq réponses complètes par défaut. Si l'utilisateur dit 
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -555,7 +556,7 @@ Ne déverse pas les cinq réponses complètes par défaut. Si l'utilisateur dit 
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

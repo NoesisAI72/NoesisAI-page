@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claude-legifrance">
-<title>Faire lire la loi à Claude, au lieu de la lui faire réciter — NoesisAI</title>
+<title>Faire lire la loi à Claude, au lieu de la lui faire réciter - NoesisAI</title>
 <meta name="description" content="Brancher Claude sur Légifrance pour obtenir des réponses juridiques sourcées : le guide écran par écran et 4 prompts pour traduire ta question en langage juridique.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Faire lire la loi à Claude, au lieu de la lui faire réciter">
@@ -281,11 +281,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <h2 class="reveal"><span class="numtag">2</span>Le branchement, écran par écran</h2>
     <p class="reveal">On passe par <strong>OpenLegi</strong>, un service qui donne accès aux sources de Légifrance depuis un assistant IA : les 75 codes, la jurisprudence, les lois et décrets, le Journal officiel, les conventions collectives. Compte gratuit, aucune ligne de code.</p>
 
-    <p class="reveal"><strong>Écran 1 — Créer ton compte OpenLegi.</strong> Va sur <a href="https://www.openlegi.fr/accounts/signup/" target="_blank" rel="noopener">openlegi.fr</a> et crée un compte gratuit (email et mot de passe, ou compte Microsoft). C'est ce compte qui autorisera Claude à interroger les sources.</p>
+    <p class="reveal"><strong>Écran 1 : Créer ton compte OpenLegi.</strong> Va sur <a href="https://www.openlegi.fr/accounts/signup/" target="_blank" rel="noopener">openlegi.fr</a> et crée un compte gratuit (email et mot de passe, ou compte Microsoft). C'est ce compte qui autorisera Claude à interroger les sources.</p>
 
-    <p class="reveal"><strong>Écran 2 — Ouvrir les connecteurs dans Claude.</strong> Sur claude.ai ou dans l'application Claude : <em>Paramètres</em> → <em>Connecteurs</em> → <em>Ajouter un connecteur personnalisé</em>.</p>
+    <p class="reveal"><strong>Écran 2 : Ouvrir les connecteurs dans Claude.</strong> Sur claude.ai ou dans l'application Claude : <em>Paramètres</em> → <em>Connecteurs</em> → <em>Ajouter un connecteur personnalisé</em>.</p>
 
-    <p class="reveal"><strong>Écran 3 — Remplir la fiche.</strong> Deux champs suffisent :</p>
+    <p class="reveal"><strong>Écran 3 : Remplir la fiche.</strong> Deux champs suffisent :</p>
     <table class="matrix reveal">
       <thead><tr><th>Champ</th><th>Ce que tu colles</th></tr></thead>
       <tbody>
@@ -294,12 +294,12 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
       </tbody>
     </table>
 
-    <p class="reveal"><strong>Écran 4 — Les paramètres avancés.</strong> Si Claude te demande un identifiant client, ouvre <em>Paramètres avancés</em> et colle dans <em>Client ID OAuth</em> l'identifiant public qu'OpenLegi publie pour Claude : <strong>nqyiazmWHxa3qCVSyhktSwvqClpiuBYTPGEQlFsE</strong>. Laisse le champ <em>Client Secret</em> vide.</p>
+    <p class="reveal"><strong>Écran 4 : Les paramètres avancés.</strong> Si Claude te demande un identifiant client, ouvre <em>Paramètres avancés</em> et colle dans <em>Client ID OAuth</em> l'identifiant public qu'OpenLegi publie pour Claude : <strong>nqyiazmWHxa3qCVSyhktSwvqClpiuBYTPGEQlFsE</strong>. Laisse le champ <em>Client Secret</em> vide.</p>
     <div class="callout warn reveal"><b>Avant de coller :</b> vérifie que cet identifiant est toujours le bon sur la <a href="https://www.openlegi.fr/documentation/demarrage-rapide/deux-modes-connexion/" target="_blank" rel="noopener">page officielle d'OpenLegi</a>. C'est leur valeur, pas la mienne, et ils peuvent la changer.</div>
 
-    <p class="reveal"><strong>Écran 5 — Se connecter et autoriser.</strong> Clique sur <em>Ajouter</em>, puis sur <em>Se connecter</em>. Une page OpenLegi s'ouvre : tu te connectes avec le compte créé à l'écran 1 et tu autorises l'accès. Retour automatique dans Claude.</p>
+    <p class="reveal"><strong>Écran 5 : Se connecter et autoriser.</strong> Clique sur <em>Ajouter</em>, puis sur <em>Se connecter</em>. Une page OpenLegi s'ouvre : tu te connectes avec le compte créé à l'écran 1 et tu autorises l'accès. Retour automatique dans Claude.</p>
 
-    <p class="reveal"><strong>Écran 6 — Vérifier que c'est actif.</strong> Ouvre une nouvelle conversation et demande : <em>« Quels outils as-tu à disposition ? »</em>. Tu dois voir apparaître des outils de recherche dans les codes, la jurisprudence et le Journal officiel. Sinon, le connecteur n'est pas activé dans cette conversation (menu des outils, sous la zone de saisie).</p>
+    <p class="reveal"><strong>Écran 6 : Vérifier que c'est actif.</strong> Ouvre une nouvelle conversation et demande : <em>« Quels outils as-tu à disposition ? »</em>. Tu dois voir apparaître des outils de recherche dans les codes, la jurisprudence et le Journal officiel. Sinon, le connecteur n'est pas activé dans cette conversation (menu des outils, sous la zone de saisie).</p>
 
     <div class="callout reveal"><b>Ce qu'il faut savoir avant :</b> les connecteurs personnalisés demandent un abonnement Claude payant (Pro, Max, Team ou Enterprise). Côté OpenLegi, Légifrance est accessible avec le compte gratuit ; certaines sources en plus (Judilibre, EUR-Lex, registre des entreprises) sont annoncées sur abonnement.</div>
 
@@ -326,16 +326,16 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 
     <h2 class="reveal"><span class="numtag">4</span>Mes 4 prompts, à copier tels quels</h2>
 
-    <p class="reveal"><strong>Prompt 1 — Le traducteur (avant toute recherche).</strong></p>
+    <p class="reveal"><strong>Prompt 1 : Le traducteur (avant toute recherche).</strong></p>
     <div class="callout reveal">« Voici ma situation, avec mes mots : [ta question]. Avant de chercher quoi que ce soit, traduis-la en langage juridique : donne-moi les notions juridiques concernées, le ou les codes où elles se trouvent, et 3 formulations de recherche avec les termes exacts employés par les textes. Ne réponds pas encore à la question. »</div>
 
-    <p class="reveal"><strong>Prompt 2 — La recherche sourcée.</strong></p>
+    <p class="reveal"><strong>Prompt 2 : La recherche sourcée.</strong></p>
     <div class="callout reveal">« Utilise le connecteur Légifrance avec ces formulations. Pour chaque règle que tu avances, donne le numéro d'article, le code ou la loi d'où il vient et le lien Légifrance. Reproduis le texte exact retourné, sans le reformuler ni le compléter. Si un texte est coupé, signale-le. Si tu ne trouves rien, dis-le plutôt que de répondre de mémoire. »</div>
 
-    <p class="reveal"><strong>Prompt 3 — La jurisprudence.</strong></p>
+    <p class="reveal"><strong>Prompt 3 : La jurisprudence.</strong></p>
     <div class="callout reveal">« Cherche maintenant des décisions de justice récentes qui appliquent cet article à une situation proche de la mienne. Pour chacune : la juridiction, la date, ce qui a été décidé en une phrase, et le lien. »</div>
 
-    <p class="reveal"><strong>Prompt 4 — Préparer ton rendez-vous.</strong></p>
+    <p class="reveal"><strong>Prompt 4 : Préparer ton rendez-vous.</strong></p>
     <div class="callout reveal">« À partir des textes trouvés, liste les 5 questions précises que je dois poser à mon avocat ou à mon expert-comptable, et les points sur lesquels ma situation pourrait faire exception. »</div>
 
     <div class="callout win reveal"><b>Astuce :</b> colle les consignes du prompt 2 dans les instructions d'un Projet Claude dédié au juridique. Tu n'as plus à les répéter, chaque conversation de ce projet démarre avec la règle « je cite ou je me tais ».</div>
@@ -379,6 +379,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -459,7 +460,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

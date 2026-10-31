@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claude-code-bonnes-pratiques">
-<title>Claude Code sans le casse-tête : la carte des bonnes pratiques — NoesisAI</title>
+<title>Claude Code sans le casse-tête : la carte des bonnes pratiques - NoesisAI</title>
 <meta name="description" content="Le récap actionnable des bonnes pratiques Claude Code : mémoire, contexte, commandes, agents, workflows. Pose une config propre en 3 décisions au lieu de lire 40 threads.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Claude Code sans le casse-tête : la carte des bonnes pratiques">
@@ -305,21 +305,21 @@ body.gate-on .gate-card{transform:none}
     <p class="lead reveal">L'écosystème Claude Code part dans tous les sens : agents, commandes, mémoire, workflows, hooks, MCP… Des dizaines de threads, chacun sa méthode, et personne ne te dit par où commencer. Voici la carte : les <strong>4 briques qui comptent vraiment</strong>, les règles qui changent la qualité de sortie, et comment poser une config propre sans lire 40 fils. De quoi passer de « je bricole » à une config qui tient.</p>
 
     <h2 class="reveal">C'est quoi ce repo, et ce que fait la skill</h2>
-    <p class="reveal"><strong>GitHub, en clair.</strong> C'est le lieu public où les développeurs déposent et partagent leurs projets — une bibliothèque ouverte du code et de la documentation technique. Un « repo » (dépôt), c'est simplement un dossier de projet que tout le monde peut consulter et copier. Celui ci-dessous rassemble, au même endroit, les bonnes pratiques Claude Code habituellement éclatées dans des dizaines de fils.</p>
+    <p class="reveal"><strong>GitHub, en clair.</strong> C'est le lieu public où les développeurs déposent et partagent leurs projets : une bibliothèque ouverte du code et de la documentation technique. Un « repo » (dépôt), c'est simplement un dossier de projet que tout le monde peut consulter et copier. Celui ci-dessous rassemble, au même endroit, les bonnes pratiques Claude Code habituellement éclatées dans des dizaines de fils.</p>
     <p class="reveal" style="text-align:center;margin:1.6em 0;">
       <a href="https://github.com/shanraisshan/claude-code-best-practice" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.55em;padding:.72em 1.4em;border-radius:999px;border:1px solid rgba(33,182,255,.55);color:#21B6FF;font-weight:600;text-decoration:none;">⭐ Ouvrir le repo GitHub des bonnes pratiques →</a>
     </p>
     <p class="reveal"><strong>Ce que fait la skill.</strong> Une skill, c'est un mode d'emploi que Claude Code déclenche tout seul quand le contexte s'y prête. Celle des bonnes pratiques s'appuie sur cette base pour t'éviter tout le travail de tri :</p>
-    <div class="callout reveal"><b>Concrètement, elle :</b><br>1️⃣ regroupe les bonnes pratiques au même endroit — agents, commandes, mémoire, workflows ;<br>2️⃣ commence par te poser des questions sur ce que tu veux construire ;<br>3️⃣ va chercher les bonnes infos directement dans ton projet ;<br>4️⃣ construit la config elle-même, sans que tu aies à tout réexpliquer.</div>
-    <p class="reveal">Résultat : tu passes de « je lis 40 threads pour bricoler ma config » à « je réponds à trois questions et c'est en place ». La carte ci-dessous, c'est ce qu'elle met en musique — bon à connaître, que tu utilises la skill ou que tu règles à la main.</p>
+    <div class="callout reveal"><b>Concrètement, elle :</b><br>1️⃣ regroupe les bonnes pratiques au même endroit, agents, commandes, mémoire, workflows ;<br>2️⃣ commence par te poser des questions sur ce que tu veux construire ;<br>3️⃣ va chercher les bonnes infos directement dans ton projet ;<br>4️⃣ construit la config elle-même, sans que tu aies à tout réexpliquer.</div>
+    <p class="reveal">Résultat : tu passes de « je lis 40 threads pour bricoler ma config » à « je réponds à trois questions et c'est en place ». La carte ci-dessous, c'est ce qu'elle met en musique : bon à connaître, que tu utilises la skill ou que tu règles à la main.</p>
 
-    <div class="callout reveal"><b>La règle qui te suit sur toute la page :</b> tu ne configures pas tout — tu configures les quelques réglages qui composent. 3 décisions bien prises battent 30 heures de bidouille.</div>
+    <div class="callout reveal"><b>La règle qui te suit sur toute la page :</b> tu ne configures pas tout, tu configures les quelques réglages qui composent. 3 décisions bien prises battent 30 heures de bidouille.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>La carte : les 4 briques (et quand chacune)</h2>
-    <p class="reveal">Avant de plonger dans le détail, sache à quoi sert quoi. La plupart des gens mélangent tout — d'où le casse-tête. Chaque brique a un seul job.</p>
-    <p class="reveal"><strong>La mémoire</strong> (le fichier <code>CLAUDE.md</code>) : ce que Claude doit savoir <em>en permanence</em> sur ton projet — le contexte, les règles, le ton. C'est la brique la plus rentable : bien réglée, tu arrêtes de tout réexpliquer à chaque session.</p>
+    <p class="reveal">Avant de plonger dans le détail, sache à quoi sert quoi. La plupart des gens mélangent tout : d'où le casse-tête. Chaque brique a un seul job.</p>
+    <p class="reveal"><strong>La mémoire</strong> (le fichier <code>CLAUDE.md</code>) : ce que Claude doit savoir <em>en permanence</em> sur ton projet, le contexte, les règles, le ton. C'est la brique la plus rentable : bien réglée, tu arrêtes de tout réexpliquer à chaque session.</p>
     <p class="reveal"><strong>Les commandes</strong> (tes raccourcis) : une tâche que tu répètes tous les jours devient une commande réutilisable, versionnée avec le projet. Tu la tapes une fois, elle rejoue le même prompt à chaque fois.</p>
-    <p class="reveal"><strong>Les agents</strong> (les sous-traitants) : pour une tâche lourde et bornée (fouiller le code, chercher, tester), tu délègues à un agent dédié qui bosse dans sa propre bulle et te rend juste la conclusion — sans polluer ta conversation principale.</p>
+    <p class="reveal"><strong>Les agents</strong> (les sous-traitants) : pour une tâche lourde et bornée (fouiller le code, chercher, tester), tu délègues à un agent dédié qui bosse dans sa propre bulle et te rend juste la conclusion, sans polluer ta conversation principale.</p>
     <p class="reveal"><strong>Les workflows</strong> (l'ordre des opérations) : la séquence dans laquelle tu enchaînes tout ça. Le bon ordre vaut plus que le bon outil.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>La mémoire : la brique la plus rentable</h2>
@@ -328,7 +328,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Ce qu'on y met.</strong> Le rôle du projet, les commandes pour lancer/tester, les conventions, les interdits. <strong>Ce qu'on n'y met pas :</strong> ce que Claude peut déjà lire dans le code ou l'historique git. La mémoire sert à ce qui n'est <em>pas</em> déductible.</p>
 
     <h2 class="reveal"><span class="numtag">3</span>Le contexte : le levier n°1 sur la qualité</h2>
-    <p class="reveal"><strong>Le vrai secret que personne ne dit.</strong> La qualité ne s'effondre pas parce que Claude « n'est pas assez intelligent » — elle s'effondre quand la conversation est trop chargée. Plus le contexte se remplit, plus les réponses deviennent molles.</p>
+    <p class="reveal"><strong>Le vrai secret que personne ne dit.</strong> La qualité ne s'effondre pas parce que Claude « n'est pas assez intelligent » : elle s'effondre quand la conversation est trop chargée. Plus le contexte se remplit, plus les réponses deviennent molles.</p>
     <div class="callout warn reveal"><b>La règle empirique des praticiens :</b> au-delà de <b>~40 % du contexte utilisé</b>, la qualité baisse (la « zone molle »). Reste sous 40 % pour du travail sérieux, sous 30 % pour du complexe. Concrètement : ne laisse pas une conversation devenir un fourre-tout.</div>
     <p class="reveal"><strong>Ce que ça change dans ta pratique :</strong> ouvre une <b>session neuve</b> pour chaque nouvelle tâche au lieu d'empiler ; démarre en <b>mode plan</b> avant de laisser Claude écrire ; délègue les fouilles à un <b>agent</b> pour garder ta conversation propre ; quand ça part mal, <b>reviens en arrière</b> plutôt que d'accumuler des rustines par-dessus l'erreur.</p>
 
@@ -343,15 +343,15 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Le contexte projet → <b>mémoire</b></td><td>La décision quand deux options se valent</td></tr>
       </tbody>
     </table>
-    <p class="reveal">Un <strong>hook</strong>, c'est une action déclenchée automatiquement à un moment précis (ex. reformater le code après chaque écriture). Tu le règles une fois, il tourne tout seul — c'est ça qui te fait gagner les heures de setup répétées.</p>
+    <p class="reveal">Un <strong>hook</strong>, c'est une action déclenchée automatiquement à un moment précis (ex. reformater le code après chaque écriture). Tu le règles une fois, il tourne tout seul : c'est ça qui te fait gagner les heures de setup répétées.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>Le bon ordre : le workflow qui converge</h2>
     <p class="reveal"><strong>La séquence qui revient chez tous ceux qui livrent vraiment :</strong> comprendre → planifier → exécuter → relire → livrer. Le piège classique, c'est de sauter direct à « exécuter ». Les deux premières étapes sont celles qui te font gagner du temps.</p>
-    <div class="callout win reveal"><b>Le réflexe qui change tout :</b> fais relire le plan (ou le résultat) par un <b>regard neuf</b> — une seconde session, ou un autre modèle. Un contexte frais repère les erreurs qu'un contexte fatigué laisse passer. C'est gratuit et ça évite les allers-retours.</div>
+    <div class="callout win reveal"><b>Le réflexe qui change tout :</b> fais relire le plan (ou le résultat) par un <b>regard neuf</b>, une seconde session, ou un autre modèle. Un contexte frais repère les erreurs qu'un contexte fatigué laisse passer. C'est gratuit et ça évite les allers-retours.</div>
     <p class="reveal">Et quand un résultat te paraît trop beau : demande-lui de <em>prouver</em> que ça marche plutôt que de le croire sur parole. « Montre-moi que ce cas passe » vaut mieux qu'un « c'est bon ».</p>
 
     <h2 class="reveal">Ta config propre en 3 décisions</h2>
-    <p class="reveal">Tu n'as pas besoin de tout brancher. Voici l'ordre de priorité si tu démarres — chaque ligne se suffit à elle-même.</p>
+    <p class="reveal">Tu n'as pas besoin de tout brancher. Voici l'ordre de priorité si tu démarres : chaque ligne se suffit à elle-même.</p>
     <table class="matrix reveal">
       <thead><tr><th>Brique</th><th>À quoi ça sert</th><th>Le piège à éviter</th><th>Priorité</th></tr></thead>
       <tbody>
@@ -362,7 +362,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Hooks</td><td>Fiabiliser le répétitif</td><td>Sur-ingénierie</td><td>Plus tard</td></tr>
       </tbody>
     </table>
-    <div class="callout reveal"><b>Lecture rapide :</b> commence par la mémoire et l'hygiène de contexte — c'est 80 % du gain, pour 20 % de l'effort. Le reste s'ajoute quand le besoin se présente, pas avant. C'est exactement ce qu'un bon skill de bonnes pratiques fait à ta place : il te pose les bonnes questions, lit ton projet, et pose ces réglages sans que tu lises 40 threads.</div>
+    <div class="callout reveal"><b>Lecture rapide :</b> commence par la mémoire et l'hygiène de contexte, c'est 80 % du gain, pour 20 % de l'effort. Le reste s'ajoute quand le besoin se présente, pas avant. C'est exactement ce qu'un bon skill de bonnes pratiques fait à ta place : il te pose les bonnes questions, lit ton projet, et pose ces réglages sans que tu lises 40 threads.</div>
     <p class="reveal">Pour creuser dans le détail, tout est ici : <a href="https://github.com/shanraisshan/claude-code-best-practice" target="_blank" rel="noopener" style="color:#21B6FF;text-decoration:underline;font-weight:600;">le repo GitHub des bonnes pratiques Claude Code →</a></p>
 
   
@@ -384,6 +384,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -464,7 +465,7 @@ body.gate-on .gate-card{transform:none}
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

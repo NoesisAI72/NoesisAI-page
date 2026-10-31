@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/agent-ia-whatsapp-production">
-<title>Hermes Agent passe sur WhatsApp (en prod, sans risque de ban) — NoesisAI</title>
-<meta name="description" content="Hermes Agent ajoute une intégration WhatsApp Business Cloud de qualité prod : API officielle Meta, sans QR code ni risque de ban. Le guide complet — setup hermes whatsapp-cloud, les 4 identifiants Meta, le webhook, la règle des 24h, la sécurité.">
+<title>Hermes Agent passe sur WhatsApp (en prod, sans risque de ban) - NoesisAI</title>
+<meta name="description" content="Hermes Agent ajoute une intégration WhatsApp Business Cloud de qualité prod : API officielle Meta, sans QR code ni risque de ban. Le guide complet : setup hermes whatsapp-cloud, les 4 identifiants Meta, le webhook, la règle des 24h, la sécurité.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hermes Agent passe sur WhatsApp (en prod, sans risque de ban)">
-<meta property="og:description" content="Hermes Agent ajoute une intégration WhatsApp Business Cloud de qualité prod : API officielle Meta, sans QR code ni risque de ban. Le guide complet — setup hermes whatsapp-cloud, les 4 identifiants Meta, le webhook, la règle des 24h, la sécurité.">
+<meta property="og:description" content="Hermes Agent ajoute une intégration WhatsApp Business Cloud de qualité prod : API officielle Meta, sans QR code ni risque de ban. Le guide complet : setup hermes whatsapp-cloud, les 4 identifiants Meta, le webhook, la règle des 24h, la sécurité.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Hermes Agent passe sur WhatsApp (en prod, sans risque de ban)</h1>
-    <p class="sub">La nouvelle intégration WhatsApp Business Cloud officielle — bot privé ou support client — et comment la brancher</p>
+    <p class="sub">La nouvelle intégration WhatsApp Business Cloud officielle, bot privé ou support client, et comment la brancher</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -273,12 +273,12 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal"><strong>Hermes Agent</strong> vient de sortir une intégration <strong>WhatsApp Business Cloud</strong> de qualité production. Concrètement : tu peux maintenant brancher ton agent IA sur WhatsApp — pour toi, ton équipe, ou tes clients — via l'<strong>API officielle de Meta</strong>. Pas de bridge Node.js, pas de QR code, pas de risque de bannissement de compte. Voici ce que la maj débloque, et comment la mettre en place proprement.</p>
+    <p class="lead reveal"><strong>Hermes Agent</strong> vient de sortir une intégration <strong>WhatsApp Business Cloud</strong> de qualité production. Concrètement : tu peux maintenant brancher ton agent IA sur WhatsApp (pour toi, ton équipe, ou tes clients) via l'<strong>API officielle de Meta</strong>. Pas de bridge Node.js, pas de QR code, pas de risque de bannissement de compte. Voici ce que la maj débloque, et comment la mettre en place proprement.</p>
 
     <div class="callout win reveal"><b>Ce que la maj ajoute :</b> webhooks sécurisés, support des médias et de la voix, accusés de lecture (les doubles coches bleues), indicateur « en train d'écrire… », et boutons d'approbation interactifs. Tu l'utilises soit comme <b>bot WhatsApp privé</b> (toi / ton équipe), soit configuré pour du <b>support client</b>.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Pourquoi c'est la voie de prod (et pas un hack)</h2>
-    <p class="reveal">Brancher WhatsApp « gratuitement » via une lib non officielle qui scanne un QR code, ça marche en démo — mais Meta finit par couper le numéro. Hermes propose les deux chemins ; pour un bot que tes clients utilisent vraiment, tu prends l'officiel.</p>
+    <p class="reveal">Brancher WhatsApp « gratuitement » via une lib non officielle qui scanne un QR code, ça marche en démo, mais Meta finit par couper le numéro. Hermes propose les deux chemins ; pour un bot que tes clients utilisent vraiment, tu prends l'officiel.</p>
     <table class="matrix reveal">
       <thead><tr><th>Critère</th><th>Bridge Baileys<br><code>hermes whatsapp</code></th><th>API Cloud<br><code>hermes whatsapp-cloud</code></th></tr></thead>
       <tbody>
@@ -294,11 +294,11 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">2</span>Le setup guidé : <code>hermes whatsapp-cloud</code></h2>
     <p class="reveal"><strong>Tu ne fais pas tout à la main.</strong> La commande <code>hermes whatsapp-cloud</code> lance un assistant qui te demande chaque identifiant, le <em>valide au moment où tu le colles</em>, et imprime les instructions exactes pour les étapes qui se passent hors de l'assistant (lancer le tunnel, configurer le webhook côté Meta).</p>
-    <div class="callout reveal"><b>Ce que l'assistant attrape pour toi :</b> l'erreur n°1 du setup — coller le <em>numéro de téléphone</em> dans le champ <em>Phone Number ID</em>. Un validateur le détecte avant que ça parte. Sans ça, tu perds facilement une heure sur une « erreur 100 : objet introuvable » côté Meta.</div>
+    <div class="callout reveal"><b>Ce que l'assistant attrape pour toi :</b> l'erreur n°1 du setup, coller le <em>numéro de téléphone</em> dans le champ <em>Phone Number ID</em>. Un validateur le détecte avant que ça parte. Sans ça, tu perds facilement une heure sur une « erreur 100 : objet introuvable » côté Meta.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Les prérequis Meta + les 4 identifiants</h2>
     <p class="reveal"><strong>Avant de lancer l'assistant.</strong> Il te faut un <em>compte Meta Business</em> (pas ton WhatsApp perso), une <em>app Meta</em> avec WhatsApp activé, et un <em>compte WhatsApp Business (WABA)</em> rattaché. Le bot tourne sur un <strong>numéro business dédié</strong>, pas ton numéro perso.</p>
-    <p class="reveal">L'assistant te réclame ensuite ces 4 valeurs, dans cet ordre — voici la forme exacte pour ne pas te tromper de champ :</p>
+    <p class="reveal">L'assistant te réclame ensuite ces 4 valeurs, dans cet ordre, voici la forme exacte pour ne pas te tromper de champ :</p>
     <table class="matrix reveal">
       <thead><tr><th>Identifiant</th><th>Forme</th><th>Rôle</th></tr></thead>
       <tbody>
@@ -312,24 +312,24 @@ body.gate-on .gate-card{transform:none}
 
     <h2 class="reveal"><span class="numtag">4</span>Rendre Hermes joignable par Meta (le webhook)</h2>
     <p class="reveal"><strong>Le principe.</strong> L'API Cloud livre les messages entrants par un appel HTTPS sur ta passerelle Hermes. Donc <code>hermes gateway</code> doit être joignable depuis l'extérieur, en HTTPS. Pas besoin d'ouvrir un port ni d'avoir un domaine : un tunnel suffit.</p>
-    <p class="reveal"><strong>La méthode simple.</strong> Cloudflare Tunnel (<code>cloudflared</code>) — gratuit, sans compte, sans redirection de port. Une commande te donne une URL <code>https://&lt;aléatoire&gt;.trycloudflare.com</code> : c'est elle que tu donnes à Meta. Meta tape ton URL en GET, Hermes renvoie le « challenge », Meta valide. Ensuite tu t'abonnes au champ <code>messages</code> — c'est ça qui déclenche la livraison réelle des entrants.</p>
-    <div class="callout warn reveal"><b>Le piège du tunnel gratuit :</b> l'URL change à chaque redémarrage de <code>cloudflared</code>. Pour un bot en continu, crée un <em>tunnel nommé</em> (compte Cloudflare gratuit, URL stable) — sinon, à chaque reboot, tu dois remettre à jour l'URL côté Meta.</div>
+    <p class="reveal"><strong>La méthode simple.</strong> Cloudflare Tunnel (<code>cloudflared</code>) : gratuit, sans compte, sans redirection de port. Une commande te donne une URL <code>https://&lt;aléatoire&gt;.trycloudflare.com</code> : c'est elle que tu donnes à Meta. Meta tape ton URL en GET, Hermes renvoie le « challenge », Meta valide. Ensuite tu t'abonnes au champ <code>messages</code> : c'est ça qui déclenche la livraison réelle des entrants.</p>
+    <div class="callout warn reveal"><b>Le piège du tunnel gratuit :</b> l'URL change à chaque redémarrage de <code>cloudflared</code>. Pour un bot en continu, crée un <em>tunnel nommé</em> (compte Cloudflare gratuit, URL stable), sinon, à chaque reboot, tu dois remettre à jour l'URL côté Meta.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>La règle des 24h de Meta (à connaître AVANT de promettre)</h2>
-    <p class="reveal"><strong>La contrainte que personne ne voit venir.</strong> Meta n'autorise les messages libres que dans une <em>fenêtre de 24h</em> après le dernier message du client. Au-delà, seul un <em>template pré-approuvé</em> passe. Ce n'est pas une limite d'Hermes — c'est la règle « fenêtre de service client » de Meta.</p>
+    <p class="reveal"><strong>La contrainte que personne ne voit venir.</strong> Meta n'autorise les messages libres que dans une <em>fenêtre de 24h</em> après le dernier message du client. Au-delà, seul un <em>template pré-approuvé</em> passe. Ce n'est pas une limite d'Hermes : c'est la règle « fenêtre de service client » de Meta.</p>
     <div class="callout win reveal"><b>Concrètement :</b> le chat réactif (le client écrit → Hermes répond dans les 24h → le client relance…) marche pour toujours. Ça couvre l'immense majorité des usages d'un bot conversationnel.</div>
     <div class="callout warn reveal"><b>Là où ça casse :</b> une notification programmée (cron) ou un résultat de tâche longue qui arrive plus de 24h après le dernier message échoue (erreur Meta 131047, « re-engagement »). Hermes prévient d'ailleurs l'agent de cette fenêtre dans son prompt système, pour qu'il le mentionne quand il planifie un message différé.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Sécurité : tout vit dans <code>~/.hermes/.env</code></h2>
-    <p class="reveal"><strong>Token temporaire vs token de prod.</strong> Le token généré dans le tableau de bord Meta expire au bout de 24h — utile pour tester, inutilisable en prod (ton bot tombe le lendemain). Pour la production, tu crées un <em>System User token permanent</em> (permissions messaging WhatsApp, expiration « jamais »), tu le mets dans <code>~/.hermes/.env</code>, et tu redémarres la passerelle.</p>
+    <p class="reveal"><strong>Token temporaire vs token de prod.</strong> Le token généré dans le tableau de bord Meta expire au bout de 24h : utile pour tester, inutilisable en prod (ton bot tombe le lendemain). Pour la production, tu crées un <em>System User token permanent</em> (permissions messaging WhatsApp, expiration « jamais »), tu le mets dans <code>~/.hermes/.env</code>, et tu redémarres la passerelle.</p>
     <div class="callout reveal"><b>Les 3 secrets, et leur risque :</b><br>
       • <b>App Secret</b> → comme un mot de passe. Qui l'a peut forger de faux entrants qu'Hermes acceptera comme authentiques.<br>
       • <b>Access Token</b> → l'identité du bot, équivalent d'une clé d'API longue durée. Compromis ? Révoque tout de suite.<br>
       • <b>Verify Token</b> → enjeu plus faible, mais à ne pas committer non plus.</div>
-    <div class="callout warn reveal"><b>L'allowlist, le garde-fou à ne pas oublier :</b> en plus de la whitelist Meta, Hermes a sa propre liste de numéros autorisés (<code>WHATSAPP_CLOUD_ALLOWED_USERS</code>). Par défaut, sans allowlist, <b>tout entrant est refusé</b> — c'est voulu : personne ne peut piloter ton bot avec un numéro inconnu.</div>
+    <div class="callout warn reveal"><b>L'allowlist, le garde-fou à ne pas oublier :</b> en plus de la whitelist Meta, Hermes a sa propre liste de numéros autorisés (<code>WHATSAPP_CLOUD_ALLOWED_USERS</code>). Par défaut, sans allowlist, <b>tout entrant est refusé</b>, c'est voulu : personne ne peut piloter ton bot avec un numéro inconnu.</div>
 
     <h2 class="reveal">Le récap, dans l'ordre</h2>
-    <p class="reveal">Si tu lances ça ce soir avec <code>hermes whatsapp-cloud</code>, voici la séquence — chaque étape débloque la suivante.</p>
+    <p class="reveal">Si tu lances ça ce soir avec <code>hermes whatsapp-cloud</code>, voici la séquence : chaque étape débloque la suivante.</p>
     <table class="matrix reveal">
       <thead><tr><th>#</th><th>Étape</th><th>Le point d'attention</th></tr></thead>
       <tbody>
@@ -355,12 +355,13 @@ body.gate-on .gate-card{transform:none}
   <ul>
     <li><a href="/ressources/agent-whatsapp-claude-kapso" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude a son propre numéro WhatsApp : le guide pour monter ton agent</a></li>
     <li><a href="/ressources/whatsapp-registres-etat" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Monte ton agent WhatsApp branché sur les registres de l'État</a></li>
-    <li><a href="/ressources/agent-reach" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Donne Internet à ton agent IA — gratuitement</a></li>
+    <li><a href="/ressources/agent-reach" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Donne Internet à ton agent IA, gratuitement</a></li>
     <li><a href="/ressources/cowork-sans-toi" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Ton IA continue à bosser, laptop fermé</a></li>
   </ul>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -369,7 +370,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -401,9 +402,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -489,11 +490,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -502,14 +503,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

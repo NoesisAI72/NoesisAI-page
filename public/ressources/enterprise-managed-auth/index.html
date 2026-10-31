@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/enterprise-managed-auth">
-<title>Qui décide, et avec quel compte — NoesisAI</title>
+<title>Qui décide, et avec quel compte - NoesisAI</title>
 <meta name="description" content="Le guide complet sur l'enterprise-managed auth de Claude : le schéma des deux décisions, les 10 connecteurs compatibles, les prérequis, la config écran par écran, le fonctionnement technique et un plan de pilote sur une seule équipe.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Qui décide, et avec quel compte">
@@ -304,7 +304,7 @@ body.gate-on .gate-card{transform:none}
 
     <p class="lead reveal">Hier, l'<strong>enterprise-managed auth</strong> est passé en disponibilité générale sur les plans Team et Enterprise de Claude. Derrière le nom barbare, une seule idée : <strong>l'admin autorise un connecteur une fois, depuis l'annuaire d'identité de la boîte</strong>, et tout le monde en hérite au premier login. Ce guide reprend tout : le schéma des deux décisions, les 10 connecteurs compatibles, les prérequis réels, la config écran par écran, ce qui se passe sous le capot, et un plan de pilote sur une seule équipe.</p>
 
-    <div class="callout reveal"><b>La phrase à retenir :</b> ce qui bloque un déploiement Claude, c'est rarement le modèle. C'est la question posée en réunion sécurité — <em>qui a accès à quoi, et avec quel compte</em>. C'est exactement cette question-là qui vient d'être déplacée.</div>
+    <div class="callout reveal"><b>La phrase à retenir :</b> ce qui bloque un déploiement Claude, c'est rarement le modèle. C'est la question posée en réunion sécurité : <em>qui a accès à quoi, et avec quel compte</em>. C'est exactement cette question-là qui vient d'être déplacée.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le schéma des deux décisions</h2>
     <p class="reveal">Brancher un outil dans Claude, ça n'a jamais été une décision. C'en a toujours été <strong>deux</strong>, prises par deux personnes différentes, à deux moments différents. C'est la deuxième qui vient de changer de main.</p>
@@ -316,14 +316,14 @@ body.gate-on .gate-card{transform:none}
         <tr><td><b>Qui a le pouvoir de couper l'accès</b></td><td>Le salarié (ou personne, en pratique)</td><td><span class="star">★</span> L'annuaire, comme pour tout le reste du SI</td></tr>
       </tbody>
     </table>
-    <p class="reveal"><strong>Le nouveau scénario.</strong> Un salarié arrive, se logue à Claude lundi matin, et ses outils sont déjà branchés. Slack, Notion, Atlassian, Figma. Zéro écran d'autorisation, zéro ticket au support. L'accès suit les <strong>rôles et les groupes qui existent déjà</strong> dans l'annuaire — tu ne recrées pas une deuxième cartographie des droits en parallèle. Anthropic appelle ça le « zero-touch connector setup ».</p>
+    <p class="reveal"><strong>Le nouveau scénario.</strong> Un salarié arrive, se logue à Claude lundi matin, et ses outils sont déjà branchés. Slack, Notion, Atlassian, Figma. Zéro écran d'autorisation, zéro ticket au support. L'accès suit les <strong>rôles et les groupes qui existent déjà</strong> dans l'annuaire : tu ne recrées pas une deuxième cartographie des droits en parallèle. Anthropic appelle ça le « zero-touch connector setup ».</p>
 
     <h2 class="reveal"><span class="numtag">2</span>Les quatre problèmes que ça règle</h2>
-    <p class="reveal"><strong>L'onboarding.</strong> Les connecteurs sont là dès le premier login, au lieu d'une semaine passée à cliquer « Autoriser » outil par outil. Pour une boîte qui intègre plusieurs personnes par mois, c'est le poste de friction n°1 qui disparaît — et surtout, l'usage de Claude ne dépend plus de la bonne volonté de chacun à finir sa configuration.</p>
-    <p class="reveal"><strong>L'offboarding.</strong> Tu désactives la personne dans l'annuaire, et ses connecteurs tombent avec. La révocation côté annuaire met fin aux sessions de connecteur en cours — au lieu d'un jeton d'accès qui traîne quelque part parce que personne ne sait qu'il existe. C'est le point qui fait basculer la sécurité, parce que c'est le seul du lot qui ferme un risque au lieu d'ouvrir un confort.</p>
-    <p class="reveal"><strong>Le mélange perso/pro.</strong> Tu peux exiger qu'un connecteur ne passe <strong>que</strong> par l'annuaire, et donc exclure les comptes personnels. Fini le salarié qui branche son Notion perso sur l'espace de travail de la boîte sans mauvaise intention — et fini la donnée d'entreprise qui transite par un compte que tu ne contrôles pas.</p>
-    <p class="reveal"><strong>Le pilote.</strong> Tu ouvres un connecteur à une seule équipe, tu observes, puis tu élargis. C'est le point détaillé en section 8 — c'est aussi celui qui fait passer le sujet en comité, parce qu'il transforme « on déploie l'IA » en « on teste sur douze personnes ».</p>
-    <div class="callout warn reveal"><b>À dire à ta direction :</b> ce n'est pas « une fonctionnalité IA de plus ». C'est le moment où le déploiement de Claude arrête d'être un sujet d'outil et devient un sujet de gestion des accès — donc un sujet que la DSI et la sécurité savent déjà instruire, avec leurs propres process.</div>
+    <p class="reveal"><strong>L'onboarding.</strong> Les connecteurs sont là dès le premier login, au lieu d'une semaine passée à cliquer « Autoriser » outil par outil. Pour une boîte qui intègre plusieurs personnes par mois, c'est le poste de friction n°1 qui disparaît, et surtout, l'usage de Claude ne dépend plus de la bonne volonté de chacun à finir sa configuration.</p>
+    <p class="reveal"><strong>L'offboarding.</strong> Tu désactives la personne dans l'annuaire, et ses connecteurs tombent avec. La révocation côté annuaire met fin aux sessions de connecteur en cours : au lieu d'un jeton d'accès qui traîne quelque part parce que personne ne sait qu'il existe. C'est le point qui fait basculer la sécurité, parce que c'est le seul du lot qui ferme un risque au lieu d'ouvrir un confort.</p>
+    <p class="reveal"><strong>Le mélange perso/pro.</strong> Tu peux exiger qu'un connecteur ne passe <strong>que</strong> par l'annuaire, et donc exclure les comptes personnels. Fini le salarié qui branche son Notion perso sur l'espace de travail de la boîte sans mauvaise intention, et fini la donnée d'entreprise qui transite par un compte que tu ne contrôles pas.</p>
+    <p class="reveal"><strong>Le pilote.</strong> Tu ouvres un connecteur à une seule équipe, tu observes, puis tu élargis. C'est le point détaillé en section 8 : c'est aussi celui qui fait passer le sujet en comité, parce qu'il transforme « on déploie l'IA » en « on teste sur douze personnes ».</p>
+    <div class="callout warn reveal"><b>À dire à ta direction :</b> ce n'est pas « une fonctionnalité IA de plus ». C'est le moment où le déploiement de Claude arrête d'être un sujet d'outil et devient un sujet de gestion des accès, donc un sujet que la DSI et la sécurité savent déjà instruire, avec leurs propres process.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Les 10 connecteurs compatibles</h2>
     <p class="reveal">Au passage en disponibilité générale, dix connecteurs officiels supportent l'autorisation gérée. Chaque éditeur maintient sa propre documentation de configuration, et Claude affiche le lien directement dans la console d'admin au moment où tu actives le connecteur. Le point d'entrée côté Claude est la page d'aide « <a href="https://support.claude.com/en/articles/15537633-authorize-mcp-connectors-for-your-entire-organization" target="_blank" rel="noopener">Authorize MCP connectors for your entire organization</a> ».</p>
@@ -342,20 +342,20 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Granola</td><td>Notes de réunion</td><td>La bêta (juin)</td></tr>
       </tbody>
     </table>
-    <div class="callout reveal"><b>Annoncés comme « bientôt » :</b> Exa, Miro et Zoom. Et pour les équipes techniques : un éditeur peut ajouter l'autorisation gérée à <em>son propre</em> connecteur publié dans le répertoire Claude, en implémentant une extension ouverte du protocole MCP. La porte n'est donc pas fermée aux outils métier maison — c'est le sujet de la section 6.</div>
-    <p class="reveal"><strong>Une nuance qui compte.</strong> Chaque connecteur du répertoire s'appuie sur une <em>seule application OAuth partagée</em> : il n'y a pas de client OAuth dédié par organisation. Ce qui délimite ce que Claude peut voir, ce sont les droits que la personne possède déjà dans l'outil concerné. Autrement dit, l'autorisation gérée branche un accès — elle n'en crée pas un nouveau. Un salarié qui n'a pas accès à un canal Slack ne l'obtient pas parce que Claude est branché.</p>
+    <div class="callout reveal"><b>Annoncés comme « bientôt » :</b> Exa, Miro et Zoom. Et pour les équipes techniques : un éditeur peut ajouter l'autorisation gérée à <em>son propre</em> connecteur publié dans le répertoire Claude, en implémentant une extension ouverte du protocole MCP. La porte n'est donc pas fermée aux outils métier maison : c'est le sujet de la section 6.</div>
+    <p class="reveal"><strong>Une nuance qui compte.</strong> Chaque connecteur du répertoire s'appuie sur une <em>seule application OAuth partagée</em> : il n'y a pas de client OAuth dédié par organisation. Ce qui délimite ce que Claude peut voir, ce sont les droits que la personne possède déjà dans l'outil concerné. Autrement dit, l'autorisation gérée branche un accès : elle n'en crée pas un nouveau. Un salarié qui n'a pas accès à un canal Slack ne l'obtient pas parce que Claude est branché.</p>
 
     <h2 class="reveal"><span class="numtag">4</span>Les prérequis, avant même de regarder les connecteurs</h2>
     <p class="reveal">C'est là que 80 % des boîtes vont s'arrêter, et autant le savoir tout de suite plutôt qu'après avoir vendu le projet en interne.</p>
     <p class="reveal"><strong>Un plan Team ou Enterprise.</strong> La fonctionnalité n'existe pas sur les formules individuelles.</p>
-    <p class="reveal"><strong>Un annuaire d'identité branché sur ton organisation Claude.</strong> Le SSO doit déjà fonctionner. Si tes salariés se connectent à Claude avec une adresse et un mot de passe, il n'y a pas d'annuaire pour porter la décision — donc rien à déléguer.</p>
+    <p class="reveal"><strong>Un annuaire d'identité branché sur ton organisation Claude.</strong> Le SSO doit déjà fonctionner. Si tes salariés se connectent à Claude avec une adresse et un mot de passe, il n'y a pas d'annuaire pour porter la décision, donc rien à déléguer.</p>
     <p class="reveal"><strong>Okta au lancement</strong>, d'autres fournisseurs d'identité annoncés. Ce n'est pas un choix arbitraire : le mécanisme s'appuie sur un standard ouvert qu'Okta a porté (voir section 7), et l'écosystème s'aligne progressivement.</p>
-    <div class="callout warn reveal"><b>Le vrai ordre des choses :</b> SSO d'abord, connecteurs ensuite. Si ton SSO n'est pas propre, l'autorisation gérée ne réparera rien — elle héritera de ton désordre et l'appliquera à tes outils métier. Un annuaire à jour est le prérequis, pas un détail d'implémentation.</div>
+    <div class="callout warn reveal"><b>Le vrai ordre des choses :</b> SSO d'abord, connecteurs ensuite. Si ton SSO n'est pas propre, l'autorisation gérée ne réparera rien : elle héritera de ton désordre et l'appliquera à tes outils métier. Un annuaire à jour est le prérequis, pas un détail d'implémentation.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>La config, écran par écran</h2>
     <p class="reveal">Tu la fais une fois par connecteur. Compte une poignée de minutes si ton annuaire est déjà branché.</p>
     <p class="reveal"><strong>Le point de départ.</strong> Paramètres de l'organisation → <em>Connectors</em> → tu choisis le connecteur → onglet <em>Configuration</em> → « Set up » à côté de <em>Managed authorization</em>.</p>
-    <p class="reveal"><strong>Étape « Connect ».</strong> Tu confirmes la liaison avec ton annuaire d'identité et tu lances un test. Si le test ne passe pas, rien n'est activé — tu ne casses rien en essayant.</p>
+    <p class="reveal"><strong>Étape « Connect ».</strong> Tu confirmes la liaison avec ton annuaire d'identité et tu lances un test. Si le test ne passe pas, rien n'est activé : tu ne casses rien en essayant.</p>
     <p class="reveal"><strong>Étape « Roles ».</strong> Le cœur du sujet : tu choisis <em>qui reçoit ce connecteur automatiquement</em>. Tu peux cocher les rôles intégrés (User, Admin, Owner, Primary owner) ou t'appuyer sur des rôles personnalisés. Laisser les rôles intégrés décochés, c'est exactement ce qui te donne un pilote.</p>
     <p class="reveal"><strong>Étape « Scopes ».</strong> Tu définis les permissions que Claude a le droit de demander via ton annuaire. C'est là que tu réponds à la sécurité avec des cases, pas avec une promesse.</p>
     <p class="reveal">Puis « Save &amp; turn on ». Un troisième réglage existe côté rôle : dans l'onglet <em>Connectors</em> d'un rôle personnalisé, tu choisis entre <em>Individually</em>, <em>Managed authorization</em> ou <em>Set per connector</em>. Traduction : tu peux traiter un connecteur sensible différemment des autres, <strong>pour le même rôle</strong>. C'est le réglage le plus fin du dispositif, et le moins connu.</p>
@@ -369,21 +369,21 @@ body.gate-on .gate-card{transform:none}
     </table>
 
     <h2 class="reveal"><span class="numtag">6</span>Ce que voit le salarié (et le filet de sécurité)</h2>
-    <p class="reveal">Rien. C'est tout l'intérêt. Il ouvre Claude, le connecteur est là, il travaille — avec l'identité fournie par l'annuaire de la boîte, pas avec un compte qu'il a choisi. Son accès s'élargit ou se retire au rythme de son provisionnement dans l'annuaire, sans qu'il ait quoi que ce soit à faire.</p>
-    <p class="reveal"><strong>Le filet.</strong> Si l'autorisation gérée échoue, Claude propose quand même la connexion individuelle pour ne bloquer personne. Utile au quotidien — mais à garder en tête si ton objectif est de <em>fermer</em> l'accès par comptes personnels : c'est un réglage à poser explicitement, ce n'est pas un effet automatique du dispositif.</p>
+    <p class="reveal">Rien. C'est tout l'intérêt. Il ouvre Claude, le connecteur est là, il travaille, avec l'identité fournie par l'annuaire de la boîte, pas avec un compte qu'il a choisi. Son accès s'élargit ou se retire au rythme de son provisionnement dans l'annuaire, sans qu'il ait quoi que ce soit à faire.</p>
+    <p class="reveal"><strong>Le filet.</strong> Si l'autorisation gérée échoue, Claude propose quand même la connexion individuelle pour ne bloquer personne. Utile au quotidien, mais à garder en tête si ton objectif est de <em>fermer</em> l'accès par comptes personnels : c'est un réglage à poser explicitement, ce n'est pas un effet automatique du dispositif.</p>
     <p class="reveal">À noter aussi : les connecteurs personnels restent possibles en parallèle pour l'usage individuel. L'autorisation gérée n'efface pas l'ancien monde, elle lui ajoute une voie officielle.</p>
 
-    <h2 class="reveal"><span class="numtag">7</span>Sous le capot — la page à transmettre à ta DSI</h2>
+    <h2 class="reveal"><span class="numtag">7</span>Sous le capot : la page à transmettre à ta DSI</h2>
     <p class="reveal">Cette section est plus technique. Elle sert à une chose : quand ton RSSI demandera « concrètement, il se passe quoi ? », tu auras la réponse au lieu d'un « c'est automatique ».</p>
     <p class="reveal"><strong>Le principe.</strong> Au lieu d'afficher un écran de consentement, Claude présente au serveur d'autorisation de l'éditeur une <strong>assertion d'identité</strong> : un jeton JWT signé par l'annuaire du client, qui atteste de l'identité de l'utilisateur. Le serveur vérifie la signature et renvoie un jeton d'accès, en un seul échange en arrière-plan. Pas de redirection navigateur, pas de page de consentement. Le connecteur est simplement disponible.</p>
     <p class="reveal"><strong>Les standards utilisés.</strong> C'est l'extension « enterprise managed authorization » du protocole MCP, construite sur le <em>JWT bearer authorization grant</em> (RFC 7523) : le serveur doit accepter <code>urn:ietf:params:oauth:grant-type:jwt-bearer</code> sur son endpoint de token et l'annoncer dans ses métadonnées (RFC 8414). Quand l'annuaire le permet, Claude ajoute aussi un <em>resource indicator</em> (RFC 8707) pointant l'URL du serveur MCP, pour lier le jeton à la bonne ressource.</p>
-    <p class="reveal"><strong>Les garde-fous.</strong> Le serveur d'autorisation doit maintenir une liste blanche d'émetteurs de confiance <em>par client</em>, et rejeter toute assertion dont l'émetteur n'y figure pas — même si la signature est valable. Signature, émetteur, audience, expiration et sujet sont vérifiés à chaque requête. Point important : l'enregistrement dynamique de client (DCR) n'est pas supporté dans ce mode, parce que l'annuaire inscrit un <code>client_id</code> fixe dans chaque assertion.</p>
-    <p class="reveal"><strong>Durées de vie.</strong> La durée du jeton d'accès est fixée par l'éditeur, celle de l'assertion par l'annuaire du client — Anthropic ne contrôle ni l'une ni l'autre. Un jeton court (une heure, typiquement) ne force pas le salarié à se ré-authentifier : Claude redemande une assertion à l'annuaire en silence, puis un nouveau jeton d'accès. C'est aussi ce qui rend la révocation crédible : couper à la source coupe partout.</p>
+    <p class="reveal"><strong>Les garde-fous.</strong> Le serveur d'autorisation doit maintenir une liste blanche d'émetteurs de confiance <em>par client</em>, et rejeter toute assertion dont l'émetteur n'y figure pas, même si la signature est valable. Signature, émetteur, audience, expiration et sujet sont vérifiés à chaque requête. Point important : l'enregistrement dynamique de client (DCR) n'est pas supporté dans ce mode, parce que l'annuaire inscrit un <code>client_id</code> fixe dans chaque assertion.</p>
+    <p class="reveal"><strong>Durées de vie.</strong> La durée du jeton d'accès est fixée par l'éditeur, celle de l'assertion par l'annuaire du client : Anthropic ne contrôle ni l'une ni l'autre. Un jeton court (une heure, typiquement) ne force pas le salarié à se ré-authentifier : Claude redemande une assertion à l'annuaire en silence, puis un nouveau jeton d'accès. C'est aussi ce qui rend la révocation crédible : couper à la source coupe partout.</p>
     <p class="reveal"><strong>Ce qui n'entre pas dans le cadre.</strong> Un serveur totalement sans authentification ne renvoie jamais de <code>401</code>, donc il n'y a aucun moment où l'échange d'assertion peut avoir lieu : l'autorisation gérée ne s'y applique pas.</p>
-    <div class="callout reveal"><b>Pour les équipes qui construisent leur propre connecteur :</b> la documentation développeur est publique (<a href="https://claude.com/docs/connectors/building/enterprise-managed-auth" target="_blank" rel="noopener">Enterprise Managed Auth for connectors</a>), et un bac à sable permet de dérouler le flux complet, jetons décodés, sans même disposer d'une organisation Claude : <a href="https://xaa.dev" target="_blank" rel="noopener">xaa.dev</a>. Si ton serveur d'autorisation s'appuie sur une plateforme d'identité du marché, il n'y a souvent aucun code à écrire — juste une option à activer.</div>
+    <div class="callout reveal"><b>Pour les équipes qui construisent leur propre connecteur :</b> la documentation développeur est publique (<a href="https://claude.com/docs/connectors/building/enterprise-managed-auth" target="_blank" rel="noopener">Enterprise Managed Auth for connectors</a>), et un bac à sable permet de dérouler le flux complet, jetons décodés, sans même disposer d'une organisation Claude : <a href="https://xaa.dev" target="_blank" rel="noopener">xaa.dev</a>. Si ton serveur d'autorisation s'appuie sur une plateforme d'identité du marché, il n'y a souvent aucun code à écrire : juste une option à activer.</div>
 
     <h2 class="reveal"><span class="numtag">8</span>D'où ça vient (et pourquoi ce n'est pas un gadget)</h2>
-    <p class="reveal">Ce n'est pas une fonctionnalité inventée dans son coin. C'est l'atterrissage dans Claude d'un standard ouvert construit depuis plus d'un an, sous le nom de <strong>Cross App Access (XAA)</strong> — une extension d'OAuth pensée pour sécuriser les connexions agent-vers-application.</p>
+    <p class="reveal">Ce n'est pas une fonctionnalité inventée dans son coin. C'est l'atterrissage dans Claude d'un standard ouvert construit depuis plus d'un an, sous le nom de <strong>Cross App Access (XAA)</strong> : une extension d'OAuth pensée pour sécuriser les connexions agent-vers-application.</p>
     <table class="matrix reveal">
       <thead><tr><th>Quand</th><th>Quoi</th></tr></thead>
       <tbody>
@@ -394,7 +394,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td><span class="star">★</span> 24 août 2026</td><td>Disponibilité générale : 10 connecteurs, Team &amp; Enterprise</td></tr>
       </tbody>
     </table>
-    <p class="reveal">Des entreprises l'ont déployé pendant la phase bêta — HubSpot, Ramp et Webflow ont été citées publiquement par Anthropic et Okta. Et l'argument officiel d'Anthropic tient en une ligne : c'est ce qui manquait à MCP pour passer à l'échelle dans une entreprise. La lecture est simple : le protocole savait déjà brancher des outils, il ne savait pas encore le faire à 500 personnes sans créer 500 décisions individuelles.</p>
+    <p class="reveal">Des entreprises l'ont déployé pendant la phase bêta : HubSpot, Ramp et Webflow ont été citées publiquement par Anthropic et Okta. Et l'argument officiel d'Anthropic tient en une ligne : c'est ce qui manquait à MCP pour passer à l'échelle dans une entreprise. La lecture est simple : le protocole savait déjà brancher des outils, il ne savait pas encore le faire à 500 personnes sans créer 500 décisions individuelles.</p>
 
     <h2 class="reveal"><span class="numtag">9</span>Tester sur une équipe avant d'ouvrir à tous</h2>
     <p class="reveal">La bonne pratique tient en une phrase : <strong>crée un rôle personnalisé, ne coche aucun rôle intégré.</strong> Le connecteur n'arrive alors que chez les personnes de ce rôle. Tu élargis ensuite, quand tu as des réponses au lieu des hypothèses.</p>
@@ -412,21 +412,21 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal"><span class="numtag">10</span>Les 8 questions à préparer avant la réunion sécurité</h2>
     <p class="reveal">Sors cette liste en réunion : elle change le statut de la discussion, parce qu'elle montre que tu as instruit le sujet côté accès, pas seulement côté usage.</p>
     <p class="reveal"><strong>1.</strong> Notre SSO est-il déjà branché sur l'organisation Claude, et à jour ?<br>
-    <strong>2.</strong> Quels rôles et groupes existants portent la décision — et sont-ils fiables aujourd'hui ?<br>
+    <strong>2.</strong> Quels rôles et groupes existants portent la décision, et sont-ils fiables aujourd'hui ?<br>
     <strong>3.</strong> Quel connecteur ouvre-t-on en premier, et pour quelle équipe exactement ?<br>
     <strong>4.</strong> Quels scopes accorde-t-on, et lesquels refuse-t-on volontairement au premier tour ?<br>
     <strong>5.</strong> Veut-on interdire les comptes personnels sur ce connecteur, oui ou non ?<br>
     <strong>6.</strong> A-t-on testé une désactivation de bout en bout, avec un compte de test ?<br>
     <strong>7.</strong> Quelle durée de vie de jeton l'éditeur applique-t-il de son côté ?<br>
     <strong>8.</strong> Qui, chez nous, est propriétaire de ce réglage dans six mois ?</p>
-    <div class="callout warn reveal"><b>Le piège classique :</b> activer les 10 connecteurs d'un coup sur tous les rôles « pour gagner du temps ». Tu troques une semaine d'OAuth contre un mois de discussions sur les scopes. Un rôle, un connecteur, une équipe — puis tu élargis.</div>
+    <div class="callout warn reveal"><b>Le piège classique :</b> activer les 10 connecteurs d'un coup sur tous les rôles « pour gagner du temps ». Tu troques une semaine d'OAuth contre un mois de discussions sur les scopes. Un rôle, un connecteur, une équipe, puis tu élargis.</div>
 
     <h2 class="reveal"><span class="numtag">11</span>Ce que ça ne fait pas</h2>
     <p class="reveal">Autant être clair, parce que c'est là que les projets déraillent.</p>
     <p class="reveal"><strong>Ça ne range pas ta donnée.</strong> Brancher Notion sur Claude ne rend pas ton Notion lisible. Si ta base de connaissances est un cimetière, tu auras un cimetière accessible plus vite.</p>
     <p class="reveal"><strong>Ça ne définit pas tes cas d'usage.</strong> L'accès n'est pas l'adoption. Un connecteur disponible et jamais utilisé, c'est un projet qui a réglé le mauvais problème.</p>
-    <p class="reveal"><strong>Ça ne remplace pas ta gouvernance.</strong> Ça l'applique. Si tes droits sont mal rangés dans l'annuaire, ils seront mal rangés dans Claude — mais plus vite, et sur plus d'outils.</p>
-    <div class="callout win reveal"><b>La bonne façon de le dire en interne :</b> l'enterprise-managed auth n'accélère pas ton projet IA. Il enlève l'obstacle qui l'empêchait de commencer. Ce qui reste à faire — les usages, la donnée, la formation — n'a pas bougé d'un centimètre. Mais tu n'as plus d'excuse pour ne pas le faire.</div>
+    <p class="reveal"><strong>Ça ne remplace pas ta gouvernance.</strong> Ça l'applique. Si tes droits sont mal rangés dans l'annuaire, ils seront mal rangés dans Claude, mais plus vite, et sur plus d'outils.</p>
+    <div class="callout win reveal"><b>La bonne façon de le dire en interne :</b> l'enterprise-managed auth n'accélère pas ton projet IA. Il enlève l'obstacle qui l'empêchait de commencer. Ce qui reste à faire (les usages, la donnée, la formation) n'a pas bougé d'un centimètre. Mais tu n'as plus d'excuse pour ne pas le faire.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -447,6 +447,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>

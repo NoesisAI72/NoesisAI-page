@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/memoire-entreprise">
-<title>Monte ta mémoire d'entreprise — NoesisAI</title>
+<title>Monte ta mémoire d'entreprise - NoesisAI</title>
 <meta name="description" content="Comment transformer tes documents dormants en une mémoire d'entreprise interrogeable (RAG) : comment ça marche, l'architecture type, les prérequis data et la gestion des accès.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Monte ta mémoire d'entreprise">
@@ -290,7 +290,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Monte ta mémoire d'entreprise</h1>
-    <p class="sub">Le savoir de tes 2-3 experts, transformé en base interrogeable — architecture type, prérequis et gouvernance des accès, en clair.</p>
+    <p class="sub">Le savoir de tes 2-3 experts, transformé en base interrogeable : architecture type, prérequis et gouvernance des accès, en clair.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -319,17 +319,17 @@ body.gate-on .gate-card{transform:none}
       }
     </style>
 
-    <p class="lead reveal">Ton expertise la plus rentable — les appels d'offres gagnés, les objections déjà traitées, les montages qui ont marché — dort dans des mails, des PDF et des dossiers que personne ne rouvre. Une <strong>mémoire d'entreprise interrogeable</strong> transforme cet actif endormi en réponses fiables, sourcées, disponibles en une question. Voici comment on la monte pour de vrai : le principe, l'architecture type, les prérequis, et comment on gère qui voit quoi.</p>
+    <p class="lead reveal">Ton expertise la plus rentable (les appels d'offres gagnés, les objections déjà traitées, les montages qui ont marché) dort dans des mails, des PDF et des dossiers que personne ne rouvre. Une <strong>mémoire d'entreprise interrogeable</strong> transforme cet actif endormi en réponses fiables, sourcées, disponibles en une question. Voici comment on la monte pour de vrai : le principe, l'architecture type, les prérequis, et comment on gère qui voit quoi.</p>
 
-    <div class="callout reveal"><b>Le fil rouge :</b> on ne construit pas une techno, on installe un réflexe — la bonne info remonte au bon moment, pas trois jours trop tard.</div>
+    <div class="callout reveal"><b>Le fil rouge :</b> on ne construit pas une techno, on installe un réflexe, la bonne info remonte au bon moment, pas trois jours trop tard.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Comment ça marche, en clair</h2>
-    <p class="reveal"><strong>Le problème d'un assistant seul.</strong> Un assistant IA « classique » répond de mémoire, à partir de ce qu'il a appris en général. Sur <em>tes</em> dossiers, il ne sait rien — et quand il ne sait pas, il a tendance à inventer une réponse plausible.</p>
-    <p class="reveal"><strong>Ce que change le RAG.</strong> RAG veut dire « génération augmentée par la recherche ». En clair : avant de répondre, le système va d'abord chercher dans tes documents les passages précis qui traitent la question. Puis un assistant comme Claude rédige la réponse à partir de ces passages — et cite d'où ça vient.</p>
+    <p class="reveal"><strong>Le problème d'un assistant seul.</strong> Un assistant IA « classique » répond de mémoire, à partir de ce qu'il a appris en général. Sur <em>tes</em> dossiers, il ne sait rien, et quand il ne sait pas, il a tendance à inventer une réponse plausible.</p>
+    <p class="reveal"><strong>Ce que change le RAG.</strong> RAG veut dire « génération augmentée par la recherche ». En clair : avant de répondre, le système va d'abord chercher dans tes documents les passages précis qui traitent la question. Puis un assistant comme Claude rédige la réponse à partir de ces passages, et cite d'où ça vient.</p>
     <div class="callout win reveal"><b>Lecture rapide :</b> sans RAG, l'assistant récite de mémoire et peut inventer. Avec RAG, il lit ta source avant de parler, et te la montre. C'est la différence entre « je crois que… » et « voici, page 12 ».</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Les briques d'un RAG</h2>
-    <p class="reveal">Quand une question arrive, le système retrouve les passages pertinents dans tes archives, puis un assistant rédige la réponse à partir d'eux — sans rien inventer. En coulisses, six briques font ce travail, en deux temps.</p>
+    <p class="reveal">Quand une question arrive, le système retrouve les passages pertinents dans tes archives, puis un assistant rédige la réponse à partir d'eux, sans rien inventer. En coulisses, six briques font ce travail, en deux temps.</p>
 
     <div class="rag-flow reveal" role="img" aria-label="Chaîne RAG : 1 Documents, 2 Découpage, 3 Embedding, 4 Base vectorielle, 5 LLM">
       <div class="rag-step"><span class="rag-num">1</span><div class="rag-t">Documents</div><div class="rag-s">tes archives</div></div>
@@ -343,15 +343,15 @@ body.gate-on .gate-card{transform:none}
       <div class="rag-step"><span class="rag-num">5</span><div class="rag-t">LLM</div><div class="rag-s">la rédaction</div></div>
     </div>
 
-    <div class="rag-orch reveal"><span class="rag-orch-num">6</span><div><b>L'orchestrateur</b> — la 6ᵉ brique, en chef d'orchestre : elle relie les cinq étapes, applique les droits d'accès et renvoie la réponse avec sa source.</div></div>
+    <div class="rag-orch reveal"><span class="rag-orch-num">6</span><div><b>L'orchestrateur</b>, la 6ᵉ brique, en chef d'orchestre : elle relie les cinq étapes, applique les droits d'accès et renvoie la réponse avec sa source.</div></div>
 
-    <p class="reveal"><strong>Temps 1 — préparer la mémoire (une fois).</strong> Tes documents (1) sont découpés en passages de la taille d'une réponse (2), traduits en « coordonnées de sens » par les <em>embeddings</em> (3), puis rangés dans une base vectorielle (4) — l'annuaire interrogeable de ta connaissance (ex. Supabase / pgvector).</p>
-    <p class="reveal"><strong>Temps 2 — répondre (à chaque question).</strong> La base retrouve les 3 à 5 passages les plus proches de la question — c'est le <em>retrieval</em> — et un assistant comme Claude (5) rédige la réponse en français clair, source à l'appui.</p>
-    <div class="callout reveal"><b>Règle :</b> la qualité d'une réponse dépend d'abord de la qualité du retrieval. Si le système ramène les mauvais passages, même le meilleur assistant répondra à côté — bien écrit, mais à côté.</div>
+    <p class="reveal"><strong>Temps 1 : préparer la mémoire (une fois).</strong> Tes documents (1) sont découpés en passages de la taille d'une réponse (2), traduits en « coordonnées de sens » par les <em>embeddings</em> (3), puis rangés dans une base vectorielle (4) : l'annuaire interrogeable de ta connaissance (ex. Supabase / pgvector).</p>
+    <p class="reveal"><strong>Temps 2 : répondre (à chaque question).</strong> La base retrouve les 3 à 5 passages les plus proches de la question, c'est le <em>retrieval</em>, et un assistant comme Claude (5) rédige la réponse en français clair, source à l'appui.</p>
+    <div class="callout reveal"><b>Règle :</b> la qualité d'une réponse dépend d'abord de la qualité du retrieval. Si le système ramène les mauvais passages, même le meilleur assistant répondra à côté : bien écrit, mais à côté.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>Les prérequis : le tri en amont</h2>
-    <p class="reveal"><strong>La vérité qu'on te vend rarement.</strong> Une mémoire d'entreprise ne vaut que ce que valent tes données. En vrac, périmées, dupliquées en douze versions — et l'assistant te ressort de la bouillie, avec assurance.</p>
-    <p class="reveal"><strong>Ce que ça implique concrètement.</strong> Avant de brancher quoi que ce soit : inventorier les sources qui comptent, écarter le périmé, dédupliquer, garder la version qui fait foi. Ce ménage n'est pas un détail technique — c'est la moitié du travail.</p>
+    <p class="reveal"><strong>La vérité qu'on te vend rarement.</strong> Une mémoire d'entreprise ne vaut que ce que valent tes données. En vrac, périmées, dupliquées en douze versions, et l'assistant te ressort de la bouillie, avec assurance.</p>
+    <p class="reveal"><strong>Ce que ça implique concrètement.</strong> Avant de brancher quoi que ce soit : inventorier les sources qui comptent, écarter le périmé, dédupliquer, garder la version qui fait foi. Ce ménage n'est pas un détail technique : c'est la moitié du travail.</p>
     <div class="callout warn reveal"><b>À faire avant tout :</b> un audit data. Choisis un périmètre étroit et propre (ex. tes réponses aux appels d'offres des trois dernières années) plutôt que « tout le serveur ». Une petite base propre bat une grosse base sale.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>La gouvernance : qui voit quoi</h2>
@@ -372,7 +372,7 @@ body.gate-on .gate-card{transform:none}
         <tr><td>5. Étendre</td><td><span class="star">★</span> Une équipe / un corpus de plus à la fois, avec ses droits</td><td>Ouvrir tous les accès d'un coup</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Lecture rapide :</b> commence par UN cas d'usage sur UN corpus propre. Le jour où un nouvel arrivant devient opérationnel en interrogeant la mémoire — au lieu de déranger tes deux experts — tu as gagné, et tu sais quoi étendre ensuite.</div>
+    <div class="callout win reveal"><b>Lecture rapide :</b> commence par UN cas d'usage sur UN corpus propre. Le jour où un nouvel arrivant devient opérationnel en interrogeant la mémoire, au lieu de déranger tes deux experts, tu as gagné, et tu sais quoi étendre ensuite.</div>
 
   
     <!-- lien service noesisai.fr -->
@@ -393,6 +393,7 @@ body.gate-on .gate-card{transform:none}
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -473,7 +474,7 @@ body.gate-on .gate-card{transform:none}
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

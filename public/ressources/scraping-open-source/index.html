@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/scraping-open-source">
-<title>10 repos open source pour extraire la data dont ton IA a besoin — NoesisAI</title>
+<title>10 repos open source pour extraire la data dont ton IA a besoin - NoesisAI</title>
 <meta name="description" content="Panorama vulgarisé de 10 outils open source de scraping et d'extraction de données (Firecrawl, Crawl4AI, MarkItDown, Browser Use, Scrapy...) : à quoi sert chacun, quand l'utiliser, licences, maintenance et cadre RGPD.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10 repos open source pour extraire la data dont ton IA a besoin">
@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>10 repos open source pour extraire la data dont ton IA a besoin</h1>
-    <p class="sub">Ce que fait vraiment chaque outil, pour quel cas d'usage — et les pièges que les listes recopiées ne mentionnent jamais.</p>
+    <p class="sub">Ce que fait vraiment chaque outil, pour quel cas d'usage, et les pièges que les listes recopiées ne mentionnent jamais.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -240,73 +240,73 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Une IA ne vaut que par la donnée qu'on lui donne. Et la donnée, la plupart du temps, elle est <strong>dehors</strong> : sur des sites, dans des PDF, dans un catalogue concurrent, dans une app mobile. Voici les 10 outils open source qui vont la chercher — expliqués simplement, avec ce que chacun fait <em>vraiment</em>, quand l'utiliser, et les pièges que personne ne mentionne.</p>
+    <p class="lead reveal">Une IA ne vaut que par la donnée qu'on lui donne. Et la donnée, la plupart du temps, elle est <strong>dehors</strong> : sur des sites, dans des PDF, dans un catalogue concurrent, dans une app mobile. Voici les 10 outils open source qui vont la chercher, expliqués simplement, avec ce que chacun fait <em>vraiment</em>, quand l'utiliser, et les pièges que personne ne mentionne.</p>
 
-    <div class="callout reveal"><b>La carte, en 3 familles :</b> <strong>1)</strong> transformer une page ou un fichier en texte propre pour l'IA (n° 1, 2, 3) — <strong>2)</strong> collecter en masse, de façon fiable et industrielle (n° 4, 5) — <strong>3)</strong> aller chercher ce qui résiste : sites qui bloquent, sites qui changent, apps mobiles (n° 6 à 10). Tu n'as pas besoin des 10. Tu as besoin du bon.</div>
+    <div class="callout reveal"><b>La carte, en 3 familles :</b> <strong>1)</strong> transformer une page ou un fichier en texte propre pour l'IA (n° 1, 2, 3) (<strong>2)</strong> collecter en masse, de façon fiable et industrielle (n° 4, 5)) <strong>3)</strong> aller chercher ce qui résiste : sites qui bloquent, sites qui changent, apps mobiles (n° 6 à 10). Tu n'as pas besoin des 10. Tu as besoin du bon.</div>
 
-    <p class="reveal"><strong>Note de méthode.</strong> Tous les chiffres ci-dessous (popularité, licence, activité) ont été vérifiés directement sur GitHub le <strong>8 août 2026</strong>. Les compteurs bougent — l'ordre de grandeur, lui, reste valable longtemps.</p>
+    <p class="reveal"><strong>Note de méthode.</strong> Tous les chiffres ci-dessous (popularité, licence, activité) ont été vérifiés directement sur GitHub le <strong>8 août 2026</strong>. Les compteurs bougent : l'ordre de grandeur, lui, reste valable longtemps.</p>
 
-    <h2 class="reveal"><span class="numtag">1</span>Firecrawl — une URL, de la donnée propre</h2>
+    <h2 class="reveal"><span class="numtag">1</span>Firecrawl : une URL, de la donnée propre</h2>
     <p class="reveal"><em>163 000 ★ · TypeScript · licence AGPL-3.0 · très actif</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Tu lui donnes l'adresse d'un site, il le parcourt tout seul, affiche les pages comme le ferait un navigateur, et ressort du texte structuré directement digérable par une IA. Pas de HTML en vrac, pas de menus ni de bandeaux cookies : le contenu utile.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Tu veux nourrir un assistant IA avec la documentation d'un client, un site produit, une base de connaissances publique. C'est le chemin le plus court entre « ce site existe » et « mon IA sait le lire ».</p>
-    <div class="callout warn reveal"><b>Le piège que personne ne cite :</b> Firecrawl est en licence <strong>AGPL-3.0</strong>. Traduction non-juridique : si tu l'intègres dans un produit que tu revends en ligne, cette licence peut t'obliger à ouvrir ton propre code. Pour un usage interne ou une mission client, aucun souci. Pour un SaaS que tu commercialises, fais valider par un juriste — ou prends leur offre commerciale.</div>
+    <div class="callout warn reveal"><b>Le piège que personne ne cite :</b> Firecrawl est en licence <strong>AGPL-3.0</strong>. Traduction non-juridique : si tu l'intègres dans un produit que tu revends en ligne, cette licence peut t'obliger à ouvrir ton propre code. Pour un usage interne ou une mission client, aucun souci. Pour un SaaS que tu commercialises, fais valider par un juriste, ou prends leur offre commerciale.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Firecrawl →</a></p>
 
-    <h2 class="reveal"><span class="numtag">2</span>Crawl4AI — la version à installer chez toi</h2>
+    <h2 class="reveal"><span class="numtag">2</span>Crawl4AI : la version à installer chez toi</h2>
     <p class="reveal"><em>77 300 ★ · Python · licence Apache-2.0 · très actif</em></p>
-    <p class="reveal"><strong>Ce que ça fait.</strong> Même promesse que le précédent — une page web devient du texte propre — mais pensé pour tourner <strong>sur ta machine ou ton serveur</strong>. Pas de compte, pas de clé d'accès, pas de facturation à la page.</p>
+    <p class="reveal"><strong>Ce que ça fait.</strong> Même promesse que le précédent, une page web devient du texte propre, mais pensé pour tourner <strong>sur ta machine ou ton serveur</strong>. Pas de compte, pas de clé d'accès, pas de facturation à la page.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Deux cas très concrets : la donnée est sensible et ne doit pas transiter par un service tiers, ou le volume est tel qu'un service payant à la page devient absurde. C'est le réflexe « je maîtrise ma chaîne de bout en bout ».</p>
-    <div class="callout reveal"><b>À savoir :</b> contrairement à ce qu'on lit parfois, ce n'est pas « le crawler le plus populaire de GitHub » — Firecrawl le dépasse largement. Ça ne change rien à sa qualité, mais méfie-toi des classements recopiés sans vérification.</div>
+    <div class="callout reveal"><b>À savoir :</b> contrairement à ce qu'on lit parfois, ce n'est pas « le crawler le plus populaire de GitHub » : Firecrawl le dépasse largement. Ça ne change rien à sa qualité, mais méfie-toi des classements recopiés sans vérification.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/unclecode/crawl4ai" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Crawl4AI →</a></p>
 
-    <h2 class="reveal"><span class="numtag">3</span>MarkItDown — tes fichiers deviennent lisibles par l'IA</h2>
+    <h2 class="reveal"><span class="numtag">3</span>MarkItDown : tes fichiers deviennent lisibles par l'IA</h2>
     <p class="reveal"><em>172 400 ★ · Python · licence MIT · signé Microsoft</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Ce n'est pas un outil de collecte web, c'est un <strong>traducteur de formats</strong> : PDF, Word, Excel, PowerPoint, images, pages web… tout ressort en texte simple et structuré que n'importe quelle IA lit sans effort.</p>
-    <p class="reveal"><strong>Quand l'utiliser.</strong> C'est le chaînon manquant de 90 % des projets d'IA en entreprise. Avant de rêver d'un assistant qui répond sur « nos dix ans de documents », il faut que ces documents soient lisibles. C'est exactement ce que fait cet outil — et il est gratuit.</p>
+    <p class="reveal"><strong>Quand l'utiliser.</strong> C'est le chaînon manquant de 90 % des projets d'IA en entreprise. Avant de rêver d'un assistant qui répond sur « nos dix ans de documents », il faut que ces documents soient lisibles. C'est exactement ce que fait cet outil, et il est gratuit.</p>
     <div class="callout win reveal"><b>Si tu ne dois en retenir qu'un :</b> celui-ci. C'est le plus utile au plus grand nombre, le moins risqué juridiquement (licence MIT), et celui qui débloque le plus de projets concrets côté entreprise.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo MarkItDown →</a></p>
 
-    <h2 class="reveal"><span class="numtag">4</span>Scrapy — l'industriel qui tourne depuis 15 ans</h2>
+    <h2 class="reveal"><span class="numtag">4</span>Scrapy : l'industriel qui tourne depuis 15 ans</h2>
     <p class="reveal"><em>63 700 ★ · Python · licence BSD-3 · toujours maintenu</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Le vétéran. Un cadre de travail complet pour collecter de très gros volumes de pages de façon organisée, avec des sorties de données propres et prévisibles.</p>
-    <p class="reveal"><strong>Quand l'utiliser.</strong> Quand le projet passe du bricolage au sérieux : plusieurs dizaines de milliers de pages, une collecte qui doit tourner tous les jours, un résultat que quelqu'un va exploiter en aval. Rien de neuf, rien de sexy — juste éprouvé.</p>
+    <p class="reveal"><strong>Quand l'utiliser.</strong> Quand le projet passe du bricolage au sérieux : plusieurs dizaines de milliers de pages, une collecte qui doit tourner tous les jours, un résultat que quelqu'un va exploiter en aval. Rien de neuf, rien de sexy : juste éprouvé.</p>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/scrapy/scrapy" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Scrapy →</a></p>
 
-    <h2 class="reveal"><span class="numtag">5</span>Crawlee — la boîte à outils qui gère les emmerdes</h2>
+    <h2 class="reveal"><span class="numtag">5</span>Crawlee : la boîte à outils qui gère les emmerdes</h2>
     <p class="reveal"><em>25 300 ★ · TypeScript · licence Apache-2.0 · très actif</em></p>
-    <p class="reveal"><strong>Ce que ça fait.</strong> Collecter, tout le monde sait faire une fois. Le problème arrive au bout de quelques heures : le site te bloque, la connexion tombe, tu ne sais plus quelles pages ont été traitées. Cet outil gère exactement ça — les reprises après erreur, la rotation des adresses de connexion, la file d'attente des pages à traiter.</p>
+    <p class="reveal"><strong>Ce que ça fait.</strong> Collecter, tout le monde sait faire une fois. Le problème arrive au bout de quelques heures : le site te bloque, la connexion tombe, tu ne sais plus quelles pages ont été traitées. Cet outil gère exactement ça : les reprises après erreur, la rotation des adresses de connexion, la file d'attente des pages à traiter.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Dès que la collecte doit tourner en continu sans qu'un humain la surveille. C'est ce qui sépare une démo qui marche d'un service qui tient.</p>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/apify/crawlee" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Crawlee →</a></p>
 
-    <h2 class="reveal"><span class="numtag">6</span>Browser Use — l'IA qui clique à ta place</h2>
+    <h2 class="reveal"><span class="numtag">6</span>Browser Use : l'IA qui clique à ta place</h2>
     <p class="reveal"><em>108 300 ★ · Python · licence MIT · très actif</em></p>
-    <p class="reveal"><strong>Ce que ça fait.</strong> Changement de logique complet. Ici, on ne programme pas « va chercher tel élément à tel endroit » : on donne une consigne en français à une IA, et elle pilote un navigateur comme le ferait un humain — elle clique, elle fait défiler, elle remplit des formulaires, elle navigue dans un espace connecté.</p>
+    <p class="reveal"><strong>Ce que ça fait.</strong> Changement de logique complet. Ici, on ne programme pas « va chercher tel élément à tel endroit » : on donne une consigne en français à une IA, et elle pilote un navigateur comme le ferait un humain, elle clique, elle fait défiler, elle remplit des formulaires, elle navigue dans un espace connecté.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Quand il n'y a pas d'autre porte d'entrée : un vieil outil métier sans connexion possible, un extranet fournisseur, un back-office où il faut récupérer un export chaque lundi matin.</p>
-    <div class="callout warn reveal"><b>Le revers :</b> c'est plus lent et bien moins prévisible qu'une collecte classique — l'IA peut se tromper de bouton. À réserver aux cas où aucune autre solution n'existe, et toujours avec une vérification du résultat. Ne mets jamais ça en pilote automatique sur une action irréversible.</div>
+    <div class="callout warn reveal"><b>Le revers :</b> c'est plus lent et bien moins prévisible qu'une collecte classique, l'IA peut se tromper de bouton. À réserver aux cas où aucune autre solution n'existe, et toujours avec une vérification du résultat. Ne mets jamais ça en pilote automatique sur une action irréversible.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Browser Use →</a></p>
 
-    <h2 class="reveal"><span class="numtag">7</span>Scrapling — celui qui survit aux mises à jour du site</h2>
+    <h2 class="reveal"><span class="numtag">7</span>Scrapling : celui qui survit aux mises à jour du site</h2>
     <p class="reveal"><em>73 100 ★ · Python · licence BSD-3 · très actif</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Le cauchemar classique de toute collecte : le site cible refait son design, et tout casse du jour au lendemain. Cet outil sait retrouver l'information même quand la page a bougé, et se fait discret face aux protections anti-robots.</p>
-    <p class="reveal"><strong>Quand l'utiliser.</strong> Sur les collectes qui doivent durer des mois sans maintenance. C'est moins un gain à la mise en place qu'un gain sur la facture d'entretien — et c'est souvent là que se joue la rentabilité d'un projet.</p>
+    <p class="reveal"><strong>Quand l'utiliser.</strong> Sur les collectes qui doivent durer des mois sans maintenance. C'est moins un gain à la mise en place qu'un gain sur la facture d'entretien, et c'est souvent là que se joue la rentabilité d'un projet.</p>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/D4Vinci/Scrapling" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo Scrapling →</a></p>
 
-    <h2 class="reveal"><span class="numtag">8</span>AutoScraper — tu montres un exemple, il comprend</h2>
+    <h2 class="reveal"><span class="numtag">8</span>AutoScraper : tu montres un exemple, il comprend</h2>
     <p class="reveal"><em>7 800 ★ · Python · licence MIT · maintenance légère</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Le plus simple des dix. Tu lui montres une page et deux ou trois valeurs que tu veux récupérer (un prix, un titre), il devine tout seul le motif et applique la même logique au reste du site.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Pour valider une idée en une heure : « est-ce qu'on peut vraiment récupérer les tarifs de ces 40 concurrents ? » Tu réponds oui ou non le jour même, avant d'engager le moindre budget.</p>
     <div class="callout reveal"><b>Attention :</b> c'est le plus petit projet de la liste et le moins activement développé. Parfait pour tester une hypothèse, à ne pas mettre au cœur d'un service que tu factures.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/alirezamika/autoscraper" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le repo AutoScraper →</a></p>
 
-    <h2 class="reveal"><span class="numtag">9</span>curl-impersonate — passer pour un vrai navigateur</h2>
-    <p class="reveal"><em>Version d'origine : 6 800 ★ — mais sans mise à jour depuis juillet 2024</em></p>
+    <h2 class="reveal"><span class="numtag">9</span>curl-impersonate : passer pour un vrai navigateur</h2>
+    <p class="reveal"><em>Version d'origine : 6 800 ★, mais sans mise à jour depuis juillet 2024</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Beaucoup de sites reconnaissent un programme automatisé à sa « signature » technique, avant même de regarder son contenu. Cet outil imite fidèlement la signature d'un vrai navigateur pour ne pas être écarté d'office.</p>
-    <div class="callout warn reveal"><b>Vérification faite :</b> le dépôt le plus partagé (<em>lwthiker/curl-impersonate</em>) <strong>n'a plus reçu la moindre mise à jour depuis juillet 2024</strong>. Sur ce type d'outil, deux ans sans maintenance, c'est mort — les navigateurs ont changé, l'imitation ne trompe plus personne. Le projet vivant aujourd'hui est le fork <em>lexiforest</em>, mis à jour en continu. C'est typiquement ce qu'un compte qui recopie une liste ne te dira jamais.</div>
+    <div class="callout warn reveal"><b>Vérification faite :</b> le dépôt le plus partagé (<em>lwthiker/curl-impersonate</em>) <strong>n'a plus reçu la moindre mise à jour depuis juillet 2024</strong>. Sur ce type d'outil, deux ans sans maintenance, c'est mort : les navigateurs ont changé, l'imitation ne trompe plus personne. Le projet vivant aujourd'hui est le fork <em>lexiforest</em>, mis à jour en continu. C'est typiquement ce qu'un compte qui recopie une liste ne te dira jamais.</div>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/lexiforest/curl-impersonate" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Ouvrir le fork maintenu (lexiforest) →</a></p>
     <p class="reveal"><a class="cta-btn ghost" href="https://github.com/lwthiker/curl-impersonate" target="_blank" rel="noopener" style="width:auto;margin-top:6px;padding:11px 20px;font-size:14.5px">Voir le repo d'origine (archivé de fait) →</a></p>
 
-    <h2 class="reveal"><span class="numtag">10</span>scrcpy — quand la donnée n'existe que dans une app</h2>
+    <h2 class="reveal"><span class="numtag">10</span>scrcpy : quand la donnée n'existe que dans une app</h2>
     <p class="reveal"><em>147 200 ★ · licence Apache-2.0 · signé Genymobile</em></p>
     <p class="reveal"><strong>Ce que ça fait.</strong> Ce n'est pas un outil de collecte : il affiche et pilote l'écran d'un téléphone Android depuis un ordinateur. Mais c'est souvent la seule porte d'entrée quand un service n'existe qu'en application mobile, sans version web.</p>
     <p class="reveal"><strong>Quand l'utiliser.</strong> Cas rare mais réel : un outil métier disponible uniquement sur mobile, dont il faut extraire des données ou automatiser une tâche répétitive. Utile aussi, tout simplement, pour filmer une démo produit propre depuis un téléphone.</p>
@@ -332,21 +332,21 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 
     <h2 class="reveal">Le sujet que les listes d'outils évitent : le droit</h2>
     <p class="reveal">Un outil gratuit ne rend pas une collecte légale. Ce n'est pas un détail de juriste : c'est ce qui décide si tu peux facturer le projet à un client sérieux, ou pas.</p>
-    <div class="callout warn reveal"><b>Les quatre réflexes avant de lancer quoi que ce soit :</b> lire les conditions d'utilisation du site visé — collecter uniquement ce qui est public — ne pas surcharger le serveur d'en face (on ralentit volontairement) — et, dès qu'il y a des données personnelles (nom, e-mail, téléphone), appliquer le RGPD : base légale, information des personnes, durée de conservation.</div>
-    <div class="callout win reveal"><b>Retourne-le en argument commercial :</b> une collecte propre, documentée et traçable se vend plus cher qu'un aspirateur à données. Le client n'achète pas la performance brute — il achète le fait de ne pas avoir de problème.</div>
+    <div class="callout warn reveal"><b>Les quatre réflexes avant de lancer quoi que ce soit :</b> lire les conditions d'utilisation du site visé, collecter uniquement ce qui est public, ne pas surcharger le serveur d'en face (on ralentit volontairement), et, dès qu'il y a des données personnelles (nom, e-mail, téléphone), appliquer le RGPD : base légale, information des personnes, durée de conservation.</div>
+    <div class="callout win reveal"><b>Retourne-le en argument commercial :</b> une collecte propre, documentée et traçable se vend plus cher qu'un aspirateur à données. Le client n'achète pas la performance brute : il achète le fait de ne pas avoir de problème.</div>
 
     <h2 class="reveal">Par où commencer, concrètement</h2>
     <p class="reveal">Trois étapes, dans cet ordre, sans en sauter une :</p>
     <ul class="reveal">
-      <li><strong>Semaine 1 — tes propres fichiers.</strong> MarkItDown sur tes documents internes. Zéro risque juridique, résultat immédiat, et c'est déjà la matière première de ton premier assistant IA.</li>
-      <li><strong>Semaine 2 — une seule source externe.</strong> Firecrawl ou Crawl4AI sur <em>un</em> site public utile (documentation, catalogue, base réglementaire). Une source, pas dix.</li>
-      <li><strong>Ensuite seulement — l'industrialisation.</strong> Scrapy, Crawlee, Scrapling arrivent quand la collecte doit tourner seule tous les jours. Pas avant : tu paierais de la complexité que tu n'utilises pas encore.</li>
+      <li><strong>Semaine 1 : tes propres fichiers.</strong> MarkItDown sur tes documents internes. Zéro risque juridique, résultat immédiat, et c'est déjà la matière première de ton premier assistant IA.</li>
+      <li><strong>Semaine 2 : une seule source externe.</strong> Firecrawl ou Crawl4AI sur <em>un</em> site public utile (documentation, catalogue, base réglementaire). Une source, pas dix.</li>
+      <li><strong>Ensuite seulement : l'industrialisation.</strong> Scrapy, Crawlee, Scrapling arrivent quand la collecte doit tourner seule tous les jours. Pas avant : tu paierais de la complexité que tu n'utilises pas encore.</li>
     </ul>
 
     <h2 class="reveal">Ce que tu pilotes vs ce qui se délègue</h2>
-    <p class="reveal">Tu n'as pas à savoir installer ces outils. Tu as à savoir <strong>quelles décisions restent les tiennes</strong> — parce que ce sont elles qui coûtent cher quand elles sont mal prises.</p>
+    <p class="reveal">Tu n'as pas à savoir installer ces outils. Tu as à savoir <strong>quelles décisions restent les tiennes</strong>, parce que ce sont elles qui coûtent cher quand elles sont mal prises.</p>
     <div class="callout reveal"><b>Toi, tu décides :</b> quelle donnée sert vraiment à quelque chose, à quelle fréquence elle doit être rafraîchie, ce qui est acceptable juridiquement pour ta boîte, et combien vaut le problème que ça résout.</div>
-    <div class="callout reveal"><b>Ça se délègue :</b> le choix précis de l'outil, l'installation, la gestion des blocages, la maintenance quand le site cible change. C'est du métier — pas ta décision.</div>
+    <div class="callout reveal"><b>Ça se délègue :</b> le choix précis de l'outil, l'installation, la gestion des blocages, la maintenance quand le site cible change. C'est du métier, pas ta décision.</div>
     <div class="callout win reveal"><b>La seule erreur vraiment coûteuse :</b> collecter beaucoup de données avant d'avoir défini ce qu'on en fait. Une source utile, exploitée à fond, bat dix sources en réserve. Commence par le problème, jamais par l'outil.</div>
 
   
@@ -369,6 +369,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -376,7 +377,7 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -408,9 +409,9 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -496,11 +497,11 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -509,14 +510,14 @@ footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:cent
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

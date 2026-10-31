@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/ia-locale">
-<title>Installe ton IA en local — NoesisAI</title>
+<title>Installe ton IA en local - NoesisAI</title>
 <meta name="description" content="Guide de setup IA locale : LM Studio, choisir son modèle selon son matériel, RAG privé et monter sa propre machine. Données souveraines, sans abonnement.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Installe ton IA en local">
@@ -273,9 +273,9 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">« Les gouvernements commencent à encadrer, voire interdire certains modèles. » Vrai ou exagéré, le signal est le même : un modèle que tu <strong>loues</strong> peut être coupé, bridé, ou voir son prix et ses conditions changer du jour au lendemain. Un modèle qui tourne sur <strong>ta</strong> machine, non. C'est exactement pour ça que l'IA locale — et le RAG local — devient une vraie demande côté entreprises. Voici comment t'y mettre, même sur le Mac Mini le moins cher.</p>
+    <p class="lead reveal">« Les gouvernements commencent à encadrer, voire interdire certains modèles. » Vrai ou exagéré, le signal est le même : un modèle que tu <strong>loues</strong> peut être coupé, bridé, ou voir son prix et ses conditions changer du jour au lendemain. Un modèle qui tourne sur <strong>ta</strong> machine, non. C'est exactement pour ça que l'IA locale, et le RAG local, devient une vraie demande côté entreprises. Voici comment t'y mettre, même sur le Mac Mini le moins cher.</p>
 
-    <div class="callout reveal"><b>L'idée :</b> tu n'as pas besoin de tout remplacer. Faire tourner ne serait-ce que 2-3 workflows en local te rend privé, indépendant — et te fait économiser sur tes abonnements. Le reste peut rester dans le cloud.</div>
+    <div class="callout reveal"><b>L'idée :</b> tu n'as pas besoin de tout remplacer. Faire tourner ne serait-ce que 2-3 workflows en local te rend privé, indépendant, et te fait économiser sur tes abonnements. Le reste peut rester dans le cloud.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Pourquoi c'est devenu un sujet d'entreprise</h2>
     <p class="reveal"><strong>Souveraineté &amp; RGPD.</strong> Tes données sensibles (contrats, RH, dossiers clients) ne quittent jamais la boîte. Pas d'envoi vers un serveur tiers, pas de zone grise juridique : tout reste sur ta machine ou ton serveur.</p>
@@ -284,7 +284,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Indépendance.</strong> Tu ne dépends plus d'une API qui change de prix, de CGU, ou de disponibilité. Tu possèdes ton intelligence.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>Ce qu'il te faut</h2>
-    <p class="reveal"><strong>Une machine, même modeste.</strong> Un Mac Mini, un portable récent, un PC avec un GPU correct — ça suffit pour démarrer. Plus il y a de mémoire (RAM / mémoire unifiée / VRAM), plus le modèle peut être gros.</p>
+    <p class="reveal"><strong>Une machine, même modeste.</strong> Un Mac Mini, un portable récent, un PC avec un GPU correct : ça suffit pour démarrer. Plus il y a de mémoire (RAM / mémoire unifiée / VRAM), plus le modèle peut être gros.</p>
     <p class="reveal"><strong>LM Studio.</strong> Une appli gratuite (Mac / Windows / Linux) qui télécharge les modèles open-source, les fait tourner en local avec une interface simple, et expose une <strong>API compatible OpenAI</strong>. C'est le chemin le plus rapide pour passer de « je teste » à « mes outils tapent dessus ».</p>
 
     <h2 class="reveal"><span class="numtag">3</span>Le setup en 6 étapes</h2>
@@ -293,9 +293,9 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>3. Demande le bon modèle :</strong> « Quel est le meilleur modèle local que je peux faire tourner là-dessus ? » Sur une petite machine, ce sera un modèle léger (famille Gemma, Qwen, Phi…). Sur une grosse config, tu montes en gamme (Llama 70B, Qwen, GLM, DeepSeek).</p>
     <p class="reveal"><strong>4. Cible les bons usages :</strong> « D'après ce que tu sais de mon activité, quels workflows ce modèle pourrait remplacer ? » Tu repars avec une liste concrète, pas une intention vague.</p>
     <p class="reveal"><strong>5. Télécharge &amp; sers le modèle :</strong> dans LM Studio, télécharge le modèle conseillé, puis active le serveur local. Tu obtiens une API sur <code>http://localhost:1234/v1</code>, exactement comme une API cloud.</p>
-    <p class="reveal"><strong>6. Branche tes outils dessus :</strong> pointe tes scripts, ton automatisation ou ton appli sur cette API locale au lieu du cloud. C'est tout — tu tournes en local.</p>
+    <p class="reveal"><strong>6. Branche tes outils dessus :</strong> pointe tes scripts, ton automatisation ou ton appli sur cette API locale au lieu du cloud. C'est tout : tu tournes en local.</p>
 
-    <h2 class="reveal"><span class="numtag">4</span>Quoi passer en local — et quoi garder dans le cloud</h2>
+    <h2 class="reveal"><span class="numtag">4</span>Quoi passer en local, et quoi garder dans le cloud</h2>
     <p class="reveal">Sur petit matériel, tu ne remplaceras pas <em>tous</em> tes appels IA. Mais tu peux déjà déporter les tâches répétitives et peu exigeantes : reformulation, tri et résumé d'emails, classification, extraction simple, premiers brouillons. Ça suffit pour économiser réellement.</p>
     <div class="callout warn reveal"><b>À garder en tête :</b> le raisonnement complexe, les très gros contextes et le code difficile restent meilleurs sur un modèle cloud de pointe. L'objectif n'est pas « tout en local », c'est « le bon modèle au bon endroit ».</div>
     <table class="matrix reveal">
@@ -308,12 +308,12 @@ body.gate-on .gate-card{transform:none}
     </table>
 
     <h2 class="reveal"><span class="numtag">5</span>Le RAG local : ta base de connaissances, privée</h2>
-    <p class="reveal"><strong>Le vrai déclencheur en entreprise.</strong> Brancher ton modèle local sur tes documents internes te donne un moteur de réponses sur <em>ta</em> data — sans qu'elle sorte jamais de chez toi. C'est le RAG, version souveraine.</p>
-    <p class="reveal">Concrètement : tu ingères tes docs, tu les découpes, tu les indexes dans une base vectorielle, et le modèle local répond en s'appuyant dessus. Pour de la donnée sensible (santé, R&D, juridique), c'est l'option qui débloque le projet — on l'a déployée en RAG on-premise pour un labo cosmétique, justement parce que la data ne pouvait pas partir dans un cloud tiers.</p>
+    <p class="reveal"><strong>Le vrai déclencheur en entreprise.</strong> Brancher ton modèle local sur tes documents internes te donne un moteur de réponses sur <em>ta</em> data, sans qu'elle sorte jamais de chez toi. C'est le RAG, version souveraine.</p>
+    <p class="reveal">Concrètement : tu ingères tes docs, tu les découpes, tu les indexes dans une base vectorielle, et le modèle local répond en s'appuyant dessus. Pour de la donnée sensible (santé, R&D, juridique), c'est l'option qui débloque le projet : on l'a déployée en RAG on-premise pour un labo cosmétique, justement parce que la data ne pouvait pas partir dans un cloud tiers.</p>
     <div class="callout warn reveal"><b>Honnête :</b> le RAG ne sauve pas une base mal rangée. 80 % du travail, c'est structurer la data avant. Commence petit, sur un corpus propre.</div>
 
     <h2 class="reveal">Aller plus loin : monte ta machine IA</h2>
-    <p class="reveal">Quand tu veux du sérieux — faire tourner du 70B+ pour toute une équipe, ou de l'on-premise entreprise — il faut une machine dédiée. Le repo open-source <a href="https://github.com/autonomous-ai/autonomous-computer" target="_blank" rel="noopener">autonomous-ai/autonomous-computer</a> (licence MIT) documente tout : la liste de composants (bill of materials), plusieurs configs (de 2× RTX 5090 « maison » jusqu'à 8 GPU pour de l'entreprise), les guides de montage photo par photo, le tuning BIOS / drivers, et les outils de service (Ollama, vLLM, llama.cpp).</p>
+    <p class="reveal">Quand tu veux du sérieux (faire tourner du 70B+ pour toute une équipe, ou de l'on-premise entreprise) il faut une machine dédiée. Le repo open-source <a href="https://github.com/autonomous-ai/autonomous-computer" target="_blank" rel="noopener">autonomous-ai/autonomous-computer</a> (licence MIT) documente tout : la liste de composants (bill of materials), plusieurs configs (de 2× RTX 5090 « maison » jusqu'à 8 GPU pour de l'entreprise), les guides de montage photo par photo, le tuning BIOS / drivers, et les outils de service (Ollama, vLLM, llama.cpp).</p>
     <div class="callout win reveal"><b>Leur phrase résume tout :</b> « A model you rent can be cut off overnight. A model running in your own house can't. » Un modèle que tu loues peut être coupé du jour au lendemain. Un modèle qui tourne chez toi, jamais.</div>
 
   
@@ -336,6 +336,7 @@ body.gate-on .gate-card{transform:none}
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -343,7 +344,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -375,9 +376,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -463,11 +464,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -476,14 +477,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

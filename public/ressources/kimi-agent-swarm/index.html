@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/kimi-agent-swarm">
-<title>Kimi Agent Swarm : 300 agents IA sur une seule tâche — NoesisAI</title>
+<title>Kimi Agent Swarm : 300 agents IA sur une seule tâche - NoesisAI</title>
 <meta name="description" content="Guide complet et sans jargon sur Kimi Agent Swarm : le mode qui lance jusqu'à 300 sous-agents en parallèle. Ce que ça change, quand l'utiliser, le tuto pas-à-pas, et les limites honnêtes.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kimi Agent Swarm : 300 agents IA sur une seule tâche">
@@ -273,7 +273,7 @@ body.gate-on .gate-card{transform:none}
 <main class="resource">
   <div class="wrap">
 
-    <p class="lead reveal">Depuis deux ans, tu utilises l'IA comme un <strong>employé unique</strong> : tu poses une question, elle répond, tu poses la suivante. <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">Kimi Agent Swarm</a> change la forme du truc : tu donnes <strong>une</strong> consigne, et le modèle recrute jusqu'à <strong>300 exécutants</strong> qui travaillent en même temps, chacun sur un bout du problème. Voici ce que ça fait vraiment, quand ça vaut le coup, quand c'est du gâchis — et le tuto pour lancer ton premier essaim.</p>
+    <p class="lead reveal">Depuis deux ans, tu utilises l'IA comme un <strong>employé unique</strong> : tu poses une question, elle répond, tu poses la suivante. <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">Kimi Agent Swarm</a> change la forme du truc : tu donnes <strong>une</strong> consigne, et le modèle recrute jusqu'à <strong>300 exécutants</strong> qui travaillent en même temps, chacun sur un bout du problème. Voici ce que ça fait vraiment, quand ça vaut le coup, quand c'est du gâchis, et le tuto pour lancer ton premier essaim.</p>
 
     <div class="callout reveal"><b>La bascule à comprendre :</b> tu ne passes pas d'une IA « moins bête » à une IA « plus bête ». Tu passes d'<b>un</b> exécutant à <b>une équipe</b>. Ce n'est pas un gain de qualité, c'est un gain de <b>largeur</b>.</div>
 
@@ -281,15 +281,15 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>Le principe.</strong> Kimi est l'IA du labo chinois Moonshot AI. Son mode « Agent Swarm » (essaim d'agents) fait une chose simple : tu écris ta demande, et au lieu de la traiter tout seul de bout en bout, le modèle joue au <strong>chef de projet</strong>. Il découpe ta demande en tâches, distribue ces tâches à des exécutants, les lance <strong>tous en même temps</strong>, puis rassemble tout dans un seul livrable.</p>
     <p class="reveal"><strong>L'analogie.</strong> Tu ne parles qu'à une seule personne : le chef de projet. Lui décide combien de gens il embauche, qui fait quoi, et te rend le dossier fini. Tu ne recrutes personne, tu ne répartis rien. Tu commandes, il organise.</p>
     <p class="reveal"><strong>Les ordres de grandeur officiels.</strong> Jusqu'à <strong>300 sous-agents en parallèle</strong>, jusqu'à <strong>4 000 actions</strong> pour une seule tâche, et environ <strong>4,5× plus rapide</strong> qu'une IA qui ferait la même chose l'une après l'autre. Ce sont les chiffres annoncés par Kimi sur sa propre documentation, pas une estimation maison.</p>
-    <div class="callout reveal"><b>Voir la bête :</b> <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">kimi.com/agent-swarm</a> — c'est la page officielle du mode essaim. Garde-la sous le coude, on y revient au tuto.</div>
+    <div class="callout reveal"><b>Voir la bête :</b> <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">kimi.com/agent-swarm</a>, c'est la page officielle du mode essaim. Garde-la sous le coude, on y revient au tuto.</div>
 
     <h2 class="reveal"><span class="numtag">2</span>Ce que ça change dans ton quotidien</h2>
-    <p class="reveal"><strong>Avant.</strong> Les tâches « larges » — comparer 40 concurrents, dépouiller 200 avis clients, extraire les chiffres de 60 PDF — tu ne les demandais pas à l'IA. Pas parce qu'elle en était incapable, mais parce que ça voulait dire 60 allers-retours à la main. Trop long. Donc tu ne le faisais pas, ou tu le faisais à moitié sur un échantillon.</p>
+    <p class="reveal"><strong>Avant.</strong> Les tâches « larges » (comparer 40 concurrents, dépouiller 200 avis clients, extraire les chiffres de 60 PDF) tu ne les demandais pas à l'IA. Pas parce qu'elle en était incapable, mais parce que ça voulait dire 60 allers-retours à la main. Trop long. Donc tu ne le faisais pas, ou tu le faisais à moitié sur un échantillon.</p>
     <p class="reveal"><strong>Après.</strong> Ces tâches redeviennent une seule commande. Le coût d'entrée d'un travail large s'effondre. C'est ça, la vraie nouveauté : pas « l'IA est plus intelligente », mais <strong>« les gros dossiers ne sont plus hors de portée »</strong>.</p>
     <p class="reveal"><strong>Ce que Kimi recommande lui-même.</strong> Sa doc cite noir sur blanc : la recherche d'informations à grande échelle, le traitement de <strong>plus de 100 documents</strong>, les contenus dépassant <strong>100 000 mots</strong>, et l'automatisation de tâches bureautiques. Traduction : plus ton dossier est <em>gros et répétitif</em>, plus l'essaim est dans son élément.</p>
 
-    <h2 class="reveal"><span class="numtag">3</span>Là où ça écrase tout — et là où c'est inutile</h2>
-    <p class="reveal">C'est le point que 90 % des gens vont rater. Un essaim n'est <strong>pas</strong> meilleur partout. Il est meilleur sur ce qui se <strong>découpe</strong>. Si ta tâche ne se découpe pas, 300 agents ne servent à rien — et le modèle le sait : testé sur la création d'un petit jeu vidéo, il a lui-même décidé de n'utiliser <strong>qu'un seul agent</strong>, parce que chaque étape dépendait de la précédente.</p>
+    <h2 class="reveal"><span class="numtag">3</span>Là où ça écrase tout, et là où c'est inutile</h2>
+    <p class="reveal">C'est le point que 90 % des gens vont rater. Un essaim n'est <strong>pas</strong> meilleur partout. Il est meilleur sur ce qui se <strong>découpe</strong>. Si ta tâche ne se découpe pas, 300 agents ne servent à rien, et le modèle le sait : testé sur la création d'un petit jeu vidéo, il a lui-même décidé de n'utiliser <strong>qu'un seul agent</strong>, parce que chaque étape dépendait de la précédente.</p>
     <table class="matrix reveal">
       <thead><tr><th>Ton besoin</th><th>L'essaim aide ?</th><th>Pourquoi</th></tr></thead>
       <tbody>
@@ -302,48 +302,48 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Réfléchir / trancher une décision</td><td>Non</td><td>Tu ne délègues pas un jugement à 300 exécutants</td></tr>
       </tbody>
     </table>
-    <div class="callout win reveal"><b>Lecture rapide :</b> pose-toi une seule question — <b>« est-ce que je pourrais confier ça à 20 stagiaires en même temps ? »</b> Si oui, c'est un travail d'essaim. Si le stagiaire n°2 doit attendre le résultat du n°1, c'est un travail d'IA classique.</div>
+    <div class="callout win reveal"><b>Lecture rapide :</b> pose-toi une seule question, <b>« est-ce que je pourrais confier ça à 20 stagiaires en même temps ? »</b> Si oui, c'est un travail d'essaim. Si le stagiaire n°2 doit attendre le résultat du n°1, c'est un travail d'IA classique.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Ce que tu pilotes, ce qui se délègue</h2>
     <p class="reveal">La tentation, avec un outil pareil, c'est de tout lâcher. Erreur. Voici la ligne de partage.</p>
     <p class="reveal"><strong>Ce qui se délègue à l'essaim.</strong> La collecte. Le tri. L'extraction. La mise en forme. La répétition. Tout ce qui est fastidieux, volumineux, et où l'effort est proportionnel au nombre d'éléments. C'est exactement ce que tu paierais un junior à faire pendant trois jours.</p>
     <p class="reveal"><strong>Ce que tu gardes, toi.</strong> Le cadrage (quelle est vraiment la question ?), les critères (qu'est-ce qui compte, pour qui, pourquoi), et l'arbitrage final (qu'est-ce qu'on en fait ?). L'essaim te rend un dossier. Il ne prend pas la décision, et tu ne dois pas le laisser faire semblant de la prendre à ta place.</p>
-    <div class="callout warn reveal"><b>Le piège du volume :</b> un essaim te rend 40 pages en 20 minutes. C'est grisant — et c'est exactement le moment où on arrête de lire. Un livrable que personne ne relit n'a aucune valeur, qu'il ait coûté 3 jours ou 20 minutes.</div>
+    <div class="callout warn reveal"><b>Le piège du volume :</b> un essaim te rend 40 pages en 20 minutes. C'est grisant, et c'est exactement le moment où on arrête de lire. Un livrable que personne ne relit n'a aucune valeur, qu'il ait coûté 3 jours ou 20 minutes.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Le tuto : ton premier essaim en 6 étapes</h2>
     <p class="reveal">Pas de technique, pas de code, pas d'installation. Tu as juste besoin d'un navigateur et de 20 minutes.</p>
 
-    <p class="reveal"><strong>Étape 1 — Ouvre la page.</strong> Va sur <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">kimi.com/agent-swarm</a> et crée ton compte. Ça marche aussi depuis l'application mobile Kimi. C'est un site web classique : rien à installer.</p>
+    <p class="reveal"><strong>Étape 1 : Ouvre la page.</strong> Va sur <a href="https://www.kimi.com/agent-swarm" target="_blank" rel="noopener" style="color:var(--accent-a);text-decoration:underline;text-underline-offset:3px;font-weight:600">kimi.com/agent-swarm</a> et crée ton compte. Ça marche aussi depuis l'application mobile Kimi. C'est un site web classique : rien à installer.</p>
 
-    <p class="reveal"><strong>Étape 2 — Vérifie que tu y as droit.</strong> Le mode essaim est en <strong>bêta</strong> et n'est <strong>pas inclus dans le gratuit</strong> : il faut un abonnement payant (les paliers s'appellent Moderato, Allegretto, Allegro et Vivace, du moins cher au plus cher). Plus le palier est haut, plus tu as d'essaims inclus. Les tarifs bougent vite : regarde le prix du jour sur leur page d'abonnement, ne te fie à aucun chiffre lu dans un post — celui-ci compris.</p>
+    <p class="reveal"><strong>Étape 2 : Vérifie que tu y as droit.</strong> Le mode essaim est en <strong>bêta</strong> et n'est <strong>pas inclus dans le gratuit</strong> : il faut un abonnement payant (les paliers s'appellent Moderato, Allegretto, Allegro et Vivace, du moins cher au plus cher). Plus le palier est haut, plus tu as d'essaims inclus. Les tarifs bougent vite : regarde le prix du jour sur leur page d'abonnement, ne te fie à aucun chiffre lu dans un post, celui-ci compris.</p>
 
-    <p class="reveal"><strong>Étape 3 — Choisis la bonne tâche.</strong> Ne teste pas sur « écris-moi un post ». Tu serais déçu, et c'est normal : c'est trop étroit. Reprends le test du §3 — <em>est-ce que je pourrais confier ça à 20 stagiaires en même temps ?</em> Prends la tâche large et pénible que tu repousses depuis des semaines.</p>
+    <p class="reveal"><strong>Étape 3 : Choisis la bonne tâche.</strong> Ne teste pas sur « écris-moi un post ». Tu serais déçu, et c'est normal : c'est trop étroit. Reprends le test du §3 : <em>est-ce que je pourrais confier ça à 20 stagiaires en même temps ?</em> Prends la tâche large et pénible que tu repousses depuis des semaines.</p>
 
-    <p class="reveal"><strong>Étape 4 — Écris le brief en 3 temps.</strong> C'est ta seule vraie compétence ici : tu ne choisis pas le nombre d'agents, tu ne les répartis pas. Ton unique levier, c'est la consigne. Trois ingrédients, obligatoires :</p>
+    <p class="reveal"><strong>Étape 4 : Écris le brief en 3 temps.</strong> C'est ta seule vraie compétence ici : tu ne choisis pas le nombre d'agents, tu ne les répartis pas. Ton unique levier, c'est la consigne. Trois ingrédients, obligatoires :</p>
     <p class="reveal"><strong>① La largeur, chiffrée.</strong> « Analyse le marché » est un mauvais brief : le modèle ne sait pas où s'arrêter. « Analyse ces 30 acteurs, un par un » lui donne de la matière à découper. La liste ou le périmètre chiffré, c'est ce qui <em>déclenche</em> le parallèle.<br>
     <strong>② Les critères, identiques pour tous.</strong> Sans critères, chaque agent invente les siens et tu récupères un patchwork incohérent. Dis quoi regarder sur chaque élément.<br>
     <strong>③ Le format de sortie, exact.</strong> Sinon tu obtiens 300 réponses recollées en bouillie. Le format, c'est ce qui transforme un tas de travail en livrable.</p>
 
-    <div class="callout reveal"><b>Brief prêt à copier — adapte les crochets :</b><br><br>
+    <div class="callout reveal"><b>Brief prêt à copier, adapte les crochets :</b><br><br>
     « Analyse <b>[les 30 concurrents de la liste ci-dessous]</b>, un par un, sans en sauter.<br><br>
     Pour <b>chacun</b>, relève exactement : <b>[le positionnement, la cible visée, la fourchette de prix, la promesse principale, le point faible visible]</b>.<br><br>
     Rends-moi : un <b>tableau</b>, une ligne par concurrent, une colonne par critère ci-dessus. Puis une <b>synthèse de 10 lignes</b> : les 3 angles que personne n'occupe.<br><br>
-    Pour chaque affirmation factuelle, <b>cite la source</b>. Si une information est introuvable, écris "non trouvé" — <b>n'invente pas</b>. »</div>
+    Pour chaque affirmation factuelle, <b>cite la source</b>. Si une information est introuvable, écris "non trouvé" : <b>n'invente pas</b>. »</div>
 
-    <p class="reveal"><strong>Étape 5 — Envoie, puis regarde.</strong> Tu n'as rien d'autre à faire : décris la tâche, envoie. Kimi affiche alors son plan de tâches, lance ses sous-agents et te montre la <strong>progression en temps réel</strong>. Compte plutôt en <strong>dizaines de minutes</strong> que en secondes sur un gros dossier — c'est un travail de fond, pas un chat. Lance-le et va faire autre chose.</p>
+    <p class="reveal"><strong>Étape 5 : Envoie, puis regarde.</strong> Tu n'as rien d'autre à faire : décris la tâche, envoie. Kimi affiche alors son plan de tâches, lance ses sous-agents et te montre la <strong>progression en temps réel</strong>. Compte plutôt en <strong>dizaines de minutes</strong> que en secondes sur un gros dossier : c'est un travail de fond, pas un chat. Lance-le et va faire autre chose.</p>
 
-    <p class="reveal"><strong>Étape 6 — Vérifie par sondage.</strong> L'étape que tout le monde saute. Prends <strong>3 lignes au hasard</strong> dans le livrable et vérifie-les à la main, à la source. Si les 3 tiennent, le reste est probablement bon. Si une seule est fausse ou inventée, jette la synthèse et reprends le brief : le problème vient presque toujours de critères trop flous.</p>
+    <p class="reveal"><strong>Étape 6 : Vérifie par sondage.</strong> L'étape que tout le monde saute. Prends <strong>3 lignes au hasard</strong> dans le livrable et vérifie-les à la main, à la source. Si les 3 tiennent, le reste est probablement bon. Si une seule est fausse ou inventée, jette la synthèse et reprends le brief : le problème vient presque toujours de critères trop flous.</p>
 
     <div class="callout win reveal"><b>Le résumé du tuto :</b> une tâche <b>large</b> + un brief en <b>3 temps</b> (largeur chiffrée, critères identiques, format exact) + une <b>vérif par sondage</b>. C'est tout. Le reste, c'est le chef de projet qui s'en occupe.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Les limites, honnêtement</h2>
     <p class="reveal"><strong>C'est en bêta.</strong> Kimi l'affiche lui-même. Comportement mouvant, ratés possibles : ne mets pas ça sur le chemin critique d'un client cette semaine.</p>
-    <p class="reveal"><strong>Le sourcing est le point faible.</strong> Sur les tâches de recherche, le reproche qui revient dans les tests indépendants, c'est des affirmations <strong>trop catégoriques et pas assez sourcées</strong>. Un essaim produit du volume convaincant très vite — et le volume convaincant est précisément ce qu'on ne vérifie pas. D'où l'étape 6, qui n'est pas optionnelle.</p>
-    <p class="reveal"><strong>Ça consomme.</strong> La doc officielle le dit sans détour : une tâche d'essaim consomme <em>nettement</em> plus qu'une tâche d'agent normale. C'est logique — tu paies 300 exécutants, pas un. Ne lance pas un essaim pour une question à laquelle un chat répond en 10 secondes.</p>
-    <div class="callout warn reveal"><b>Souveraineté — à lire avant d'y coller tes dossiers :</b> Kimi est édité par un labo chinois. Ce que tu envoies part sur leurs serveurs. Pour de la veille publique, aucun sujet. Pour des contrats, des données clients ou du RH, c'est <b>non</b> — ou alors tu anonymises avant. Cette question-là, aucun gain de vitesse ne la rachète.</div>
+    <p class="reveal"><strong>Le sourcing est le point faible.</strong> Sur les tâches de recherche, le reproche qui revient dans les tests indépendants, c'est des affirmations <strong>trop catégoriques et pas assez sourcées</strong>. Un essaim produit du volume convaincant très vite, et le volume convaincant est précisément ce qu'on ne vérifie pas. D'où l'étape 6, qui n'est pas optionnelle.</p>
+    <p class="reveal"><strong>Ça consomme.</strong> La doc officielle le dit sans détour : une tâche d'essaim consomme <em>nettement</em> plus qu'une tâche d'agent normale. C'est logique : tu paies 300 exécutants, pas un. Ne lance pas un essaim pour une question à laquelle un chat répond en 10 secondes.</p>
+    <div class="callout warn reveal"><b>Souveraineté, à lire avant d'y coller tes dossiers :</b> Kimi est édité par un labo chinois. Ce que tu envoies part sur leurs serveurs. Pour de la veille publique, aucun sujet. Pour des contrats, des données clients ou du RH, c'est <b>non</b>, ou alors tu anonymises avant. Cette question-là, aucun gain de vitesse ne la rachète.</div>
 
     <h2 class="reveal">Le verdict, et par où commencer</h2>
-    <p class="reveal">Agent Swarm n'est pas « l'IA d'après ». C'est une <strong>forme de travail</strong> nouvelle, très forte sur un créneau précis : les dossiers larges, répétitifs, chronophages, que tu repoussais parce qu'ils coûtaient trop cher en temps humain. Sur tout le reste — écrire, décider, construire pas à pas — ton IA habituelle reste meilleure et moins chère.</p>
+    <p class="reveal">Agent Swarm n'est pas « l'IA d'après ». C'est une <strong>forme de travail</strong> nouvelle, très forte sur un créneau précis : les dossiers larges, répétitifs, chronophages, que tu repoussais parce qu'ils coûtaient trop cher en temps humain. Sur tout le reste (écrire, décider, construire pas à pas) ton IA habituelle reste meilleure et moins chère.</p>
     <div class="callout win reveal"><b>Ton test cette semaine :</b> une seule tâche, celle que tu repousses <b>parce qu'elle est bête et longue</b> (dépouiller des avis, comparer des offres, ranger des documents). Applique le tuto du §5, puis compare honnêtement au temps que ça t'aurait pris à la main. C'est cette mesure-là, et pas la démo, qui te dira si l'essaim a une place chez toi.</div>
 
   
@@ -360,11 +360,12 @@ body.gate-on .gate-card{transform:none}
     <li><a href="/ressources/outils-securite-vibe-coding" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">10 outils de sécurité que tout vibe coder devrait utiliser</a></li>
     <li><a href="/ressources/claudetube" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Code peut maintenant regarder tes vidéos</a></li>
     <li><a href="/ressources/chatcut-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le monteur vidéo gratuit piloté par Claude Code</a></li>
-    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac — sans rien casser</a></li>
+    <li><a href="/ressources/audit-stockage-mac" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Récupère des Go sur ton Mac, sans rien casser</a></li>
   </ul>
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -373,7 +374,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -405,9 +406,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -493,11 +494,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -506,14 +507,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

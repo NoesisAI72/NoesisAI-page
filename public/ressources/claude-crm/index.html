@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/claude-crm">
-<title>Brancher ton CRM sur Claude — NoesisAI</title>
-<meta name="description" content="Salesforce, Pipedrive, HubSpot, Notion, Airtable, Folk : ton CRM se branche sur Claude. Le guide complet — ce qu'est vraiment un connecteur, le bon pour ton CRM, les 6 workflows qui rapportent dès la première semaine (prompts à copier), et les permissions à régler avant.">
+<title>Brancher ton CRM sur Claude - NoesisAI</title>
+<meta name="description" content="Salesforce, Pipedrive, HubSpot, Notion, Airtable, Folk : ton CRM se branche sur Claude. Le guide complet : ce qu'est vraiment un connecteur, le bon pour ton CRM, les 6 workflows qui rapportent dès la première semaine (prompts à copier), et les permissions à régler avant.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Brancher ton CRM sur Claude">
-<meta property="og:description" content="Salesforce, Pipedrive, HubSpot, Notion, Airtable, Folk : ton CRM se branche sur Claude. Le guide complet — ce qu'est vraiment un connecteur, le bon pour ton CRM, les 6 workflows qui rapportent dès la première semaine (prompts à copier), et les permissions à régler avant.">
+<meta property="og:description" content="Salesforce, Pipedrive, HubSpot, Notion, Airtable, Folk : ton CRM se branche sur Claude. Le guide complet : ce qu'est vraiment un connecteur, le bon pour ton CRM, les 6 workflows qui rapportent dès la première semaine (prompts à copier), et les permissions à régler avant.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -312,37 +312,37 @@ body.gate-on .gate-card{transform:none}
       .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
     </style>
 
-    <p class="lead reveal">Ton CRM, c'est l'endroit où dort tout ce qui compte : qui a acheté quoi, qui n'a pas répondu depuis trois mois, quel devis n'a jamais été relancé. Cette donnée ne sert à rien tant qu'il faut six clics pour la sortir. Voilà comment la brancher — <strong>quel connecteur pour ton CRM, les six workflows à lancer en premier avec les prompts complets, et les permissions à régler avant</strong>.</p>
+    <p class="lead reveal">Ton CRM, c'est l'endroit où dort tout ce qui compte : qui a acheté quoi, qui n'a pas répondu depuis trois mois, quel devis n'a jamais été relancé. Cette donnée ne sert à rien tant qu'il faut six clics pour la sortir. Voilà comment la brancher : <strong>quel connecteur pour ton CRM, les six workflows à lancer en premier avec les prompts complets, et les permissions à régler avant</strong>.</p>
 
     <h2 class="reveal">Un connecteur, c'est quoi exactement</h2>
-    <p class="reveal">Avant de choisir le tien, il faut comprendre ce que tu actives — parce que la plupart des gens imaginent un projet informatique là où il n'y a qu'une autorisation à donner.</p>
+    <p class="reveal">Avant de choisir le tien, il faut comprendre ce que tu actives, parce que la plupart des gens imaginent un projet informatique là où il n'y a qu'une autorisation à donner.</p>
     <p class="reveal">Un connecteur, ce n'est <strong>ni un logiciel à installer, ni un export, ni une synchronisation</strong>. C'est une autorisation : tu dis à ton CRM « ce compte-là a le droit de venir lire, et éventuellement d'écrire ». Ensuite, quand tu poses une question, Claude va chercher l'information chez toi, à cet instant, et te répond. Rien n'est copié nulle part.</p>
-    <p class="reveal">Techniquement, ça s'appuie sur une norme ouverte créée par Anthropic et adoptée depuis par à peu près tout le monde — c'est elle qui explique pourquoi les CRM se sont branchés les uns après les autres en quelques mois. Tu n'as pas besoin d'en savoir plus : c'est la prise standard, ton CRM la fournit, Claude s'y branche.</p>
+    <p class="reveal">Techniquement, ça s'appuie sur une norme ouverte créée par Anthropic et adoptée depuis par à peu près tout le monde : c'est elle qui explique pourquoi les CRM se sont branchés les uns après les autres en quelques mois. Tu n'as pas besoin d'en savoir plus : c'est la prise standard, ton CRM la fournit, Claude s'y branche.</p>
 
     <h3 class="reveal">Ce qui se passe quand tu branches</h3>
     <ul class="reveal">
       <li>Tu ouvres les réglages de ton compte Claude, section <strong>Connecteurs</strong> (accessible aussi depuis une conversation, via le bouton « + »).</li>
       <li>Tu choisis ton CRM dans la liste des connecteurs disponibles.</li>
-      <li>Tu arrives sur <strong>la page de connexion de ton CRM</strong> — pas celle de Claude — et tu t'identifies comme d'habitude.</li>
+      <li>Tu arrives sur <strong>la page de connexion de ton CRM</strong>, pas celle de Claude, et tu t'identifies comme d'habitude.</li>
       <li>Tu autorises. C'est fini : dans la conversation suivante, tu peux poser une question sur tes clients.</li>
     </ul>
 
-    <div class="callout reveal"><b>Ton mot de passe ne passe jamais par Claude.</b> Tu t'identifies chez ton CRM, qui délivre ensuite une autorisation révocable. Et elle se retire au même endroit, en un clic, le jour où tu veux couper — sans rien casser dans ton CRM.</div>
+    <div class="callout reveal"><b>Ton mot de passe ne passe jamais par Claude.</b> Tu t'identifies chez ton CRM, qui délivre ensuite une autorisation révocable. Et elle se retire au même endroit, en un clic, le jour où tu veux couper, sans rien casser dans ton CRM.</div>
 
     <h3 class="reveal">Trois choses qu'un connecteur ne fait pas</h3>
     <ul class="reveal">
       <li><strong>Il ne duplique pas ta base.</strong> Pas de copie qui vieillit dans un coin : Claude lit l'état réel de ton CRM au moment de la question. Si ton équipe a modifié une fiche il y a dix minutes, c'est cette version-là qu'il voit.</li>
-      <li><strong>Il ne crée aucun droit.</strong> Il hérite des tiens. Ce que tu ne vois pas dans ton CRM, Claude ne le voit pas non plus — et si ton commercial branche son propre compte, il reste sur son périmètre.</li>
+      <li><strong>Il ne crée aucun droit.</strong> Il hérite des tiens. Ce que tu ne vois pas dans ton CRM, Claude ne le voit pas non plus, et si ton commercial branche son propre compte, il reste sur son périmètre.</li>
       <li><strong>Il ne travaille pas tout seul.</strong> Rien ne se déclenche pendant que tu dors. Un connecteur répond quand on lui demande ; faire tourner un workflow automatiquement chaque lundi, c'est un chantier séparé, à monter une fois que les prompts ont fait leurs preuves à la main.</li>
     </ul>
 
     <h3 class="reveal">« Officiel » ou « à poser » : la différence qui compte</h3>
-    <p class="reveal">C'est la seule distinction qui change ton planning. Un <strong>connecteur officiel</strong> est publié par l'éditeur de ton CRM et figure dans la liste : dix minutes, aucune compétence technique, et il se met à jour tout seul. Un CRM <strong>sans connecteur officiel</strong> — Odoo, ou un outil maison — peut quand même se brancher, mais il faut installer la prise : quelques heures de travail pour un prestataire, et quelqu'un pour la maintenir ensuite. Le résultat final est le même ; ce n'est pas le même point de départ, ni le même budget.</p>
+    <p class="reveal">C'est la seule distinction qui change ton planning. Un <strong>connecteur officiel</strong> est publié par l'éditeur de ton CRM et figure dans la liste : dix minutes, aucune compétence technique, et il se met à jour tout seul. Un CRM <strong>sans connecteur officiel</strong> (Odoo, ou un outil maison) peut quand même se brancher, mais il faut installer la prise : quelques heures de travail pour un prestataire, et quelqu'un pour la maintenir ensuite. Le résultat final est le même ; ce n'est pas le même point de départ, ni le même budget.</p>
 
     <h3 class="reveal">Si tu n'es pas seul à t'en servir</h3>
-    <p class="reveal">Sur un compte d'équipe ou d'entreprise, ça ne se branche pas poste par poste : un <strong>propriétaire du compte active le connecteur pour l'organisation</strong>, puis chacun s'y connecte avec ses propres identifiants — et ne voit donc que son périmètre. Ce même propriétaire peut imposer la lecture seule à tout le monde, ce qui est exactement le bon réglage pour les deux premières semaines (j'y reviens plus bas).</p>
+    <p class="reveal">Sur un compte d'équipe ou d'entreprise, ça ne se branche pas poste par poste : un <strong>propriétaire du compte active le connecteur pour l'organisation</strong>, puis chacun s'y connecte avec ses propres identifiants, et ne voit donc que son périmètre. Ce même propriétaire peut imposer la lecture seule à tout le monde, ce qui est exactement le bon réglage pour les deux premières semaines (j'y reviens plus bas).</p>
 
-    <div class="callout reveal"><b>Côté abonnement :</b> les connecteurs sont largement accessibles, mais un compte gratuit reste bridé et certains connecteurs d'éditeurs exigent une offre payante côté Claude. Vérifie ton palier <em>avant</em> d'annoncer la nouveauté à ton équipe — c'est le genre de détail qui transforme une bonne idée en réunion gênante.</div>
+    <div class="callout reveal"><b>Côté abonnement :</b> les connecteurs sont largement accessibles, mais un compte gratuit reste bridé et certains connecteurs d'éditeurs exigent une offre payante côté Claude. Vérifie ton palier <em>avant</em> d'annoncer la nouveauté à ton équipe : c'est le genre de détail qui transforme une bonne idée en réunion gênante.</div>
 
     <h2 class="reveal">Quel connecteur pour ton CRM</h2>
     <p class="reveal">La vague est récente et elle est allée vite. <strong>Pipedrive</strong> est entré dans le répertoire officiel de Claude le 18 août 2026. <strong>Salesforce</strong> a annoncé Claudeforce le 26 août : 37 compétences commerciales livrées d'origine, et Claude comme moteur de raisonnement des agents Salesforce. <strong>HubSpot</strong> avait ouvert le bal dès l'été 2025. Voici où en est chacun.</p>
@@ -355,14 +355,14 @@ body.gate-on .gate-card{transform:none}
         <tr><td>Notion</td><td>Connecteur officiel</td><td><span class="star">★</span> Disponible</td></tr>
         <tr><td>Airtable</td><td>Connecteur officiel</td><td><span class="star">★</span> Disponible</td></tr>
         <tr><td>Folk</td><td>Connexion officielle fournie par Folk</td><td>Disponible</td></tr>
-        <tr><td>Salesforce</td><td>Claudeforce — « Salesforce in Claude », 37 skills</td><td>Annoncé le 26 août 2026, ouverture progressive</td></tr>
+        <tr><td>Salesforce</td><td>Claudeforce : « Salesforce in Claude », 37 skills</td><td>Annoncé le 26 août 2026, ouverture progressive</td></tr>
         <tr><td>Odoo</td><td>Pas de connecteur maison : ça se pose une fois, par un tiers</td><td>Possible, mais ce n'est pas du clic</td></tr>
       </tbody>
     </table>
 
-    <p class="reveal"><strong>Deux choses à retenir de ce tableau.</strong> La première : si tu es sur HubSpot, Pipedrive, Notion, Airtable ou Folk, le branchement est une affaire de dix minutes, pas de projet informatique. La seconde : côté Salesforce, l'annonce est très large mais l'accès s'ouvre par vagues — vérifie ce qui est réellement activé sur ton instance avant de promettre quoi que ce soit à ton équipe.</p>
+    <p class="reveal"><strong>Deux choses à retenir de ce tableau.</strong> La première : si tu es sur HubSpot, Pipedrive, Notion, Airtable ou Folk, le branchement est une affaire de dix minutes, pas de projet informatique. La seconde : côté Salesforce, l'annonce est très large mais l'accès s'ouvre par vagues, vérifie ce qui est réellement activé sur ton instance avant de promettre quoi que ce soit à ton équipe.</p>
 
-    <div class="callout reveal"><b>Le signal qui compte :</b> Pipedrive a annoncé que, dans le mois qui a suivi l'ouverture, plus de 6 % de ses clients payants avaient branché la connexion. Ce n'est pas une démo de salon — ce sont des commerciaux qui s'en servent le lundi matin.</div>
+    <div class="callout reveal"><b>Le signal qui compte :</b> Pipedrive a annoncé que, dans le mois qui a suivi l'ouverture, plus de 6 % de ses clients payants avaient branché la connexion. Ce n'est pas une démo de salon : ce sont des commerciaux qui s'en servent le lundi matin.</div>
 
     <h2 class="reveal">Les permissions à régler avant de brancher</h2>
     <p class="reveal">C'est la partie que tout le monde saute et c'est celle qui coûte cher. Trois réglages, dans cet ordre, avant la première question posée.</p>
@@ -371,15 +371,15 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal">Le connecteur ne crée pas de droits, il <strong>hérite</strong> de ceux du compte qui l'active. Tu le branches avec un compte administrateur, Claude voit tout le CRM. Un commercial le branche avec le sien, il voit son périmètre et rien d'autre. C'est simple, et c'est exactement pour ça qu'il faut le décider consciemment plutôt que de cliquer vite.</p>
 
     <h3 class="reveal">2. Lecture seule pendant deux semaines</h3>
-    <p class="reveal">Commence sans droit d'écriture. Tu poses des questions, tu vérifies les réponses contre la réalité, tu repères ce que ton CRM raconte de faux. Tu n'ouvriras l'écriture que sur un seul type d'action — la note d'appel, en général — et seulement quand les réponses en lecture seront fiables.</p>
+    <p class="reveal">Commence sans droit d'écriture. Tu poses des questions, tu vérifies les réponses contre la réalité, tu repères ce que ton CRM raconte de faux. Tu n'ouvriras l'écriture que sur un seul type d'action (la note d'appel, en général) et seulement quand les réponses en lecture seront fiables.</p>
 
     <h3 class="reveal">3. Décider ce qui ne doit jamais sortir</h3>
-    <p class="reveal">Coordonnées bancaires, données de santé, rémunérations, notes personnelles sur des salariés : si ça traîne dans des champs libres de ton CRM, ça devient lisible. Le bon réflexe n'est pas de brider l'outil, c'est de <strong>sortir ces informations du CRM</strong> — elles n'avaient rien à y faire.</p>
+    <p class="reveal">Coordonnées bancaires, données de santé, rémunérations, notes personnelles sur des salariés : si ça traîne dans des champs libres de ton CRM, ça devient lisible. Le bon réflexe n'est pas de brider l'outil, c'est de <strong>sortir ces informations du CRM</strong> : elles n'avaient rien à y faire.</p>
 
     <div class="callout warn reveal"><b>La règle qui ne se négocie pas :</b> aucune action irréversible en automatique. Envoyer un mail, supprimer une fiche, modifier un montant, changer un statut de facture : tant que tu n'as pas des semaines de recul, ces gestes-là restent les tiens. Claude prépare, tu valides, tu envoies.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le lundi matin qui se prépare tout seul</h2>
-    <p class="reveal"><strong>Le problème.</strong> Tu sais qu'il y a des gens à relancer. Tu ne sais pas lesquels en premier, et sortir la liste prend plus de temps que les relances elles-mêmes. Alors tu relances ceux dont tu te souviens — pas ceux qui pèsent.</p>
+    <p class="reveal"><strong>Le problème.</strong> Tu sais qu'il y a des gens à relancer. Tu ne sais pas lesquels en premier, et sortir la liste prend plus de temps que les relances elles-mêmes. Alors tu relances ceux dont tu te souviens, pas ceux qui pèsent.</p>
     <div class="prompt reveal">
       <div class="prompt-bar"><span class="prompt-tag">Prompt à coller · relances du lundi</span><button class="copy" type="button">Copier</button></div>
       <pre>Tu as accès à mon CRM. Sors la liste des clients et prospects à relancer cette semaine.
@@ -392,7 +392,7 @@ Ensuite, écris les 5 premiers mails de relance. Cinq lignes maximum par mail, p
 
 Tu n'envoies rien. Tu me montres, je relis.</pre>
     </div>
-    <p class="reveal"><strong>Ce que tu vérifies la première fois.</strong> Que les montants correspondent, et que « le dernier échange » est bien le dernier — si ton équipe n'enregistre pas ses appels dans le CRM, la date sera fausse et la relance tombera à côté.</p>
+    <p class="reveal"><strong>Ce que tu vérifies la première fois.</strong> Que les montants correspondent, et que « le dernier échange » est bien le dernier : si ton équipe n'enregistre pas ses appels dans le CRM, la date sera fausse et la relance tombera à côté.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>L'appel qui se range tout seul</h2>
     <p class="reveal"><strong>Le problème.</strong> L'appel se termine, tu enchaînes, et le compte-rendu ne sera jamais écrit. Trois semaines plus tard, personne ne se souvient de ce qui avait été dit.</p>
@@ -402,7 +402,7 @@ Tu n'envoies rien. Tu me montres, je relis.</pre>
 [dicte ou colle tes trois phrases ici]
 
 Fais trois choses, dans cet ordre :
-1. Retrouve la bonne fiche dans le CRM. Si tu hésites entre deux, tu me demandes — tu ne devines pas.
+1. Retrouve la bonne fiche dans le CRM. Si tu hésites entre deux, tu me demandes : tu ne devines pas.
 2. Écris une note propre : contexte, ce qui a été dit, objections soulevées, décisions prises.
 3. Propose la suite : nouvelle étape de l'affaire, montant si un chiffre a été évoqué, prochaine action avec une date.
 
@@ -426,7 +426,7 @@ Prépare-moi un brief d'une page, dans cet ordre :
 
 Si une information manque dans le CRM, écris "non renseigné". Tu ne combles pas les trous.</pre>
     </div>
-    <div class="callout reveal"><b>La ligne qui fait tout le travail :</b> « tu ne combles pas les trous ». Sans elle, une IA préfère produire une réponse plausible plutôt que d'avouer un manque. Avec elle, tu vois enfin les trous de ton CRM — et c'est une information en soi.</div>
+    <div class="callout reveal"><b>La ligne qui fait tout le travail :</b> « tu ne combles pas les trous ». Sans elle, une IA préfère produire une réponse plausible plutôt que d'avouer un manque. Avec elle, tu vois enfin les trous de ton CRM, et c'est une information en soi.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Les devis signés qui n'ont jamais été facturés</h2>
     <p class="reveal"><strong>Le problème.</strong> Une affaire est passée en « gagnée », tout le monde est passé à la suivante, et la facture n'est jamais partie. Personne ne l'a vu, parce qu'aucune alerte n'existe pour ça : l'information est à cheval entre deux outils.</p>
@@ -440,9 +440,9 @@ Pour chaque ligne : le client, le montant, la date de signature, le nombre de jo
 
 Trie par montant décroissant.
 
-Si tu n'es pas certain qu'une facture correspond bien à une affaire, mets la ligne dans une seconde liste "à vérifier" — tu ne l'écartes pas silencieusement.</pre>
+Si tu n'es pas certain qu'une facture correspond bien à une affaire, mets la ligne dans une seconde liste "à vérifier" : tu ne l'écartes pas silencieusement.</pre>
     </div>
-    <p class="reveal">C'est le workflow qui se rembourse le plus vite, parce qu'il ne fait pas gagner du temps : il retrouve de l'argent déjà gagné. Prévois qu'il faille l'accès à ton outil de facturation en plus du CRM — ce sont deux connexions distinctes.</p>
+    <p class="reveal">C'est le workflow qui se rembourse le plus vite, parce qu'il ne fait pas gagner du temps : il retrouve de l'argent déjà gagné. Prévois qu'il faille l'accès à ton outil de facturation en plus du CRM : ce sont deux connexions distinctes.</p>
 
     <h2 class="reveal"><span class="numtag">5</span>Les factures en retard, relancées correctement</h2>
     <p class="reveal"><strong>Le problème.</strong> La relance d'impayé se reporte parce qu'elle est désagréable à écrire, et parce qu'il faut aller rechercher le bon numéro, le bon montant, la bonne date.</p>
@@ -452,7 +452,7 @@ Si tu n'es pas certain qu'une facture correspond bien à une affaire, mets la li
 
 Pour chacune : client, numéro de facture, montant, date d'échéance, nombre de jours de retard, et depuis quand ce client travaille avec nous.
 
-Puis écris les relances : une par client, pas une par facture — tu regroupes quand un client en a plusieurs.
+Puis écris les relances : une par client, pas une par facture, tu regroupes quand un client en a plusieurs.
 
 Adapte le ton. Client de longue date, premier retard : factuel et détendu. Retard répété, ou client récent : plus ferme, avec une date limite et ce qui se passe ensuite.
 
@@ -467,7 +467,7 @@ Tu me montres tout. Je relis avant envoi.</pre>
       <div class="prompt-bar"><span class="prompt-tag">Prompt à coller · clients qui s'éteignent</span><button class="copy" type="button">Copier</button></div>
       <pre>Regarde l'historique d'achat de mes clients sur les 24 derniers mois.
 
-Pour chacun, calcule son rythme habituel de commande : l'écart moyen entre deux commandes. Puis sors ceux dont le silence actuel dépasse largement ce rythme — au moins le double.
+Pour chacun, calcule son rythme habituel de commande : l'écart moyen entre deux commandes. Puis sors ceux dont le silence actuel dépasse largement ce rythme : au moins le double.
 
 Présente : le client, son rythme habituel, la date de sa dernière commande, le chiffre d'affaires qu'il représentait sur 12 mois, et ce qu'il achetait.
 
@@ -491,17 +491,17 @@ Ignore les clients qui ont moins de 3 commandes dans l'historique : il n'y a pas
       </tbody>
     </table>
 
-    <div class="callout warn reveal"><b>Le prérequis que personne n'aime entendre :</b> il faut une base à peu près propre. Pas parfaite — à peu près. Si la moitié de tes affaires sont restées bloquées sur une étape qui ne veut plus rien dire, l'IA répondra faux, et elle le fera avec assurance. La bonne nouvelle : les workflows 1, 3 et 4 te montrent exactement où ça cloche. Le premier tour sert autant à nettoyer qu'à produire.</div>
+    <div class="callout warn reveal"><b>Le prérequis que personne n'aime entendre :</b> il faut une base à peu près propre. Pas parfaite : à peu près. Si la moitié de tes affaires sont restées bloquées sur une étape qui ne veut plus rien dire, l'IA répondra faux, et elle le fera avec assurance. La bonne nouvelle : les workflows 1, 3 et 4 te montrent exactement où ça cloche. Le premier tour sert autant à nettoyer qu'à produire.</div>
 
     <h2 class="reveal">Ce que tu pilotes, ce qui se délègue</h2>
-    <p class="reveal">Pour finir, la répartition — parce que la question suivante est toujours « et concrètement, qui fait quoi ? ».</p>
+    <p class="reveal">Pour finir, la répartition, parce que la question suivante est toujours « et concrètement, qui fait quoi ? ».</p>
     <ul class="reveal">
       <li><strong>Toi, et personne d'autre :</strong> choisir avec quel compte on branche, décider ce qui ne doit pas sortir du CRM, valider chaque mail avant envoi les premières semaines, et trancher quelles étapes de ton pipeline veulent encore dire quelque chose.</li>
       <li><strong>Ton équipe, à qui ça change la vie :</strong> dicter ses comptes-rendus, relire les listes, signaler les réponses fausses. Ce retour-là est ce qui fiabilise le système, et il ne peut venir que d'eux.</li>
       <li><strong>Ce qui se délègue :</strong> le branchement lui-même quand ton outil n'est pas dans la liste des connecteurs officiels, le croisement CRM/facturation, la mise en place du nettoyage de base, et la surveillance automatique une fois que les prompts ont fait leurs preuves à la main.</li>
     </ul>
 
-    <div class="callout win reveal"><b>Ce qu'il faut retenir :</b> il n'y a rien de futuriste là-dedans. La donnée est déjà chez toi, les connecteurs existent, et les six prompts de cette page se collent tels quels. Le seul vrai travail, c'est la demi-journée de mise au propre avant — et la discipline de tout relire pendant deux semaines.</div>
+    <div class="callout win reveal"><b>Ce qu'il faut retenir :</b> il n'y a rien de futuriste là-dedans. La donnée est déjà chez toi, les connecteurs existent, et les six prompts de cette page se collent tels quels. Le seul vrai travail, c'est la demi-journée de mise au propre avant, et la discipline de tout relire pendant deux semaines.</div>
 
     <script>
       (function(){
@@ -537,6 +537,7 @@ Ignore les clients qui ont moins de 3 commandes dans l'historique : il n'y a pas
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>

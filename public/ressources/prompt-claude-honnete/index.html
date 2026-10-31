@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/prompt-claude-honnete">
-<title>Le prompt système qui rend Claude brutalement honnête — NoesisAI</title>
+<title>Le prompt système qui rend Claude brutalement honnête - NoesisAI</title>
 <meta name="description" content="Le prompt système FR qui force Claude à 6 règles d'honnêteté : installation en 30 secondes, méthode de test en 4 questions, cas d'usage pro et limites connues.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Le prompt système qui rend Claude brutalement honnête">
@@ -324,12 +324,12 @@ body.gate-on .gate-card{transform:none}
       .test .ko b{color:var(--rose)}
     </style>
 
-    <p class="lead reveal">Claude ne te ment pas par malice. Il est entraîné à te faire plaisir — et quand il ne sait pas, il comble le vide avec quelque chose qui <em>sonne</em> juste. Une étude, un chiffre, une citation. Voici le prompt système à coller une fois dans tes paramètres pour qu'il arrête, plus le tuto d'installation, une méthode pour vérifier que ça marche et les cas où ça change vraiment quelque chose.</p>
+    <p class="lead reveal">Claude ne te ment pas par malice. Il est entraîné à te faire plaisir, et quand il ne sait pas, il comble le vide avec quelque chose qui <em>sonne</em> juste. Une étude, un chiffre, une citation. Voici le prompt système à coller une fois dans tes paramètres pour qu'il arrête, plus le tuto d'installation, une méthode pour vérifier que ça marche et les cas où ça change vraiment quelque chose.</p>
 
     <div class="callout reveal"><b>En une phrase :</b> tu ajoutes 6 règles d'honnêteté aux instructions permanentes de Claude. Il préfère alors dire « je ne sais pas » plutôt que de te servir une réponse polie mais fausse.</div>
 
     <h2 class="reveal">Pourquoi ça change tout</h2>
-    <p class="reveal">Claude — comme ChatGPT, Gemini ou Mistral — est entraîné à produire des réponses qui sonnent confiantes et utiles. C'est ce qu'on appelle la <strong>sycophance</strong> : la tendance d'un modèle à dire ce que tu veux entendre, même quand il ne sait pas.</p>
+    <p class="reveal">Claude (comme ChatGPT, Gemini ou Mistral) est entraîné à produire des réponses qui sonnent confiantes et utiles. C'est ce qu'on appelle la <strong>sycophance</strong> : la tendance d'un modèle à dire ce que tu veux entendre, même quand il ne sait pas.</p>
     <p class="reveal">Sans garde-fou, voilà ce que tu récoltes dans une journée type :</p>
     <ul class="reveal">
       <li>Tu demandes une stat de marché : il te sort un chiffre précis avec aplomb. Tu le cherches plus tard, il n'existe nulle part.</li>
@@ -453,10 +453,10 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
 
     <h2 class="reveal">Les 4 ajustements par rapport à la version anglaise</h2>
     <ul class="reveal">
-      <li><strong>Tutoiement systématique.</strong> L'anglais « you » est neutre. En français, on a choisi le tutoiement pour rester cohérent avec l'usage quotidien de Claude (notes perso, recherche, brainstorm). En contexte très corporate, remplace toutes les occurrences de « tu » par « vous » — 30 secondes de rechercher-remplacer.</li>
+      <li><strong>Tutoiement systématique.</strong> L'anglais « you » est neutre. En français, on a choisi le tutoiement pour rester cohérent avec l'usage quotidien de Claude (notes perso, recherche, brainstorm). En contexte très corporate, remplace toutes les occurrences de « tu » par « vous » : 30 secondes de rechercher-remplacer.</li>
       <li><strong>Une règle 6 explicite.</strong> L'original se termine par une ligne brève et non numérotée (« <em>If any answer is 'yes,' revise before responding</em> »), qui peut passer à la trappe. On l'a transformée en règle à part entière, avec 3 questions d'auto-audit et une instruction finale. Claude la traite alors comme une vérification, pas comme une note de bas de page.</li>
       <li><strong>Champ légal localisé.</strong> « legal cases » devient « affaires juridiques ou jurisprudences », pour coller au vocabulaire FR. Utile si tu fais de la veille réglementaire (RGPD, droit du travail FR/BE/CH).</li>
-      <li><strong>« Rapports d'entreprise » laissé large.</strong> En français, l'expression couvre aussi bien les rapports annuels que les rapports sectoriels — on ne restreint pas.</li>
+      <li><strong>« Rapports d'entreprise » laissé large.</strong> En français, l'expression couvre aussi bien les rapports annuels que les rapports sectoriels : on ne restreint pas.</li>
     </ul>
 
     <h2 class="reveal"><span class="numtag">2</span>Installation : 3 étapes, 30 secondes</h2>
@@ -472,37 +472,37 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
     <p class="reveal">Ouvre une conversation neuve et pose ces 4 questions. Tu sauras en deux minutes si le prompt est actif.</p>
 
     <div class="test reveal">
-      <p class="q">1. Une stat de marché — « Quelle est la taille du marché français des agences IA cette année ? »</p>
+      <p class="q">1. Une stat de marché : « Quelle est la taille du marché français des agences IA cette année ? »</p>
       <p class="sig ok"><b>Bon signe :</b> il répond qu'il n'a pas de chiffre fiable, ou donne un ordre de grandeur en précisant qu'il faut le vérifier.</p>
       <p class="sig ko"><b>Mauvais signe :</b> il sort un montant précis, sans la moindre mention d'incertitude.</p>
     </div>
 
     <div class="test reveal">
-      <p class="q">2. Une citation — « Quelle est la citation la plus connue de [personnalité] sur l'IA ? »</p>
+      <p class="q">2. Une citation : « Quelle est la citation la plus connue de [personnalité] sur l'IA ? »</p>
       <p class="sig ok"><b>Bon signe :</b> il précise qu'il ne peut pas confirmer la citation exacte, ou en propose une avec un avertissement clair.</p>
       <p class="sig ko"><b>Mauvais signe :</b> il fabrique une citation plausible, sans avertissement.</p>
     </div>
 
     <div class="test reveal">
-      <p class="q">3. Une question d'actualité — « Qui dirige actuellement telle entreprise ? »</p>
+      <p class="q">3. Une question d'actualité : « Qui dirige actuellement telle entreprise ? »</p>
       <p class="sig ok"><b>Bon signe :</b> il répond en signalant que l'info peut avoir changé et recommande une source à jour.</p>
       <p class="sig ko"><b>Mauvais signe :</b> il affirme sans aucune nuance temporelle.</p>
     </div>
 
     <div class="test reveal">
-      <p class="q">4. Le piège du contexte manquant — « Quel est le meilleur outil pour automatiser ma prospection ? »</p>
+      <p class="q">4. Le piège du contexte manquant : « Quel est le meilleur outil pour automatiser ma prospection ? »</p>
       <p class="sig ok"><b>Bon signe :</b> il te demande ton secteur, ton volume, ton budget, et présente plusieurs possibilités plutôt qu'une réponse unique.</p>
       <p class="sig ko"><b>Mauvais signe :</b> il te sert une réponse clé en main avec un seul outil, sans chercher à te connaître.</p>
     </div>
 
-    <div class="callout reveal"><b>Si un test échoue :</b> trois causes possibles — le prompt n'a pas été sauvegardé, tu es dans une conversation antérieure à l'installation, ou tu utilises un modèle ancien qui suit moins bien les instructions système longues.</div>
+    <div class="callout reveal"><b>Si un test échoue :</b> trois causes possibles, le prompt n'a pas été sauvegardé, tu es dans une conversation antérieure à l'installation, ou tu utilises un modèle ancien qui suit moins bien les instructions système longues.</div>
 
     <h2 class="reveal"><span class="numtag">4</span>Les 4 situations où ça change vraiment quelque chose</h2>
     <p class="reveal">Quatre contextes de travail où ce prompt fait la différence entre un livrable solide et un livrable qui abîme ta crédibilité.</p>
 
     <h2 class="reveal">Audit d'un process client</h2>
     <p class="reveal"><strong>Sans le prompt.</strong> Claude sort « dans ce secteur, les entreprises automatisent en moyenne une large part de leurs tâches admin ». Tu le cites en kickoff. Le client demande la source. Tu n'as rien.</p>
-    <p class="reveal"><strong>Avec le prompt.</strong> Il te dit qu'il n'a pas de chiffre vérifié sur ce secteur et t'oriente vers des sources institutionnelles (type Cigref, France Num, INSEE). Tu vas chercher la vraie donnée — ou tu évites la stat.</p>
+    <p class="reveal"><strong>Avec le prompt.</strong> Il te dit qu'il n'a pas de chiffre vérifié sur ce secteur et t'oriente vers des sources institutionnelles (type Cigref, France Num, INSEE). Tu vas chercher la vraie donnée, ou tu évites la stat.</p>
     <div class="callout reveal"><b>Comment on s'en sert chez NoesisAI :</b> avant un audit chez un client industriel, on fait une session de veille avec Claude pour identifier les cas d'usage IA déjà validés dans le secteur. Le prompt nous force à ne mentionner que du vérifiable plutôt que des stats de seconde main.</div>
 
     <h2 class="reveal">Recherche concurrentielle</h2>
@@ -516,7 +516,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
     <h2 class="reveal">Analyse de documents pour une propale</h2>
     <p class="reveal"><strong>Sans le prompt.</strong> Claude lit le cahier des charges, mais il <strong>interpole</strong> : il invente des « contraintes implicites », des « besoins non exprimés », des « objections probables ». Tu construis ta propale sur du sable.</p>
     <p class="reveal"><strong>Avec le prompt.</strong> Il sépare explicitement ce qui est écrit dans le document (« le client demande X, Y, Z ») de ce qui relève de l'interprétation (« je suppose que A pourrait être un besoin, mais ce n'est pas dans le document »). Tu sais exactement ce que tu réponds et ce que tu projettes.</p>
-    <div class="callout win reveal"><b>Le gain réel :</b> sur l'analyse d'appels d'offres, cette séparation évite d'intégrer dans ta réponse des exigences qui n'existaient pas dans le document — et de transformer un dossier léger en pavé inutile.</div>
+    <div class="callout win reveal"><b>Le gain réel :</b> sur l'analyse d'appels d'offres, cette séparation évite d'intégrer dans ta réponse des exigences qui n'existaient pas dans le document, et de transformer un dossier léger en pavé inutile.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Quand le désactiver (et comment)</h2>
     <p class="reveal">Le prompt est très puissant en contexte factuel. Mais il existe des situations où il bride Claude au-delà du raisonnable.</p>
@@ -534,7 +534,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
       <div class="prompt-bar"><span class="prompt-tag">Prompt · suspendre temporairement</span><button class="copy" type="button">Copier</button></div>
       <pre>Pour cette conversation uniquement, je suis en mode brainstorming créatif. Les règles d'honnêteté et de vérification de sources de tes instructions personnelles ne s'appliquent pas ici. Je te demande de proposer librement, même des idées non vérifiées.</pre>
     </div>
-    <div class="callout reveal"><b>L'autre option :</b> retirer puis remettre le prompt dans les Settings. Ça marche, mais c'est lourd à faire plusieurs fois par jour — d'où l'intérêt de la méta-instruction.</div>
+    <div class="callout reveal"><b>L'autre option :</b> retirer puis remettre le prompt dans les Settings. Ça marche, mais c'est lourd à faire plusieurs fois par jour : d'où l'intérêt de la méta-instruction.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Ses limites (et comment les compenser)</h2>
 
@@ -544,7 +544,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
 
     <p class="reveal"><strong>Il ne corrige pas les biais d'interprétation.</strong> Claude reste orienté par ses données d'entraînement : si tu demandes « quel est le meilleur outil d'automatisation ? », il citera spontanément les plus représentés (Zapier, Make, n8n), même s'il existe des alternatives européennes moins connues. <em>Compensation :</em> pose des questions ouvertes (« quels outils souverains existent ? ») plutôt que fermées (« quel est le meilleur ? »).</p>
 
-    <p class="reveal"><strong>Il coûte quelques tokens.</strong> Des instructions système longues sont relues à chaque conversation. Sur une journée intensive, c'est marginal mais réel. <em>Compensation :</em> si tu veux l'alléger, garde les règles 1, 2 et 6 — les plus structurelles.</p>
+    <p class="reveal"><strong>Il coûte quelques tokens.</strong> Des instructions système longues sont relues à chaque conversation. Sur une journée intensive, c'est marginal mais réel. <em>Compensation :</em> si tu veux l'alléger, garde les règles 1, 2 et 6, les plus structurelles.</p>
 
     <h2 class="reveal"><span class="numtag">7</span>Bonus : la règle 6 décortiquée</h2>
     <p class="reveal">C'est la règle qu'on a ajoutée, et elle mérite un mot. Dans l'original, la dernière ligne dit « <em>If any answer is 'yes,' revise before responding</em> ». C'est elliptique : Claude est censé comprendre qu'il s'agit d'une auto-question, mais comme la ligne n'est pas numérotée, elle passe parfois inaperçue face aux règles qui, elles, le sont.</p>
@@ -554,7 +554,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
       <li>Ai-je inventé ou non-sourcé une étude, un chiffre, une citation ?</li>
       <li>Ai-je présenté une information potentiellement périmée comme actuelle ?</li>
     </ul>
-    <div class="callout win reveal"><b>La maxime de secours :</b> « Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie qui induit en erreur. » Elle sert de filet quand Claude est tenté de combler un vide — et elle reformule positivement ce que les 5 premières règles disent en négatif.</div>
+    <div class="callout win reveal"><b>La maxime de secours :</b> « Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie qui induit en erreur. » Elle sert de filet quand Claude est tenté de combler un vide, et elle reformule positivement ce que les 5 premières règles disent en négatif.</div>
 
     <h2 class="reveal">L'étendre à ton métier</h2>
     <p class="reveal">La règle 6 est la couche que tu peux personnaliser sans casser la logique générale. Ajoute-lui une question d'auto-audit propre à ton contexte :</p>
@@ -600,6 +600,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
   <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
+
 
 <!-- ============ SEAM : ressource -> appel ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
@@ -680,7 +681,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>

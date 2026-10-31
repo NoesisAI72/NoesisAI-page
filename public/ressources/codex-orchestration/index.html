@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/codex-orchestration">
-<title>Orchestrer plusieurs IA : le principe conseiller / exécutant — NoesisAI</title>
+<title>Orchestrer plusieurs IA : le principe conseiller / exécutant - NoesisAI</title>
 <meta name="description" content="Comment faire travailler plusieurs modèles IA ensemble avec Codex-Orchestration : rôles advisor/executor, installation en une instruction, et le principe à appliquer même sans plugin.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Orchestrer plusieurs IA : le principe conseiller / exécutant">
@@ -261,7 +261,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Orchestrer plusieurs IA : le principe conseiller / exécutant</h1>
-    <p class="sub">Arrête de chercher le meilleur modèle. Donne un rôle à chacun — un qui réfléchit, un qui exécute — et laisse le routing faire le reste.</p>
+    <p class="sub">Arrête de chercher le meilleur modèle. Donne un rôle à chacun (un qui réfléchit, un qui exécute) et laisse le routing faire le reste.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -275,11 +275,11 @@ body.gate-on .gate-card{transform:none}
 
     <p class="lead reveal">Pendant deux ans, la question c'était « quel est le meilleur modèle ? ». C'est la mauvaise question. La vraie, c'est : <strong>quel modèle à quel poste ?</strong> Un plugin open source appelé <strong>Codex-Orchestration</strong> permet maintenant de faire travailler plusieurs IA ensemble, chacune à son rôle, dans un ordre que tu décides. Voici ce que ça change, et comment le mettre en place en 5 minutes.</p>
 
-    <div class="callout reveal"><b>L'idée en une phrase :</b> tu arrêtes de demander à un seul modèle de tout faire, et tu montes une petite équipe — un qui réfléchit, un qui exécute.</div>
+    <div class="callout reveal"><b>L'idée en une phrase :</b> tu arrêtes de demander à un seul modèle de tout faire, et tu montes une petite équipe, un qui réfléchit, un qui exécute.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le problème : un seul cerveau pour deux métiers</h2>
     <p class="reveal"><strong>Ce qui se passe aujourd'hui.</strong> Tu ouvres ton assistant, tu lui donnes une tâche complexe, et il fait tout : il analyse le problème, choisit une approche, puis écrit la solution. Comme si tu demandais à la même personne d'être à la fois l'architecte et le maçon.</p>
-    <p class="reveal"><strong>Pourquoi ça coince.</strong> Ce sont deux compétences différentes. Réfléchir demande de la prudence, de la vue d'ensemble, la capacité à dire « attention, ça ne va pas marcher ». Exécuter demande de la vitesse et de la précision. Un modèle excellent en stratégie n'est pas forcément le plus rapide à produire — et l'inverse est vrai aussi.</p>
+    <p class="reveal"><strong>Pourquoi ça coince.</strong> Ce sont deux compétences différentes. Réfléchir demande de la prudence, de la vue d'ensemble, la capacité à dire « attention, ça ne va pas marcher ». Exécuter demande de la vitesse et de la précision. Un modèle excellent en stratégie n'est pas forcément le plus rapide à produire, et l'inverse est vrai aussi.</p>
     <p class="reveal"><strong>Le coût caché.</strong> Quand un seul modèle porte les deux casquettes, il consomme énormément pour des tâches qui ne le méritent pas. Tu tapes tes limites d'usage plus vite, et tu paies du raisonnement premium pour écrire des lignes triviales.</p>
 
     <h2 class="reveal"><span class="numtag">2</span>La bascule : attribuer des rôles</h2>
@@ -288,7 +288,7 @@ body.gate-on .gate-card{transform:none}
     <p class="reveal"><strong>L'executor (l'exécutant).</strong> Il reçoit un plan déjà clair et l'applique. Il n'a pas à réinventer la stratégie, donc tu peux y mettre un modèle optimisé pour la vitesse et le volume.</p>
     <p class="reveal"><strong>Le routing (l'aiguillage).</strong> C'est le rôle du plugin : il envoie automatiquement chaque étape au bon modèle, dans l'ordre que tu as défini. Tu n'as rien à copier-coller entre deux fenêtres.</p>
 
-    <div class="callout win reveal"><b>Ce que ça débloque concrètement :</b> tu n'es plus enfermé dans un seul écosystème. Tu peux mettre un modèle Claude au poste de conseiller et un modèle OpenAI à l'exécution — ou l'inverse — et garder le meilleur des deux.</div>
+    <div class="callout win reveal"><b>Ce que ça débloque concrètement :</b> tu n'es plus enfermé dans un seul écosystème. Tu peux mettre un modèle Claude au poste de conseiller et un modèle OpenAI à l'exécution, ou l'inverse, et garder le meilleur des deux.</div>
 
     <h2 class="reveal"><span class="numtag">3</span>L'installer : une seule instruction à coller</h2>
     <p class="reveal">Le plugin s'installe depuis Codex, en langage naturel. Tu colles ce bloc dans ta fenêtre de conversation et il fait le reste :</p>
@@ -303,7 +303,7 @@ body.gate-on .gate-card{transform:none}
     <div class="callout reveal"><b>Exemple d'attribution :</b><br><br>
     <code>@codex-orchestration advisor: Claude Fable 5 High, Executor: GPT-5.6 Sol High</code></div>
     <p class="reveal">Et c'est tout. À partir de là, chaque tâche passe d'abord par le conseiller, qui produit le plan, puis par l'exécutant, qui l'applique. Tu peux changer l'attribution à tout moment selon le type de travail.</p>
-    <div class="callout warn reveal"><b>Honnêteté sur les chiffres :</b> l'auteur du plugin rapporte, sur son propre banc d'essai (Fable 5 en conseiller, GPT-5.6 Sol en exécutant), des tâches bloquées résolues en 30 minutes, ~40 % de limites d'usage atteintes en moins et une implémentation 2× plus rapide. Ce sont <strong>ses</strong> mesures, sur <strong>ses</strong> tâches — pas une garantie. Mesure sur les tiennes avant d'en tirer une règle.</div>
+    <div class="callout warn reveal"><b>Honnêteté sur les chiffres :</b> l'auteur du plugin rapporte, sur son propre banc d'essai (Fable 5 en conseiller, GPT-5.6 Sol en exécutant), des tâches bloquées résolues en 30 minutes, ~40 % de limites d'usage atteintes en moins et une implémentation 2× plus rapide. Ce sont <strong>ses</strong> mesures, sur <strong>ses</strong> tâches, pas une garantie. Mesure sur les tiennes avant d'en tirer une règle.</div>
 
     <h2 class="reveal"><span class="numtag">5</span>Quel modèle à quel poste</h2>
     <p class="reveal">Il n'y a pas de configuration universelle. Mais il y a une logique de casting simple, à adapter aux modèles auxquels tu as accès.</p>
@@ -324,7 +324,7 @@ body.gate-on .gate-card{transform:none}
     <div class="callout win reveal"><b>Le réflexe à garder :</b> quand un résultat IA te déçoit, la question n'est presque jamais « quel modèle j'aurais dû prendre ? ». C'est « est-ce que j'ai validé le plan avant de lancer l'exécution ? ».</div>
 
     <h2 class="reveal">Aller voir par toi-même</h2>
-    <p class="reveal">Le projet est open source : tu peux lire le code, modifier les règles d'aiguillage, ajouter des rôles. Le dépôt est ici — <a href="https://github.com/Cjbuilds/Codex-Orchestration" target="_blank" rel="noopener">github.com/Cjbuilds/Codex-Orchestration</a>.</p>
+    <p class="reveal">Le projet est open source : tu peux lire le code, modifier les règles d'aiguillage, ajouter des rôles. Le dépôt est ici : <a href="https://github.com/Cjbuilds/Codex-Orchestration" target="_blank" rel="noopener">github.com/Cjbuilds/Codex-Orchestration</a>.</p>
 
   
     <!-- lien service noesisai.fr -->
@@ -346,6 +346,7 @@ body.gate-on .gate-card{transform:none}
 </div></nav>
 <!-- ============ /À LIRE AUSSI ============ -->
 
+
 <!-- ============ SEAM : passage gratuit -> communauté ============ -->
 <div class="seam" role="separator" aria-hidden="true"></div>
 
@@ -353,7 +354,7 @@ body.gate-on .gate-card{transform:none}
 <section class="pitch">
   <div class="wrap reveal">
     <h2>Apprends à <span class="grad-text">construire ET vendre</span> ces solutions. Même si tu pars de zéro.</h2>
-    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA — nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
+    <p>Ce que tu viens de lire est gratuit. Et la suite aussi : dans <strong>AI Lab [FR]</strong>, ma communauté gratuite, je te donne un cours pas à pas pour lancer ton agence IA, nourri par le système qui nous fait aujourd'hui tourner à <strong class="grad-text">20-30+ rendez-vous qualifiés par mois</strong> avec des entreprises.</p>
     <div class="stats">
       <span class="stat"><b>Cours</b> pas à pas</span>
       <span class="stat"><b>290+</b> membres</span>
@@ -385,9 +386,9 @@ body.gate-on .gate-card{transform:none}
     <div class="sec-sub reveal">Le chemin réel d'une agence IA, dans l'ordre.</div>
     <div class="grid2">
       <div class="outcome reveal"><h3>Démarrer dans le bon ordre</h3><p>Le module « Commence ici » te prend par la main : tu sais exactement quoi faire, sans t'éparpiller.</p></div>
-      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier — la décision qui conditionne tout le reste.</p></div>
+      <div class="outcome reveal"><h3>Choisir ta niche et ton positionnement</h3><p>À qui tu t'adresses, et comment te différencier : la décision qui conditionne tout le reste.</p></div>
       <div class="outcome reveal"><h3>Savoir quoi vendre, et à quel prix</h3><p>Les services IA à proposer selon ta niche, et comment les tarifer sans te brader ni bluffer.</p></div>
-      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection — les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
+      <div class="outcome reveal"><h3>Prospecter &amp; décrocher tes premiers RDV</h3><p>Les systèmes de prospection : les mêmes logiques qui nous font tourner à 20-30+ rendez-vous qualifiés par mois.</p></div>
     </div>
   </div>
 </section>
@@ -473,11 +474,11 @@ body.gate-on .gate-card{transform:none}
     <h2 class="reveal center" style="margin-bottom:28px">Questions fréquentes</h2>
     <div class="faq">
       <details class="reveal"><summary>Je débute, c'est vraiment pour moi ?<span class="chev">⌄</span></summary><div class="ans">Oui. Le cours part de zéro et le module « Commence ici » te guide dès l'arrivée. Tu avances à ton rythme, et la communauté est là quand tu bloques.</div></details>
-      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection — plus un espace d'entraide entre builders.</div></details>
+      <details class="reveal"><summary>C'est quoi exactement, AI Lab [FR] ?<span class="chev">⌄</span></summary><div class="ans">Une communauté gratuite sur Skool avec un cours pas à pas pour lancer ton agence IA : choisir ta niche, définir tes services et leurs prix, mettre en place ta prospection, plus un espace d'entraide entre builders.</div></details>
       <details class="reveal"><summary>C'est vraiment gratuit ?<span class="chev">⌄</span></summary><div class="ans">Oui. Aucune carte bancaire n'est demandée, et l'accès n'est pas limité dans le temps.</div></details>
       <details class="reveal"><summary>Pourquoi tu donnes ça gratuitement ?<span class="chev">⌄</span></summary><div class="ans">Parce que c'est la porte d'entrée de mon écosystème : si le contenu te sert et que tu veux aller plus loin, il existe un accompagnement payant. Mais le cours gratuit se suffit à lui-même, et personne ne te forcera la main.</div></details>
       <details class="reveal"><summary>J'utilise déjà Claude, qu'est-ce que j'y gagne ?<span class="chev">⌄</span></summary><div class="ans">Le passage de « je sais m'en servir » à « j'en fais une activité » : te positionner, structurer une offre, prospecter et vendre.</div></details>
-      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur — en commençant par le module « Commence ici ».</div></details>
+      <details class="reveal"><summary>Comment j'accède au cours ?<span class="chev">⌄</span></summary><div class="ans">Tu cliques sur un bouton de cette page, tu crées ton compte gratuit sur Skool, et tout est à l'intérieur, en commençant par le module « Commence ici ».</div></details>
     </div>
   </div>
 </section>
@@ -486,14 +487,14 @@ body.gate-on .gate-card{transform:none}
 <section class="wide">
   <div class="final reveal">
     <h2>Prêt à passer à l'exécution ?</h2>
-    <p>Rejoins AI Lab [FR] et commence à construire — et à vendre — dès aujourd'hui.</p>
+    <p>Rejoins AI Lab [FR] et commence à construire, et à vendre, dès aujourd'hui.</p>
     <a class="cta-btn" href="https://www.skool.com/voice-ai-lab-fr-9526/about">Rejoindre gratuitement →</a>
     <div class="reassure">Gratuit · sans carte bancaire · accès immédiat via Skool</div>
   </div>
 </section>
 
 <footer>
-  Ressource produite par NoesisAI — Agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
 </footer>
 
 <script>
