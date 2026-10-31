@@ -193,6 +193,7 @@ export function Projets({
   showAllLink = false,
   before,
   exclude = [],
+  headingAs,
 }: {
   /** Clients à ne pas répéter dans la grille (ex. déjà mis en avant). */
   exclude?: string[];
@@ -205,6 +206,8 @@ export function Projets({
   showAllLink?: boolean;
   /** Contenu inséré entre le titre et la grille (ex. projet phare). */
   before?: React.ReactNode;
+  /** "h1" sur la page /projets, où cette section est le contenu principal. */
+  headingAs?: "h1" | "h2";
 }) {
   const [filter, setFilter] = useState<Filter>(category ?? PROJECT_CATEGORIES[0]);
   const [open, setOpen] = useState<Project | null>(null);
@@ -216,7 +219,7 @@ export function Projets({
 
   return (
     <Section id="projets" className="bg-white text-[#0b0b0f]">
-      <SectionHeading badge={badge} title={title} subtitle={subtitle} tone="light" />
+      <SectionHeading badge={badge} title={title} subtitle={subtitle} tone="light" as={headingAs} />
       {before && <div className="mt-12">{before}</div>}
 
       {/* Filtres par type de projet */}

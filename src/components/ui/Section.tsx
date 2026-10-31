@@ -28,6 +28,7 @@ export function SectionHeading({
   className,
   tone = "dark",
   accent,
+  as: Heading = "h2",
 }: {
   badge?: string;
   title: string;
@@ -38,6 +39,8 @@ export function SectionHeading({
   tone?: "dark" | "light";
   /** Fin de titre mise en avant (violet sur fond clair). */
   accent?: string;
+  /** "h1" quand la section ouvre une page dédiée (titre principal pour Google). */
+  as?: "h1" | "h2";
 }) {
   const light = tone === "light";
   return (
@@ -53,7 +56,7 @@ export function SectionHeading({
       )}
     >
       {badge && <Badge tone={tone}>{badge}</Badge>}
-      <h2
+      <Heading
         className={cn(
           "text-3xl leading-[1.1] sm:text-4xl md:text-[2.75rem]",
           light ? "font-semibold tracking-[-0.04em] text-[#0b0b0f]" : "font-extrabold text-white"
@@ -66,7 +69,7 @@ export function SectionHeading({
             <span className={light ? "text-brand-600" : "text-gradient"}>{accent}</span>
           </>
         )}
-      </h2>
+      </Heading>
       {subtitle && (
         <p className={cn("text-base leading-relaxed sm:text-lg", light ? "text-slate-600" : "text-slate-300")}>
           {subtitle}

@@ -308,11 +308,11 @@ export function RatingPill() {
 }
 
 /** Témoignages clients (version claire) : note, distinctions et avis. */
-export function TestimonialsSection() {
+export function TestimonialsSection({ headingAs }: { headingAs?: "h1" | "h2" } = {}) {
   const t = TESTIMONIALS;
   return (
     <Section id="avis" className="bg-[#f7f6fb]">
-      <SectionHeading badge={t.badge} title={t.title} subtitle={t.subtitle} tone="light" />
+      <SectionHeading badge={t.badge} title={t.title} subtitle={t.subtitle} tone="light" as={headingAs} />
 
       {/* Note globale + distinctions */}
       <Reveal className="mt-10 flex flex-col items-center gap-6">

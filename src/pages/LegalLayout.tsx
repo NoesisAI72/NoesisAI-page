@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
-/** Mise en page commune aux pages légales (lecture confortable). */
+/** Mise en page commune aux pages légales (lecture confortable).
+    Titre propre + noindex : sans ça, elles héritaient du titre de l'accueil
+    et lui faisaient concurrence dans Google sur la requête « noesis ». */
 export function LegalLayout({
   title,
   updated,
@@ -12,6 +15,10 @@ export function LegalLayout({
 }) {
   return (
     <main className="pt-32 pb-20">
+      <Helmet>
+        <title>{`${title} | NoesisAI`}</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="container-page max-w-3xl">
         <Link to="/" className="text-sm font-medium text-slate-500 hover:text-[#0b0b0f]">
           ← Retour à l'accueil
