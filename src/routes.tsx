@@ -43,7 +43,7 @@ function SiteLayout() {
   return (
     <>
       <Helmet>
-        <title>NoesisAI – Agence d'automatisation IA sur-mesure</title>
+        <title>NoesisAI | Agence d'automatisation IA sur-mesure</title>
         <meta name="description" content="NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert." />
       </Helmet>
       <Navbar />

@@ -49,7 +49,7 @@ export function GuideAutomatisation() {
   /* --- Cloisonnement : hors index même si le lien fuite --- */
   useEffect(() => {
     const titrePrecedent = document.title;
-    document.title = "Guide d'automatisation — NoesisAI";
+    document.title = "Guide d'automatisation | NoesisAI";
     const robots = document.createElement("meta");
     robots.name = "robots";
     robots.content = "noindex, nofollow, noarchive";

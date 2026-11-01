@@ -64,7 +64,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-black/10 pt-6 sm:flex-row">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} NOESIS AI — Tous droits réservés.
+            © {new Date().getFullYear()} NOESIS AI. Tous droits réservés.
           </p>
           <p className="text-xs text-slate-500">Automatisations IA · n8n · Make · agents vocaux</p>
         </div>

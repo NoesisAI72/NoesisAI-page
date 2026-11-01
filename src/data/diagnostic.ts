@@ -200,7 +200,7 @@ export const TACHES: Tache[] = [
     auto: 0.7,
     chantier: "Génération automatisée des devis et factures",
     solution:
-      "À partir d'une demande client, le document est généré, personnalisé, envoyé et archivé automatiquement — vous n'intervenez que pour valider.",
+      "À partir d'une demande client, le document est généré, personnalisé, envoyé et archivé automatiquement : vous n'intervenez que pour valider.",
     stack: ["n8n", "LLM", "Pennylane"],
   },
   {
@@ -270,7 +270,7 @@ export const TACHES: Tache[] = [
     auto: 0.6,
     chantier: "Suivi de commandes automatisé",
     solution:
-      "Chaque changement de statut déclenche l'information du client et l'alerte interne en cas de retard — plus personne ne relance manuellement.",
+      "Chaque changement de statut déclenche l'information du client et l'alerte interne en cas de retard : plus personne ne relance manuellement.",
     stack: ["n8n", "ERP", "Notifications"],
   },
   {
@@ -290,7 +290,7 @@ export const TACHES: Tache[] = [
     auto: 0.55,
     chantier: "Chaîne de production de contenu",
     solution:
-      "Une chaîne éditoriale produit vos contenus à votre ton de voix, les décline par canal et les programme — vous gardez la validation finale.",
+      "Une chaîne éditoriale produit vos contenus à votre ton de voix, les décline par canal et les programme : vous gardez la validation finale.",
     stack: ["LLM", "n8n", "Réseaux sociaux"],
   },
   {

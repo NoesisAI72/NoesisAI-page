@@ -163,14 +163,14 @@ const DAYS = ["LUN.", "MAR.", "MER.", "JEU."];
 const DATES = ["14", "15", "16", "17"];
 // [jour, début (h depuis 8h), durée (h), couleur, libellé]
 const EVENTS: [number, number, number, string, string][] = [
-  [0, 0, 1.6, "bg-[#e67c22]", "Pose pergola – Payerne"],
-  [0, 1.7, 1, "bg-[#7a6cd9]", "Métré store – Morges"],
+  [0, 0, 1.6, "bg-[#e67c22]", "Pose pergola - Payerne"],
+  [0, 1.7, 1, "bg-[#7a6cd9]", "Métré store - Morges"],
   [1, 0, 1.2, "bg-[#3f7fe0]", "Devis Gibus ?? rappeler"],
   [1, 1.3, 1.5, "bg-[#e67c22]", "Chantier Lausanne"],
-  [2, 0, 2.6, "bg-[#e6a822]", "Équipe Didier – Vevey"],
+  [2, 0, 2.6, "bg-[#e6a822]", "Équipe Didier - Vevey"],
   [2, 0.5, 1, "bg-[#e67c22]", "Livraison lames"],
   [3, 0, 1, "bg-[#3f7fe0]", "Visite client Nyon"],
-  [3, 1.1, 1.6, "bg-[#e67c22]", "Pose LED – Payerne"],
+  [3, 1.1, 1.6, "bg-[#e67c22]", "Pose LED - Payerne"],
   [3, 0.6, 0.9, "bg-[#7a6cd9]", "SAV moteur"],
 ];
 
@@ -220,7 +220,7 @@ function ChaosMock() {
       <div className="absolute left-[3.5%] top-[4%] w-[78%] overflow-hidden rounded-[0.9cqw] shadow-[0_2cqw_4cqw_-1.5cqw_rgba(0,0,0,0.55)]">
         <div className="flex items-center gap-[1cqw] bg-[#e7e1f5] px-[1.2cqw] py-[0.7cqw] text-[0.95cqw] text-[#333]">
           <Dots />
-          <span className="rounded-t-[0.5cqw] bg-white px-[1cqw] py-[0.3cqw]">Muller – Agenda – Semaine</span>
+          <span className="rounded-t-[0.5cqw] bg-white px-[1cqw] py-[0.3cqw]">Muller - Agenda - Semaine</span>
         </div>
         <div className="flex items-center gap-[1cqw] bg-white px-[1.2cqw] py-[0.6cqw] text-[0.95cqw] text-[#444]">
           <span className="text-[#999]">← →</span>
@@ -281,10 +281,10 @@ function ChaosMock() {
           <Dots />
           <span>Devis en attente</span>
           <span>Projet interne</span>
-          <span className="rounded-[0.3cqw] bg-white px-[0.6cqw] text-[#333]">Muller – Chantiers & suivi</span>
+          <span className="rounded-[0.3cqw] bg-white px-[0.6cqw] text-[#333]">Muller - Chantiers & suivi</span>
         </div>
         <div className="px-[3cqw] pb-[1.5cqw] pt-[1.4cqw] text-[#37352f]">
-          <p className="text-[2.2cqw] font-bold leading-tight">Muller – Chantiers & suivi (NE PAS SUPPRIMER)</p>
+          <p className="text-[2.2cqw] font-bold leading-tight">Muller - Chantiers & suivi (NE PAS SUPPRIMER)</p>
           <p className="mt-[1cqw] rounded-[0.5cqw] bg-[#fbe4e4] px-[1cqw] py-[0.7cqw] text-[0.95cqw]">
             ⚠️ Vérifier aussi l'Excel ET le planning Word avant de valider un devis !! (on a eu des doublons)
           </p>
@@ -326,7 +326,7 @@ function ChaosMock() {
           <span className="italic">I</span>
           <span className="underline">U</span>
           <span className="ml-[0.6cqw] flex-1 truncate border border-black/15 bg-white px-[0.6cqw]">
-            SUIVI DEVIS MULLER – SEPTEMBRE 2026 (mettre à jour CHAQUE SOIR svp !!!)
+            SUIVI DEVIS MULLER - SEPTEMBRE 2026 (mettre à jour CHAQUE SOIR svp !!!)
           </span>
         </div>
         <div className="flex items-center gap-[0.8cqw] bg-[#d9ecfb] px-[1cqw] py-[0.35cqw] text-[0.85cqw] text-[#1a4f7a]">
@@ -336,7 +336,7 @@ function ChaosMock() {
           <tbody>
             <tr>
               <td colSpan={7} className="border border-black/10 px-[0.5cqw] py-[0.3cqw] font-bold text-[#c62828]">
-                SUIVI DEVIS MULLER – SEPTEMBRE 2026 (mettre à jour CHAQUE SOIR svp !!!)
+                SUIVI DEVIS MULLER - SEPTEMBRE 2026 (mettre à jour CHAQUE SOIR svp !!!)
               </td>
             </tr>
             <tr>

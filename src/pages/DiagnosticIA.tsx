@@ -76,7 +76,7 @@ export function DiagnosticIA() {
   /* --- Cloisonnement : hors index, y compris si le lien fuite --- */
   useEffect(() => {
     const titrePrecedent = document.title;
-    document.title = "Diagnostic IA — NoesisAI";
+    document.title = "Diagnostic IA | NoesisAI";
 
     const robots = document.createElement("meta");
     robots.name = "robots";
@@ -242,7 +242,7 @@ export function DiagnosticIA() {
               },
               {
                 titre: "Un score de potentiel",
-                texte: "Pondéré par votre maturité actuelle et la qualité de vos données — pas une promesse en l'air.",
+                texte: "Pondéré par votre maturité actuelle et la qualité de vos données, pas une promesse en l'air.",
               },
             ].map((c) => (
               <div key={c.titre} className="rounded-2xl border border-black/5 bg-white shadow-card p-5">
@@ -336,7 +336,7 @@ export function DiagnosticIA() {
               <>
                 <EnteteEtape
                   titre="Qui perd du temps, et combien ?"
-                  sousTitre="Activez les pôles concernés, puis indiquez le nombre de collaborateurs et le temps que chacun consacre chaque semaine à des tâches répétitives — pas son temps de travail total."
+                  sousTitre="Activez les pôles concernés, puis indiquez le nombre de collaborateurs et le temps que chacun consacre chaque semaine à des tâches répétitives, pas son temps de travail total."
                 />
                 <div className="flex flex-col gap-3">
                   {POLES.map((p) => {

@@ -26,7 +26,7 @@ export const HERO = {
   badge: "Studio d'ingénierie IA · solutions sur-mesure",
   // Le titre est composé dans Hero.tsx (partie en dégradé).
   subtitle:
-    "NOESIS.AI conçoit, déploie et opère des agents IA, des automatisations et des produits digitaux taillés pour vos enjeux métier — de l'audit à la mise en production.",
+    "NOESIS.AI conçoit, déploie et opère des agents IA, des automatisations et des produits digitaux taillés pour vos enjeux métier, de l'audit à la mise en production.",
   primaryCta: "Échanger avec un expert",
   secondaryCta: "Voir nos réalisations",
   stats: [
@@ -139,7 +139,7 @@ export const VOICE_AGENTS = {
   badge: "Notre expertise phare",
   title: "Des agents vocaux IA qui décrochent à votre place, 24/7",
   subtitle:
-    "Ne perdez plus jamais un appel. Nos agents vocaux répondent, qualifient la demande et déclenchent les bonnes actions dans vos outils — même quand vous êtes sur le terrain.",
+    "Ne perdez plus jamais un appel. Nos agents vocaux répondent, qualifient la demande et déclenchent les bonnes actions dans vos outils, même quand vous êtes sur le terrain.",
   capabilities: [
     "Décroche les appels entrants hors disponibilité (soir, week-end, interventions)",
     "Trie et qualifie la demande (SAV, devis, prise de RDV…)",
@@ -153,7 +153,7 @@ export const VOICE_AGENTS = {
     client: "FastParts",
     sector: "Pièces détachées auto · Belgique",
     quote:
-      "Le volume d'appels (référence, disponibilité, prix) saturait les commerciaux. Notre agent vocal identifie le véhicule, qualifie la pièce recherchée et envoie automatiquement un devis par SMS/email — et bascule vers un commercial pour les cas complexes.",
+      "Le volume d'appels (référence, disponibilité, prix) saturait les commerciaux. Notre agent vocal identifie le véhicule, qualifie la pièce recherchée et envoie automatiquement un devis par SMS/email, et bascule vers un commercial pour les cas complexes.",
     stack: ["n8n", "Twilio", "OpenAI"],
   },
 };
@@ -162,7 +162,7 @@ export const ROI = {
   badge: "Calculateur ROI",
   title: "Combien vous coûtent vos appels manqués ?",
   subtitle:
-    "Estimez le chiffre d'affaires que vous perdez chaque mois faute de décrocher — et ce qu'un agent vocal IA pourrait récupérer.",
+    "Estimez le chiffre d'affaires que vous perdez chaque mois faute de décrocher, et ce qu'un agent vocal IA pourrait récupérer.",
   defaults: {
     appelsManquesParMois: 40,
     panierMoyen: 250,
@@ -182,7 +182,7 @@ export const REALISATIONS = {
       sector: "Pièces détachées auto",
       country: "Belgique",
       summary:
-        "Agent vocal IA dédié aux demandes de pièces détachées : il identifie le véhicule (marque, modèle, année), qualifie la pièce recherchée et envoie automatiquement un devis par SMS/email — et bascule vers un commercial pour les cas complexes.",
+        "Agent vocal IA dédié aux demandes de pièces détachées : il identifie le véhicule (marque, modèle, année), qualifie la pièce recherchée et envoie automatiquement un devis par SMS/email, et bascule vers un commercial pour les cas complexes.",
       results: ["Appels qualifiés 24/7, même hors horaires", "Devis envoyés automatiquement", "Commerciaux déchargés des appels simples"],
       tags: ["Agent vocal IA", "Automatisation n8n", "Twilio"],
     },
@@ -200,7 +200,7 @@ export const REALISATIONS = {
       sector: "Tech & Consulting (ESN)",
       country: "Québec",
       summary:
-        "Préqualification par agent vocal IA + matching IA sur un vivier de 15 000 CV, CRM/ATS en Kanban et veille marché — le tout conforme à la Loi 25 par conception.",
+        "Préqualification par agent vocal IA + matching IA sur un vivier de 15 000 CV, CRM/ATS en Kanban et veille marché, le tout conforme à la Loi 25 par conception.",
       results: ["15 000 CV exploités", "80% des opérations visées en automatisation", "Hébergement souverain & conforme Loi 25"],
       tags: ["Agent vocal IA", "Matching IA", "Conformité"],
     },

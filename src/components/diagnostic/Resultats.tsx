@@ -102,7 +102,7 @@ const MESSAGES_STATUT: Record<string, string> = {
   webhook:
     "Diagnostic transmis à l'équipe NoesisAI. Nous revenons vers vous sous 24 h ouvrées.",
   mailto:
-    "Votre logiciel de messagerie vient de s'ouvrir avec le diagnostic pré-rempli — envoyez-le pour que nous le recevions.",
+    "Votre logiciel de messagerie vient de s'ouvrir avec le diagnostic pré-rempli : envoyez-le pour que nous le recevions.",
   echec: `L'envoi automatique n'a pas abouti. Vos résultats restent affichés ci-dessous : écrivez-nous à ${CONTACT_EMAIL} et nous les reprendrons ensemble.`,
 };
 
@@ -253,7 +253,7 @@ export function Resultats({
           </h3>
           <p className="mt-4 text-base leading-relaxed text-slate-600">
             En 30 minutes, on repasse votre diagnostic en détail, on valide les hypothèses avec vos
-            vrais chiffres et on vous remet une feuille de route chiffrée — que vous travailliez
+            vrais chiffres et on vous remet une feuille de route chiffrée, que vous travailliez
             avec nous ensuite ou non.
           </p>
           <a
@@ -289,7 +289,7 @@ export function Resultats({
           {MESSAGES_STATUT[statut]}
         </p>
         <p className="mt-2 text-xs leading-relaxed text-slate-500">
-          <strong className="font-semibold text-slate-600">Méthodologie —</strong> les gains sont
+          <strong className="font-semibold text-slate-600">Méthodologie :</strong> les gains sont
           calculés sur {SEMAINES_TRAVAILLEES} semaines travaillées par an, en appliquant à chaque tâche un
           taux d'automatisation observé sur nos déploiements, pondéré par votre maturité actuelle et
           la qualité de vos données. Estimation indicative : les résultats réels dépendent de votre

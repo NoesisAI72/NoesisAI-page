@@ -217,7 +217,7 @@ export function PlanResultat({
           </h3>
           <p className="mt-4 text-base leading-relaxed text-slate-600">
             En 30 minutes, on valide ensemble le bon outil et on vous dit exactement comment
-            construire cette automatisation — ou on la construit pour vous, clé en main.
+            construire cette automatisation, ou on la construit pour vous, clé en main.
           </p>
           <a
             href={ICLOSED_URL}
