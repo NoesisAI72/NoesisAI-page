@@ -30,7 +30,7 @@ CLUSTERS = {
     "dev": ["claude-code-bonnes-pratiques", "memo-claude-code", "prompts-claude-code", "unlazy-claude-code",
             "speckit", "mods-claude-code", "codex-orchestration", "kimi-agent-swarm", "outils-securite-vibe-coding",
             "claudetube", "chatcut-claude-code", "audit-stockage-mac", "kumar-method"],
-    "agents": ["6-agents-ia-claude", "3-paliers-agents-ia", "guide-automatisation-2026", "150-templates-n8n-claude",
+    "agents": ["6-agents-ia-claude", "equipe-55-agents-claude-code", "3-paliers-agents-ia", "guide-automatisation-2026", "150-templates-n8n-claude",
                "hermes-cloud", "hermes-agent-cloud", "carte-hermes-agent", "hermes-17-prompts",
                "hermes-automation-templates", "hermes-livrables-office", "agent-ia-whatsapp-production",
                "agent-whatsapp-claude-kapso", "whatsapp-registres-etat", "agent-reach", "cowork-sans-toi"],
