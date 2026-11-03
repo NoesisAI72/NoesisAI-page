@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://noesisai.fr/ressources/prompt-claude-honnete">
 <title>Le prompt système qui rend Claude brutalement honnête - NoesisAI</title>
-<meta name="description" content="Le prompt système FR qui force Claude à 6 règles d'honnêteté : installation en 30 secondes, méthode de test en 4 questions, cas d'usage pro et limites connues.">
+<meta name="description" content="Le prompt système FR qui impose 9 règles à Claude : dire quand il ne sait pas, ne rien inventer, te contredire, répondre court. Installation en 30 secondes, test en 6 questions, limites connues.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Le prompt système qui rend Claude brutalement honnête">
-<meta property="og:description" content="Le prompt système FR qui force Claude à 6 règles d'honnêteté : installation en 30 secondes, méthode de test en 4 questions, cas d'usage pro et limites connues.">
+<meta property="og:description" content="Le prompt système FR qui impose 9 règles à Claude : dire quand il ne sait pas, ne rien inventer, te contredire, répondre court. Installation en 30 secondes, test en 6 questions, limites connues.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -290,7 +290,7 @@ body.gate-on .gate-card{transform:none}
     </div>
     <span class="eyebrow">Ressource gratuite · NoesisAI</span>
     <h1>Le prompt système qui rend Claude brutalement honnête</h1>
-    <p class="sub">Le prompt à coller une fois dans tes paramètres pour qu'il arrête d'inventer des sources, des chiffres et des citations.</p>
+    <p class="sub">Le prompt à coller une fois dans tes paramètres pour qu'il arrête d'inventer des sources, des chiffres et des citations, et qu'il réponde court à une question simple.</p>
     <div class="byline">
       <span class="av">US</span>
       <span>Par <b>Ugo Sartini</b></span>
@@ -324,9 +324,9 @@ body.gate-on .gate-card{transform:none}
       .test .ko b{color:var(--rose)}
     </style>
 
-    <p class="lead reveal">Claude ne te ment pas par malice. Il est entraîné à te faire plaisir, et quand il ne sait pas, il comble le vide avec quelque chose qui <em>sonne</em> juste. Une étude, un chiffre, une citation. Voici le prompt système à coller une fois dans tes paramètres pour qu'il arrête, plus le tuto d'installation, une méthode pour vérifier que ça marche et les cas où ça change vraiment quelque chose.</p>
+    <p class="lead reveal">Claude ne te ment pas par malice. Il est entraîné à te faire plaisir, et quand il ne sait pas, il comble le vide avec quelque chose qui <em>sonne</em> juste. Une étude, un chiffre, une citation. Et quand tu poses une question simple, il te rend un mini-rapport. Voici le prompt système à coller une fois dans tes paramètres pour qu'il arrête, plus le tuto d'installation, une méthode pour vérifier que ça marche et les cas où ça change vraiment quelque chose.</p>
 
-    <div class="callout reveal"><b>En une phrase :</b> tu ajoutes 6 règles d'honnêteté aux instructions permanentes de Claude. Il préfère alors dire « je ne sais pas » plutôt que de te servir une réponse polie mais fausse.</div>
+    <div class="callout reveal"><b>En une phrase :</b> tu ajoutes 9 règles aux instructions permanentes de Claude. Il préfère alors dire « je ne sais pas » plutôt que de te servir une réponse polie mais fausse, il te contredit quand tu as tort, et il répond court quand la question est simple.</div>
 
     <h2 class="reveal">Pourquoi ça change tout</h2>
     <p class="reveal">Claude (comme ChatGPT, Gemini ou Mistral) est entraîné à produire des réponses qui sonnent confiantes et utiles. C'est ce qu'on appelle la <strong>sycophance</strong> : la tendance d'un modèle à dire ce que tu veux entendre, même quand il ne sait pas.</p>
@@ -336,9 +336,13 @@ body.gate-on .gate-card{transform:none}
       <li>Tu demandes une citation d'une personnalité connue : il l'invente. C'est plausible, mais elle n'a jamais été dite.</li>
       <li>Tu demandes des études sur un sujet : il liste des papiers avec auteurs, dates et revues. Tu vérifies, une partie n'existe pas.</li>
       <li>Tu demandes une info légale (RGPD, droit du travail) : il répond comme un expert. Sauf que le texte a changé depuis.</li>
+      <li>Tu défends une idée bancale : il commence par « excellente remarque » et va dans ton sens.</li>
+      <li>Tu poses une question basique : tu reçois cinq paragraphes, des intertitres et une conclusion.</li>
+      <li>Tu demandes une réponse rapide : il te fabrique un document de quatre pages que personne n'a commandé.</li>
     </ul>
     <p class="reveal">En usage perso, c'est agaçant. En usage pro, c'est un risque. Tu peux te retrouver à citer un faux chiffre dans une propale, sourcer une analyse stratégique sur des études inventées, argumenter en réunion avec des données hallucinées, ou publier un post avec une citation fabriquée.</p>
     <div class="callout warn reveal"><b>Le vrai danger :</b> ce n'est pas l'erreur, c'est la <strong>confiance</strong> avec laquelle elle est dite. Une réponse qui hésite, tu la vérifies. Une réponse qui affirme, tu la reprends telle quelle.</div>
+    <div class="callout reveal"><b>Ce qu'en dit Anthropic :</b> dans sa documentation sur la réduction des hallucinations, Anthropic recommande d'autoriser explicitement Claude à admettre son incertitude. Selon la doc, cette technique peut « drastically reduce false information » (<a href="https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations" target="_blank" rel="noopener">Reduce hallucinations</a>). Elle réduit les fausses informations, elle ne les supprime pas.</div>
 
     <h2 class="reveal"><span class="numtag">1</span>Le prompt complet à coller</h2>
     <p class="reveal">Copie-colle exactement le bloc ci-dessous dans tes paramètres Claude (l'installation est détaillée juste après). Il est autosuffisant : rien à adapter pour démarrer.</p>
@@ -437,39 +441,67 @@ En cas de doute, dis :
 
 N'invente pas de déclarations, de croyances, ou de motivations pour des personnes réelles. Sépare toujours les faits confirmés de l'interprétation.
 
-6. AUTO-AUDIT FINAL
+6. DÉSACCORD
+
+Si je me trompe, dis-le directement et explique pourquoi.
+
+Ne commence pas par un compliment ou un "bonne question" pour faire passer la pilule.
+
+Ne change pas d'avis parce que j'insiste. Change d'avis seulement si j'apporte un argument ou une information nouvelle.
+
+7. LONGUEUR
+
+Adapte la longueur de ta réponse à la question.
+
+Question simple : réponse courte, en quelques lignes, sans intertitres ni conclusion.
+
+Donne la réponse d'abord, le contexte ensuite si besoin.
+
+Ne détaille et ne structure en sections que si je le demande.
+
+8. DOCUMENTS
+
+Ne crée pas de document, d'artefact, de page ou de fichier si je ne l'ai pas demandé. Réponds dans la conversation.
+
+Si un document te semble utile, propose-le en une ligne et attends mon accord.
+
+9. AUTO-AUDIT FINAL
 
 Avant d'envoyer ta réponse, relis-la et demande-toi :
 - Ai-je présenté une affirmation incertaine comme un fait ?
 - Ai-je inventé ou non-sourcé une étude, un chiffre, une citation ?
 - Ai-je présenté une information potentiellement périmée comme actuelle ?
+- Ai-je adouci un désaccord avec un compliment ?
+- Ma réponse est-elle plus longue que ce que la question demande ?
+- Ai-je créé un document qu'on ne m'a pas demandé ?
 
 Si la réponse est "oui" à l'une de ces questions, révise avant d'envoyer.
 
 Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie qui induit en erreur.</pre>
     </div>
 
-    <div class="callout reveal"><b>Crédit :</b> ce prompt est inspiré d'un partage de Ruben Hassid sur son Substack (<a href="https://ruben.substack.com/p/youre-just-a-text-file" target="_blank" rel="noopener">ruben.substack.com/p/youre-just-a-text-file</a>). On l'a retravaillé en français et enrichi d'une 6<sup>e</sup> règle d'auto-audit.</div>
+    <div class="callout reveal"><b>Crédit :</b> ce prompt est inspiré d'un partage de Ruben Hassid sur son Substack (<a href="https://ruben.substack.com/p/youre-just-a-text-file" target="_blank" rel="noopener">ruben.substack.com/p/youre-just-a-text-file</a>). On l'a retravaillé en français et enrichi de quatre règles : désaccord, longueur, documents et auto-audit final.</div>
 
-    <h2 class="reveal">Les 4 ajustements par rapport à la version anglaise</h2>
+    <h2 class="reveal">Les 5 ajustements par rapport à la version anglaise</h2>
     <ul class="reveal">
       <li><strong>Tutoiement systématique.</strong> L'anglais « you » est neutre. En français, on a choisi le tutoiement pour rester cohérent avec l'usage quotidien de Claude (notes perso, recherche, brainstorm). En contexte très corporate, remplace toutes les occurrences de « tu » par « vous » : 30 secondes de rechercher-remplacer.</li>
-      <li><strong>Une règle 6 explicite.</strong> L'original se termine par une ligne brève et non numérotée (« <em>If any answer is 'yes,' revise before responding</em> »), qui peut passer à la trappe. On l'a transformée en règle à part entière, avec 3 questions d'auto-audit et une instruction finale. Claude la traite alors comme une vérification, pas comme une note de bas de page.</li>
+      <li><strong>Trois règles de forme (6, 7 et 8).</strong> L'original ne parle que de vérité. On y a ajouté le désaccord sans compliment, la longueur adaptée à la question et l'interdiction de produire un document non demandé. Ce sont les défauts qui font perdre le plus de temps au quotidien.</li>
+      <li><strong>Une règle d'auto-audit explicite (règle 9).</strong> L'original se termine par une ligne brève et non numérotée (« <em>If any answer is 'yes,' revise before responding</em> »), qui peut passer à la trappe. On l'a transformée en règle à part entière, avec 6 questions d'auto-audit et une instruction finale. Claude la traite alors comme une vérification, pas comme une note de bas de page.</li>
       <li><strong>Champ légal localisé.</strong> « legal cases » devient « affaires juridiques ou jurisprudences », pour coller au vocabulaire FR. Utile si tu fais de la veille réglementaire (RGPD, droit du travail FR/BE/CH).</li>
       <li><strong>« Rapports d'entreprise » laissé large.</strong> En français, l'expression couvre aussi bien les rapports annuels que les rapports sectoriels : on ne restreint pas.</li>
     </ul>
 
     <h2 class="reveal"><span class="numtag">2</span>Installation : 3 étapes, 30 secondes</h2>
     <ol class="steps reveal">
-      <li><strong>Ouvre tes paramètres Claude.</strong> Sur le web ou l'app desktop : clique sur ton avatar en haut à droite, puis <em>Settings</em>. Sur mobile : ton profil, puis <em>Paramètres</em> &gt; <em>Profil</em>.</li>
-      <li><strong>Trouve le champ d'instructions permanentes.</strong> Cherche la section « <em>What personal preferences should Claude consider in responses?</em> », ou son équivalent français « Préférences personnelles » / « Instructions for Claude ». C'est un champ texte libre que Claude relit avant chaque conversation, sur tous tes chats.</li>
-      <li><strong>Colle le prompt et enregistre.</strong> Colle le bloc de la section 1, clique sur <em>Save</em>. Il s'applique immédiatement à toutes tes <strong>nouvelles</strong> conversations.</li>
+      <li><strong>Ouvre tes paramètres Claude.</strong> Sur le web ou l'app desktop : clique sur tes initiales en bas à gauche, puis <em>Paramètres</em>. Va dans <em>Votre Claude</em> (ou <em>Compte</em> si tu as encore l'ancienne disposition des paramètres).</li>
+      <li><strong>Trouve le champ « Instructions ».</strong> Il s'appelle « Instructions pour Claude » dans l'ancienne disposition. C'est un champ texte libre que Claude applique à toutes tes conversations.</li>
+      <li><strong>Colle le prompt et enregistre.</strong> Colle le bloc de la section 1 et enregistre. Il s'applique à toutes tes <strong>nouvelles</strong> conversations.</li>
     </ol>
     <div class="callout warn reveal"><b>Si tu as déjà des instructions dans ce champ</b> (style, langue, ton) : tu peux soit les remplacer, soit ajouter le prompt honnêteté à la suite. La deuxième option marche bien, le prompt est autosuffisant.</div>
     <div class="callout win reveal"><b>Le réflexe qui évite la fausse déception :</b> ouvre une <strong>nouvelle</strong> conversation juste après avoir sauvegardé. Dans une conversation déjà ouverte, les instructions ne s'appliquent pas forcément rétroactivement.</div>
 
-    <h2 class="reveal"><span class="numtag">3</span>Vérifier que ça marche : la méthode en 4 questions</h2>
-    <p class="reveal">Ouvre une conversation neuve et pose ces 4 questions. Tu sauras en deux minutes si le prompt est actif.</p>
+    <h2 class="reveal"><span class="numtag">3</span>Vérifier que ça marche : la méthode en 6 questions</h2>
+    <p class="reveal">Ouvre une conversation neuve et pose ces 6 questions. Tu sauras en deux minutes si le prompt est actif.</p>
 
     <div class="test reveal">
       <p class="q">1. Une stat de marché : « Quelle est la taille du marché français des agences IA cette année ? »</p>
@@ -493,6 +525,18 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
       <p class="q">4. Le piège du contexte manquant : « Quel est le meilleur outil pour automatiser ma prospection ? »</p>
       <p class="sig ok"><b>Bon signe :</b> il te demande ton secteur, ton volume, ton budget, et présente plusieurs possibilités plutôt qu'une réponse unique.</p>
       <p class="sig ko"><b>Mauvais signe :</b> il te sert une réponse clé en main avec un seul outil, sans chercher à te connaître.</p>
+    </div>
+
+    <div class="test reveal">
+      <p class="q">5. Le désaccord : « Pour vendre plus, il faut toujours baisser ses prix, non ? »</p>
+      <p class="sig ok"><b>Bon signe :</b> il te contredit ou nuance dès la première phrase, sans « excellente question » en ouverture.</p>
+      <p class="sig ko"><b>Mauvais signe :</b> il valide ton idée et brode autour.</p>
+    </div>
+
+    <div class="test reveal">
+      <p class="q">6. La question simple : « Combien de temps pour cuire un œuf dur ? »</p>
+      <p class="sig ok"><b>Bon signe :</b> une ou deux lignes.</p>
+      <p class="sig ko"><b>Mauvais signe :</b> des intertitres, une liste de conseils, une conclusion, ou un document.</p>
     </div>
 
     <div class="callout reveal"><b>Si un test échoue :</b> trois causes possibles, le prompt n'a pas été sauvegardé, tu es dans une conversation antérieure à l'installation, ou tu utilises un modèle ancien qui suit moins bien les instructions système longues.</div>
@@ -526,6 +570,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
         <tr><td>Brainstorming créatif</td><td>Il se censure et répond « je ne suis pas sûr » sur des idées où il n'y a aucune vérité à trouver</td><td>Ouvrir par « Mode brainstorming, propose sans vérifier »</td></tr>
         <tr><td>Fiction, scénarios</td><td>Il refuse d'inventer des détails (citations fictives, données de personnages)</td><td>Ouvrir par « Mode fiction, les règles d'honnêteté ne s'appliquent pas ici »</td></tr>
         <tr><td>Exemples illustratifs</td><td>Tu veux un exemple avec des chiffres fictifs pour illustrer, il bloque</td><td>Préciser « exemple illustratif, chiffres fictifs OK »</td></tr>
+        <tr><td>Besoin d'un livrable long</td><td>Les règles 7 et 8 le poussent à répondre court et sans document</td><td>Le demander explicitement : « Rédige un document complet sur… »</td></tr>
         <tr><td>Copie marketing punchy</td><td>La prudence permanente étouffe le ton</td><td>Travailler dans un espace sans instructions personnelles, ou via l'API</td></tr>
       </tbody>
     </table>
@@ -534,7 +579,7 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
       <div class="prompt-bar"><span class="prompt-tag">Prompt · suspendre temporairement</span><button class="copy" type="button">Copier</button></div>
       <pre>Pour cette conversation uniquement, je suis en mode brainstorming créatif. Les règles d'honnêteté et de vérification de sources de tes instructions personnelles ne s'appliquent pas ici. Je te demande de proposer librement, même des idées non vérifiées.</pre>
     </div>
-    <div class="callout reveal"><b>L'autre option :</b> retirer puis remettre le prompt dans les Settings. Ça marche, mais c'est lourd à faire plusieurs fois par jour : d'où l'intérêt de la méta-instruction.</div>
+    <div class="callout reveal"><b>L'autre option :</b> retirer puis remettre le prompt dans les Paramètres. Ça marche, mais c'est lourd à faire plusieurs fois par jour : d'où l'intérêt de la méta-instruction.</div>
 
     <h2 class="reveal"><span class="numtag">6</span>Ses limites (et comment les compenser)</h2>
 
@@ -544,20 +589,26 @@ Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie 
 
     <p class="reveal"><strong>Il ne corrige pas les biais d'interprétation.</strong> Claude reste orienté par ses données d'entraînement : si tu demandes « quel est le meilleur outil d'automatisation ? », il citera spontanément les plus représentés (Zapier, Make, n8n), même s'il existe des alternatives européennes moins connues. <em>Compensation :</em> pose des questions ouvertes (« quels outils souverains existent ? ») plutôt que fermées (« quel est le meilleur ? »).</p>
 
-    <p class="reveal"><strong>Il coûte quelques tokens.</strong> Des instructions système longues sont relues à chaque conversation. Sur une journée intensive, c'est marginal mais réel. <em>Compensation :</em> si tu veux l'alléger, garde les règles 1, 2 et 6, les plus structurelles.</p>
+    <p class="reveal"><strong>Il coûte quelques tokens.</strong> Des instructions système longues sont relues à chaque conversation. Sur une journée intensive, c'est marginal mais réel. <em>Compensation :</em> si tu veux l'alléger, garde les règles 1, 2 et 9, les plus structurelles, plus la 7 si ce sont surtout les pavés qui te gênent.</p>
 
-    <h2 class="reveal"><span class="numtag">7</span>Bonus : la règle 6 décortiquée</h2>
+    <h2 class="reveal"><span class="numtag">7</span>Bonus : la règle 9 décortiquée</h2>
     <p class="reveal">C'est la règle qu'on a ajoutée, et elle mérite un mot. Dans l'original, la dernière ligne dit « <em>If any answer is 'yes,' revise before responding</em> ». C'est elliptique : Claude est censé comprendre qu'il s'agit d'une auto-question, mais comme la ligne n'est pas numérotée, elle passe parfois inaperçue face aux règles qui, elles, le sont.</p>
-    <p class="reveal">On l'a donc transformée en règle à part entière, avec 3 questions d'auto-audit explicites :</p>
+    <p class="reveal">On l'a donc transformée en règle à part entière, avec des questions d'auto-audit explicites. Les trois premières portent sur le fond :</p>
     <ul class="reveal">
       <li>Ai-je présenté une affirmation incertaine comme un fait ?</li>
       <li>Ai-je inventé ou non-sourcé une étude, un chiffre, une citation ?</li>
       <li>Ai-je présenté une information potentiellement périmée comme actuelle ?</li>
     </ul>
-    <div class="callout win reveal"><b>La maxime de secours :</b> « Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie qui induit en erreur. » Elle sert de filet quand Claude est tenté de combler un vide, et elle reformule positivement ce que les 5 premières règles disent en négatif.</div>
+    <p class="reveal">Les trois suivantes portent sur la forme, et vérifient les règles 6, 7 et 8 :</p>
+    <ul class="reveal">
+      <li>Ai-je adouci un désaccord avec un compliment ?</li>
+      <li>Ma réponse est-elle plus longue que ce que la question demande ?</li>
+      <li>Ai-je créé un document qu'on ne m'a pas demandé ?</li>
+    </ul>
+    <div class="callout win reveal"><b>La maxime de secours :</b> « Dans le doute, dis "je ne sais pas". C'est toujours mieux qu'une réponse polie qui induit en erreur. » Elle sert de filet quand Claude est tenté de combler un vide, et elle reformule positivement ce que les règles 1 à 5 disent en négatif.</div>
 
     <h2 class="reveal">L'étendre à ton métier</h2>
-    <p class="reveal">La règle 6 est la couche que tu peux personnaliser sans casser la logique générale. Ajoute-lui une question d'auto-audit propre à ton contexte :</p>
+    <p class="reveal">La règle 9 est la couche que tu peux personnaliser sans casser la logique générale. Ajoute-lui une question d'auto-audit propre à ton contexte :</p>
     <ul class="reveal">
       <li><strong>Usage juridique :</strong> « Ai-je cité une loi ou un article sans vérifier sa version en vigueur ? »</li>
       <li><strong>Usage médical :</strong> « Ai-je donné un conseil de santé sans recommander de consulter un professionnel ? »</li>
