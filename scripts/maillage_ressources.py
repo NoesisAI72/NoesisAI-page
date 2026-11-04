@@ -18,7 +18,7 @@ CLUSTERS = {
                   "panorama-2026-outils-ia", "carte-claude-2026", "chatgpt-ecosysteme-2026"],
     "metier": ["claude-de-ton-metier", "outil-metier-claude", "5-briques-claude-metier", "claude-excel-powerpoint",
                "claude-google-workspace", "claude-microsoft-365", "claude-crm", "compte-rendu-reunion-claude",
-               "claude-balance-comptable", "paperasse-claude", "claude-legifrance", "analyse-cctp-claude",
+               "claude-balance-comptable", "paperasse-claude", "claude-legifrance", "effacer-donnees-google-claude", "analyse-cctp-claude",
                "btp-metre-devis-appel-offres", "tri-cv-claude-cowork", "agent-immo-claude", "agent-finances-finary",
                "claude-logiciels-sans-api", "sources-branchees-claude", "markitdown", "skills-claude-pme"],
     "usage": ["5-reglages-claude", "18-fonctions-claude", "claude-vs-cowork", "plugins-claude",
