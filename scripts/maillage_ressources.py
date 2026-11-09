@@ -22,7 +22,7 @@ CLUSTERS = {
                "btp-metre-devis-appel-offres", "tri-cv-claude-cowork", "agent-immo-claude", "agent-finances-finary",
                "claude-logiciels-sans-api", "sources-branchees-claude", "markitdown", "skills-claude-pme"],
     "usage": ["5-reglages-claude", "18-fonctions-claude", "claude-vs-cowork", "plugins-claude",
-              "prompt-claude-honnete", "llm-council", "loop-claude-3-prompts", "audit-historique-claude",
+              "prompt-claude-honnete", "10-projets-claude", "llm-council", "loop-claude-3-prompts", "audit-historique-claude",
               "claude-duet", "claude-regarde-videos", "claude-seo-10-outils", "skills-sh-trouver-skill-claude",
               "scanner-skills-ia"],
     "memoire": ["10-niveaux-memoire-entreprise", "memoire-entreprise", "memoire-ia", "5-etages-contexte-claude",
