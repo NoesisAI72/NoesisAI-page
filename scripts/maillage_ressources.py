@@ -21,7 +21,7 @@ CLUSTERS = {
                "claude-balance-comptable", "paperasse-claude", "claude-legifrance", "effacer-donnees-google-claude", "analyse-cctp-claude",
                "btp-metre-devis-appel-offres", "tri-cv-claude-cowork", "agent-immo-claude", "agent-finances-finary",
                "claude-logiciels-sans-api", "sources-branchees-claude", "markitdown", "skills-claude-pme"],
-    "usage": ["5-reglages-claude", "18-fonctions-claude", "claude-vs-cowork", "plugins-claude",
+    "usage": ["5-reglages-claude", "choisir-modele-claude", "18-fonctions-claude", "claude-vs-cowork", "plugins-claude",
               "prompt-claude-honnete", "10-projets-claude", "llm-council", "loop-claude-3-prompts", "audit-historique-claude",
               "claude-duet", "claude-regarde-videos", "claude-seo-10-outils", "skills-sh-trouver-skill-claude",
               "scanner-skills-ia"],
