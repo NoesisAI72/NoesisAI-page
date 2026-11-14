@@ -1,9 +1,9 @@
 import { Seo, filAriane, service } from "../../components/Seo";
-import { LightPage, PageHero, TestimonialsSection, FaqSection, CtaSection } from "../../components/page/Blocks";
+import { LightPage, PageHero, TestimonialsSection, GuidesSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { Problem } from "../../components/Problem";
 import { AutomationNetwork } from "../../components/page/AutomationNetwork";
 import { AutomationProcess } from "../../components/page/AutomationProcess";
-import { PAGES } from "../../data/content";
+import { GUIDES, PAGES } from "../../data/content";
 
 const TITRE = "Agence Automatisation IA & Agents Vocaux | NoesisAI";
 const DESCRIPTION =
@@ -25,6 +25,11 @@ export function Automatisation() {
       <Problem />
       <AutomationProcess />
       <TestimonialsSection />
+      <GuidesSection
+        title="Préparer votre projet"
+        subtitle="Nos guides pour chiffrer un agent IA et choisir quoi automatiser."
+        items={[GUIDES.prixAgent, GUIDES.n8n, GUIDES.couts]}
+      />
       <FaqSection {...p.faq} />
       <CtaSection {...p.cta} />
     </LightPage>

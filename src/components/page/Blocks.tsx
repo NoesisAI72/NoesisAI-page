@@ -420,7 +420,7 @@ export function FaqSection({ title, items }: { title: string; items: FaqItem[] }
   );
 }
 
-type Guide = { href: string; title: string; text: string };
+type Guide = { href: string; title: string; text: string; cta?: string };
 
 /** Guides gratuits de /ressources : relie les pages du site aux ressources (maillage interne).
     Ce sont des pages HTML statiques, hors du routeur : liens <a> classiques. */
@@ -428,7 +428,7 @@ export function GuidesSection({ title, subtitle, items }: { title: string; subti
   return (
     <Section id="ressources" className="bg-white">
       <SectionHeading badge="Ressources gratuites" title={title} subtitle={subtitle} tone="light" />
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className={`mt-10 grid gap-4 ${items.length === 4 ? "md:grid-cols-2 xl:grid-cols-4" : "md:grid-cols-3"}`}>
         {items.map((g) => (
           <a
             key={g.href}
@@ -438,7 +438,7 @@ export function GuidesSection({ title, subtitle, items }: { title: string; subti
             <span className="font-display text-base font-semibold text-[#0b0b0f]">{g.title}</span>
             <span className="text-sm leading-relaxed text-slate-600">{g.text}</span>
             <span className="mt-auto pt-2 text-sm font-medium text-brand-600">
-              Lire le guide <Chevrons />
+              {g.cta ?? "Lire le guide"} <Chevrons />
             </span>
           </a>
         ))}

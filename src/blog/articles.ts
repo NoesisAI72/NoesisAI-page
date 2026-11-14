@@ -10,7 +10,7 @@ export type Categorie = "automatisation" | "agents-vocaux" | "logiciel-metier" |
 export const CATEGORIES: Record<Categorie, { label: string; offre: string; offreLabel: string }> = {
   automatisation: { label: "Automatisation", offre: "/automatisation", offreLabel: "Automatisation IA et agents vocaux" },
   "agents-vocaux": { label: "Agents vocaux", offre: "/automatisation", offreLabel: "Agents vocaux IA" },
-  "logiciel-metier": { label: "Logiciel métier", offre: "/logiciel-metier", offreLabel: "Logiciel métier sur-mesure" },
+  "logiciel-metier": { label: "Logiciel métier", offre: "/logiciel-metier", offreLabel: "Logiciel sur mesure pour PME" },
   formation: { label: "Formation IA", offre: "/formation-ia", offreLabel: "Formation IA en entreprise" },
   "ia-par-metier": { label: "IA par métier", offre: "/", offreLabel: "Agence IA pour les PME" },
 };

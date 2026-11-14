@@ -778,6 +778,23 @@ export const GUIDES = {
     title: "Un logiciel qui s'adapte à votre entreprise",
     text: "Diagnostic, droits par salarié, agents IA et stack type pour tout réunir dans un seul outil.",
   },
+  prixLogiciel: {
+    href: "/blog/prix-logiciel-sur-mesure",
+    title: "Combien coûte un logiciel sur mesure",
+    text: "Nos prix, de 2\u00a0500 à 10\u00a0000\u00a0€, ce qui les fait varier et les coûts après la mise en ligne.",
+    cta: "Lire l'article",
+  },
+  prixAgent: {
+    href: "/blog/prix-agent-ia",
+    title: "Combien coûte un agent IA",
+    text: "Nos prix, de 2\u00a0500 à 10\u00a0000\u00a0€, le coût de chaque mois et le calcul de rentabilité avec vos chiffres.",
+    cta: "Lire l'article",
+  },
+  n8n: {
+    href: "/ressources/150-templates-n8n-claude",
+    title: "150 automatisations n8n",
+    text: "Des automatisations prêtes à reprendre, et quand confier la tâche à Claude plutôt qu'à un workflow.",
+  },
 };
 
 export type FaqItem = { q: string; a: string };
@@ -790,17 +807,22 @@ export type ServicePage = {
   cta: { title: string; subtitle: string };
 };
 
-const AUTO_FAQ = FAQ.items;
+// Sur /automatisation seulement : l'accueil garde FAQ.items tel quel.
+const PRIX_AGENT_IA: FaqItem = {
+  q: "Combien coûte un agent IA ?",
+  a: "Un agent IA sur mesure coûte de 2\u00a0500\u00a0€ à environ 10\u00a0000\u00a0€, selon le nombre d'utilisateurs et les fonctionnalités. S'y ajoute un coût d'utilisation chaque mois : la consommation de l'IA, et la téléphonie pour un agent vocal. Le détail des prix est dans notre article « Combien coûte un agent IA pour une PME ? ».",
+};
+const AUTO_FAQ: FaqItem[] = [...FAQ.items.slice(0, 3), PRIX_AGENT_IA, ...FAQ.items.slice(3)];
 
 export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServicePage> = {
   logiciel: {
     hero: {
-      badge: "Logiciel métier sur-mesure · PME & indépendants",
-      title: "Un logiciel métier",
-      boxed: "sur-mesure",
-      titleEnd: "pour PME, construit autour de votre activité",
+      badge: "Logiciel sur mesure · PME & indépendants",
+      title: "Un logiciel",
+      boxed: "sur mesure",
+      titleEnd: "pour votre PME, construit autour de votre métier",
       subtitle:
-        "Devis, chantiers, heures, factures, suivi client : on part du fonctionnement réel de votre PME pour construire l'outil qui fait vraiment gagner du temps à vos équipes.",
+        "Devis, chantiers, heures, factures, suivi client : on part du fonctionnement réel de votre PME pour construire le logiciel métier qui fait vraiment gagner du temps à vos équipes.",
       images: ["/projets/muller-dashboard.webp", "/projets/odas-diffusion.webp", "/projets/hohiohen-dashboard.webp"],
     },
     rules: { title: "", subtitle: "", items: [] },
@@ -817,8 +839,8 @@ export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServiceP
           a: "Un appel de 30 minutes, sans engagement. Vous nous expliquez votre fonctionnement actuel et ce qui vous fait perdre du temps. On vous dit ensuite honnêtement si un outil sur-mesure est pertinent, et sous quelle forme.",
         },
         {
-          q: "Combien coûte un outil sur-mesure ?",
-          a: "Le budget dépend du périmètre : nombre d'écrans, d'utilisateurs, d'intégrations et de fonctionnalités d'IA. Il est chiffré précisément après le cadrage technique, et validé avec vous avant le début du développement. Nous priorisons les fonctionnalités qui apportent le plus de valeur pour démarrer avec une première version utile.",
+          q: "Combien coûte un logiciel sur mesure ?",
+          a: "De 2\u00a0500\u00a0€ à environ 10\u00a0000\u00a0€, selon le nombre d'utilisateurs et les fonctionnalités : écrans, intégrations, IA. Le budget est chiffré précisément après le cadrage technique, et validé avec vous avant le début du développement. Nous priorisons les fonctionnalités qui apportent le plus de valeur pour démarrer avec une première version utile.",
         },
         {
           q: "En combien de temps aurons-nous un outil utilisable ?",

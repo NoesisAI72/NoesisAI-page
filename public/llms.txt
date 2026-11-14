@@ -5,7 +5,7 @@
 ## Offres
 
 - [Automatisation IA et agents vocaux](https://noesisai.fr/automatisation): workflows n8n et Make, agents vocaux qui décrochent 24 h/24
-- [Logiciel métier sur-mesure](https://noesisai.fr/logiciel-metier): devis, chantiers, heures, factures, avec l'IA intégrée
+- [Logiciel sur mesure pour PME](https://noesisai.fr/logiciel-metier): devis, chantiers, heures, factures, avec l'IA intégrée
 - [Formation IA en entreprise (Cockpit IA)](https://noesisai.fr/formation-ia): former dirigeants et équipes à Claude et aux outils d'IA
 - [Projets clients](https://noesisai.fr/projets): réalisations détaillées par type de mission
 - [Témoignages](https://noesisai.fr/temoignages): avis des entreprises accompagnées

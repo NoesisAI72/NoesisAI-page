@@ -258,7 +258,7 @@ def bloc_head(h: str, slug: str, url: str, titre: str, description: str, noindex
 def llms_txt(pages: list) -> None:
     offres = [
         ("Automatisation IA et agents vocaux", "/automatisation", "workflows n8n et Make, agents vocaux qui décrochent 24 h/24"),
-        ("Logiciel métier sur-mesure", "/logiciel-metier", "devis, chantiers, heures, factures, avec l'IA intégrée"),
+        ("Logiciel sur mesure pour PME", "/logiciel-metier", "devis, chantiers, heures, factures, avec l'IA intégrée"),
         ("Formation IA en entreprise (Cockpit IA)", "/formation-ia", "former dirigeants et équipes à Claude et aux outils d'IA"),
         ("Projets clients", "/projets", "réalisations détaillées par type de mission"),
         ("Témoignages", "/temoignages", "avis des entreprises accompagnées"),
@@ -288,7 +288,7 @@ PAGES_SITE = {
     "accueil": "Agents IA, automatisations et logiciels métier pour PME",
     "automatisation": "Automatisations IA et agents vocaux qui décrochent 24 h/24",
     "formation-ia": "Le Cockpit IA : former vos équipes à l'IA en 3 mois",
-    "logiciel-metier": "Un logiciel métier sur-mesure, construit autour de votre activité",
+    "logiciel-metier": "Un logiciel sur mesure pour votre PME, construit autour de votre métier",
     "projets": "Nos projets clients : logiciels métier, agents vocaux, automatisations",
     "temoignages": "Ce que disent les entreprises que nous accompagnons",
 }
