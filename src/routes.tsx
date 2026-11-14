@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import type { RouteRecord } from "vite-react-ssg";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { DemandeInfosProvider } from "./components/DemandeInfos";
 import { Home } from "./pages/Home";
 import { MentionsLegales } from "./pages/MentionsLegales";
 import { Confidentialite } from "./pages/Confidentialite";
@@ -46,11 +47,13 @@ function SiteLayout() {
         <title>NoesisAI | Agence d'automatisation IA sur-mesure</title>
         <meta name="description" content="NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert." />
       </Helmet>
-      <Navbar />
-      <div className="bg-white text-[#0b0b0f]">
-        <Outlet />
-      </div>
-      <Footer />
+      <DemandeInfosProvider>
+        <Navbar />
+        <div className="bg-white text-[#0b0b0f]">
+          <Outlet />
+        </div>
+        <Footer />
+      </DemandeInfosProvider>
     </>
   );
 }

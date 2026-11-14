@@ -1,6 +1,7 @@
 import { Section, SectionHeading, Reveal } from "./ui/Section";
-import { Button, Chevrons } from "./ui/Button";
-import { FORMATION, ICLOSED_URL } from "../data/content";
+import { BoutonDemande } from "./DemandeInfos";
+import { Chevrons } from "./ui/Button";
+import { FORMATION } from "../data/content";
 
 type Format = { label: string; title: string; text: string; points: string[] };
 
@@ -136,9 +137,9 @@ export function FormationIA() {
           ))}
         </ul>
         <div className="mt-8 flex justify-center">
-          <Button href={ICLOSED_URL} external size="lg" variant="dark">
+          <BoutonDemande emplacement="section formation" size="lg" variant="dark">
             {f.cta} <Chevrons />
-          </Button>
+          </BoutonDemande>
         </div>
       </Reveal>
     </Section>

@@ -1,8 +1,9 @@
 import { Section, SectionHeading, Reveal } from "./ui/Section";
-import { Button, Chevrons } from "./ui/Button";
+import { BoutonDemande } from "./DemandeInfos";
+import { Chevrons } from "./ui/Button";
 import { BeforeAfter } from "./ui/BeforeAfter";
 import { ScreenshotFrame } from "./ui/ScreenshotFrame";
-import { ICLOSED_URL, LOGICIELS } from "../data/content";
+import { LOGICIELS } from "../data/content";
 
 const ICONS = ["▦", "◰", "✦"];
 
@@ -15,9 +16,9 @@ export function Logiciels() {
       <Reveal className="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-1 text-center font-display text-base text-slate-600 sm:text-lg">
         <p>{l.before}</p>
         <p className="font-medium text-[#0b0b0f]">{l.after}</p>
-        <Button href={ICLOSED_URL} external size="lg" variant="dark" className="mt-6">
+        <BoutonDemande emplacement="section logiciels" size="lg" variant="dark" className="mt-6">
           Parler de votre projet <Chevrons />
-        </Button>
+        </BoutonDemande>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">

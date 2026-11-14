@@ -319,6 +319,16 @@ export const FOOTER = {
     "Agence d'automatisation IA sur-mesure : n8n, Make, LLM et agents vocaux pour éliminer les tâches répétitives et accélérer votre croissance.",
   navTitle: "Navigation",
   nav: NAV_LINKS,
+  /** Guides mis en avant dans le pied de page : liens présents sur toutes les pages du site. */
+  guidesTitle: "Guides populaires",
+  guides: [
+    { label: "Réussir une implémentation IA", href: "/ressources/implementation-ia-parfaite" },
+    { label: "Combien coûte un agent IA", href: "/ressources/3-paliers-agents-ia" },
+    { label: "Le vrai coût de l'IA", href: "/ressources/couts-ia" },
+    { label: "L'IA dans le BTP", href: "/ressources/btp-metre-devis-appel-offres" },
+    { label: "Quel modèle Claude choisir", href: "/ressources/choisir-modele-claude" },
+    { label: "Claude ou Claude Cowork", href: "/ressources/claude-vs-cowork" },
+  ],
   legalTitle: "Légal",
   legal: [
     { label: "Mentions légales", href: "/mentions-legales" },

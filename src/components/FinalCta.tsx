@@ -1,7 +1,8 @@
 import { Section } from "./ui/Section";
+import { BoutonDemande } from "./DemandeInfos";
 import { Reveal } from "./ui/Section";
-import { Button, Chevrons } from "./ui/Button";
-import { FINAL_CTA, ICLOSED_URL } from "../data/content";
+import { Chevrons } from "./ui/Button";
+import { FINAL_CTA } from "../data/content";
 
 export function FinalCta() {
   return (
@@ -15,9 +16,9 @@ export function FinalCta() {
             {FINAL_CTA.subtitle}
           </p>
           <div className="mt-8 flex justify-center">
-            <Button href={ICLOSED_URL} external size="lg">
+            <BoutonDemande emplacement="bas de page" size="lg">
               {FINAL_CTA.cta} <Chevrons />
-            </Button>
+            </BoutonDemande>
           </div>
         </div>
       </Reveal>

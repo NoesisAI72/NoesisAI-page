@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { BoutonDemande } from "../DemandeInfos";
 import { motion, useInView, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { Section, Reveal } from "../ui/Section";
 import { Badge } from "../ui/Badge";
-import { Button, Chevrons } from "../ui/Button";
+import { Chevrons } from "../ui/Button";
 import { cn } from "../ui/cn";
-import { ICLOSED_URL, LOGICIEL_METHOD } from "../../data/content";
+import { LOGICIEL_METHOD } from "../../data/content";
 
 type Step = (typeof LOGICIEL_METHOD.steps)[number];
 
@@ -295,9 +296,9 @@ export function MethodTimeline() {
             </div>
           </div>
 
-          <Button href={ICLOSED_URL} external size="lg" variant="dark" className="mt-8">
+          <BoutonDemande emplacement="méthode (diagnostic)" size="lg" variant="dark" className="mt-8">
             Démarrer par un diagnostic <Chevrons />
-          </Button>
+          </BoutonDemande>
         </div>
 
         {/* Timeline */}

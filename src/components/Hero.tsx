@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import { BoutonDemande } from "./DemandeInfos";
 import { Button, Chevrons } from "./ui/Button";
-import { HERO, ICLOSED_URL } from "../data/content";
+import { HERO } from "../data/content";
 
 /**
  * Fond clair façon « rideau de lumière » : base blanche, faisceaux verticaux
@@ -67,9 +68,9 @@ export function Hero() {
             transition={{ duration: 0.55, delay: 0.18 }}
             className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
-            <Button href={ICLOSED_URL} external size="lg" variant="dark">
+            <BoutonDemande emplacement="haut de page" size="lg" variant="dark">
               {HERO.primaryCta} <Chevrons />
-            </Button>
+            </BoutonDemande>
             <Button href="#projets" size="lg" variant="outlineLight">
               {HERO.secondaryCta}
             </Button>

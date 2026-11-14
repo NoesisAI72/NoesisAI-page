@@ -1,11 +1,12 @@
 import { forwardRef, useEffect, useState } from "react";
+import { BoutonDemande, LienDemande } from "./DemandeInfos";
 import { AnimatePresence, motion } from "framer-motion";
 import { Section, SectionHeading } from "./ui/Section";
 import { Button, Chevrons } from "./ui/Button";
 import { cn } from "./ui/cn";
 import { ScreenshotFrame } from "./ui/ScreenshotFrame";
 import { MiniNetwork } from "./page/AutomationNetwork";
-import { ICLOSED_URL, PROJECT_CATEGORIES, PROJETS, type Project, type ProjectCategory } from "../data/content";
+import { PROJECT_CATEGORIES, PROJETS, type Project, type ProjectCategory } from "../data/content";
 
 type Filter = ProjectCategory;
 const FILTERS: Filter[] = PROJECT_CATEGORIES;
@@ -175,9 +176,9 @@ function ProjectModal({ p, onClose }: { p: Project; onClose: () => void }) {
               </span>
             ))}
           </div>
-          <Button href={ICLOSED_URL} external size="lg" variant="dark" className="mt-8">
+          <BoutonDemande emplacement="projet ouvert" size="lg" variant="dark" className="mt-8">
             Un projet similaire ? Parlons-en <Chevrons />
-          </Button>
+          </BoutonDemande>
         </div>
       </motion.div>
     </motion.div>
@@ -265,14 +266,12 @@ export function Projets({
       {/* Projets confidentiels : simple mention sous la grille */}
       <p className="mt-8 text-center text-sm text-slate-500">
         🔒 {PROJETS.confidential}{" "}
-        <a
-          href={ICLOSED_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <LienDemande
+          emplacement="projets confidentiels"
           className="font-medium text-[#0b0b0f] underline decoration-brand-600/40 decoration-2 underline-offset-4 hover:decoration-brand-600"
         >
           {PROJETS.confidentialCta}
-        </a>
+        </LienDemande>
       </p>
 
       {showAllLink && (

@@ -1,5 +1,6 @@
-// api/lead.js — Reçoit le formulaire "gate" des ressources et crée une ligne
-// dans la base Notion « Prospects — Ressources NoesisAI ».
+// api/lead.js — Reçoit le formulaire "gate" des ressources et la fenêtre « Parlons de votre
+// projet » du site (Source « Site », avec Entreprise et besoin), et crée une ligne dans la base
+// Notion « Prospects — Ressources NoesisAI ».
 // Le secret Notion reste côté serveur (variables d'environnement Vercel) :
 //   NOTION_TOKEN  = secret interne de l'intégration Notion (ntn_…)
 //   NOTION_DB_ID  = 5f10193f61b84d69979021b82187e1e7
@@ -33,8 +34,10 @@ export default async function handler(req, res) {
   const email = String(body.email || "").trim();
   const phone = String(body.phone || "").trim();
   const ressource = String(body.ressource || "").trim().slice(0, 200);
+  const entreprise = String(body.entreprise || "").trim().slice(0, 200);
+  const message = String(body.message || "").trim().slice(0, 1500);
   const sourceRaw = String(body.source || "LinkedIn").trim();
-  const source = ["LinkedIn", "Instagram", "Autre"].includes(sourceRaw) ? sourceRaw : "Autre";
+  const source = ["LinkedIn", "Instagram", "Site", "Autre"].includes(sourceRaw) ? sourceRaw : "Autre";
 
   // Honeypot anti-bot : champ caché rempli => on répond OK sans rien enregistrer.
   if (String(body.company || "").trim() !== "") { res.status(200).json({ ok: true }); return; }
@@ -61,6 +64,12 @@ export default async function handler(req, res) {
   const properties = { ...baseProperties };
   if (firstName) properties["Prénom"] = { rich_text: [{ text: { content: firstName } }] };
   if (lastName) properties["Nom"] = { rich_text: [{ text: { content: lastName } }] };
+  if (entreprise) properties["Entreprise"] = { rich_text: [{ text: { content: entreprise } }] };
+
+  // Le besoin saisi dans la fenêtre du site va dans le corps de la fiche Notion.
+  const children = message
+    ? [{ object: "block", type: "paragraph", paragraph: { rich_text: [{ type: "text", text: { content: message } }] } }]
+    : undefined;
 
   function createPage(props) {
     return fetch("https://api.notion.com/v1/pages", {
@@ -70,7 +79,7 @@ export default async function handler(req, res) {
         "Notion-Version": "2022-06-28",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ parent: { database_id: dbId }, properties: props }),
+      body: JSON.stringify({ parent: { database_id: dbId }, properties: props, ...(children ? { children } : {}) }),
     });
   }
 
@@ -82,8 +91,11 @@ export default async function handler(req, res) {
     if (!r.ok && r.status === 400) {
       const detail = await r.text();
       if (/is not a property that exists/i.test(detail)) {
-        console.warn("Notion: colonnes Prénom/Nom absentes, fallback sans ces champs");
-        r = await createPage(baseProperties);
+        console.warn("Notion: colonnes Prénom/Nom/Entreprise absentes, fallback sans ces champs");
+        // L'entreprise ne doit pas se perdre : on la recopie dans « Ressource ».
+        const repli = { ...baseProperties };
+        if (entreprise) repli["Ressource"] = { rich_text: [{ text: { content: `${ressource || "(non précisée)"} · Entreprise : ${entreprise}`.slice(0, 2000) } }] };
+        r = await createPage(repli);
       } else {
         console.error("Notion API error", r.status, detail);
         res.status(502).json({ error: "Enregistrement impossible pour le moment." });

@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { BoutonDemande } from "../DemandeInfos";
 import { motion } from "framer-motion";
 import { Section, SectionHeading, Reveal } from "../ui/Section";
 import { Button, Chevrons } from "../ui/Button";
 import { Marquee } from "../ui/Marquee";
 import { ToFill, filled } from "./ToFill";
-import { CLIENT_LOGOS, ICLOSED_URL, PROCESS, TESTIMONIALS, TRUST_TITLE, type FaqItem } from "../../data/content";
+import { CLIENT_LOGOS, PROCESS, TESTIMONIALS, TRUST_TITLE, type FaqItem } from "../../data/content";
 
 /** Page claire (fond blanc) : enveloppe des pages façon clickway. */
 export function LightPage({ children }: { children: React.ReactNode }) {
@@ -115,9 +116,9 @@ export function PageHero({
             transition={{ duration: 0.55, delay: 0.18 }}
             className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
-            <Button href={ICLOSED_URL} external size="lg" variant="dark">
+            <BoutonDemande emplacement="haut de page" size="lg" variant="dark">
               Parler de votre projet <Chevrons />
-            </Button>
+            </BoutonDemande>
             <Button href={secondary.to} size="lg" variant="outlineLight">
               {secondary.label}
             </Button>
@@ -383,9 +384,9 @@ export function FaqSection({ title, items }: { title: string; items: FaqItem[] }
           <p className="text-base leading-relaxed text-slate-600">
             Une autre question ? Le premier échange est offert, posez-la en direct.
           </p>
-          <Button href={ICLOSED_URL} external variant="dark" className="mt-2 w-fit">
+          <BoutonDemande emplacement="questions fréquentes" variant="dark" className="mt-2 w-fit">
             Parler de votre projet <Chevrons />
-          </Button>
+          </BoutonDemande>
         </div>
         {filled(items) ? (
           <div className="flex flex-col gap-3">
@@ -463,9 +464,9 @@ export function CtaSection({ title, subtitle }: { title: string; subtitle: strin
             <p className="relative mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">{subtitle}</p>
           )}
           <div className="relative mt-8 flex justify-center">
-            <Button href={ICLOSED_URL} external size="lg" variant="dark">
+            <BoutonDemande emplacement="bas de page" size="lg" variant="dark">
               Parler de votre projet <Chevrons />
-            </Button>
+            </BoutonDemande>
           </div>
         </div>
       </Reveal>

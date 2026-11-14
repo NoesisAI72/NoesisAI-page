@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-black/5 bg-[#f7f6fb] text-[#0b0b0f]">
       <div className="container-page py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.15fr_0.85fr]">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
               <img src="/logos/noesis-mark.png" alt="NOESIS.AI" className="h-9 w-9" />
@@ -45,6 +45,20 @@ export function Footer() {
                   Ressources gratuites
                 </a>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-semibold">{FOOTER.guidesTitle}</h4>
+            <ul className="mt-4 flex flex-col gap-3">
+              {/* Pages statiques hors du routeur : liens classiques. */}
+              {FOOTER.guides.map((g) => (
+                <li key={g.href}>
+                  <a href={g.href} className="text-sm text-slate-600 transition-colors hover:text-[#0b0b0f]">
+                    {g.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

@@ -1,26 +1,28 @@
 import { useEffect, useRef, useState } from "react";
+import { useDemandeInfos } from "./DemandeInfos";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "./ui/cn";
-import { ICLOSED_URL, MAIN_MENU, SERVICES_MENU, WHATSAPP_URL } from "../data/content";
+import { MAIN_MENU, SERVICES_MENU, WHATSAPP_URL } from "../data/content";
 
 const linkCls =
   "rounded-lg px-3 py-2 font-display text-[0.95rem] font-medium uppercase tracking-tight transition-colors";
 
 /** Bouton noir à bordure pointillée, façon clickway. */
 function CtaButton({ className }: { className?: string }) {
+  const ouvrir = useDemandeInfos();
+  const { pathname } = useLocation();
   return (
-    <a
-      href={ICLOSED_URL}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      type="button"
+      onClick={() => ouvrir(`${pathname} · en-tête`)}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b0b0f] px-5 py-3 font-display text-sm font-semibold uppercase tracking-[-0.02em] text-white outline-dashed outline-2 -outline-offset-[5px] outline-white/40 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.55)] transition-transform hover:-translate-y-0.5",
         className
       )}
     >
-      Parler de votre projet <span aria-hidden>↗</span>
-    </a>
+      Parler de votre projet <span aria-hidden>››</span>
+    </button>
   );
 }
 
