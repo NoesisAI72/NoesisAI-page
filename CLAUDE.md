@@ -40,6 +40,8 @@ Ne pas y toucher.
    ne bouge pas), crée l'image d'aperçu `public/ressources/og/<slug>.jpg`, écrit les balises d'aperçu et
    les données structurées entre `<!-- seo:debut -->` et `<!-- seo:fin -->`, et régénère `public/llms.txt`.
    Ne rien écrire à la main entre ces deux marqueurs : le script les réécrit.
+   Les dates de publication et de mise à jour viennent de git : un commit purement technique qui
+   touche beaucoup de ressources commence par « SEO : » pour qu'elles ne soient pas datées du jour.
 5. `npm run build`, vérifier la page, puis commit et push après validation d'Ugo.
 
 ## Balises des pages du site React

@@ -58,10 +58,14 @@ def titre_court(h: str) -> str:
 
 
 def dates_git(chemin: Path) -> tuple:
+    """(publication, dernière modification) d'après git. Les commits techniques « SEO : … » sont
+    ignorés : ils touchent toutes les pages sans changer leur contenu."""
     def git(*args):
-        r = subprocess.run(["git", "log", *args, "--format=%cs", "--", str(chemin.relative_to(RACINE))],
+        r = subprocess.run(["git", "log", *args, "--format=%cs|%s", "--", str(chemin.relative_to(RACINE))],
                            cwd=RACINE, capture_output=True, text=True)
-        return [l for l in r.stdout.split() if l]
+        lignes = [l.split("|", 1) for l in r.stdout.splitlines() if "|" in l]
+        contenu = [d for d, sujet in lignes if not sujet.startswith("SEO :")]
+        return contenu or [d for d, _ in lignes]
     toutes = git("--follow")
     jour = date.today().isoformat()
     return (toutes[-1] if toutes else jour, toutes[0] if toutes else jour)
