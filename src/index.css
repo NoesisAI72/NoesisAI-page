@@ -245,9 +245,10 @@
    Texte des articles du blog (HTML produit depuis le Markdown)
    ============================================================= */
 @layer components {
-  .article-corps { @apply max-w-[720px] text-[17px] leading-[1.75] text-slate-700; }
+  .article-corps { @apply max-w-[720px] text-[17px] leading-[1.8] text-slate-700; }
+  .article-corps > p:first-child { @apply text-[19px] leading-[1.7] text-slate-800; }
   .article-corps > * + * { @apply mt-5; }
-  .article-corps h2 { @apply mt-12 scroll-mt-28 font-display text-2xl font-semibold leading-snug tracking-[-0.03em] text-[#0b0b0f] sm:text-[1.75rem]; }
+  .article-corps h2 { @apply mt-14 scroll-mt-28 font-display text-2xl font-semibold leading-snug tracking-[-0.03em] text-[#0b0b0f] sm:text-[1.75rem]; }
   .article-corps h3 { @apply mt-8 scroll-mt-28 font-display text-xl font-semibold leading-snug tracking-[-0.02em] text-[#0b0b0f]; }
   .article-corps a { @apply font-medium text-[#0b0b0f] underline decoration-brand-600/40 decoration-2 underline-offset-4 hover:decoration-brand-600; }
   .article-corps strong { @apply font-semibold text-[#0b0b0f]; }
@@ -259,7 +260,8 @@
   .article-corps img { @apply h-auto max-w-full rounded-2xl border border-black/10; }
   .article-corps hr { @apply my-10 border-black/10; }
   .article-corps code { @apply rounded bg-[#f1eff8] px-1.5 py-0.5 text-[0.9em]; }
-  .article-corps table { @apply block w-full overflow-x-auto text-left text-[15px]; border-collapse: collapse; }
-  .article-corps th { @apply border-b border-black/15 px-3 py-2 font-semibold text-[#0b0b0f]; }
-  .article-corps td { @apply border-b border-black/10 px-3 py-2 align-top; }
+  .article-corps table { @apply block w-full overflow-x-auto rounded-2xl border border-black/10 text-left text-[15px]; border-collapse: collapse; }
+  .article-corps th { @apply border-b border-black/10 bg-[#f7f6fb] px-4 py-3 font-semibold text-[#0b0b0f]; }
+  .article-corps td { @apply border-b border-black/10 px-4 py-3 align-top; }
+  .article-corps tr:last-child td { @apply border-b-0; }
 }
