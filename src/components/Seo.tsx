@@ -46,11 +46,13 @@ type Props = {
   /** Image d'aperçu 1200 x 630, ex. "/og/automatisation.jpg" */
   image: string;
   imageAlt: string;
+  /** "article" pour les billets du blog */
+  type?: "website" | "article";
   jsonLd?: object[];
 };
 
 /** Titre, description, canonical, aperçus (Open Graph, X) et données structurées d'une page. */
-export function Seo({ title, description, path, image, imageAlt, jsonLd = [] }: Props) {
+export function Seo({ title, description, path, image, imageAlt, type = "website", jsonLd = [] }: Props) {
   const url = `${SITE}${path}`;
   const img = `${SITE}${image}`;
   return (
@@ -58,7 +60,7 @@ export function Seo({ title, description, path, image, imageAlt, jsonLd = [] }: 
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={type} />
       <meta property="og:site_name" content="NoesisAI" />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:title" content={title} />

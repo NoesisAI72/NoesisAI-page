@@ -10,7 +10,9 @@
   2. génère une image d'aperçu 1200 x 630 par ressource (public/ressources/og/<slug>.jpg) ;
   3. écrit dans le <head>, entre <!-- seo:debut --> et <!-- seo:fin -->, les balises d'aperçu
      (og:image, og:url, twitter:*) et les données structurées Article + fil d'Ariane ;
-  4. régénère public/llms.txt (sommaire du site pour les assistants IA).
+  4. régénère public/llms.txt (sommaire du site pour les assistants IA) ;
+  5. blog (content/blog/*.md publiés) : image d'aperçu public/og/blog/<slug>.jpg et entrées du
+     plan du site entre <!-- blog:debut --> et <!-- blog:fin --> dans public/sitemap.xml.
 
 Ne touche ni au <title> (il sert d'étiquette aux prospects dans Notion), ni au texte, ni au
 script du formulaire.
@@ -266,6 +268,10 @@ def llms_txt(pages: list) -> None:
          "logiciels métier et sites sur-mesure, formation des équipes. Audit gratuit.", "",
          "## Offres", ""]
     L += [f"- [{n}]({SITE}{p}): {d}" for n, p, d in offres]
+    articles = articles_blog()
+    if articles:
+        L += ["", "## Blog", ""]
+        L += [f"- [{a['titre']}]({SITE}/blog/{a['slug']}): {a['description'][:160]}" for a in articles]
     L += ["", "## Ressources gratuites", ""]
     for p in sorted(pages, key=lambda x: x["titre"].lower()):
         if p["noindex"] or p["hub"]:
@@ -278,6 +284,7 @@ def llms_txt(pages: list) -> None:
 # ------------------------------------------------------------------ images des pages du site
 
 PAGES_SITE = {
+    "blog": "Le blog NoesisAI : l'IA appliquée aux PME",
     "accueil": "Agents IA, automatisations et logiciels métier pour PME",
     "automatisation": "Automatisations IA et agents vocaux qui décrochent 24 h/24",
     "formation-ia": "Le Cockpit IA : former vos équipes à l'IA en 3 mois",
@@ -291,6 +298,52 @@ def images_pages_site(forcer: bool = False) -> None:
     for nom, titre in PAGES_SITE.items():
         image_og(nom, titre, forcer=forcer, dossier=RACINE / "public" / "og",
                  etiquette="AGENCE IA POUR LES PME", pied="noesisai.fr")
+
+
+# ------------------------------------------------------------------ blog
+
+BLOG = RACINE / "content" / "blog"
+CATEGORIES_BLOG = {"automatisation": "AUTOMATISATION", "agents-vocaux": "AGENTS VOCAUX",
+                   "logiciel-metier": "LOGICIEL MÉTIER", "formation": "FORMATION IA", "ia-par-metier": "IA PAR MÉTIER"}
+
+
+def articles_blog() -> list:
+    """Articles publiés : ni brouillon, ni modèle (_*.md). Lecture simple de l'en-tête YAML."""
+    res = []
+    for f in sorted(BLOG.glob("*.md")) if BLOG.exists() else []:
+        if f.name.startswith("_"):
+            continue
+        m = re.match(r"^---\r?\n(.*?)\r?\n---", f.read_text(encoding="utf-8"), flags=re.S)
+        if not m:
+            continue
+        def champ(nom: str) -> str:
+            mm = re.search(rf'^{nom}:\s*(?:"(.*?)"|([^#\n]*?))\s*(?:#.*)?$', m.group(1), flags=re.M)
+            return ((mm.group(1) if mm and mm.group(1) is not None else (mm.group(2) if mm else "")) or "").strip()
+        if champ("brouillon").lower() == "true":
+            continue
+        res.append({"slug": f.stem, "titre": champ("titre"), "description": champ("description"),
+                    "date": champ("date")[:10], "maj": champ("maj")[:10], "categorie": champ("categorie")})
+    return res
+
+
+def blog(articles: list, forcer: bool = False, images: bool = True) -> None:
+    if images:
+        for a in articles:
+            image_og(a["slug"], a["titre"], forcer=forcer, dossier=RACINE / "public" / "og" / "blog",
+                     etiquette=CATEGORIES_BLOG.get(a["categorie"], "BLOG"), pied="noesisai.fr/blog")
+    # Plan du site : /blog et chaque article, seulement s'il y a au moins un article publié.
+    plan = RACINE / "public" / "sitemap.xml"
+    x = plan.read_text(encoding="utf-8")
+    x = re.sub(r"\n?\s*<!-- blog:debut -->.*?<!-- blog:fin -->", "", x, flags=re.S)
+    if articles:
+        dernier = max((a["maj"] or a["date"]) for a in articles)
+        lignes = ["  <!-- blog:debut -->",
+                  f"  <url>\n    <loc>{SITE}/blog</loc>\n    <lastmod>{dernier}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>"]
+        for a in sorted(articles, key=lambda a: a["date"], reverse=True):
+            lignes.append(f"  <url>\n    <loc>{SITE}/blog/{a['slug']}</loc>\n    <lastmod>{a['maj'] or a['date']}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>")
+        lignes.append("  <!-- blog:fin -->")
+        x = x.replace("</urlset>", "\n".join(lignes) + "\n</urlset>", 1)
+    plan.write_text(x, encoding="utf-8")
 
 
 # ------------------------------------------------------------------ main
@@ -322,6 +375,7 @@ def main(argv: list) -> None:
     llms_txt(pages)
     if "--sans-images-og" not in argv:
         images_pages_site(forcer="--forcer-og" in argv)
+    blog(articles_blog(), forcer="--forcer-og" in argv, images="--sans-images-og" not in argv)
     print(f"{len(pages)} pages, {n_img} images sorties du HTML, poids total {avant // 1024} Ko -> {apres // 1024} Ko")
 
 

@@ -17,6 +17,8 @@ import { Automatisation } from "./pages/services/Automatisation";
 import { Formation } from "./pages/services/Formation";
 import { ProjetsPage } from "./pages/ProjetsPage";
 import { TemoignagesPage } from "./pages/TemoignagesPage";
+import { BlogIndex } from "./pages/blog/BlogIndex";
+import { BlogArticle } from "./pages/blog/BlogArticle";
 
 /** Remonte en haut à chaque changement de route (sauf ancres #). */
 function ScrollToTop() {
@@ -80,6 +82,8 @@ export const routes: RouteRecord[] = [
           { path: "/formation-ia", element: <Formation /> },
           { path: "/projets", element: <ProjetsPage /> },
           { path: "/temoignages", element: <TemoignagesPage /> },
+          { path: "/blog", element: <BlogIndex /> },
+          { path: "/blog/:slug", element: <BlogArticle /> },
           { path: "/mentions-legales", element: <MentionsLegales /> },
           { path: "/confidentialite", element: <Confidentialite /> },
           { path: "/cgu", element: <Cgu /> },

@@ -44,6 +44,29 @@ Ne pas y toucher.
    touche beaucoup de ressources commence par « SEO : » pour qu'elles ne soient pas datées du jour.
 5. `npm run build`, vérifier la page, puis commit et push après validation d'Ugo.
 
+## Blog (/blog)
+
+Un article = un fichier `content/blog/<slug>.md` : en-tête YAML (titre, description, date,
+categorie, mot_cle, offre, brouillon, faq) puis le texte en Markdown. Le plugin
+`noesis-blog-markdown` de `vite.config.ts` le convertit en HTML au build ; `src/blog/articles.ts`
+liste les articles, `src/pages/blog/` contient l'accueil du blog et le modèle d'article (sommaire,
+FAQ, appel à l'action qui ouvre la fenêtre « Parlons de votre projet », articles liés, données
+structurées BlogPosting + fil d'Ariane + FAQ).
+
+Publier un article :
+1. Copier `content/blog/_modele.md` (jamais publié, comme tout fichier `_*.md`) en
+   `content/blog/<slug>.md`, avec `brouillon: true`.
+2. Relire en local : `npm run dev`, puis `/blog/<slug>` (les brouillons ne sont visibles qu'en local).
+3. Passer `brouillon: false`, puis lancer `uv run --with pillow python3 scripts/seo_ressources.py` :
+   image d'aperçu `public/og/blog/<slug>.jpg`, entrées du plan du site entre
+   `<!-- blog:debut -->` et `<!-- blog:fin -->`, section Blog de `public/llms.txt`.
+4. `npm run build`, vérifier, puis commit et push après validation d'Ugo.
+
+Règles d'écriture : vouvoiement (public de dirigeants), aucun tiret cadratin, aucun nom de client,
+une réponse claire dès le premier paragraphe, un lien vers l'offre concernée. Le blog est en
+ligne depuis le 14/11/2026 (lien « Blog » dans le menu et le pied de page). Écrire les montants avec
+des espaces insécables (2 500 €) pour qu'ils ne se coupent pas en fin de ligne.
+
 ## Balises des pages du site React
 
 Titre, description, canonical, aperçus et données structurées passent par le composant

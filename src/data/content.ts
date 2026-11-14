@@ -753,6 +753,7 @@ export const SERVICES_MENU = [
 export const MAIN_MENU = [
   { label: "Projets", to: "/projets" },
   { label: "Témoignages", to: "/temoignages" },
+  { label: "Blog", to: "/blog" },
 ];
 
 /** Guides de /ressources mis en avant sur le site (pages statiques : liens <a>, pas le routeur). */
