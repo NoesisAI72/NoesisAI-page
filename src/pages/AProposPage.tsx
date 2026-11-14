@@ -31,6 +31,7 @@ const lienRond =
 
 export function AProposPage() {
   const { hero, chiffres, fondateur: f, equipe, methode, cta } = A_PROPOS;
+  const [interview, formation] = f.interventions.photos;
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -76,53 +77,64 @@ export function AProposPage() {
       </section>
 
       <Section id="fondateur" className="bg-white">
-        <div className="mx-auto grid max-w-5xl items-start gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16">
-          <figure className="mx-auto w-full max-w-sm lg:sticky lg:top-28 lg:mx-0 lg:max-w-none">
-            <div className="overflow-hidden rounded-3xl border border-black/5 bg-[#f7f6fb] shadow-[0_24px_48px_-28px_rgba(30,20,60,0.45)]">
-              <img src={f.photo} alt={`${f.nom}, fondateur de NoesisAI`} width={400} height={400} className="aspect-square w-full object-cover" />
+        <div className="mx-auto flex max-w-5xl flex-col gap-16 md:gap-24">
+          {/* 1. Le portrait à gauche, la bio à droite */}
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+            <figure className="w-full md:max-w-[420px]">
+              <div className="overflow-hidden rounded-3xl border border-black/5 bg-[#f7f6fb] shadow-[0_24px_48px_-28px_rgba(30,20,60,0.45)]">
+                <img src={f.photo} alt={`${f.nom}, fondateur de NoesisAI`} width={400} height={400} className="aspect-square w-full object-cover" />
+              </div>
+              <figcaption className="mt-5 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p className="font-display text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f]">{f.nom}</p>
+                  <p className="text-sm text-slate-600">{f.role}</p>
+                </div>
+                <div className="flex gap-2">
+                  <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Ugo Sartini sur LinkedIn" title="LinkedIn" className={lienRond}>
+                    <IconeLinkedin />
+                  </a>
+                  <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Ugo Sartini sur Instagram" title="Instagram" className={lienRond}>
+                    <IconeInstagram />
+                  </a>
+                </div>
+              </figcaption>
+            </figure>
+            <div>
+              <SectionHeading badge={f.badge} title={`${f.nom}, fondateur de NoesisAI`} tone="light" align="left" />
+              <div className="mt-6 flex flex-col gap-4 text-[17px] leading-relaxed text-slate-700">
+                {f.bio.map((para) => (
+                  <p key={para.slice(0, 32)}>{para}</p>
+                ))}
+              </div>
             </div>
-            <figcaption className="mt-5 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="font-display text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f]">{f.nom}</p>
-                <p className="text-sm text-slate-600">{f.role}</p>
-              </div>
-              <div className="flex gap-2">
-                <a href={SOCIALS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Ugo Sartini sur LinkedIn" title="LinkedIn" className={lienRond}>
-                  <IconeLinkedin />
-                </a>
-                <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Ugo Sartini sur Instagram" title="Instagram" className={lienRond}>
-                  <IconeInstagram />
-                </a>
-              </div>
-            </figcaption>
-          </figure>
+          </div>
 
-          <div>
-            <SectionHeading badge={f.badge} title={`${f.nom}, fondateur de NoesisAI`} tone="light" align="left" />
-            <div className="mt-6 flex flex-col gap-4 text-[17px] leading-relaxed text-slate-700">
-              {f.bio.map((p) => (
-                <p key={p.slice(0, 32)}>{p}</p>
-              ))}
+          {/* 2. Le texte à gauche, l'interview à droite */}
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+            <figure className="w-full md:order-2 md:max-w-[380px] md:justify-self-end">
+              <div className="aspect-[4/5] overflow-hidden rounded-3xl border border-black/5 bg-[#f7f6fb]">
+                <img src={interview.src} alt={interview.alt} width={interview.largeur} height={interview.hauteur} loading="lazy" className="h-full w-full object-cover object-top" />
+              </div>
+              <figcaption className="mt-3 text-sm text-slate-600">{interview.legende}</figcaption>
+            </figure>
+            <div className="md:order-1">
+              <h3 className="text-balance font-display text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#0b0b0f] sm:text-3xl">{f.terrain.titre}</h3>
+              <p className="mt-4 text-[17px] leading-relaxed text-slate-700">{f.terrain.texte}</p>
             </div>
-            <blockquote className="mt-8 rounded-2xl border-l-4 border-brand-600 bg-[#f7f6fb] px-6 py-5">
-              <p className="font-display text-lg font-medium leading-snug tracking-[-0.02em] text-[#0b0b0f]">« {f.citation} »</p>
-              <footer className="mt-2 text-sm text-slate-500">{f.nom}</footer>
+          </div>
+
+          {/* 3. La formation à gauche, la citation à droite */}
+          <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
+            <figure className="w-full">
+              <div className="aspect-[16/10] overflow-hidden rounded-3xl border border-black/5 bg-[#f7f6fb]">
+                <img src={formation.src} alt={formation.alt} width={formation.largeur} height={formation.hauteur} loading="lazy" className="h-full w-full object-cover" />
+              </div>
+              <figcaption className="mt-3 text-sm text-slate-600">{formation.legende}</figcaption>
+            </figure>
+            <blockquote className="border-l-4 border-brand-600 pl-6">
+              <p className="text-balance font-display text-2xl font-medium leading-snug tracking-[-0.02em] text-[#0b0b0f]">« {f.citation} »</p>
+              <footer className="mt-3 text-sm text-slate-500">{f.nom}</footer>
             </blockquote>
-
-            <h3 className="mt-12 font-display text-xl font-semibold tracking-[-0.03em] text-[#0b0b0f]">Parcours</h3>
-            <ol className="mt-5 flex flex-col border-l-2 border-black/10">
-              {f.parcours.map((e, i) => (
-                <li key={e.titre} className="relative pb-6 pl-6 last:pb-0">
-                  <span
-                    aria-hidden
-                    className={`absolute -left-[7px] top-1 h-3 w-3 rounded-full ring-4 ring-white ${i === 0 ? "bg-brand-600" : "bg-brand-300"}`}
-                  />
-                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-brand-700">{e.periode}</p>
-                  <p className="mt-1 font-medium text-[#0b0b0f]">{e.titre}</p>
-                  <p className="text-sm text-slate-600">{e.lieu}</p>
-                </li>
-              ))}
-            </ol>
           </div>
         </div>
       </Section>

@@ -1083,17 +1083,32 @@ export const A_PROPOS = {
     bio: [
       "Ugo Sartini a fondé NoesisAI en avril 2025 avec une idée simple : faire de l'IA un levier de croissance mesurable pour les entreprises, pas un gadget de plus.",
       "Avant de lancer l'agence, il a travaillé dans la finance et l'analyse de données : gestion de portefeuille chez Indosuez Wealth Management, puis business intelligence chez Cristal Group International, à Miami. En 2026, il a aussi rejoint l'équipe de lancement de Workforce AI, une start-up qui équipe les entreprises de services de réceptionnistes IA disponibles 24 heures sur 24.",
-      "Aujourd'hui, il partage sa méthode avec plus de 17\u00a0000 abonnés sur LinkedIn et forme des dirigeants à l'IA, comme lors d'une journée à la CCI de Paris avec plus de 25 entrepreneurs.",
     ],
+    terrain: {
+      titre: "Former les dirigeants à l'IA",
+      texte:
+        "Aujourd'hui, il partage sa méthode avec plus de 17\u00a0000 abonnés sur LinkedIn et forme des dirigeants à l'IA, comme lors d'une journée à la CCI de Paris avec plus de 25 entrepreneurs.",
+    },
     citation:
       "Le vrai levier n'est pas le modèle. Tout le monde a accès aux mêmes IA : ce qui change tout, c'est le contexte qu'on leur donne sur votre activité.",
-    parcours: [
-      { periode: "Depuis 2025", titre: "Fondateur et dirigeant", lieu: "NoesisAI" },
-      { periode: "2026", titre: "Founding Growth", lieu: "Workforce AI, réceptionnistes IA" },
-      { periode: "2023-2024", titre: "Business intelligence", lieu: "Cristal Group International, Miami" },
-      { periode: "2023", titre: "Gestion de portefeuille multi-actifs", lieu: "Indosuez Wealth Management" },
-      { periode: "2022-2023", titre: "Master 2 Banque, Finance et Commerce international", lieu: "Université de Bordeaux" },
-    ],
+    interventions: {
+      photos: [
+        {
+          src: "/equipe/cci-paris-interview.webp",
+          largeur: 706,
+          hauteur: 1120,
+          alt: "Ugo Sartini interviewé à la CCI Paris Île-de-France",
+          legende: "Interview à la CCI Paris Île-de-France",
+        },
+        {
+          src: "/equipe/cci-paris-formation.webp",
+          largeur: 1394,
+          hauteur: 832,
+          alt: "Ugo Sartini anime une journée de formation à l'IA devant des entrepreneurs à la CCI de Paris",
+          legende: "Journée de formation à l'IA pour plus de 25 entrepreneurs",
+        },
+      ],
+    },
   },
   equipe: {
     badge: "L'équipe",
