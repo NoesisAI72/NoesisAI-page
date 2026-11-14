@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Seo, ORGANISATION } from "../components/Seo";
 import { Section, SectionHeading, Reveal } from "../components/ui/Section";
 import {
   LightPage,
@@ -17,6 +17,29 @@ import { BeforeAfterPreview } from "../components/ui/BeforeAfter";
 import { Projets } from "../components/Projets";
 import { VideoPresentation } from "../components/ui/VideoPresentation";
 import { FAQ, FINAL_CTA, GUIDES, HERO, HOME, SERVICES_MENU } from "../data/content";
+
+const TITRE = "NoesisAI | Agence d'automatisation IA sur-mesure";
+const DESCRIPTION =
+  "NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert.";
+const ACCUEIL_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      ...ORGANISATION,
+      description: DESCRIPTION,
+      areaServed: ["France", "Belgique", "Suisse"],
+      knowsAbout: ["Intelligence artificielle", "Automatisation", "n8n", "Make", "Agents vocaux", "Logiciel métier", "Formation IA"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://noesisai.fr/#site",
+      url: "https://noesisai.fr/",
+      name: "NoesisAI",
+      inLanguage: "fr-FR",
+      publisher: { "@id": ORGANISATION["@id"] },
+    },
+  ],
+};
 
 const SERVICE_IMAGES: Record<string, string | undefined> = {
   "/logiciel-metier": "/projets/muller-dashboard.webp",
@@ -76,11 +99,14 @@ function ServicesGrid() {
 export function Home() {
   return (
     <LightPage>
-      <Helmet>
-        <title>NoesisAI | Agence d'automatisation IA sur-mesure</title>
-        <meta name="description" content="NoesisAI conçoit des agents IA, automatisations n8n/Make et logiciels métier sur-mesure pour PME. Audit gratuit, premier échange offert." />
-        <link rel="canonical" href="https://noesisai.fr/" />
-      </Helmet>
+      <Seo
+        title={TITRE}
+        description={DESCRIPTION}
+        path="/"
+        image="/og/accueil.jpg"
+        imageAlt="NoesisAI : agents IA, automatisations et logiciels métier pour PME"
+        jsonLd={[ACCUEIL_LD]}
+      />
       <PageHero
         badge={HERO.badge}
         title="Des systèmes d'IA"

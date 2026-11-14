@@ -1,19 +1,26 @@
-import { Helmet } from "react-helmet-async";
+import { Seo, filAriane, service } from "../../components/Seo";
 import { LightPage, PageHero, TestimonialsSection, GuidesSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { MethodTimeline } from "../../components/page/MethodTimeline";
 import { Logiciels, FeaturedProject } from "../../components/Logiciels";
 import { Section, SectionHeading } from "../../components/ui/Section";
 import { GUIDES, PAGES } from "../../data/content";
 
+const TITRE = "Logiciel Métier Sur-Mesure pour PME | NoesisAI";
+const DESCRIPTION =
+  "Devis, chantiers, heures, factures : un logiciel métier sur-mesure construit autour de votre activité, avec IA intégrée (devis à la voix, CR auto).";
+
 export function LogicielMetier() {
   const p = PAGES.logiciel;
   return (
     <LightPage>
-      <Helmet>
-        <title>Logiciel Métier Sur-Mesure pour PME | NoesisAI</title>
-        <meta name="description" content="Devis, chantiers, heures, factures : un logiciel métier sur-mesure construit autour de votre activité, avec IA intégrée (devis à la voix, CR auto)." />
-        <link rel="canonical" href="https://noesisai.fr/logiciel-metier" />
-      </Helmet>
+      <Seo
+        title={TITRE}
+        description={DESCRIPTION}
+        path="/logiciel-metier"
+        image="/og/logiciel-metier.jpg"
+        imageAlt="Logiciel métier sur-mesure pour PME"
+        jsonLd={[service("Logiciel métier sur-mesure", DESCRIPTION, "/logiciel-metier"), filAriane("Logiciel métier", "/logiciel-metier")]}
+      />
       <PageHero {...p.hero} />
       <Logiciels />
       <MethodTimeline />

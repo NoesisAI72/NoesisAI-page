@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "../components/ui/Button";
 
 export function NotFound() {
   return (
     <main className="flex min-h-[70vh] items-center justify-center pt-32 pb-20">
+      {/* Toute adresse inconnue est servie avec cette page : hors de Google. */}
+      <Helmet>
+        <title>Page introuvable | NoesisAI</title>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <div className="container-page max-w-lg text-center">
         <p className="font-display text-7xl font-extrabold text-gradient">404</p>
         <h1 className="mt-4 text-2xl font-semibold text-[#0b0b0f]">Page non trouvée</h1>

@@ -35,7 +35,18 @@ Ne pas y toucher.
 2. L'ajouter à `public/ressources/index.html` (le hub) et à `public/sitemap.xml`.
 3. Ajouter le slug à un thème de `CLUSTERS` dans `scripts/maillage_ressources.py`, puis lancer
    `python3 scripts/maillage_ressources.py public/ressources` (blocs « À lire aussi »).
-4. `npm run build`, vérifier la page, puis commit et push après validation d'Ugo.
+4. Lancer `uv run --with pillow python3 scripts/seo_ressources.py` : il sort les images intégrées en
+   base64 dans `public/ressources/img/` (avec leurs dimensions, pour que la hauteur de `main.resource`
+   ne bouge pas), crée l'image d'aperçu `public/ressources/og/<slug>.jpg`, écrit les balises d'aperçu et
+   les données structurées entre `<!-- seo:debut -->` et `<!-- seo:fin -->`, et régénère `public/llms.txt`.
+   Ne rien écrire à la main entre ces deux marqueurs : le script les réécrit.
+5. `npm run build`, vérifier la page, puis commit et push après validation d'Ugo.
+
+## Balises des pages du site React
+
+Titre, description, canonical, aperçus et données structurées passent par le composant
+`src/components/Seo.tsx` (une seule source par page) ; `index.html` n'en contient plus. Les images
+d'aperçu des pages sont dans `public/og/` (générées par le même script).
 
 ## Liens vers les ressources depuis le site React
 
