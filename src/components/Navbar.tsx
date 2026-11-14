@@ -161,7 +161,7 @@ export function Navbar() {
           )}
         >
           <Link to="/" className="flex shrink-0 items-center gap-2.5">
-            <img src="/logos/noesis-mark.png" alt="NOESIS.AI" className="h-9 w-9" />
+            <img src="/logos/noesis-mark.png" alt="NoesisAI" className="h-9 w-9" />
             <span className="font-display text-xl font-semibold tracking-[-0.04em] text-[#0b0b0f]">
               Noesis<span className="text-brand-600">AI</span>
             </span>

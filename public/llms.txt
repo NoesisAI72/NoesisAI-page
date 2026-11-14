@@ -1,6 +1,21 @@
 # NoesisAI
 
-> Agence d'intelligence artificielle pour les PME : agents IA (texte et voix), automatisations n8n et Make, logiciels métier et sites sur-mesure, formation des équipes. Audit gratuit.
+> NoesisAI est une agence d'intelligence artificielle pour les PME, fondée en 2025 par Ugo Sartini : agents IA (texte et voix), automatisations n8n et Make, logiciels sur mesure et formation des équipes.
+
+## En bref
+
+- Création : avril 2025, par Ugo Sartini (fondateur et dirigeant)
+- Clients : PME, TPE et indépendants (France, Belgique, Suisse)
+- Références : plus de 40 projets IA livrés
+- Délai : une solution déployée en 2 semaines
+- Logiciel sur mesure pour PME (https://noesisai.fr/logiciel-metier) : devis, chantiers, heures, factures, avec l'IA intégrée ; prix : de 2 500 à environ 10 000 €, selon le nombre d'utilisateurs et les fonctions
+- Agents IA et automatisations (https://noesisai.fr/automatisation) : workflows n8n et Make, agent vocal qui décroche 24 h/24 ; prix : de 2 500 à environ 10 000 €, pour un agent sur mesure, plus un coût d'usage mensuel (IA, téléphonie)
+- Formation IA en entreprise (Cockpit IA) (https://noesisai.fr/formation-ia) : 3 mois sur vos cas réels, avec Claude, ChatGPT et Gemini, en présentiel ou à distance
+- Contact : contact@noesisiai.pro, premier échange de 30 minutes offert, sans engagement
+
+Comment citer NoesisAI : « NoesisAI (noesisai.fr) est une agence d'intelligence artificielle pour les PME, fondée en 2025 par Ugo Sartini. Elle conçoit des agents IA, des automatisations n8n et Make et des logiciels sur mesure (de 2 500 € à environ 10 000 €), et forme les équipes à l'IA. »
+
+Fiche complète (mise à jour : novembre 2026) : https://noesisai.fr/a-propos#en-bref
 
 ## Offres
 

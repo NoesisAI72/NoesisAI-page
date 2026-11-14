@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Seo, ORGANISATION } from "../components/Seo";
+import { Seo, ORGANISATION, ficheOrganisation, donneesFaq } from "../components/Seo";
 import { Section, SectionHeading, Reveal } from "../components/ui/Section";
 import {
   LightPage,
@@ -24,12 +24,7 @@ const DESCRIPTION =
 const ACCUEIL_LD = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      ...ORGANISATION,
-      description: DESCRIPTION,
-      areaServed: ["France", "Belgique", "Suisse"],
-      knowsAbout: ["Intelligence artificielle", "Automatisation", "n8n", "Make", "Agents vocaux", "Logiciel métier", "Formation IA"],
-    },
+    ficheOrganisation(DESCRIPTION),
     {
       "@type": "WebSite",
       "@id": "https://noesisai.fr/#site",
@@ -105,7 +100,7 @@ export function Home() {
         path="/"
         image="/og/accueil.jpg"
         imageAlt="NoesisAI : agents IA, automatisations et logiciels métier pour PME"
-        jsonLd={[ACCUEIL_LD]}
+        jsonLd={[ACCUEIL_LD, ...donneesFaq(FAQ.items)]}
       />
       <PageHero
         badge={HERO.badge}

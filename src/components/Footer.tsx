@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1.15fr_0.85fr]">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
-              <img src="/logos/noesis-mark.png" alt="NOESIS.AI" className="h-9 w-9" />
+              <img src="/logos/noesis-mark.png" alt="NoesisAI" className="h-9 w-9" />
               <span className="font-display text-lg font-semibold tracking-[-0.04em] text-[#0b0b0f]">
                 Noesis<span className="text-brand-600">AI</span>
               </span>

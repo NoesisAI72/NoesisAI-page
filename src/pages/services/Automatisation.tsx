@@ -1,4 +1,4 @@
-import { Seo, filAriane, service } from "../../components/Seo";
+import { Seo, filAriane, service, donneesFaq } from "../../components/Seo";
 import { LightPage, PageHero, TestimonialsSection, GuidesSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { Problem } from "../../components/Problem";
 import { AutomationNetwork } from "../../components/page/AutomationNetwork";
@@ -19,7 +19,7 @@ export function Automatisation() {
         path="/automatisation"
         image="/og/automatisation.jpg"
         imageAlt="Automatisations IA et agents vocaux pour PME"
-        jsonLd={[service("Automatisation IA et agents vocaux", DESCRIPTION, "/automatisation"), filAriane("Automatisation IA", "/automatisation")]}
+        jsonLd={[service("Automatisation IA et agents vocaux", DESCRIPTION, "/automatisation"), filAriane("Automatisation IA", "/automatisation"), ...donneesFaq(p.faq.items)]}
       />
       <PageHero {...p.hero} visual={<AutomationNetwork />} />
       <Problem />

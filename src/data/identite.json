@@ -1,0 +1,67 @@
+{
+  "_lisez_moi": "Faits officiels sur NoesisAI, une seule source pour : le bloc « NoesisAI en bref » de /a-propos, la fiche d'entreprise des données structurées (accueil et /a-propos), les mentions légales et public/llms.txt (scripts/seo_ressources.py). Un champ « À compléter » n'est ni envoyé aux moteurs ni repris dans llms.txt ; un champ vide \"\" veut dire « ne s'applique pas » et n'est pas affiché.",
+  "marque": "NoesisAI",
+  "autres_noms": ["Noesis AI", "NOESIS AI"],
+  "mise_a_jour": "novembre 2026",
+  "une_phrase": "NoesisAI est une agence d'intelligence artificielle pour les PME, fondée en 2025 par Ugo Sartini : agents IA (texte et voix), automatisations n8n et Make, logiciels sur mesure et formation des équipes.",
+  "slogan": "Faire de l'IA un levier de croissance, pas un gadget.",
+  "creation": { "texte": "avril 2025", "iso": "2025-04" },
+  "fondateur": { "nom": "Ugo Sartini", "role": "fondateur et dirigeant" },
+  "clients": "PME, TPE et indépendants",
+  "zone": ["France", "Belgique", "Suisse"],
+  "references": "plus de 40 projets IA livrés",
+  "delai": "une solution déployée en 2 semaines",
+  "contact": {
+    "email": "contact@noesisiai.pro",
+    "rendez_vous": "premier échange de 30 minutes offert, sans engagement"
+  },
+  "offres": [
+    {
+      "nom": "Logiciel sur mesure pour PME",
+      "chemin": "/logiciel-metier",
+      "texte": "devis, chantiers, heures, factures, avec l'IA intégrée",
+      "prix_note": "selon le nombre d'utilisateurs et les fonctions",
+      "prix_min": 2500,
+      "prix_max": 10000
+    },
+    {
+      "nom": "Agents IA et automatisations",
+      "chemin": "/automatisation",
+      "texte": "workflows n8n et Make, agent vocal qui décroche 24 h/24",
+      "prix_note": "pour un agent sur mesure, plus un coût d'usage mensuel (IA, téléphonie)",
+      "prix_min": 2500,
+      "prix_max": 10000
+    },
+    {
+      "nom": "Formation IA en entreprise (Cockpit IA)",
+      "chemin": "/formation-ia",
+      "texte": "3 mois sur vos cas réels, avec Claude, ChatGPT et Gemini, en présentiel ou à distance"
+    }
+  ],
+  "quand_oui": [
+    "Vos équipes perdent des heures chaque semaine sur des tâches répétitives : devis, relances, saisie, appels.",
+    "Vous jonglez entre Excel et plusieurs logiciels, et voulez un outil construit autour de votre métier.",
+    "Vous voulez former vos équipes à l'IA sur leurs propres dossiers."
+  ],
+  "quand_non": [
+    "Un logiciel du marché couvre déjà votre besoin : l'audit gratuit vous le dira, et vous repartez avec une feuille de route, même sans travailler avec nous."
+  ],
+  "citation": "NoesisAI (noesisai.fr) est une agence d'intelligence artificielle pour les PME, fondée en 2025 par Ugo Sartini. Elle conçoit des agents IA, des automatisations n8n et Make et des logiciels sur mesure (de 2 500 € à environ 10 000 €), et forme les équipes à l'IA.",
+  "societe": {
+    "raison_sociale": "À compléter",
+    "forme_juridique": "À compléter",
+    "capital": "À compléter",
+    "siren": "À compléter",
+    "rcs": "À compléter",
+    "tva": "À compléter",
+    "siege": {
+      "rue": "À compléter",
+      "code_postal": "À compléter",
+      "ville": "À compléter",
+      "pays": "À compléter"
+    },
+    "telephone": "À compléter",
+    "directeur_publication": "Ugo Sartini",
+    "hebergeur": "Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723, États-Unis (vercel.com)"
+  }
+}

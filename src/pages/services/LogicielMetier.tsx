@@ -1,4 +1,4 @@
-import { Seo, filAriane, service } from "../../components/Seo";
+import { Seo, filAriane, service, donneesFaq } from "../../components/Seo";
 import { LightPage, PageHero, TestimonialsSection, GuidesSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { MethodTimeline } from "../../components/page/MethodTimeline";
 import { Logiciels, FeaturedProject } from "../../components/Logiciels";
@@ -19,7 +19,7 @@ export function LogicielMetier() {
         path="/logiciel-metier"
         image="/og/logiciel-metier.jpg"
         imageAlt="Logiciel sur mesure pour PME"
-        jsonLd={[service("Logiciel sur mesure pour PME", DESCRIPTION, "/logiciel-metier"), filAriane("Logiciel métier", "/logiciel-metier")]}
+        jsonLd={[service("Logiciel sur mesure pour PME", DESCRIPTION, "/logiciel-metier"), filAriane("Logiciel métier", "/logiciel-metier"), ...donneesFaq(p.faq.items)]}
       />
       <PageHero {...p.hero} />
       <Logiciels />

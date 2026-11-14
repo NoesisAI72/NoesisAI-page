@@ -1,4 +1,4 @@
-import { Seo, filAriane, service } from "../../components/Seo";
+import { Seo, filAriane, service, donneesFaq } from "../../components/Seo";
 import { LightPage, PageHero, TestimonialsSection, FaqSection, CtaSection } from "../../components/page/Blocks";
 import { FormationIA } from "../../components/FormationIA";
 import { PAGES } from "../../data/content";
@@ -17,7 +17,7 @@ export function Formation() {
         path="/formation-ia"
         image="/og/formation-ia.jpg"
         imageAlt="Le Cockpit IA, formation IA en entreprise"
-        jsonLd={[service("Formation IA en entreprise (Cockpit IA)", DESCRIPTION, "/formation-ia"), filAriane("Formation IA", "/formation-ia")]}
+        jsonLd={[service("Formation IA en entreprise (Cockpit IA)", DESCRIPTION, "/formation-ia"), filAriane("Formation IA", "/formation-ia"), ...donneesFaq(p.faq.items)]}
       />
       <PageHero {...p.hero} />
       <FormationIA />

@@ -1,7 +1,9 @@
-import { Seo, ORGANISATION, filAriane } from "../components/Seo";
+import { Seo, ORGANISATION, filAriane, ficheOrganisation } from "../components/Seo";
 import { LightPage, PageHero, TestimonialsSection, CtaSection } from "../components/page/Blocks";
 import { Section, SectionHeading } from "../components/ui/Section";
+import { EnBref } from "../components/page/EnBref";
 import { A_PROPOS, SOCIALS } from "../data/content";
+import { IDENTITE } from "../data/identite";
 
 const SITE = "https://noesisai.fr";
 const TITRE = "À propos : l'agence et son fondateur | NoesisAI";
@@ -56,6 +58,7 @@ export function AProposPage() {
       sameAs: [SOCIALS.linkedin, SOCIALS.instagram],
     },
     filAriane("À propos", "/a-propos"),
+    { "@context": "https://schema.org", ...ficheOrganisation(IDENTITE.une_phrase) },
   ];
 
   return (
@@ -165,6 +168,7 @@ export function AProposPage() {
       </Section>
 
       <TestimonialsSection />
+      <EnBref />
       <CtaSection {...cta} />
     </LightPage>
   );

@@ -255,6 +255,38 @@ def bloc_head(h: str, slug: str, url: str, titre: str, description: str, noindex
 
 # ------------------------------------------------------------------ 4. llms.txt
 
+# Faits officiels sur l'agence : même fichier que le bloc « NoesisAI en bref » de /a-propos,
+# la fiche d'entreprise des données structurées et les mentions légales.
+IDENTITE_LLMS = {k: (v.replace("\u00a0", " ") if isinstance(v, str) else v)
+                 for k, v in json.loads((RACINE / "src" / "data" / "identite.json").read_text(encoding="utf-8")).items()}
+
+
+def rempli(v) -> bool:
+    """Champ renseigné : ni vide (« ne s'applique pas ») ni « À compléter »."""
+    return isinstance(v, str) and v.strip() != "" and not v.strip().lower().startswith("à compléter")
+
+
+def bloc_en_bref() -> list:
+    i = IDENTITE_LLMS
+    s = i["societe"]
+    L = ["## En bref", "",
+         f"- Création : {i['creation']['texte']}, par {i['fondateur']['nom']} ({i['fondateur']['role']})"]
+    if rempli(s.get("raison_sociale")):
+        L.append(f"- Société : {s['raison_sociale']}" + (f", SIREN {s['siren']}" if rempli(s.get("siren")) else ""))
+    L += [f"- Clients : {i['clients']} ({', '.join(i['zone'])})",
+          f"- Références : {i['references']}",
+          f"- Délai : {i['delai']}"]
+    for o in i["offres"]:
+        fr = lambda n: f"{n:,}".replace(",", " ")
+        prix = (f" ; prix : de {fr(o['prix_min'])} à environ {fr(o['prix_max'])} €"
+                + (f", {o['prix_note']}" if o.get("prix_note") else "")) if o.get("prix_min") and o.get("prix_max") else ""
+        L.append(f"- {o['nom']} ({SITE}{o['chemin']}) : {o['texte']}{prix}")
+    L += [f"- Contact : {i['contact']['email']}, {i['contact']['rendez_vous']}", "",
+          f"Comment citer NoesisAI : « {i['citation']} »", "",
+          f"Fiche complète (mise à jour : {i['mise_a_jour']}) : {SITE}/a-propos#en-bref", ""]
+    return L
+
+
 def llms_txt(pages: list) -> None:
     offres = [
         ("Automatisation IA et agents vocaux", "/automatisation", "workflows n8n et Make, agents vocaux qui décrochent 24 h/24"),
@@ -264,10 +296,7 @@ def llms_txt(pages: list) -> None:
         ("Témoignages", "/temoignages", "avis des entreprises accompagnées"),
         ("À propos", "/a-propos", "l'agence, son fondateur Ugo Sartini et son équipe"),
     ]
-    L = ["# NoesisAI", "",
-         "> Agence d'intelligence artificielle pour les PME : agents IA (texte et voix), automatisations n8n et Make, "
-         "logiciels métier et sites sur-mesure, formation des équipes. Audit gratuit.", "",
-         "## Offres", ""]
+    L = ["# NoesisAI", "", f"> {IDENTITE_LLMS['une_phrase']}", ""] + bloc_en_bref() + ["## Offres", ""]
     L += [f"- [{n}]({SITE}{p}): {d}" for n, p, d in offres]
     articles = articles_blog()
     if articles:
