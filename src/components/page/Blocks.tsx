@@ -382,7 +382,7 @@ export function FaqSection({ title, items }: { title: string; items: FaqItem[] }
         <div className="flex flex-col gap-4 lg:sticky lg:top-28 lg:self-start">
           <h2 className="text-3xl font-semibold leading-[1.1] tracking-[-0.04em] sm:text-4xl">{title}</h2>
           <p className="text-base leading-relaxed text-slate-600">
-            Une autre question ? Le premier échange est offert, posez-la en direct.
+            Une question qui n'est pas ici ? Posez-la-nous lors du premier échange, il est offert.
           </p>
           <BoutonDemande emplacement="questions fréquentes" variant="dark" className="mt-2 w-fit">
             Parler de votre projet <Chevrons />

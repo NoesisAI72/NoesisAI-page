@@ -342,23 +342,23 @@ export const FOOTER = {
 // =============================================================
 export const LOGICIELS = {
   badge: "Web-application, outil métiers & SaaS",
-  title: "Un outil métier, c'est un logiciel construit",
-  titleAccent: "autour de votre façon de travailler.",
-  before: "Avant : des fichiers Excel copiés-collés et des heures perdues.",
-  after: "Après : un seul logiciel qui fait le travail.",
+  title: "Votre métier d'abord,",
+  titleAccent: "le logiciel ensuite.",
+  before: "Avant : des devis refaits à la main et des fichiers Excel en double.",
+  after: "Après : tout au même endroit, et l'IA s'occupe de la saisie.",
   afterImage: "/projets/muller-dashboard.webp",
   afterAlt: "Tableau de bord de l'application Müller Hub",
   services: [
     {
-      title: "Outils métier & ERP",
-      text: "Vos process, vos données et votre équipe réunis dans un seul outil : devis, chantiers, heures, factures, pilotage.",
+      title: "Logiciel de gestion sur mesure",
+      text: "Devis, chantiers, heures, factures et pilotage au même endroit, pour toute l'équipe.",
     },
     {
-      title: "Applications & espaces clients",
+      title: "Applications web et mobiles",
       text: "Des applications web sur-mesure pour vos équipes, vos partenaires ou vos clients, utilisables sur ordinateur comme sur mobile.",
     },
     {
-      title: "Automatisations & IA intégrées",
+      title: "IA intégrée",
       text: "L'IA travaille dans l'outil : devis dictés à la voix, comptes rendus générés, mails pré-rédigés, tâches répétitives qui tournent seules.",
     },
   ],
@@ -519,7 +519,7 @@ export type Project = {
 
 export const PROJETS = {
   badge: "Projets clients",
-  title: "Ils ont repris le contrôle de leurs opérations",
+  title: "Déjà en service chez nos clients",
   subtitle: "Une sélection de nos projets, classés par type de mission.",
   confidential: "D'autres projets sont confidentiels et ne peuvent pas être montrés ici.",
   confidentialCta: "On vous en parle de vive voix",
@@ -829,36 +829,36 @@ export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServiceP
       images: ["/projets/muller-dashboard.webp", "/projets/odas-diffusion.webp", "/projets/hohiohen-dashboard.webp"],
     },
     rules: { title: "", subtitle: "", items: [] },
-    projects: { title: "Ils ont repris le contrôle de leurs opérations", subtitle: "Une sélection de nos logiciels sur-mesure." },
+    projects: { title: "Déjà en service chez nos clients", subtitle: "Une sélection de nos logiciels sur-mesure." },
     faq: {
-      title: "Les questions avant de lancer votre outil",
+      title: "Ce qu'on nous demande avant de démarrer",
       items: [
-        {
-          q: "Pourquoi un logiciel sur-mesure plutôt qu'un logiciel du marché ?",
-          a: "Un logiciel du marché vous oblige à adapter votre façon de travailler à l'outil, et à empiler les abonnements pour couvrir tous vos besoins. Un outil sur-mesure part de vos process réels : il ne contient que ce dont vos équipes ont besoin, reprend votre vocabulaire et vos règles métier, et se connecte aux logiciels que vous utilisez déjà.",
-        },
-        {
-          q: "Comment se passe le premier échange ?",
-          a: "Un appel de 30 minutes, sans engagement. Vous nous expliquez votre fonctionnement actuel et ce qui vous fait perdre du temps. On vous dit ensuite honnêtement si un outil sur-mesure est pertinent, et sous quelle forme.",
-        },
         {
           q: "Combien coûte un logiciel sur mesure ?",
           a: "De 2\u00a0500\u00a0€ à environ 10\u00a0000\u00a0€, selon le nombre d'utilisateurs et les fonctionnalités : écrans, intégrations, IA. Le budget est chiffré précisément après le cadrage technique, et validé avec vous avant le début du développement. Nous priorisons les fonctionnalités qui apportent le plus de valeur pour démarrer avec une première version utile.",
         },
         {
-          q: "En combien de temps aurons-nous un outil utilisable ?",
+          q: "Pourquoi ne pas prendre un logiciel du marché ?",
+          a: "Un logiciel du marché vous oblige à adapter votre façon de travailler à l'outil, et à empiler les abonnements pour couvrir tous vos besoins. Un outil sur-mesure part de vos process réels : il ne contient que ce dont vos équipes ont besoin, reprend votre vocabulaire et vos règles métier, et se connecte aux logiciels que vous utilisez déjà.",
+        },
+        {
+          q: "Par quoi commence-t-on ?",
+          a: "Un appel de 30 minutes, sans engagement. Vous nous expliquez votre fonctionnement actuel et ce qui vous fait perdre du temps. On vous dit ensuite honnêtement si un outil sur-mesure est pertinent, et sous quelle forme.",
+        },
+        {
+          q: "Quand pourrons-nous commencer à l'utiliser ?",
           a: "Nous livrons par itérations : une première version qui couvre l'essentiel arrive rapidement, puis l'outil s'enrichit au fil des semaines. Le planning précis est fixé lors du cadrage, et vous testez l'avancement chaque semaine.",
         },
         {
-          q: "Nos équipes vont-elles vraiment l'utiliser ?",
+          q: "Comment s'assurer que l'équipe l'adopte ?",
           a: "C'est la priorité. L'outil est conçu à partir de la façon dont vos équipes travaillent vraiment, avec des écrans simples, utilisables sur ordinateur comme sur mobile. Vos utilisateurs le testent pendant le développement, et nous les formons à la prise en main au lancement.",
         },
         {
-          q: "L'outil peut-il se connecter à nos logiciels actuels ?",
+          q: "Pourra-t-on garder nos logiciels actuels ?",
           a: "Oui, dès que vos logiciels le permettent (API, exports, connecteurs). Nous connectons couramment des outils comme votre messagerie, votre CRM, votre logiciel de facturation ou vos fichiers Excel, pour éviter toute double saisie.",
         },
         {
-          q: "Peut-on reprendre nos données existantes ?",
+          q: "Garde-t-on notre historique et nos fichiers Excel ?",
           a: "Oui. Nous reprenons vos données actuelles (fichiers Excel, exports de vos anciens outils, catalogues de prix…) et les importons dans le nouvel outil, pour que vos équipes démarrent avec leur historique.",
         },
         {
@@ -866,12 +866,12 @@ export const PAGES: Record<"logiciel" | "automatisation" | "formation", ServiceP
           a: "Vos données sont hébergées de façon sécurisée, avec un contrôle des accès par utilisateur et par rôle, dans le respect du RGPD. L'hébergement est choisi selon vos contraintes, y compris quand une localisation précise des données est exigée.",
         },
         {
-          q: "Que se passe-t-il après la livraison ?",
+          q: "Qui s'occupe du logiciel une fois en service ?",
           a: "Nous restons à vos côtés : maintenance, corrections, et évolutions de l'outil au rythme de votre activité. Vous n'êtes jamais seul face à un logiciel qui ne bouge plus.",
         },
       ],
     },
-    cta: { title: "Parlons de l'outil qui manque à votre équipe.", subtitle: "" },
+    cta: { title: "Racontez-nous comment vous travaillez aujourd'hui.", subtitle: "" },
   },
   automatisation: {
     hero: {
