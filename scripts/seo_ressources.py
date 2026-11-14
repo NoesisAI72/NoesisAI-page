@@ -37,8 +37,8 @@ DOSSIER_OG = RESS / "og"
 SITE = "https://noesisai.fr"
 LOGO = RACINE / "public" / "logos" / "noesis-mark.png"
 AUTEUR = {"@type": "Person", "name": "Ugo Sartini",
-          "url": "https://www.linkedin.com/in/ugo-sartini-04a14620a/",
-          "sameAs": ["https://www.linkedin.com/in/ugo-sartini-04a14620a/", "https://www.instagram.com/ugoia2025/"]}
+          "url": "https://noesisai.fr/a-propos",
+          "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}
 EDITEUR = {"@type": "Organization", "name": "NoesisAI", "url": SITE + "/",
            "logo": {"@type": "ImageObject", "url": SITE + "/logos/noesis-mark.png", "width": 350, "height": 350}}
 EXT = {"png": "png", "jpeg": "jpg", "jpg": "jpg", "webp": "webp", "gif": "gif", "svg+xml": "svg", "avif": "avif"}
@@ -262,6 +262,7 @@ def llms_txt(pages: list) -> None:
         ("Formation IA en entreprise (Cockpit IA)", "/formation-ia", "former dirigeants et équipes à Claude et aux outils d'IA"),
         ("Projets clients", "/projets", "réalisations détaillées par type de mission"),
         ("Témoignages", "/temoignages", "avis des entreprises accompagnées"),
+        ("À propos", "/a-propos", "l'agence, son fondateur Ugo Sartini et son équipe"),
     ]
     L = ["# NoesisAI", "",
          "> Agence d'intelligence artificielle pour les PME : agents IA (texte et voix), automatisations n8n et Make, "
@@ -291,6 +292,7 @@ PAGES_SITE = {
     "logiciel-metier": "Un logiciel sur mesure pour votre PME, construit autour de votre métier",
     "projets": "Nos projets clients : logiciels métier, agents vocaux, automatisations",
     "temoignages": "Ce que disent les entreprises que nous accompagnons",
+    "a-propos": "L'agence NoesisAI et son fondateur, Ugo Sartini",
 }
 
 
