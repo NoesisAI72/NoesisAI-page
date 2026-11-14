@@ -10,7 +10,7 @@ export const ICLOSED_URL = "https://app.iclosed.io/e/NoesisAI/30min";
 export const CONTACT_EMAIL = "contact@noesisiai.pro";
 
 export const SOCIALS = {
-  linkedin: "https://www.linkedin.com/in/ugo-sartini-04a14620a/",
+  linkedin: "https://www.linkedin.com/in/ugo-sartini-automatisation-ia/",
   instagram: "https://www.instagram.com/ugoia2025/",
 };
 
@@ -750,10 +750,13 @@ export const SERVICES_MENU = [
   { label: "Formation IA", to: "/formation-ia", text: "Devenez autonomes sur l'IA et récupérez jusqu'à 10 h par semaine." },
 ];
 
-export const MAIN_MENU = [
-  { label: "Projets", to: "/projets" },
-  { label: "Témoignages", to: "/temoignages" },
-  { label: "Blog", to: "/blog" },
+export const MAIN_MENU = [{ label: "Projets", to: "/projets" }];
+
+/** Sous-menu « L'agence » de la barre de navigation. */
+export const AGENCE_MENU = [
+  { label: "Blog", to: "/blog", text: "Nos guides sur l'IA appliquée aux PME." },
+  { label: "À propos", to: "/a-propos", text: "L'agence, son fondateur et l'équipe." },
+  { label: "Témoignages", to: "/temoignages", text: "Ce que nos clients en disent." },
 ];
 
 /** Guides de /ressources mis en avant sur le site (pages statiques : liens <a>, pas le routeur). */
@@ -1055,4 +1058,59 @@ export const AUTOMATION_PROCESS = {
       visual: "monitor",
     },
   ],
+};
+
+/** Page À propos (/a-propos). Fondateur : profil LinkedIn d'Ugo relevé le 14/11/2026. */
+export const A_PROPOS = {
+  hero: {
+    badge: "L'agence",
+    title: "Faire de l'IA un",
+    boxed: "levier",
+    titleEnd: "de croissance, pas un gadget.",
+    subtitle:
+      "NoesisAI conçoit et met en place des solutions et des automatisations IA 100\u00a0% sur mesure pour les PME, de la tâche qui vous coûte des heures chaque semaine jusqu'aux outils internes complets.",
+  },
+  chiffres: [
+    { valeur: "Plus de 40", label: "projets IA livrés" },
+    { valeur: "2 semaines", label: "pour déployer une solution" },
+    { valeur: "17\u00a0000", label: "abonnés sur LinkedIn" },
+  ],
+  fondateur: {
+    badge: "Le fondateur",
+    nom: "Ugo Sartini",
+    role: "Fondateur et dirigeant de NoesisAI",
+    photo: "/equipe/ugo-sartini.jpg",
+    bio: [
+      "Ugo Sartini a fondé NoesisAI en avril 2025 avec une idée simple : faire de l'IA un levier de croissance mesurable pour les entreprises, pas un gadget de plus.",
+      "Avant de lancer l'agence, il a travaillé dans la finance et l'analyse de données : gestion de portefeuille chez Indosuez Wealth Management, puis business intelligence chez Cristal Group International, à Miami. En 2026, il a aussi rejoint l'équipe de lancement de Workforce AI, une start-up qui équipe les entreprises de services de réceptionnistes IA disponibles 24 heures sur 24.",
+      "Aujourd'hui, il partage sa méthode avec plus de 17\u00a0000 abonnés sur LinkedIn et forme des dirigeants à l'IA, comme lors d'une journée à la CCI de Paris avec plus de 25 entrepreneurs.",
+    ],
+    citation:
+      "Le vrai levier n'est pas le modèle. Tout le monde a accès aux mêmes IA : ce qui change tout, c'est le contexte qu'on leur donne sur votre activité.",
+    parcours: [
+      { periode: "Depuis 2025", titre: "Fondateur et dirigeant", lieu: "NoesisAI" },
+      { periode: "2026", titre: "Founding Growth", lieu: "Workforce AI, réceptionnistes IA" },
+      { periode: "2023-2024", titre: "Business intelligence", lieu: "Cristal Group International, Miami" },
+      { periode: "2023", titre: "Gestion de portefeuille multi-actifs", lieu: "Indosuez Wealth Management" },
+      { periode: "2022-2023", titre: "Master 2 Banque, Finance et Commerce international", lieu: "Université de Bordeaux" },
+    ],
+  },
+  equipe: {
+    badge: "L'équipe",
+    title: "Une équipe resserrée autour de vos projets",
+    roles: [
+      { titre: "Conception et mise en œuvre", texte: "Ugo cadre chaque projet, conçoit la solution et la met en service avec vos équipes." },
+      { titre: "Relation client", texte: "Notre équipe commerciale prend le premier contact, organise les rendez-vous et en assure le suivi." },
+    ],
+  },
+  methode: {
+    badge: "Notre façon de travailler",
+    title: "Sans bouleverser votre activité",
+    items: [
+      { titre: "Votre réalité technique", texte: "Vos outils actuels, votre hébergement, la protection de vos données et la conformité : la solution s'y adapte." },
+      { titre: "Votre réalité business", texte: "Vos process, vos priorités et la façon dont vos équipes travaillent vraiment." },
+      { titre: "2 semaines, pas 6 mois", texte: "De l'automatisation d'une tâche à l'outil interne avec sa propre interface, chaque solution est déployée en deux semaines." },
+    ],
+  },
+  cta: { title: "Parlons de votre projet.", subtitle: "" },
 };

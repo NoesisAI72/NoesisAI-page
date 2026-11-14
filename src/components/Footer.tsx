@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FOOTER, MAIN_MENU, SERVICES_MENU, SOCIALS } from "../data/content";
+import { AGENCE_MENU, FOOTER, MAIN_MENU, SERVICES_MENU, SOCIALS } from "../data/content";
 
 export function Footer() {
   return (
@@ -32,7 +32,7 @@ export function Footer() {
           <div>
             <h4 className="font-display text-sm font-semibold">{FOOTER.navTitle}</h4>
             <ul className="mt-4 flex flex-col gap-3">
-              {[...SERVICES_MENU, ...MAIN_MENU].map((l) => (
+              {[...SERVICES_MENU, ...MAIN_MENU, ...AGENCE_MENU].map((l) => (
                 <li key={l.to}>
                   <Link to={l.to} className="text-sm text-slate-600 transition-colors hover:text-[#0b0b0f]">
                     {l.label}

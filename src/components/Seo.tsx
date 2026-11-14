@@ -10,7 +10,7 @@ export const ORGANISATION = {
   alternateName: "NOESIS AI",
   url: `${SITE}/`,
   logo: { "@type": "ImageObject", url: `${SITE}/logos/noesis-mark.png`, width: 350, height: 350 },
-  sameAs: ["https://www.linkedin.com/in/ugo-sartini-04a14620a/", "https://www.instagram.com/ugoia2025/"],
+  sameAs: ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"],
 };
 
 /** Fil d'Ariane Accueil > page, en données structurées. */

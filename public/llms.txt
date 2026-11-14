@@ -9,6 +9,7 @@
 - [Formation IA en entreprise (Cockpit IA)](https://noesisai.fr/formation-ia): former dirigeants et équipes à Claude et aux outils d'IA
 - [Projets clients](https://noesisai.fr/projets): réalisations détaillées par type de mission
 - [Témoignages](https://noesisai.fr/temoignages): avis des entreprises accompagnées
+- [À propos](https://noesisai.fr/a-propos): l'agence, son fondateur Ugo Sartini et son équipe
 
 ## Blog
 

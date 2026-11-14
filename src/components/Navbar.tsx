@@ -3,10 +3,12 @@ import { useDemandeInfos } from "./DemandeInfos";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "./ui/cn";
-import { MAIN_MENU, SERVICES_MENU, WHATSAPP_URL } from "../data/content";
+import { AGENCE_MENU, MAIN_MENU, SERVICES_MENU, WHATSAPP_URL } from "../data/content";
 
 const linkCls =
   "rounded-lg px-3 py-2 font-display text-[0.95rem] font-medium uppercase tracking-tight transition-colors";
+
+type Entree = { label: string; to: string; text: string };
 
 /** Bouton noir à bordure pointillée, façon clickway. */
 function CtaButton({ className }: { className?: string }) {
@@ -43,11 +45,96 @@ function WhatsAppButton() {
   );
 }
 
+/** Entrée de menu avec sous-menu déroulant au survol (Services, L'agence). */
+function MenuDeroulant({ titre, entrees, largeur }: { titre: string; entrees: Entree[]; largeur: string }) {
+  const [ouvert, setOuvert] = useState(false);
+  const minuterie = useRef<number>();
+  // Souris : le survol ouvre, le clic ne doit pas refermer aussitôt. Doigt ou clavier : le clic bascule.
+  const survolSouris = useRef(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setOuvert(false);
+  }, [pathname]);
+
+  return (
+    <li
+      className="relative"
+      onPointerEnter={(e) => {
+        if (e.pointerType !== "mouse") return;
+        survolSouris.current = true;
+        window.clearTimeout(minuterie.current);
+        setOuvert(true);
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType !== "mouse") return;
+        survolSouris.current = false;
+        minuterie.current = window.setTimeout(() => setOuvert(false), 150);
+      }}
+    >
+      <button
+        type="button"
+        aria-expanded={ouvert}
+        onClick={() => (survolSouris.current ? setOuvert(true) : setOuvert((v) => !v))}
+        className={cn(linkCls, "flex items-center gap-1 text-[#0b0b0f]")}
+      >
+        {titre}
+        <span className={cn("text-xs transition-transform", ouvert && "rotate-180")} aria-hidden>
+          ▾
+        </span>
+      </button>
+      <AnimatePresence>
+        {ouvert && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.15 }}
+            className={cn("absolute left-0 top-full pt-3", largeur)}
+          >
+            <ul className="rounded-2xl border border-black/5 bg-white p-2 shadow-[0_24px_48px_-16px_rgba(30,20,60,0.35)]">
+              {entrees.map((s) => (
+                <li key={s.to}>
+                  <NavLink
+                    to={s.to}
+                    className={({ isActive }) =>
+                      cn("block rounded-xl px-4 py-3 transition-colors hover:bg-[#f7f6fb]", isActive && "bg-[#f7f6fb]")
+                    }
+                  >
+                    <span className="block font-display text-sm font-semibold text-[#0b0b0f]">{s.label}</span>
+                    <span className="mt-0.5 block text-xs text-slate-500">{s.text}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
+  );
+}
+
+/** Groupe de liens du menu mobile, avec son intitulé. */
+function GroupeMobile({ titre, entrees }: { titre: string; entrees: { label: string; to: string }[] }) {
+  return (
+    <>
+      <p className="px-4 pb-1 pt-2 font-display text-xs font-semibold uppercase tracking-wider text-slate-400">{titre}</p>
+      <ul className="flex flex-col">
+        {entrees.map((s) => (
+          <li key={s.to}>
+            <Link to={s.to} className="block rounded-2xl px-4 py-3 font-display text-sm font-medium text-slate-800 hover:bg-black/5">
+              {s.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [services, setServices] = useState(false);
-  const closeTimer = useRef<number>();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -57,13 +144,10 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Ferme les menus à chaque changement de page.
+  // Ferme le menu mobile à chaque changement de page.
   useEffect(() => {
     setOpen(false);
-    setServices(false);
   }, [pathname]);
-
-  const inServices = SERVICES_MENU.some((s) => pathname.startsWith(s.to));
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -84,55 +168,7 @@ export function Navbar() {
           </Link>
 
           <ul className="hidden items-center gap-0.5 lg:flex">
-            <li
-              className="relative"
-              onMouseEnter={() => {
-                window.clearTimeout(closeTimer.current);
-                setServices(true);
-              }}
-              onMouseLeave={() => {
-                closeTimer.current = window.setTimeout(() => setServices(false), 150);
-              }}
-            >
-              <button
-                type="button"
-                aria-expanded={services}
-                onClick={() => setServices((v) => !v)}
-                className={cn(linkCls, "flex items-center gap-1", inServices || services ? "text-[#0b0b0f]" : "text-[#0b0b0f]")}
-              >
-                Services
-                <span className={cn("text-xs transition-transform", services && "rotate-180")} aria-hidden>
-                  ▾
-                </span>
-              </button>
-              <AnimatePresence>
-                {services && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute left-0 top-full w-[22rem] pt-3"
-                  >
-                    <ul className="rounded-2xl border border-black/5 bg-white p-2 shadow-[0_24px_48px_-16px_rgba(30,20,60,0.35)]">
-                      {SERVICES_MENU.map((s) => (
-                        <li key={s.to}>
-                          <NavLink
-                            to={s.to}
-                            className={({ isActive }) =>
-                              cn("block rounded-xl px-4 py-3 transition-colors hover:bg-[#f7f6fb]", isActive && "bg-[#f7f6fb]")
-                            }
-                          >
-                            <span className="block font-display text-sm font-semibold text-[#0b0b0f]">{s.label}</span>
-                            <span className="mt-0.5 block text-xs text-slate-500">{s.text}</span>
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </li>
+            <MenuDeroulant titre="Services" entrees={SERVICES_MENU} largeur="w-[22rem]" />
             {MAIN_MENU.map((l) => (
               <li key={l.to}>
                 <NavLink
@@ -143,6 +179,7 @@ export function Navbar() {
                 </NavLink>
               </li>
             ))}
+            <MenuDeroulant titre="L'agence" entrees={AGENCE_MENU} largeur="w-[17rem]" />
           </ul>
 
           <div className="flex items-center gap-2.5">
@@ -163,18 +200,7 @@ export function Navbar() {
         {/* Menu mobile */}
         {open && (
           <div className="mt-2 max-h-[80vh] overflow-y-auto rounded-3xl border border-black/5 bg-white/95 p-3 shadow-[0_12px_32px_-12px_rgba(0,0,0,0.35)] backdrop-blur-md lg:hidden">
-            <p className="px-4 pb-1 pt-2 font-display text-xs font-semibold uppercase tracking-wider text-slate-400">
-              Services
-            </p>
-            <ul className="flex flex-col">
-              {SERVICES_MENU.map((s) => (
-                <li key={s.to}>
-                  <Link to={s.to} className="block rounded-2xl px-4 py-3 font-display text-sm font-medium text-slate-800 hover:bg-black/5">
-                    {s.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <GroupeMobile titre="Services" entrees={SERVICES_MENU} />
             <div className="my-2 border-t border-black/5" />
             <ul className="flex flex-col">
               {MAIN_MENU.map((l) => (
@@ -185,6 +211,8 @@ export function Navbar() {
                 </li>
               ))}
             </ul>
+            <div className="my-2 border-t border-black/5" />
+            <GroupeMobile titre="L'agence" entrees={AGENCE_MENU} />
             <CtaButton className="mt-2 w-full" />
           </div>
         )}

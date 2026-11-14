@@ -12,8 +12,8 @@ const SITE = "https://noesisai.fr";
 const AUTEUR = {
   "@type": "Person",
   name: "Ugo Sartini",
-  url: "https://www.linkedin.com/in/ugo-sartini-04a14620a/",
-  sameAs: ["https://www.linkedin.com/in/ugo-sartini-04a14620a/", "https://www.instagram.com/ugoia2025/"],
+  url: `${SITE}/a-propos`,
+  sameAs: ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"],
 };
 
 function donneesStructurees(a: Article) {
@@ -156,14 +156,16 @@ export function BlogArticle() {
             <div className="flex flex-wrap items-center justify-between gap-4 border-y border-black/10 py-4">
               <div className="flex items-center gap-3">
                 <img
-                  src="/logos/noesis-mark.png"
+                  src="/equipe/ugo-sartini.jpg"
                   alt=""
                   width={44}
                   height={44}
-                  className="h-11 w-11 rounded-full border border-black/10 bg-white p-1.5"
+                  className="h-11 w-11 rounded-full border border-black/10 object-cover"
                 />
                 <div>
-                  <p className="font-medium leading-tight text-[#0b0b0f]">Ugo Sartini</p>
+                  <p className="font-medium leading-tight text-[#0b0b0f]">
+                    <Link to="/a-propos" className="hover:text-brand-700">Ugo Sartini</Link>
+                  </p>
                   <p className="mt-0.5 text-sm text-slate-500">
                     NoesisAI · {majLe ? `mis à jour le ${dateLongue(majLe)}` : `publié le ${dateLongue(a.date)}`}
                   </p>
