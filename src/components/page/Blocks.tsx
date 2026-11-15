@@ -7,7 +7,7 @@ import { Marquee } from "../ui/Marquee";
 import { ToFill, filled } from "./ToFill";
 import { CLIENT_LOGOS, PROCESS, TESTIMONIALS, TRUST_TITLE, type FaqItem } from "../../data/content";
 
-/** Page claire (fond blanc) : enveloppe des pages façon clickway. */
+/** Page claire (fond blanc) : enveloppe commune des pages. */
 export function LightPage({ children }: { children: React.ReactNode }) {
   return <div className="bg-white text-[#0b0b0f]">{children}</div>;
 }

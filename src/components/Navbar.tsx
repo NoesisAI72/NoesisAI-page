@@ -10,7 +10,7 @@ const linkCls =
 
 type Entree = { label: string; to: string; text: string };
 
-/** Bouton noir à bordure pointillée, façon clickway. */
+/** Bouton noir à bordure pointillée. */
 function CtaButton({ className }: { className?: string }) {
   const ouvrir = useDemandeInfos();
   const { pathname } = useLocation();

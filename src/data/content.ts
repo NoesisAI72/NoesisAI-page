@@ -338,7 +338,7 @@ export const FOOTER = {
 };
 
 // =============================================================
-//  Logiciels métier (section inspirée de clickway.fr/erp)
+//  Logiciels métier
 // =============================================================
 export const LOGICIELS = {
   badge: "Web-application, outil métiers & SaaS",
@@ -736,7 +736,7 @@ export const PROJETS = {
 };
 
 // =============================================================
-//  Organisation multi-pages (inspirée de clickway.fr)
+//  Organisation multi-pages
 //  Laissez un texte vide ("") ou une liste vide ([]) : le bloc
 //  s'affiche en « À compléter » en local et disparaît en ligne.
 // =============================================================
