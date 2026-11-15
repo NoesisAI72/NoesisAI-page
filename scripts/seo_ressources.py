@@ -24,6 +24,7 @@ import hashlib
 import html
 import io
 import json
+import os
 import re
 import subprocess
 import sys
@@ -137,6 +138,39 @@ def sortir_images(h: str) -> tuple:
 
 # ------------------------------------------------------------------ 2. image d'aperçu
 
+# Avenir Next sur le Mac d'Ugo ; ailleurs (tâche de rédaction dans le cloud, Linux) DejaVu Sans, qui a
+# les accents : celle du système, ou celle livrée avec matplotlib (`uv run --with pillow --with
+# matplotlib`). NOESIS_POLICE_OG permet de forcer un autre fichier.
+POLICE_OG = os.environ.get("NOESIS_POLICE_OG", "/System/Library/Fonts/Avenir Next.ttc")
+POLICES_SECOURS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+                   "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
+                   "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"]
+
+
+def police_og(taille: int, index: int = 0):
+    from PIL import ImageFont
+    try:
+        return ImageFont.truetype(POLICE_OG, taille, index=index)
+    except OSError:
+        pass
+    chemins = list(POLICES_SECOURS)
+    try:
+        import matplotlib
+        chemins.append(os.path.join(matplotlib.get_data_path(), "fonts", "ttf", "DejaVuSans-Bold.ttf"))
+    except ImportError:
+        pass
+    for chemin in chemins:
+        try:
+            return ImageFont.truetype(chemin, taille)
+        except OSError:
+            continue
+    # Aucune police avec les accents : arrêt avant d'enregistrer l'image. La police intégrée à Pillow
+    # n'a pas les accents, et une image ratée ne serait pas redessinée au passage suivant (son
+    # empreinte serait déjà dans le manifeste).
+    sys.exit("Aucune police avec les accents pour les images d'aperçu : relancer avec "
+             "uv run --with pillow --with matplotlib python3 scripts/seo_ressources.py")
+
+
 def image_og(slug: str, titre: str, forcer: bool = False, dossier: Path = DOSSIER_OG,
              etiquette: str = "RESSOURCE GRATUITE", pied: str = "noesisai.fr/ressources") -> None:
     from PIL import Image, ImageDraw, ImageFilter, ImageFont
@@ -147,7 +181,6 @@ def image_og(slug: str, titre: str, forcer: bool = False, dossier: Path = DOSSIE
     if cible.exists() and manifeste.get(slug) == empreinte and not forcer:
         return
     W, H = 1200, 630
-    police = "/System/Library/Fonts/Avenir Next.ttc"
     img = Image.new("RGB", (W, H), (7, 10, 18))
     halo = Image.new("RGB", (W, H), (0, 0, 0))
     d = ImageDraw.Draw(halo)
@@ -158,11 +191,11 @@ def image_og(slug: str, titre: str, forcer: bool = False, dossier: Path = DOSSIE
     d = ImageDraw.Draw(img)
     logo = Image.open(LOGO).convert("RGBA").resize((76, 76), Image.LANCZOS)
     img.paste(logo, (64, 52), logo)
-    d.text((156, 66), "NoesisAI", font=ImageFont.truetype(police, 36, index=2), fill=(234, 238, 247))
-    d.text((64, 172), etiquette, font=ImageFont.truetype(police, 24, index=2), fill=(139, 160, 255))
+    d.text((156, 66), "NoesisAI", font=police_og(36, 2), fill=(234, 238, 247))
+    d.text((64, 172), etiquette, font=police_og(24, 2), fill=(139, 160, 255))
 
     def lignes(taille: int):
-        f = ImageFont.truetype(police, taille, index=0)
+        f = police_og(taille, 0)
         res = []
         # Retour à la ligne après les deux-points : « Métré, devis, appel d'offres : » / « le guide BTP »
         morceaux = [p.strip() for p in re.split(r"(?<= :)\s+", titre) if p.strip()]
@@ -187,7 +220,7 @@ def image_og(slug: str, titre: str, forcer: bool = False, dossier: Path = DOSSIE
     for l in ls[:4]:
         d.text((64, y), l, font=f, fill=(255, 255, 255))
         y += int(taille * 1.18)
-    d.text((64, 556), pied, font=ImageFont.truetype(police, 26, index=5), fill=(154, 166, 190))
+    d.text((64, 556), pied, font=police_og(26, 5), fill=(154, 166, 190))
     barre = Image.new("RGB", (W, 8))
     for x in range(W):
         t = x / (W - 1)
