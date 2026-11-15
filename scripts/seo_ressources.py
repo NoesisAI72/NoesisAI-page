@@ -138,13 +138,26 @@ def sortir_images(h: str) -> tuple:
 
 # ------------------------------------------------------------------ 2. image d'aperçu
 
-# Avenir Next sur le Mac d'Ugo ; ailleurs (tâche de rédaction dans le cloud, Linux) DejaVu Sans, qui a
-# les accents : celle du système, ou celle livrée avec matplotlib (`uv run --with pillow --with
-# matplotlib`). NOESIS_POLICE_OG permet de forcer un autre fichier.
+# Avenir Next sur le Mac d'Ugo. Ailleurs (tâche de rédaction dans le cloud, Linux), Nunito Sans : police
+# libre (licence OFL, scripts/polices/OFL.txt) retenue parce qu'elle a la largeur, la hauteur d'x et
+# l'épaisseur de trait d'Avenir. Ses graisses ont été mesurées contre Avenir Bold (titre), Demi Bold
+# (logo, catégorie) et Medium (pied). DejaVu Sans ne sert qu'en dernier recours (système ou matplotlib).
+# NOESIS_POLICE_OG permet de forcer un autre fichier.
 POLICE_OG = os.environ.get("NOESIS_POLICE_OG", "/System/Library/Fonts/Avenir Next.ttc")
+POLICE_LIBRE = Path(__file__).resolve().parent / "polices" / "NunitoSans.ttf"
+GRAISSES_LIBRE = {0: 850, 2: 700, 5: 550}  # index dans Avenir Next.ttc -> graisse de Nunito Sans
 POLICES_SECOURS = ["/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
                    "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",
                    "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"]
+
+
+def police_libre(taille: int, index: int):
+    from PIL import ImageFont
+    f = ImageFont.truetype(str(POLICE_LIBRE), taille)
+    # Police variable : seule la graisse change, les autres axes gardent leur valeur par défaut.
+    f.set_variation_by_axes([GRAISSES_LIBRE.get(index, 700) if a["name"] in (b"Weight", "Weight")
+                             else a["default"] for a in f.get_variation_axes()])
+    return f
 
 
 def police_og(taille: int, index: int = 0):
@@ -152,6 +165,10 @@ def police_og(taille: int, index: int = 0):
     try:
         return ImageFont.truetype(POLICE_OG, taille, index=index)
     except OSError:
+        pass
+    try:
+        return police_libre(taille, index)
+    except (OSError, NotImplementedError):
         pass
     chemins = list(POLICES_SECOURS)
     try:
