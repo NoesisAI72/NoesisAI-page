@@ -15,7 +15,7 @@ CLUSTERS = {
     "strategie": ["implementation-ia-parfaite", "implementer-ia-entreprise", "5-solutions", "cockpit-ia",
                   "boussole-ia", "diagnostic-ia", "score-ia-metier", "couts-ia", "posseder-son-ia", "ia-locale",
                   "logiciel-sur-mesure-ia", "presidio-sas-rgpd", "enterprise-managed-auth",
-                  "panorama-2026-outils-ia", "carte-claude-2026", "chatgpt-ecosysteme-2026"],
+                  "panorama-2026-outils-ia", "carte-claude-2026", "briques-claude-2026", "chatgpt-ecosysteme-2026"],
     "metier": ["claude-de-ton-metier", "outil-metier-claude", "5-briques-claude-metier", "suite-bureautique-claude", "claude-excel-powerpoint", "claude-meetings",
                "claude-google-workspace", "claude-microsoft-365", "claude-crm", "compte-rendu-reunion-claude",
                "claude-balance-comptable", "paperasse-claude", "claude-legifrance", "effacer-donnees-google-claude", "analyse-cctp-claude",

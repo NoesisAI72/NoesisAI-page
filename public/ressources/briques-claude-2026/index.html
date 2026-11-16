@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/briques-claude-2026">
+<title>Les 18 briques de Claude en 2026, et dans quel ordre les empiler - NoesisAI</title>
+<meta name="description" content="Les 18 briques de Claude en 2026 (Cowork, Skills, connecteurs, plugins, Design, Meetings, Finance, Legal…) expliquées sans jargon, et l'ordre pour les empiler.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Les 18 briques de Claude en 2026, et dans quel ordre les empiler">
+<meta property="og:description" content="Les 18 briques de Claude en 2026 (Cowork, Skills, connecteurs, plugins, Design, Meetings, Finance, Legal…) expliquées sans jargon, et l'ordre pour les empiler.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/briques-claude-2026">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/briques-claude-2026.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Les 18 briques de Claude en 2026, et dans quel ordre les empiler">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Les 18 briques de Claude en 2026, et dans quel ordre les empiler">
+<meta name="twitter:description" content="Les 18 briques de Claude en 2026 (Cowork, Skills, connecteurs, plugins, Design, Meetings, Finance, Legal…) expliquées sans jargon, et l&#x27;ordre pour les empiler.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/briques-claude-2026.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/briques-claude-2026#article", "headline": "Les 18 briques de Claude en 2026, et dans quel ordre les empiler", "description": "Les 18 briques de Claude en 2026 (Cowork, Skills, connecteurs, plugins, Design, Meetings, Finance, Legal…) expliquées sans jargon, et l'ordre pour les empiler.", "image": "https://noesisai.fr/ressources/og/briques-claude-2026.jpg", "url": "https://noesisai.fr/ressources/briques-claude-2026", "mainEntityOfPage": "https://noesisai.fr/ressources/briques-claude-2026", "inLanguage": "fr-FR", "datePublished": "2026-10-22", "dateModified": "2026-11-16", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Les 18 briques de Claude en 2026, et dans quel ordre les empiler", "item": "https://noesisai.fr/ressources/briques-claude-2026"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Les 18 briques de Claude en 2026, et dans quel ordre les empiler</h1>
+    <p class="sub">Le chat n'est que la partie émergée. Les 18 briques de la boîte à outils Claude, rangées en 4 étages&nbsp;: ce que fait chacune en clair, qui peut l'activer, à quel prix, et l'ordre pour les empiler sans te noyer. D'après la documentation officielle d'Anthropic, à jour au 16 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      .etages{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 6px}
+      .etage{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px 16px}
+      .et-k{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .et-k::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .resource .etage h3{margin:6px 0 4px;font-size:17px}
+      .resource .etage p{margin:0 0 12px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+      .briques{display:flex;flex-wrap:wrap;gap:7px}
+      .brique{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;line-height:1.3;color:var(--ink);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+      .brique.neuf::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .resource p.legende{font-size:13.5px;color:var(--ink-3);margin:10px 0 0}
+      .legende .pt{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--grad);margin:0 6px 1px 0;vertical-align:middle}
+      .st{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap;border:1px solid currentColor;line-height:1.55}
+      .st-ok{color:var(--green)}
+      .st-pay{color:var(--accent-a)}
+      .st-team{color:#FBBF24}
+      .st-ent{color:var(--rose)}
+      .why{display:block;font-size:13.5px;color:var(--ink-3);font-weight:400;margin-top:4px;line-height:1.5}
+      table.matrix td{vertical-align:top}
+      table.briq td:first-child{width:27%}
+      table.briq th:last-child,table.briq td:last-child{width:1%;white-space:nowrap}
+      table.dates td:first-child{width:23%}
+      table.offres td:nth-child(2){white-space:nowrap}
+      .resource p.note{font-size:13.5px;color:var(--ink-3);margin-top:8px}
+      .steps{list-style:none;padding:0;margin:18px 0 24px;counter-reset:st}
+      .steps li{position:relative;padding:0 0 0 44px;margin:0 0 18px;color:var(--ink-2);font-size:16px;line-height:1.65;counter-increment:st}
+      .steps li::before{content:counter(st);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--ink)}
+      .steps li strong{color:var(--ink)}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
+      @media(max-width:720px){.etages{grid-template-columns:1fr}table.briq td:first-child,table.dates td:first-child{width:auto}}
+      @media(max-width:520px){.resource table.matrix th,.resource table.matrix td{padding:10px 8px}}
+      @media(max-width:600px){
+        table.briq thead,table.dates thead,table.offres thead{display:none}
+        table.briq tbody,table.dates tbody,table.offres tbody{display:block}
+        table.briq tr,table.dates tr,table.offres tr{display:grid;grid-template-columns:1fr auto;column-gap:12px;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+        .resource table.briq td,.resource table.dates td,.resource table.offres td{border:0;padding:0;width:auto;white-space:normal}
+        table.briq td:nth-child(2),table.dates td:nth-child(2),table.offres td:nth-child(3){grid-column:1 / -1;margin-top:6px}
+        table.briq td:last-child{grid-column:2;grid-row:1;text-align:right}
+        table.offres td:nth-child(2){grid-column:2;grid-row:1;text-align:right}
+      }
+    </style>
+
+    <p class="lead reveal">La plupart des gens utilisent Claude comme un ChatGPT un peu plus malin&nbsp;: ils tapent dans le chat, copient la réponse, ferment l'onglet. En 2026, Claude n'est plus un chatbot&nbsp;: c'est une boîte à outils entière, et le chat n'en est que la partie émergée. Le souci, c'est que tout arrive en vrac. Cette page range les 18 briques en 4 étages, dit en clair à quoi sert chacune, qui peut l'activer et à quel prix, puis donne l'ordre pour les empiler sans te noyer.</p>
+
+    <div class="callout reveal"><b>La carte en une phrase&nbsp;:</b> le <strong>socle</strong>, c'est là où tu parles à Claude. Les <strong>branchements</strong> le rendent sur-mesure. Les <strong>ateliers</strong> fabriquent des choses précises (maquettes, comptes rendus, études). Les <strong>métiers</strong> sont des packs prêts pour un secteur. Pour commencer, le premier étage suffit.</div>
+
+    <div class="etages reveal">
+      <div class="etage">
+        <span class="et-k">Étage 1</span>
+        <h3>Le socle</h3>
+        <p>Là où tu parles à Claude.</p>
+        <div class="briques"><span class="brique">Claude</span><span class="brique neuf">Claude Cowork</span><span class="brique">Claude Code</span><span class="brique">CLI</span></div>
+      </div>
+      <div class="etage">
+        <span class="et-k">Étage 2</span>
+        <h3>Les branchements</h3>
+        <p>Ce qui le rend sur-mesure.</p>
+        <div class="briques"><span class="brique">Skills</span><span class="brique neuf">MCP</span><span class="brique neuf">Plugins</span><span class="brique">Hooks</span></div>
+      </div>
+      <div class="etage">
+        <span class="et-k">Étage 3</span>
+        <h3>Les ateliers</h3>
+        <p>Des outils pour fabriquer.</p>
+        <div class="briques"><span class="brique neuf">Claude Design</span><span class="brique neuf">Claude Meetings</span><span class="brique">Claude Research</span><span class="brique neuf">Claude Analytics</span></div>
+      </div>
+      <div class="etage">
+        <span class="et-k">Étage 4</span>
+        <h3>Les métiers</h3>
+        <p>Des packs prêts pour un secteur.</p>
+        <div class="briques"><span class="brique">Claude Finance</span><span class="brique">Claude Legal</span><span class="brique">Claude Security</span><span class="brique">Claude Healthcare</span><span class="brique">Claude HR</span><span class="brique">Claude Science</span></div>
+      </div>
+    </div>
+    <p class="legende reveal"><span class="pt"></span>arrivé ou changé depuis octobre 2026</p>
+
+    <h2 class="reveal">Ce qui a bougé en octobre et novembre</h2>
+    <p class="reveal">Si tu as testé Claude il y a trois mois, une bonne partie a changé. Les cinq dates à connaître&nbsp;:</p>
+
+    <table class="matrix dates reveal">
+      <thead><tr><th>Date</th><th>Ce qui change</th></tr></thead>
+      <tbody>
+        <tr><td>8 octobre</td><td>Docs, Slides et Claude Design sortent de bêta, ouverts à toutes les offres, gratuite comprise. Claude Motion arrive en bêta&nbsp;: un rapport devient une courte vidéo animée.<span class="why">Motion&nbsp;: offres Team et Enterprise</span></td></tr>
+        <tr><td>Octobre et novembre</td><td>Le chat et Cowork ne font plus qu'un&nbsp;: tu demandes, Claude choisit l'outil. Déployé progressivement sur Pro, Max et Ultra depuis le 16 septembre, puis Enterprise (23 octobre) et Team (12 novembre).</td></tr>
+        <tr><td>Du 29 octobre au 9 novembre</td><td>«&nbsp;Personnaliser&nbsp;» devient «&nbsp;Plugins&nbsp;»&nbsp;: compétences, connecteurs et plugins sur une seule page.<span class="why">Enterprise&nbsp;: le 30 novembre</span></td></tr>
+        <tr><td>10 novembre</td><td>Claude Sheets (des tableurs avec de vraies formules) et Whiteboards en bêta, Claude Data (ex-Dashboards) pour tes chiffres. Et Notion, HubSpot ou Confluence s'ouvrent à côté de la conversation&nbsp;: Claude travaille dedans pendant que tu regardes.</td></tr>
+        <tr><td>12 novembre</td><td>Claude Meetings en bêta&nbsp;: Claude rejoint ton Google Meet, prend les notes et lance les documents pendant l'appel.<span class="why">Offres Team et Enterprise</span></td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="reveal"><span class="numtag">1</span>Le socle&nbsp;: là où tu parles à Claude</h2>
+    <p class="reveal">Quatre portes d'entrée, un seul moteur derrière. Les deux premières sont pour toi, les deux suivantes pour ton équipe technique.</p>
+
+    <table class="matrix briq reveal">
+      <thead><tr><th>Brique</th><th>Ce que ça fait</th><th>Accès</th></tr></thead>
+      <tbody>
+        <tr><td>Claude<span class="why">Pour toi</span></td><td>L'appli, sur le web, ton ordinateur ou ton téléphone. Tu poses une question ou tu confies un travail entier, et il te rend des fichiers finis (Word, Excel, PowerPoint).</td><td><span class="st st-ok">Gratuit</span></td></tr>
+        <tr><td>Claude Cowork<span class="why">Pour toi</span></td><td>Claude qui fait le travail sur tes dossiers et tes applis&nbsp;: trier 40 factures, monter un tableau de suivi, préparer un deck. Ce n'est plus un mode à part&nbsp;: tu le demandes dans n'importe quelle conversation.</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Claude Code<span class="why">Pour ton tech</span></td><td>Le même moteur, pour construire&nbsp;: un outil interne, un site, une automatisation sur-mesure.</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>CLI<span class="why">Pour ton tech</span></td><td>Claude Code sans écran, qui tourne seul à heure fixe ou quand un de tes outils l'appelle. C'est la brique qui rend un process vraiment automatique.</td><td><span class="st st-pay">Payant</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout reveal"><b>À savoir sur l'ex-Cowork&nbsp;:</b> les tâches longues continuent dans le cloud même si tu fermes l'ordinateur, sauf celles qui touchent tes fichiers à toi&nbsp;: là, l'appli de bureau doit rester ouverte. Un réglage dans la zone de message fixe son autonomie&nbsp;: <strong>Auto</strong> (il avance seul, avec des contrôles de sécurité automatiques) ou <strong>Manuel</strong> (il te demande avant chaque action). Pour tes premiers essais, choisis Manuel.</div>
+
+    <h2 class="reveal"><span class="numtag">2</span>Les branchements&nbsp;: ce qui le rend sur-mesure</h2>
+    <p class="reveal">C'est ici que Claude passe d'assistant générique à assistant qui connaît ta boîte. Les trois premières briques s'activent en clics, la quatrième est pour ton tech.</p>
+
+    <table class="matrix briq reveal">
+      <thead><tr><th>Brique</th><th>Ce que ça fait</th><th>Accès</th></tr></thead>
+      <tbody>
+        <tr><td>Skills<span class="why">Pour toi, en clics</span></td><td>Des «&nbsp;compétences&nbsp;»&nbsp;: une fiche savoir-faire que Claude ressort tout seul au bon moment (ta charte, ta façon de faire un devis ou un compte rendu). Celles pour Word, Excel, PowerPoint et PDF sont déjà prêtes.</td><td><span class="st st-ok">Gratuit</span></td></tr>
+        <tr><td>MCP<span class="why">Pour toi, en clics</span></td><td>Le nom technique des connecteurs&nbsp;: le câble entre Claude et tes outils (Gmail, Drive, Agenda, Notion, HubSpot, Slack…). Claude lit et agit sur tes vraies données, avec tes droits, sans copier-coller.</td><td><span class="st st-ok">Gratuit</span></td></tr>
+        <tr><td>Plugins<span class="why">Pour toi, à installer</span></td><td>Un pack métier prêt à poser&nbsp;: des compétences et des connecteurs réunis pour un rôle (ventes, finance, RH, juridique…). Une installation, et tout arrive d'un coup.</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Hooks<span class="why">Pour ton tech</span></td><td>Les garde-fous automatiques&nbsp;: une règle qui s'applique à chaque fois, sans exception («&nbsp;toujours vérifier ça&nbsp;», «&nbsp;ne jamais toucher à ça&nbsp;»). C'est ce qui rend digne de confiance un process qui tourne seul.</td><td><span class="st st-pay">Payant</span></td></tr>
+      </tbody>
+    </table>
+
+    <p class="reveal"><strong>Brancher une brique, en 3 clics&nbsp;:</strong></p>
+    <ol class="steps reveal">
+      <li><strong>Ouvre «&nbsp;Plugins&nbsp;»</strong> dans la barre latérale. C'est l'ancien «&nbsp;Personnaliser&nbsp;», renommé début novembre.</li>
+      <li><strong>Filtre sur Connecteurs ou Compétences</strong>, ou parcours les plugins. Chaque fiche dit ce que la brique peut lire et faire. Préfère le badge «&nbsp;Vérifié&nbsp;» au badge «&nbsp;Communauté&nbsp;».</li>
+      <li><strong>Ajoute, puis connecte-toi</strong> sur la page officielle de l'outil (Google, Notion…). Claude ne voit jamais ton mot de passe. En équipe, l'administrateur autorise d'abord le connecteur pour tout le monde.</li>
+    </ol>
+    <p class="reveal">Ensuite, une compétence se lance en tapant «&nbsp;/&nbsp;» ou avec le bouton «&nbsp;+&nbsp;» de la conversation. Pour créer la tienne, décris simplement ta façon de faire à Claude&nbsp;: il rédige la fiche et te la prépare à importer.</p>
+
+    <div class="callout warn reveal"><b>La seule règle de sécurité&nbsp;:</b> un plugin peut faire tourner des programmes sur ton ordinateur, avec tes accès. N'installe que ceux d'une source de confiance&nbsp;: Anthropic, ton équipe, ou un prestataire que tu connais.</div>
+
+    <h2 class="reveal"><span class="numtag">3</span>Les ateliers&nbsp;: des outils pour fabriquer</h2>
+    <p class="reveal">Quatre outils spécialisés, à prendre selon ton besoin, pas tous d'un coup.</p>
+
+    <table class="matrix briq reveal">
+      <thead><tr><th>Brique</th><th>Ce que ça fait</th><th>Accès</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Design<span class="why">Pour toi</span></td><td>Maquettes, one-pagers, visuels et prototypes cliquables à ta charte, directement dans la conversation. L'ancien site séparé ferme le 14 décembre 2026&nbsp;: tout se passe désormais dans Claude.</td><td><span class="st st-ok">Gratuit</span></td></tr>
+        <tr><td>Claude Meetings<span class="why">Pour ton équipe</span></td><td>Claude rejoint ton Google Meet comme un participant, prend les notes, répond dans le chat et lance les documents pendant l'appel.</td><td><span class="st st-team">Team, Enterprise</span><span class="why">Bêta, Google Meet seulement</span></td></tr>
+        <tr><td>Claude Research<span class="why">Pour toi</span></td><td>Une enquête approfondie&nbsp;: plusieurs recherches qui s'enchaînent, sur le web et dans tes outils connectés, avec les sources. Bouton «&nbsp;+&nbsp;» puis «&nbsp;Recherche&nbsp;».</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Claude Analytics<span class="why">Pour toi et tes chiffres</span></td><td>Son nom officiel est Claude Data (ex-Dashboards). Tu poses ta question en français sur tes chiffres (ton CRM, ta base de données), il construit le tableau de bord, une histoire chiffrée ou une courte vidéo commentée, et montre d'où vient chaque chiffre.</td><td><span class="st st-pay">Payant</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout reveal"><b>Et autour de ces ateliers&nbsp;:</b> Claude Sheets (tableurs, bêta), Docs, Slides, Whiteboards (tableau blanc, bêta) et Motion (vidéo animée, bêta en Team et Enterprise). Tout est détaillé dans notre guide de la <a href="/ressources/suite-bureautique-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">suite bureautique de Claude</a>, et Meetings dans <a href="/ressources/claude-meetings" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">son guide pas à pas</a>.</div>
+
+    <h2 class="reveal"><span class="numtag">4</span>Les métiers&nbsp;: des packs par secteur</h2>
+    <p class="reveal">Le piège de lecture&nbsp;: ce ne sont pas six logiciels de plus à acheter. Ce sont des packs posés sur le même Claude&nbsp;: des plugins, des connecteurs vers les outils du secteur, des modèles prêts à remplir. La plupart s'ajoutent depuis la page Plugins, et Anthropic y propose des catalogues spécialisés (finance, juridique, sciences de la vie).</p>
+
+    <table class="matrix briq reveal">
+      <thead><tr><th>Brique</th><th>Ce que ça fait</th><th>Accès</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Finance<span class="why">DAF, comptable, gestion</span></td><td>Le plugin Finance d'Anthropic&nbsp;: clôture du mois, rapprochements, écritures, compte de résultat, analyse des écarts. Pour les banques et la gestion d'actifs, une offre dédiée avec Claude dans Excel et des données de marché (Moody's, Morningstar, FactSet).</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Claude Legal<span class="why">Juriste, dirigeant qui signe</span></td><td>Le plugin Legal&nbsp;: revue de contrats clause par clause contre ta grille (vert, orange, rouge), tri des accords de confidentialité, réponses types. Des modèles prêts à l'emploi, et Claude travaille aussi dans Word et Outlook.</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Claude Security<span class="why">Ton tech, ton prestataire</span></td><td>Surveille en continu le code de tes logiciels, trouve les failles, les vérifie, puis propose le correctif à faire relire.</td><td><span class="st st-ent">Enterprise</span><span class="why">Bêta</span></td></tr>
+        <tr><td>Claude Healthcare<span class="why">Santé, établissements</span></td><td>Une offre santé&nbsp;: demandes d'autorisation préalable, recours sur des remboursements refusés, tri des messages de patients. Pensée pour le système américain (norme HIPAA).</td><td><span class="st st-ent">Enterprise</span></td></tr>
+        <tr><td>Claude HR<span class="why">RH, dirigeant de PME</span></td><td>Le plugin Human Resources&nbsp;: recrutement, plan d'intégration sur 30, 60 et 90 jours, entretiens annuels, analyse des salaires, questions sur tes règles internes. Et un plugin Workday (bêta) pour les congés et les notes de frais.</td><td><span class="st st-pay">Payant</span></td></tr>
+        <tr><td>Claude Science<span class="why">Labos, R&amp;D</span></td><td>Une appli de bureau pour la recherche&nbsp;: Claude lance ses analyses dans un espace isolé, interroge les bases scientifiques et garde la trace de chaque résultat.</td><td><span class="st st-pay">Payant</span><span class="why">Bêta</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn reveal"><b>Avant d'y mettre des données sensibles&nbsp;:</b> les modèles juridiques sont en anglais et calés sur les usages anglo-saxons. Pour du droit français, branche plutôt Claude sur Légifrance (<a href="/ressources/claude-legifrance" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">notre guide</a>) et pose ta propre grille. Côté santé, les données de patients obéissent en France à des règles d'hébergement strictes (certification HDS)&nbsp;: rien de patient dans Claude sans l'avis de ton délégué à la protection des données. Et le «&nbsp;Personal Finance&nbsp;» dont parle la presse américaine (relier ses comptes bancaires) n'existe qu'aux États-Unis.</div>
+
+    <h2 class="reveal">Dans quel ordre les empiler</h2>
+    <p class="reveal">La règle d'or&nbsp;: n'ajoute une brique que quand la précédente te sert chaque semaine. Voici l'ordre qui marche pour un dirigeant ou un indépendant.</p>
+
+    <ol class="steps reveal">
+      <li><strong>Semaine 1&nbsp;: Claude, avec un Projet.</strong> Dépose une fois ta présentation, ton offre et ta façon d'écrire dans un Projet, puis confie-lui une tâche par jour.</li>
+      <li><strong>Semaine 2&nbsp;: un vrai travail, de bout en bout.</strong> Donne-lui un dossier et un objectif (ranger tes factures, préparer le compte rendu du mois) et laisse-le rendre le fichier fini. C'est l'ex-Cowork, et c'est là que «&nbsp;sympa&nbsp;» devient «&nbsp;utile&nbsp;».</li>
+      <li><strong>Semaine 3&nbsp;: un ou deux connecteurs, pas plus.</strong> Ta boîte mail et ton agenda, ou ton Drive. Claude travaille alors sur tes vraies données.</li>
+      <li><strong>Mois 1&nbsp;: ta première compétence, puis le plugin de ton métier.</strong> La tâche que tu expliques le plus souvent devient une compétence. Ensuite seulement, un plugin (finance, juridique, RH, ventes…).</li>
+      <li><strong>Mois 2&nbsp;: un atelier, selon ton besoin.</strong> Design pour tes visuels, Research pour tes études de marché, Meetings si ton équipe vit sur Google Meet, Analytics si tes chiffres dorment dans un CRM.</li>
+      <li><strong>Quand un process revient sans cesse&nbsp;: ton tech prend le relais.</strong> Claude Code le construit, le mode sans écran le fait tourner seul, les hooks posent les garde-fous. Toi, tu fixes l'objectif et tu relis le résultat.</li>
+    </ol>
+
+    <h2 class="reveal">Les deux erreurs qui reviennent tout le temps</h2>
+    <div class="callout warn reveal"><b>Erreur 1&nbsp;: rester bloqué sur le chat.</b> Tu poses des questions, tu copies les réponses, et tu trouves ça «&nbsp;sympa mais gadget&nbsp;». Le déclic vient à l'étape 2&nbsp;: confier un travail entier, sur tes vrais fichiers.</div>
+    <div class="callout warn reveal"><b>Erreur 2&nbsp;: tout brancher d'un coup.</b> Dix connecteurs, cinq plugins, aucune habitude. Tu ne sais plus ce qui sert à quoi, et chaque accès ouvert est un risque de plus. Une brique à la fois, gardée seulement si elle sert.</div>
+
+    <h2 class="reveal">Qui a droit à quoi, selon ton offre</h2>
+    <table class="matrix offres reveal">
+      <thead><tr><th>Offre</th><th>Prix</th><th>Ce que tu as en plus</th></tr></thead>
+      <tbody>
+        <tr><td>Gratuit</td><td>0&nbsp;$</td><td>Claude, Design, Docs et Slides, compétences, connecteurs</td></tr>
+        <tr><td>Pro</td><td>20&nbsp;$ par mois<span class="why">17&nbsp;$ en annuel</span></td><td>Le travail sur tes fichiers (ex-Cowork), plugins, Research, Claude Code et CLI, Sheets et Data, Science (bêta)</td></tr>
+        <tr><td>Max, Ultra</td><td>100 ou 200&nbsp;$ par mois</td><td>Les mêmes briques, avec beaucoup plus d'usage</td></tr>
+        <tr><td>Team</td><td>25&nbsp;$ par personne et par mois<span class="why">20&nbsp;$ en annuel</span></td><td>Meetings et Motion (bêta), partage en équipe, administration</td></tr>
+        <tr><td>Enterprise</td><td>20&nbsp;$ par place en annuel, plus l'usage<span class="why">20 places minimum</span></td><td>Security (bêta), l'offre santé, les contrôles de conformité de l'entreprise</td></tr>
+      </tbody>
+    </table>
+    <p class="note reveal">Prix publics hors taxes, en dollars, vérifiés le 11 novembre 2026. Tout ce que tu fais compte dans les limites d'usage de ton offre.</p>
+
+    <h2 class="reveal">La demande à copier pour savoir par où commencer</h2>
+    <p class="reveal">Remplace les crochets, colle le tout dans Claude, et il te sort tes trois premières briques, dans l'ordre.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude</span><button class="copy" type="button">Copier</button></div>
+      <pre>Je dirige [ton activité, ex. un cabinet de 8 personnes].
+Mes 3 tâches les plus répétitives : [tâche 1], [tâche 2], [tâche 3].
+Mes outils : [ex. Gmail, Google Agenda, un CRM, Excel].
+Mon offre Claude : [Gratuit / Pro / Team].
+
+Parmi les briques de Claude (connecteurs, compétences, plugins, travail sur mes fichiers, Design, Research, Meetings, Data), dis-moi les 3 à activer en premier, dans l'ordre. Pour chacune : ce qu'elle me fait gagner sur mes tâches, comment l'activer en clics, et ce que je dois vérifier avant (droits d'accès, données sensibles).
+Ne propose rien qui demande de coder. Si une brique n'existe pas sur mon offre, dis-le.</pre>
+    </div>
+
+    <div class="callout win reveal"><b>Si tu ne retiens qu'une chose&nbsp;:</b> Claude avec un Projet, un vrai travail confié sur un dossier, un ou deux connecteurs. Ces trois briques couvrent l'essentiel. Les quinze autres attendront qu'un besoin précis les réclame. Pour le pas-à-pas détaillé de chaque branchement, garde aussi <a href="/ressources/carte-claude-2026" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">la carte complète de Claude</a> sous la main.</div>
+
+    <div class="callout reveal"><b>Sources&nbsp;:</b> les annonces d'Anthropic (<a href="https://claude.com/resources/articles/cowork-is-now-claude" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">fusion du chat et de Cowork</a>, <a href="https://claude.com/resources/articles/dashboards-and-motion" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Docs, Slides, Design et Motion</a>, <a href="https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Sheets, Data et connecteurs interactifs</a>, <a href="https://claude.com/resources/articles/claude-meetings" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Meetings</a>), le centre d'aide de Claude (<a href="https://support.claude.com/fr/articles/17740565-gerer-les-plugins-les-competences-et-les-connecteurs-a-partir-d-une-seule-page-plugins" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">page Plugins</a>, <a href="https://support.claude.com/en/articles/14661296-use-claude-security" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Security</a>, <a href="https://support.claude.com/fr/articles/16563838-commencer-avec-claude-science" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude Science</a>) et les pages <a href="https://claude.com/marketplace/plugins/finance" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Finance</a>, <a href="https://claude.com/marketplace/plugins/legal" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Legal</a>, <a href="https://claude.com/marketplace/plugins/human-resources" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Human Resources</a> et <a href="https://claude.com/solutions/healthcare" target="_blank" rel="noopener" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">santé</a>. À jour au 16 novembre 2026&nbsp;: les bêtas bougent vite.</div>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie d'aller plus loin&nbsp;?</b> On forme les dirigeants et leurs équipes à Claude, ChatGPT et Gemini, directement sur leurs propres cas. <a href="/formation-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Découvrir la formation IA NoesisAI</a>.</div>
+
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/chatgpt-ecosysteme-2026" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">ChatGPT en 2026 : l'écosystème complet pour dirigeants</a></li>
+    <li><a href="/ressources/implementation-ia-parfaite" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Comment réussir une implémentation IA parfaite</a></li>
+    <li><a href="/ressources/implementer-ia-entreprise" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Implémenter l'IA dans ton entreprise sans te tromper de chantier</a></li>
+    <li><a href="/ressources/5-solutions" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Les 5 solutions IA que les entreprises s'arrachent en 2026</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
