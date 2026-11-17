@@ -661,6 +661,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://noesisai.fr/ressources/tour-de-controle-pennylane</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://noesisai.fr/ressources/briques-claude-2026</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>

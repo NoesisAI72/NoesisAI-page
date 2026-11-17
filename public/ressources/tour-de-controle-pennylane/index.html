@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/tour-de-controle-pennylane">
+<title>Ta tour de contrôle branchée sur Pennylane - NoesisAI</title>
+<meta name="description" content="Un prompt pour Claude Code qui construit ta tour de contrôle sur ton ordinateur : CRM, chiffres clés, journée, agenda, et factures Pennylane créées et envoyées avec leur lien de paiement. Démo incluse, sans compte.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ta tour de contrôle branchée sur Pennylane">
+<meta property="og:description" content="Un prompt pour Claude Code qui construit ta tour de contrôle sur ton ordinateur : CRM, chiffres clés, journée, agenda, et factures Pennylane créées et envoyées avec leur lien de paiement. Démo incluse, sans compte.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/tour-de-controle-pennylane">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/tour-de-controle-pennylane.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ta tour de contrôle branchée sur Pennylane">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ta tour de contrôle branchée sur Pennylane">
+<meta name="twitter:description" content="Un prompt pour Claude Code qui construit ta tour de contrôle sur ton ordinateur : CRM, chiffres clés, journée, agenda, et factures Pennylane créées et envoyées avec leur lien de paiement. Démo incluse, sans compte.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/tour-de-controle-pennylane.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/tour-de-controle-pennylane#article", "headline": "Ta tour de contrôle branchée sur Pennylane", "description": "Un prompt pour Claude Code qui construit ta tour de contrôle sur ton ordinateur : CRM, chiffres clés, journée, agenda, et factures Pennylane créées et envoyées avec leur lien de paiement. Démo incluse, sans compte.", "image": "https://noesisai.fr/ressources/og/tour-de-controle-pennylane.jpg", "url": "https://noesisai.fr/ressources/tour-de-controle-pennylane", "mainEntityOfPage": "https://noesisai.fr/ressources/tour-de-controle-pennylane", "inLanguage": "fr-FR", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Ta tour de contrôle branchée sur Pennylane", "item": "https://noesisai.fr/ressources/tour-de-controle-pennylane"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Ta tour de contrôle branchée sur Pennylane</h1>
+    <p class="sub">CRM, chiffres clés, journée, agenda et factures sur un seul écran. Un prompt à coller dans Claude Code&nbsp;: il construit l'outil sur ton ordinateur, l'adapte à ta boîte avec ses questions, et le branche sur ton compte Pennylane pour créer et envoyer tes factures.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      table.matrix td{vertical-align:top}
+      table.bref td:first-child{width:28%}
+      table.cle th:first-child,table.cle td:first-child{width:24%}
+      .ecrans{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0 8px}
+      .ecran{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px 16px}
+      .ecran.large{grid-column:1 / -1}
+      .ec-k{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .ec-k::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .resource .ecran h3{margin:6px 0 4px;font-size:17px}
+      .resource .ecran p{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+      .parcours{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0 6px}
+      .etape-f{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:7px 13px}
+      .etape-f b{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12.5px;color:var(--ink-3)}
+      .etape-f.paye{border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .fleche{color:var(--ink-3);font-size:15px}
+      .steps{list-style:none;padding:0;margin:18px 0 24px;counter-reset:st}
+      .steps li{position:relative;padding:0 0 0 44px;margin:0 0 18px;color:var(--ink-2);font-size:16px;line-height:1.65;counter-increment:st}
+      .steps li::before{content:counter(st);position:absolute;left:0;top:-1px;width:28px;height:28px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--ink)}
+      .steps li strong{color:var(--ink)}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word;max-height:540px;overflow:auto}
+      .prompt-foot{padding:9px 14px;font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line-soft);background:var(--card-2)}
+      .resource .faq{margin:18px 0 8px}
+      @media(max-width:720px){.ecrans{grid-template-columns:1fr}table.bref td:first-child,table.cle th:first-child,table.cle td:first-child{width:auto}}
+      @media(max-width:520px){.resource table.matrix th,.resource table.matrix td{padding:10px 8px}.prompt pre{max-height:460px;font-size:13px}}
+    </style>
+
+    <p class="lead reveal">Tes prospects dans un tableur, tes factures dans Pennylane, tes rendez-vous dans un agenda, et ta journée dans ta tête. Ici, tout tient sur un seul écran. Tu colles un prompt dans Claude Code&nbsp;: il construit l'outil sur ton ordinateur, te pose ses questions pour l'adapter à ta boîte, puis le branche sur Pennylane. <strong>Tes factures partent de là, numérotées, envoyées, avec leur lien de paiement.</strong></p>
+
+    <table class="matrix bref reveal">
+      <tbody>
+        <tr><td>Ce que c'est</td><td>Une tour de contrôle pour ta boîte, qui tourne sur ton ordinateur. Claude Code la construit pour toi, de zéro.</td></tr>
+        <tr><td>Ce qu'elle réunit</td><td>Un CRM, tes chiffres clés, ta journée, ton agenda, tes tâches, et tes factures Pennylane.</td></tr>
+        <tr><td>Il te faut</td><td>Claude Code, inclus dès l'offre Pro de Claude. Pour tes vraies données&nbsp;: Pennylane, offre Essentiel ou plus.</td></tr>
+        <tr><td>Sans Pennylane</td><td>Tout marche en démo, sur une entreprise fictive de ton métier.</td></tr>
+        <tr><td>Ce que ça coûte</td><td>Rien de plus que tes abonnements Claude et Pennylane. L'outil est à toi.</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="reveal"><span class="numtag">1</span>Ce que tu obtiens, écran par écran</h2>
+    <p class="reveal">Sept écrans, un menu à gauche, et un badge en haut qui te dit si tu regardes la démo ou ton vrai compte.</p>
+    <div class="ecrans reveal">
+      <div class="ecran"><span class="ec-k">Tableau de bord</span><h3>Tes chiffres du moment</h3><p>Ce que tu as facturé sur 30 jours, ce qui est arrivé sur ton compte, ce qui reste à encaisser, ce qui est en retard. Ton chiffre d'affaires mois par mois, tes clients par région, tes prospects en cours.</p></div>
+      <div class="ecran"><span class="ec-k">Ma journée</span><h3>Quoi, quand, avec quel outil</h3><p>Tes tâches heure par heure&nbsp;: ce qui est fait, ce qui tourne tout seul, ce qui reste. Et le temps que tes automatisations te font gagner chaque semaine.</p></div>
+      <div class="ecran"><span class="ec-k">Entreprises</span><h3>Ton CRM</h3><p>Tous tes prospects et clients&nbsp;: leur étape, ce qu'ils peuvent te rapporter, tes chances de signer, le dernier échange, la prochaine action. Tu tries, tu filtres, tu exportes pour Excel.</p></div>
+      <div class="ecran"><span class="ec-k">Fiche client</span><h3>Ce qu'il te rapporte vraiment</h3><p>Ses factures Pennylane&nbsp;: ce qu'il t'a rapporté sur 12 mois, ce qu'il a réglé, ce qu'il doit encore. Le bouton pour le facturer est déjà réglé sur lui.</p></div>
+      <div class="ecran"><span class="ec-k">Affaires</span><h3>Ton pipeline en colonnes</h3><p>Du premier contact à la signature. Tu glisses une carte d'une colonne à l'autre pour la faire avancer.</p></div>
+      <div class="ecran"><span class="ec-k">Factures</span><h3>Facturer et relancer</h3><p>Toutes tes factures avec leur statut et leur échéance. Un clic sur la cloche relance toutes celles qui sont en retard.</p></div>
+      <div class="ecran large"><span class="ec-k">Agenda et tâches</span><h3>Ta semaine</h3><p>Tes rendez-vous sur cinq jours, en couleur selon leur type, et tout ce qu'il y a à faire, jour par jour.</p></div>
+    </div>
+
+    <h3 class="reveal">Le trajet d'une facture</h3>
+    <p class="reveal">Tu choisis le client, la prestation, le montant et la TVA&nbsp;: le total TTC se calcule tout seul. Ensuite, l'outil fait le travail dans Pennylane et te montre chaque étape à l'écran.</p>
+    <div class="parcours reveal" role="img" aria-label="Le trajet d'une facture : brouillon créé, numérotée, envoyée au client, payée">
+      <span class="etape-f"><b>1</b>Brouillon créé</span><span class="fleche" aria-hidden="true">→</span>
+      <span class="etape-f"><b>2</b>Numérotée</span><span class="fleche" aria-hidden="true">→</span>
+      <span class="etape-f"><b>3</b>Envoyée au client</span><span class="fleche" aria-hidden="true">→</span>
+      <span class="etape-f paye"><b>4</b>Payée</span>
+    </div>
+    <p class="reveal">Tu récupères le lien de paiement dès que la facture est partie. Quand ton client a payé, elle passe à «&nbsp;Payée&nbsp;» dès que tu reviens sur l'outil, et ce qu'il te reste à encaisser baisse d'autant.</p>
+
+    <div class="callout win reveal"><b>Pourquoi c'est mieux qu'un logiciel de plus&nbsp;:</b> l'outil est construit autour de ta boîte (ton équipe, tes étapes de vente, tes tâches, tes outils) et il reste sur ton ordinateur. Pas d'abonnement en plus, et l'outil ne parle qu'à Pennylane.</div>
+
+    <h2 class="reveal"><span class="numtag">2</span>Avant de coller le prompt</h2>
+    <ul class="reveal">
+      <li><strong>Claude Code.</strong> C'est l'onglet Code de l'application Claude sur ordinateur, ou Claude Code dans un terminal. Il est inclus dès l'offre Pro.</li>
+      <li><strong>Pennylane, pour tes vraies données.</strong> Il faut l'offre Essentiel ou plus, et un rôle de dirigeant ou de comptable&nbsp;: ce sont les seuls à pouvoir créer la clé qui relie l'outil à ton compte.</li>
+      <li><strong>Pas de Pennylane&nbsp;?</strong> Tout tourne en démo, sur une entreprise fictive de ton métier, avec un faux Pennylane qui répond comme le vrai. Rien ne part pour de vrai.</li>
+      <li><strong>Un créneau tranquille.</strong> Claude construit l'outil pièce par pièce et s'arrête à chaque étape pour te montrer le résultat et attendre ton feu vert. Il fait une sauvegarde à chaque étape&nbsp;: si un changement ne te plaît pas, tu lui demandes de revenir en arrière.</li>
+    </ul>
+    <div class="callout warn reveal"><b>La seule règle à retenir&nbsp;:</b> en démo, tu peux tout essayer. Une fois ton compte branché, une facture générée est une vraie facture&nbsp;: numérotée, envoyée à ton client, impossible à supprimer. Le prompt interdit à Claude d'en créer pour tester.</div>
+
+    <h2 class="reveal"><span class="numtag">3</span>Ce qui se passe quand tu le colles</h2>
+    <ol class="steps reveal">
+      <li><strong>Il regarde ton ordinateur.</strong> S'il manque quelque chose, il te donne la commande officielle et attend ton accord. Il n'installe rien tout seul.</li>
+      <li><strong>Il fait connaissance avec ta boîte.</strong> Ton métier, ton équipe, tes clients, ce que tu vends, ton offre Pennylane.</li>
+      <li><strong>Il construit l'outil, en démo.</strong> Sur une entreprise fictive de ton métier. Il vérifie lui-même chaque écran, puis fait le trajet complet d'une facture jusqu'au paiement.</li>
+      <li><strong>Il remplit ta journée.</strong> Tes tâches de chaque jour, à quelle heure, avec quel outil, et ce qui tourne déjà tout seul.</li>
+      <li><strong>Il branche Pennylane.</strong> Il te guide pour créer ta clé, et c'est toi qui la colles&nbsp;: il ne te la demande jamais. Tes clients Pennylane entrent dans ton CRM.</li>
+      <li><strong>Il remplit ton CRM.</strong> Ton équipe, puis tes prospects&nbsp;: depuis un fichier, en les dictant, ou plus tard.</li>
+      <li><strong>Il vérifie tes chiffres avec toi.</strong> Il compare avec ce que tu vois dans Pennylane.</li>
+      <li><strong>Il te propose le connecteur Pennylane de Claude.</strong> Pour poser des questions sur ta compta, en français.</li>
+      <li><strong>Il t'explique la suite.</strong> Comment relancer l'outil, et comment le faire évoluer en lui parlant.</li>
+    </ol>
+
+    <h2 class="reveal"><span class="numtag">4</span>Le prompt à coller dans Claude Code</h2>
+    <p class="reveal">Il est long parce qu'il décrit tout l'outil, écran par écran. Tu n'as pas besoin de le lire&nbsp;: copie-le, colle-le dans Claude Code, et réponds à ses questions.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+      <pre>Tu vas construire sur mon ordinateur « Tour de contrôle » : une application web locale qui réunit sur un seul écran le pilotage de ma boîte. Un CRM pour mes prospects et mes clients, mes chiffres clés, ma journée, mon agenda, mes tâches, et un module Pennylane qui crée mes factures, les envoie à mes clients et me donne leur lien de paiement. Tu pars d'un dossier vide : le générateur officiel de Next.js pour démarrer, puis tu écris tout le reste toi-même, avec seulement des paquets courants et bien maintenus.
+
+Comment on travaille
+- Pose-moi tes questions une par une, avec ton outil de questions à choix s'il existe (sinon en texte, avec des choix numérotés). Pose-en autant qu'il faut pour coller à ma boîte.
+- Fais les étapes dans l'ordre. À la fin de chacune, résume en deux lignes ce que tu as fait, puis attends mon feu vert.
+- Je ne suis pas développeur : parle-moi simplement, sans jargon. Si quelque chose bloque, explique-moi pourquoi en une phrase et propose une solution.
+- N'installe rien sur ma machine sans mon accord : donne-moi la commande officielle et attends.
+- Crée un dépôt git local (jamais envoyé en ligne) et fais un commit à la fin de chaque étape, pour qu'on puisse revenir en arrière.
+
+Règles de sécurité, du début à la fin
+- Ma clé Pennylane (le jeton d'API) vit uniquement dans le fichier .env, lu par le serveur local. Elle n'est jamais envoyée au navigateur, jamais affichée, jamais écrite dans un journal. Ne me la demande jamais dans la conversation : je la colle moi-même dans .env.
+- .env et le dossier de mes données sont exclus de git.
+- Le serveur n'écoute que sur mon ordinateur. Les requêtes qui modifient quelque chose refusent les appels venus d'un autre site et tout ce qui n'est pas du JSON.
+- Ne crée jamais de facture d'essai sur mon vrai compte Pennylane : une facture finalisée reçoit un numéro et ne s'efface plus. Tous les essais se font en démo.
+
+1. Mon ordinateur. Regarde, sans rien installer, mon système, git et Node.js (version 20.9 ou plus récente). S'il manque quelque chose, donne-moi la commande officielle et attends.
+
+2. Ma boîte. Demande-moi son nom et son métier, combien on est (le prénom et le rôle de chacun), où sont mes clients, ce que je vends et à quel prix moyen, et si j'ai un compte Pennylane (avec quelle offre). Garde mes réponses pour la suite.
+
+3. Construis l'application, en démo. Demande-moi où créer le dossier « tour-de-controle », puis construis tout ce qui suit.
+
+Technique. Next.js (dernière version stable, routeur app), TypeScript et Tailwind CSS, un seul serveur lancé par npm run dev sur le port 5280. Next.js change vite : si le paquet installé contient sa documentation (node_modules/next/dist/docs), lis-la avant d'écrire et suis-la plutôt que tes souvenirs. Pas de base de données : le CRM est un fichier JSON dans le dossier .donnees/ (une écriture à la fois, dans un fichier temporaire renommé ensuite, pour ne jamais le corrompre) ; la démo et mon vrai compte ont chacun leur fichier. Ma journée et ma semaine vivent dans deux fichiers lisibles, donnees/journee.json et donnees/semaine.json.
+
+Pennylane. Un seul client pour la Company API v2 (https://app.pennylane.com/api/external/v2, en-tête Authorization: Bearer). Avant de l'écrire, lis la doc officielle (son index : https://pennylane.readme.io/llms.txt ; ajoute .md à l'adresse d'une page pour la lire en texte) et vérifie chaque chemin et chaque champ. Il te faut : GET /me (nom de l'entreprise), GET /customers, GET /customer_invoices, GET /transactions (les entrées d'argent depuis une date, avec le filtre décrit dans la doc), POST /customer_invoices (en brouillon), PUT /customer_invoices/{id}/finalize, POST /customer_invoices/{id}/send_by_email (il répond 409 tant que le PDF n'est pas prêt : réessaie quelques fois en espaçant), GET /customer_invoices/{id} (son public_file_url expire au bout de 30 minutes : redemande-le à chaque clic). Les listes sont paginées par curseur : lis toutes les pages. Respecte les limites de débit indiquées par la doc.
+
+La démo. Sans jeton dans .env, l'application parle à un faux Pennylane interne au serveur : il répond exactement comme la vraie API (mêmes chemins, mêmes champs, mêmes listes paginées) à partir de données gardées en mémoire, et l'application le lit avec le même client que le vrai. Seule l'adresse change, et rien ne passe par le réseau. Invente une entreprise fictive du même métier que la mienne (noms inventés, aucune entreprise réelle) : une équipe de 4 ou 5 personnes, une douzaine de clients dans plusieurs régions, 8 prospects à différentes étapes, un an de factures (payées, à venir, en retard dont certaines de plus de 30 jours, deux brouillons) et les encaissements qui vont avec. Calcule toutes les dates à partir d'aujourd'hui, pour que la démo reste vivante. Simule aussi la page où le client paie : /payer/&lt;numéro de facture&gt;, avec un bouton « Payer » qui passe la facture à « Payée » et ajoute l'encaissement. Un bouton « Réinitialiser la démo » remet tout à zéro.
+
+Les écrans (tout en français, en me tutoyant) :
+- Le menu à gauche : le nom de l'application et de ma boîte, les pages avec leur compteur, mon équipe, le pipeline par étape, et en bas « Actualiser les chiffres », « Réinitialiser la démo » (en démo seulement), la jauge de l'objectif de l'année et un bouton « Facturer ».
+- En haut de chaque page : son titre, un badge « Démo » ou « Pennylane » selon la source, une recherche pour ouvrir une entreprise, une cloche qui liste les factures en retard avec un bouton « Tout relancer » (chacune renvoyée par e-mail, avec la progression), et mon nom.
+- Tableau de bord : quatre chiffres clés avec leur tendance (chiffre d'affaires, encaissé, à encaisser, en retard), le chiffre d'affaires en barres sur 12 ou 6 mois, mes clients par région, et mes prospects en cours dans un tableau.
+- Ma journée : mes tâches heure par heure, chacune avec son outil et son état (fait, automatique, à faire), cochables ; mes outils, avec le nombre de tâches qui passent par chacun (« Branché » pour Pennylane quand c'est le cas) ; mes automatisations (quand elles tournent, avec quel outil, leur réussite sur 30 jours, le temps gagné par semaine, leur dernier passage) ; et quatre compteurs en haut : tâches faites à la main, automatisations actives, temps gagné par semaine, réussite moyenne.
+- Entreprises, le CRM : tous mes prospects et clients dans un tableau à trier, à filtrer (responsable, étape, dernier échange) et à exporter en CSV (point-virgule, pour Excel en français), et un bouton « Nouvelle entreprise ». Un clic ouvre la fiche : contact, étape, prochaine action, notes, activité, et pour un client ses factures Pennylane (ce qu'il m'a rapporté sur 12 mois, ce qu'il a réglé, ce qu'il doit encore, ce qui est en retard), avec un bouton « Générer une facture » déjà réglé sur lui. Tout ce que je modifie est enregistré.
+- Affaires : mon pipeline en colonnes, du premier contact à la signature. Je glisse une carte pour changer son étape, et c'est enregistré.
+- Factures : toutes mes factures avec leur statut et leur échéance, en onglets (toutes, à encaisser, payées, brouillons), avec un filtre par client, le tri et l'export CSV. Pour chacune : le PDF, le lien de paiement (copier ou ouvrir), le renvoi par e-mail, et « Finaliser » pour un brouillon.
+- Agenda : ma semaine sur cinq jours, les rendez-vous colorés selon leur type. Tâches : les tâches de la semaine, jour par jour.
+
+Générer une facture. Un formulaire : le client, la prestation, le montant HT, la TVA (20 %, 10 %, 5,5 % ou exonéré), le délai de paiement (de 0 à 120 jours, 30 par défaut), et le total TTC calculé en direct. À la validation, trois étapes s'affichent l'une après l'autre, chacune avec son appel à l'API : brouillon créé, facture finalisée (avec son numéro), facture envoyée (avec l'e-mail du client). Puis le lien de paiement, avec « Copier » et « Ouvrir ». Avec mon vrai compte, une confirmation passe avant : « Cette facture sera numérotée et envoyée à ton client. Elle ne pourra plus être supprimée. » Après l'envoi, le CRM note la facture comme dernier échange, et une affaire « Gagné » passe en « Client ».
+
+Les paiements qui arrivent. Quand je reviens sur l'onglet de l'application, elle recharge les chiffres ; si une facture que je suivais est passée à « Payée », un message me le dit.
+
+Le CRM. Chaque entreprise a un nom, un segment (grand compte, PME, TPE, indépendant), une étape (Nouveau, Contacté, Rendez-vous, Devis envoyé, Gagné, Client, Perdu), des étiquettes, un responsable dans l'équipe, un contact (nom, e-mail, téléphone), une ville, ce qu'elle peut me rapporter (HT), mes chances de signer (en %), son activité des 14 dernières semaines, son dernier échange (date et libellé), la prochaine action, des notes, et le client Pennylane relié s'il y en a un. Chaque client Pennylane absent du CRM y entre tout seul, à l'étape « Client », avec son activité tirée de ses factures. Le CRM a une petite API locale (lister, ajouter, modifier) qui vérifie tout côté serveur : tu t'en serviras pour le remplir.
+
+Les calculs (le même code pour la démo et pour Pennylane) :
+- Chiffre d'affaires : total HT des factures émises ces 30 derniers jours, sans les brouillons, avoirs déduits, comparé aux 30 jours d'avant.
+- Encaissé : les entrées d'argent rattachées à un client sur le compte bancaire, ces 30 derniers jours, comparées aux 30 d'avant.
+- À encaisser : le reste à payer TTC des factures envoyées et pas encore réglées. En retard : la part dont l'échéance est passée.
+- Les barres : total HT par tranches de 30 jours sur 12 mois, ou de 14 jours sur 6 mois.
+- Les régions : total HT des 12 derniers mois, d'après le code postal de facturation de chaque client.
+- L'objectif de l'année : total HT depuis le 1er janvier, face à une cible réglable dans .env ; sans réglage, 10 % de plus que les 12 derniers mois.
+- Le pipeline pondéré : montant espéré × chances de signer. Le temps gagné : minutes gagnées à chaque passage × passages par semaine.
+
+Le style. Thème sombre et sobre : fond presque noir, cartes à peine plus claires, une seule couleur d'accent (violet) pour les actions, du vert pour l'argent qui rentre, un rouge doux pour les retards. De grands chiffres lisibles, des étiquettes colorées pour les segments et les étapes, de petites barres pour l'activité et les pourcentages. Pense salle de contrôle, pas tableur. Tout doit rester lisible sur un téléphone.
+
+Avant de me montrer quoi que ce soit : la vérification des types, le lint et le build passent sans erreur (corrige le code, ne désactive jamais une règle). Lance l'application, ouvre http://localhost:5280 et vérifie chaque page toi-même si tu as un navigateur à ta disposition ; sinon, guide-moi page par page. Fais le parcours complet en démo : générer une facture, ouvrir son lien de paiement, payer, revenir sur l'application et voir la facture passer à « Payée ». Écris enfin un README court en français : lancer l'application, brancher Pennylane, où sont mes données.
+
+4. Ma journée. Pose-moi ces questions, une par une : les tâches qui reviennent chaque jour dans ma boîte ; à quel moment je fais chacune (l'heure, ou le jour de la semaine) ; par quelle application passe chacune (mails, agenda, Drive, réseaux sociaux, banque, Pennylane…) ; celles qui tournent déjà toutes seules, et combien de minutes chacune me fait gagner à chaque passage. Remplis donnees/journee.json avec mes réponses, puis montre-moi la page Ma journée.
+
+5. Pennylane. Si je n'ai pas encore Pennylane, garde la démo et passe directement à l'étape 9. Sinon, guide-moi pour créer ma clé : dans Pennylane, Paramètres, puis Connectivité, puis Développeurs, puis le bouton pour générer un jeton d'API (il faut l'offre Essentiel ou plus, et un rôle de dirigeant ou de comptable). Droits à donner : factures clients en lecture et en écriture, clients et transactions en lecture. Copie .env.example en .env, puis dis-moi de coller moi-même la clé après PENNYLANE_API_TOKEN=. Relance l'application et vérifie avec moi que le badge passe de « Démo » à « Pennylane » et que mes clients Pennylane sont entrés dans le CRM.
+
+6. Mon CRM. Mets mon nom et mon équipe (ceux de l'étape 2) dans mon CRM : c'est moi en haut à droite. Demande-moi ensuite comment ajouter mes prospects : depuis un fichier CSV, en te les dictant, ou plus tard. Pour chacun, demande-moi son segment, son étape, ce qu'il peut me rapporter, mes chances de signer et d'où il vient, puis ajoute-le par l'API locale du CRM. Remplis aussi ma semaine (donnees/semaine.json) si je le veux.
+
+7. La vérification. Compare avec moi mes chiffres et deux ou trois factures avec ce que je vois dans Pennylane. Ne génère aucune facture d'essai sur mon vrai compte : le bouton « Générer une facture » se teste en démo, et il servira pour ma prochaine vraie facture.
+
+8. Le connecteur Pennylane de Claude. Propose-moi d'ajouter aussi le connecteur officiel de Pennylane (adresse : https://mcp.pennylane.com/mcp), pour poser des questions sur ma compta depuis Claude. Dans Claude Code : claude mcp add --transport http pennylane https://mcp.pennylane.com/mcp, puis /mcp pour me connecter. Si /mcp n'est pas disponible là où je suis, guide-moi pour l'ajouter comme connecteur personnalisé dans les réglages de l'application Claude. Explique-moi la différence : le connecteur lit ma compta depuis Claude, la Tour de contrôle crée et envoie mes factures.
+
+9. Pour finir, explique-moi en cinq lignes comment relancer la Tour de contrôle et comment la faire évoluer avec toi.</pre>
+      <div class="prompt-foot">Le bouton «&nbsp;Copier&nbsp;» prend tout le prompt, même la partie cachée sous le défilement.</div>
+    </div>
+
+    <h2 class="reveal">Ce que tu pilotes, ce qui se délègue</h2>
+    <ul class="reveal">
+      <li><strong>Ce que tu pilotes toi-même&nbsp;:</strong> les réponses aux questions, ta clé Pennylane, le contenu de ton CRM et de ta journée, et chaque évolution, demandée en français («&nbsp;ajoute une colonne Source&nbsp;», «&nbsp;importe ce fichier de prospects&nbsp;», «&nbsp;mets les rendez-vous clients en vert&nbsp;»).</li>
+      <li><strong>Ce qui se délègue à un technicien&nbsp;:</strong> mettre l'outil en ligne pour ton équipe avec de vraies connexions, le brancher sur tes autres logiciels (ta banque, ton agenda Google ou Outlook, ton outil de devis), et faire tourner les automatisations pour de vrai.</li>
+    </ul>
+
+    <h2 class="reveal">La clé Pennylane et le connecteur&nbsp;: qui fait quoi</h2>
+    <table class="matrix cle reveal">
+      <thead><tr><th></th><th>La clé Pennylane</th><th>Le connecteur Pennylane de Claude</th></tr></thead>
+      <tbody>
+        <tr><td>Où elle se branche</td><td>Dans ta tour de contrôle</td><td>Dans Claude</td></tr>
+        <tr><td>À quoi elle sert</td><td>Créer, numéroter et envoyer tes factures, lire tes clients et tes encaissements</td><td>Poser des questions sur ta compta, en français</td></tr>
+        <tr><td>Ce qu'elle peut faire</td><td>Lire et écrire</td><td>Lire seulement</td></tr>
+        <tr><td>Comment l'avoir</td><td>Dans Pennylane&nbsp;: Paramètres, Connectivité, Développeurs, puis générer un jeton d'API</td><td>Claude Code te le propose à la fin du prompt</td></tr>
+      </tbody>
+    </table>
+    <p class="reveal"><strong>Le lien de paiement.</strong> Si tu as activé le paiement par carte dans Pennylane, la facture que reçoit ton client porte un bouton «&nbsp;Payer maintenant&nbsp;». L'outil te donne ce lien dès que la facture est partie, pour le renvoyer par message si besoin.</p>
+
+    <h2 class="reveal">Questions rapides</h2>
+    <div class="faq reveal">
+      <details><summary>Je peux essayer sans compte Pennylane&nbsp;? <span class="chev">▾</span></summary><div class="ans">Oui. L'outil démarre en démo, sur une entreprise fictive de ton métier, avec un faux Pennylane qui répond comme le vrai. Tu peux générer des factures, ouvrir leur lien de paiement et simuler le paiement&nbsp;: rien ne part pour de vrai.</div></details>
+      <details><summary>Mes données partent où&nbsp;? <span class="chev">▾</span></summary><div class="ans">L'outil tourne sur ton ordinateur. Ton CRM est un fichier chez toi, et ta clé Pennylane reste dans un fichier que le navigateur ne voit jamais. L'outil ne parle qu'à Pennylane. Seule exception&nbsp;: ce que tu dis à Claude pendant l'installation (tes réponses, les prospects que tu lui dictes) passe par Claude, comme toute conversation.</div></details>
+      <details><summary>Je peux le mettre en ligne pour mon équipe&nbsp;? <span class="chev">▾</span></summary><div class="ans">Pas tel quel&nbsp;: sans vraie connexion, n'importe qui pourrait lire tes chiffres et créer des factures. Il faut d'abord ajouter des comptes avec mot de passe et l'héberger proprement. C'est le moment de faire appel à un technicien.</div></details>
+      <details><summary>Et la facture électronique&nbsp;? <span class="chev">▾</span></summary><div class="ans">Depuis le 1<sup>er</sup> septembre 2026, toutes les entreprises doivent pouvoir recevoir des factures électroniques, et les PME, TPE et micro-entreprises devront aussi les émettre à partir du 1<sup>er</sup> septembre 2027. Pennylane est plateforme agréée depuis 2025, et les factures de ta tour de contrôle sont créées dans Pennylane.</div></details>
+      <details><summary>Je peux l'adapter à ma boîte&nbsp;? <span class="chev">▾</span></summary><div class="ans">C'est fait pour. Ouvre Claude Code dans le dossier de l'outil et demande ce que tu veux, en français&nbsp;: une colonne de plus, une nouvelle étape de vente, un autre calcul, un écran en plus.</div></details>
+      <details><summary>C'est un produit Pennylane&nbsp;? <span class="chev">▾</span></summary><div class="ans">Non. C'est un outil que Claude Code construit pour toi, sur ton ordinateur. Il passe par l'accès officiel que Pennylane ouvre aux logiciels (son API publique).</div></details>
+    </div>
+
+    <div class="callout win reveal"><b>Ce qu'il faut retenir&nbsp;:</b> un prompt, un créneau tranquille, et tu as un outil de pilotage taillé pour ta boîte, branché sur ta compta. Commence par la démo&nbsp;: si elle te parle, branche ton compte.</div>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.textContent;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie qu'on le construise pour toi&nbsp;?</b> C'est notre métier chez NoesisAI&nbsp;: on conçoit des logiciels métier sur mesure, branchés sur tes outils et mis en ligne pour ton équipe, avec de vraies connexions. <a href="/logiciel-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Voir notre offre de logiciel métier</a>.</div>
+
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/compte-rendu-reunion-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le compte rendu prêt avant ton café</a></li>
+    <li><a href="/ressources/claude-balance-comptable" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude relit ta balance comptable en 30 secondes</a></li>
+    <li><a href="/ressources/paperasse-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Installer Paperasse sur Claude en 5 minutes</a></li>
+    <li><a href="/ressources/claude-legifrance" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Faire lire la loi à Claude, au lieu de la lui faire réciter</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
