@@ -43,6 +43,16 @@ Ne pas y toucher.
    Les dates de publication et de mise à jour viennent de git : un commit purement technique qui
    touche beaucoup de ressources commence par « SEO : » pour qu'elles ne soient pas datées du jour.
 5. `npm run build`, vérifier la page, puis commit et push après validation d'Ugo.
+6. **Ressource ou article (règle d'Ugo du 18/11/2026)** : mesurer la demande du sujet (Ubersuggest
+   `keyword_suggestions`, `locId` 2250, `language` fr). S'il est recherché (au moins 500 recherches par
+   mois pour un sujet IA, 50 pour un sujet métier) et que la première page de Google est accessible,
+   proposer à Ugo l'article de blog qui vise cette recherche (procédure ci-dessous). La ressource devient
+   alors le bonus en fin d'article : `<meta name="robots" content="noindex, follow">`, entrée retirée de
+   `public/sitemap.xml`, encadré de renvoi vers l'article ; `scripts/seo_ressources.py` lui retire ensuite
+   ses données structurées et son entrée de `llms.txt`, mais garde son aperçu pour LinkedIn. Sinon, la
+   ressource reste seule. Premier cas : `/blog/meilleure-ia` et `panorama-2026-outils-ia`.
+7. `scripts/seo_ressources.py` réécrit parfois les dates JSON-LD d'autres ressources (git `--follow`) :
+   annuler ces modifications hors sujet avant de committer.
 
 ## Blog (/blog)
 
