@@ -505,12 +505,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noesisai.fr/ressources/panorama-2026-outils-ia</loc>
-    <lastmod>2026-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://noesisai.fr/ressources/paperasse-claude</loc>
     <lastmod>2026-10-22</lastmod>
     <changefreq>monthly</changefreq>
@@ -675,9 +669,15 @@
   <!-- blog:debut -->
   <url>
     <loc>https://noesisai.fr/blog</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://noesisai.fr/blog/meilleure-ia</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://noesisai.fr/blog/installer-claude-code</loc>
