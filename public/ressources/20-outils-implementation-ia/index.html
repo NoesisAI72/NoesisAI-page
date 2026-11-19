@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/20-outils-implementation-ia">
+<title>Les 20 outils pour automatiser et déployer l'IA dans ton activité - NoesisAI</title>
+<meta name="description" content="Les 20 outils pour automatiser et déployer l'IA, rangés en 5 étages du no-code au technique : Claude, ChatGPT Work, n8n, Make, Zapier, Claude Code, Supabase, Vercel… Le lien de chacun, son prix et dans quel cas le choisir plutôt qu'un autre.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Les 20 outils pour automatiser et déployer l'IA (et quand choisir lequel)">
+<meta property="og:description" content="Les 20 outils pour automatiser et déployer l'IA, rangés en 5 étages du no-code au technique : Claude, ChatGPT Work, n8n, Make, Zapier, Claude Code, Supabase, Vercel… Le lien de chacun, son prix et dans quel cas le choisir plutôt qu'un autre.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/20-outils-implementation-ia">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/20-outils-implementation-ia.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Les 20 outils pour automatiser et déployer l&#x27;IA dans ton activité">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Les 20 outils pour automatiser et déployer l&#x27;IA dans ton activité">
+<meta name="twitter:description" content="Les 20 outils pour automatiser et déployer l&#x27;IA, rangés en 5 étages du no-code au technique : Claude, ChatGPT Work, n8n, Make, Zapier, Claude Code, Supabase, Vercel… Le lien de chacun, son prix et dans quel cas le choisir plutôt qu&#x27;un autre.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/20-outils-implementation-ia.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/20-outils-implementation-ia#article", "headline": "Les 20 outils pour automatiser et déployer l'IA dans ton activité", "description": "Les 20 outils pour automatiser et déployer l'IA, rangés en 5 étages du no-code au technique : Claude, ChatGPT Work, n8n, Make, Zapier, Claude Code, Supabase, Vercel… Le lien de chacun, son prix et dans quel cas le choisir plutôt qu'un autre.", "image": "https://noesisai.fr/ressources/og/20-outils-implementation-ia.jpg", "url": "https://noesisai.fr/ressources/20-outils-implementation-ia", "mainEntityOfPage": "https://noesisai.fr/ressources/20-outils-implementation-ia", "inLanguage": "fr-FR", "datePublished": "2026-11-19", "dateModified": "2026-11-19", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Les 20 outils pour automatiser et déployer l'IA dans ton activité", "item": "https://noesisai.fr/ressources/20-outils-implementation-ia"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Les 20 outils pour automatiser et déployer l'IA dans ton activité</h1>
+    <p class="sub">Rangés en 5 étages, du no-code au technique : le lien de chaque outil, ce qu'il fait pour toi, ce qu'il coûte, et dans quel cas le choisir plutôt qu'un autre. À jour au 19 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .wrap dd a,main.resource .wrap li a,main.resource .callout a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .immeuble{display:grid;gap:10px;margin:24px 0 6px}
+      .etage{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px 16px}
+      .etage-n{width:48px;height:48px;border-radius:12px;background:var(--card-2);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;line-height:1;color:var(--ink)}
+      .etage-n small{font-family:'Inter',sans-serif;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:4px}
+      .resource .etage h3{margin:3px 0 2px;font-size:17px}
+      .resource .etage p{margin:0 0 11px;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+      .outils{display:flex;flex-wrap:wrap;gap:7px}
+      .outil{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;line-height:1.3;color:var(--ink);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:6px 12px;text-decoration:none;transition:border-color .15s}
+      .outil:hover{border-color:var(--ink-3)}
+      .outil::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot)}
+      .nc{--dot:#34D399}.lc{--dot:#FBBF24}.tq{--dot:#A78BFA}
+      .resource p.legende{font-size:13.5px;color:var(--ink-3);margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center}
+      .legende span{display:inline-flex;align-items:center;gap:6px}
+      .legende span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot)}
+      .resource h2 .fam-n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-size:15px;margin-right:12px;vertical-align:middle}
+      .fiche{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 6px;margin:16px 0;scroll-margin-top:24px}
+      .fiche-tete{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+      .resource .fiche h3{margin:0;font-size:20px}
+      .fiche-ed{font-size:13.5px;color:var(--ink-3)}
+      .badges{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-left:auto}
+      .st{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap;border:1px solid currentColor;line-height:1.55}
+      .st-nc{color:#34D399}.st-lc{color:#FBBF24}.st-tq{color:#A78BFA}
+      .lien{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:2px 11px;line-height:1.55;text-decoration:none;white-space:nowrap;transition:border-color .15s}
+      .lien:hover{border-color:var(--ink-3)}
+      .resource .fiche p.quoi{color:var(--ink);margin:10px 0 12px;font-size:16px}
+      .fiche dl{display:grid;grid-template-columns:128px 1fr;gap:0 14px;margin:0}
+      .fiche dt{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding:12px 0 10px;border-top:1px solid var(--line-soft)}
+      .fiche dd{font-size:15px;line-height:1.6;color:var(--ink-2);padding:10px 0;border-top:1px solid var(--line-soft);margin:0}
+      .fiche dd strong{color:var(--ink)}
+      .fiche dt.choix{color:var(--accent-a)}
+      table.matrix td{vertical-align:top}
+      .profils{display:grid;gap:12px;margin:20px 0}
+      .profil{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+      .resource .profil h3{margin:0 0 8px;font-size:17px}
+      .resource .profil p{margin:0 0 10px;font-size:15px;line-height:1.6}
+      .resource .profil p.role{margin:0;font-size:14px;color:var(--ink-3)}
+      .role b{color:var(--ink);font-weight:600}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
+      @media(max-width:600px){
+        .etage{grid-template-columns:1fr;gap:10px}
+        .etage-n{flex-direction:row;gap:8px;width:auto;height:auto;padding:6px 11px;justify-self:start;font-size:16px}
+        .etage-n small{margin-top:0}
+        .fiche dl{grid-template-columns:1fr}
+        .fiche dt{padding:12px 0 2px}
+        .fiche dd{border-top:0;padding:0 0 10px}
+        .badges{margin-left:0;width:100%}
+        table.etages thead,table.besoins thead{display:none}
+        table.etages tbody,table.besoins tbody{display:block}
+        table.etages tr,table.besoins tr{display:block;padding:13px 0;border-bottom:1px solid var(--line-soft)}
+        .resource table.etages td,.resource table.besoins td{display:block;border:0;padding:0;width:auto}
+        table.etages td+td,table.besoins td+td{margin-top:5px}
+        .resource table.besoins td:nth-child(2){font-size:13px;color:var(--ink-3)}
+        table.besoins td:nth-child(2)::before{content:"Étage "}
+      }
+    </style>
+
+    <p class="lead reveal">La plupart des personnes que je rencontre bloquent au même endroit : elles ne connaissent pas les outils, donc elles ne voient pas ce qui est faisable. Alors elles pensent que l'IA s'arrête à ChatGPT. Ou elles imaginent un chantier énorme, là où un agent et un workflow n8n suffisaient.</p>
+    <p class="reveal">Ce guide range les 20 outils à connaître pour automatiser et déployer l'IA dans ton activité, en 5 étages, du plus simple au plus technique. Le but n'est pas de tous les utiliser. C'est de voir enfin le champ des possibles, puis de savoir lequel prendre, et quand. Pour chaque outil : son lien, ce qu'il fait pour toi, ce qu'il coûte, et dans quel cas le choisir plutôt qu'un autre.</p>
+    <div class="callout reveal"><b>Comment lire ce guide :</b> chaque outil porte un badge. <strong>No-code</strong> : tu démarres seul, en quelques clics. <strong>Low-code</strong> : quelques réglages un peu techniques, accessibles avec un tutoriel. <strong>Technique</strong> : un développeur, ou quelqu'un prêt à mettre les mains dans le code. Le badge dit le niveau requis pour démarrer, pas la puissance de l'outil. Clique sur un nom dans la carte pour sauter à sa fiche.</div>
+
+    <h2 class="reveal" id="carte">La carte : 20 outils, 5 étages</h2>
+    <div class="immeuble reveal">
+      <div class="etage">
+        <div class="etage-n">1<small>Étage</small></div>
+        <div>
+          <h3>Agents IA au travail</h3>
+          <p>Tu confies une tâche, l'agent te rend le travail fini.</p>
+          <div class="outils"><a class="outil nc" href="#claude">Claude</a><a class="outil nc" href="#chatgpt-work">ChatGPT Work</a><a class="outil nc" href="#copilot">M365 Copilot</a><a class="outil nc" href="#gemini">Gemini</a></div>
+        </div>
+      </div>
+      <div class="etage">
+        <div class="etage-n">2<small>Étage</small></div>
+        <div>
+          <h3>Automatisation et orchestration</h3>
+          <p>Tes process tournent seuls, même quand tu n'es pas devant l'écran.</p>
+          <div class="outils"><a class="outil lc" href="#n8n">n8n</a><a class="outil nc" href="#make">Make</a><a class="outil nc" href="#zapier">Zapier</a><a class="outil nc" href="#activepieces">Activepieces</a></div>
+        </div>
+      </div>
+      <div class="etage">
+        <div class="etage-n">3<small>Étage</small></div>
+        <div>
+          <h3>Code assisté par IA</h3>
+          <p>On fabrique l'outil sur mesure qui n'existe pas sur le marché.</p>
+          <div class="outils"><a class="outil tq" href="#claude-code">Claude Code</a><a class="outil tq" href="#codex">Codex</a><a class="outil tq" href="#cursor">Cursor</a><a class="outil tq" href="#vs-code">VS Code</a></div>
+        </div>
+      </div>
+      <div class="etage">
+        <div class="etage-n">4<small>Étage</small></div>
+        <div>
+          <h3>Données et back-end</h3>
+          <p>La mémoire du système : où la donnée est rangée et retrouvée.</p>
+          <div class="outils"><a class="outil tq" href="#supabase">Supabase</a><a class="outil nc" href="#airtable">Airtable</a><a class="outil tq" href="#firebase">Firebase</a><a class="outil tq" href="#pinecone">Pinecone</a></div>
+        </div>
+      </div>
+      <div class="etage">
+        <div class="etage-n">5<small>Étage</small></div>
+        <div>
+          <h3>Hébergement et déploiement</h3>
+          <p>Là où ton outil tourne, en ligne, 24 heures sur 24.</p>
+          <div class="outils"><a class="outil lc" href="#hostinger">Hostinger</a><a class="outil tq" href="#ovhcloud">OVHcloud</a><a class="outil tq" href="#vercel">Vercel</a><a class="outil tq" href="#railway">Railway</a></div>
+        </div>
+      </div>
+    </div>
+    <p class="legende reveal"><span class="nc">No-code</span><span class="lc">Low-code</span><span class="tq">Technique</span></p>
+
+    <h2 class="reveal" id="etages">Comment les 5 étages s'emboîtent</h2>
+    <p class="reveal">Chaque étage répond à une question différente. Plus tu descends, plus c'est puissant, et plus il faut quelqu'un de technique.</p>
+    <div class="tscroll reveal">
+    <table class="matrix etages">
+      <thead><tr><th>Étage</th><th>Ce qu'il fait pour toi</th><th>Qui le pilote</th></tr></thead>
+      <tbody>
+        <tr><td>1. Agents IA au travail</td><td>Tu confies une tâche en langage courant, tu récupères un document, un tableau, une présentation</td><td>Toi, dès aujourd'hui</td></tr>
+        <tr><td>2. Automatisation</td><td>Un process part tout seul sur un déclencheur : mail reçu, formulaire rempli, heure fixe</td><td>Toi avec Make ou Zapier, quelqu'un d'à l'aise avec n8n</td></tr>
+        <tr><td>3. Code assisté par IA</td><td>On fabrique l'outil qui n'existe pas : outil interne, portail client, tableau de bord</td><td>Un développeur, ou toi accompagné</td></tr>
+        <tr><td>4. Données</td><td>On range les clients, les commandes, les documents, pour que l'outil et l'IA les retrouvent</td><td>Un technicien, sauf Airtable</td></tr>
+        <tr><td>5. Hébergement</td><td>L'outil tourne en ligne, en continu, accessible par ton équipe ou tes clients</td><td>Un technicien, sauf n8n préinstallé chez Hostinger</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="reveal"><strong>Un exemple réel, tiré de nos projets :</strong> un workflow de contrats. Le client remplit un formulaire en ligne ; n8n récupère sa demande, prépare le contrat et l'envoie en signature électronique ; une fois signé, les informations sont rangées dans une base Supabase, puis transmises à la comptabilité. Plus aucune ressaisie à la main. Deux étages suffisent : l'automatisation (étage 2) et les données (étage 4).</p>
+    <div class="callout reveal"><b>💡 La règle d'or :</b> tu n'as pas besoin des 5 étages. Commence par l'étage le plus haut qui fait le travail, et ne descends que quand il ne suffit plus. Beaucoup de PME gagnent déjà énormément avec les étages 1 et 2, sans une ligne de code. Les étages 3 à 5 arrivent le jour où aucun outil du marché ne fait exactement ce dont tu as besoin.</div>
+
+    <h2 class="reveal" id="etage-1"><span class="fam-n">1</span>Agents IA au travail : tu confies, ils livrent</h2>
+    <p class="reveal">Tout en haut, les agents de travail. Tu leur confies une tâche en langage courant, ils te rendent le travail fini. Zéro code. Les quatre se valent sur l'essentiel : le bon choix dépend surtout de l'endroit où vit déjà ton travail.</p>
+
+    <div class="fiche reveal" id="claude">
+      <div class="fiche-tete"><h3>Claude</h3><span class="fiche-ed">Anthropic · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://claude.com/fr" target="_blank" rel="noopener">claude.com ↗</a></div></div>
+      <p class="quoi">L'agent de travail d'Anthropic : tu lui confies un dossier, il enchaîne les étapes et te rend le livrable. C'est l'ex-Cowork : depuis le 16 septembre 2026, Cowork n'est plus une appli à part, il est fondu dans Claude. Beaucoup le cherchent encore sous ce nom.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Rédiger et analyser des documents longs, préparer une offre ou un comparatif fournisseurs à partir de tes fichiers, monter une présentation, faire une recherche puis la synthèse. Tu règles son autonomie : <strong>Auto</strong> (il avance seul) ou <strong>Manuel</strong> (il demande avant d'agir). Les connecteurs le branchent sur Gmail, Drive, Notion, HubSpot et des milliers d'autres outils, et il crée de vrais fichiers Word, Excel, PowerPoint et PDF.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Le cœur de ton travail, c'est l'écrit et l'analyse (contrats, offres, synthèses, gros dossiers), ou tu n'es ni « tout Microsoft » ni « tout Google ». C'est aussi la porte d'entrée vers Claude Code (étage 3), inclus dans le même abonnement.</dd>
+        <dt>Prix</dt><dd>Gratuit pour démarrer. Le travail en autonomie est inclus dès <strong>Pro : 20 $ HT par mois</strong> (17 $ en annuel). Team : 18 € HT par personne et par mois en annuel.</dd>
+        <dt>En vidéo</dt><dd>▶ <a href="https://www.loom.com/share/c44ccf397f0d4e7082aa0ca3f5546884" target="_blank" rel="noopener">Cowork au travail sur de vrais fichiers</a> · ▶ <a href="https://www.loom.com/share/9eb106a73a1c4600b21f505b1fbeab23" target="_blank" rel="noopener">Introduction à Claude</a></dd>
+        <dt>Où il coince</dt><dd>Les limites d'usage (par tranche de 5 heures et à la semaine) se font sentir vite sur les gros dossiers en Pro. Données stockées aux États-Unis. Le détail : <a href="/ressources/claude-vs-cowork">Claude et Cowork, enfin clairs</a>.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="chatgpt-work">
+      <div class="fiche-tete"><h3>ChatGPT Work</h3><span class="fiche-ed">OpenAI · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://chatgpt.com/fr-FR/" target="_blank" rel="noopener">chatgpt.com ↗</a></div></div>
+      <p class="quoi">L'agent de travail d'OpenAI, dans ChatGPT : tu donnes le résultat attendu, il va chercher le contexte dans tes outils connectés et te rend le fichier fini.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Un tableur, une présentation, un rapport ou un document, en suivant tes propres modèles. Il sait aussi démarrer tout seul sur un événement, par exemple un mail reçu dans Gmail ou un message dans Slack. ChatGPT a désormais trois portes : <strong>Chat</strong> pour discuter, <strong>Work</strong> pour faire faire, <strong>Codex</strong> pour le code (étage 3).</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Ton équipe utilise déjà ChatGPT : inutile de faire changer tout le monde d'outil. Pour une tâche ponctuelle qui doit partir à l'arrivée d'un mail, il évite aussi de monter une automatisation à l'étage 2.</dd>
+        <dt>Prix</dt><dd>Inclus dès <strong>ChatGPT Plus : 23 € par mois</strong> sur la page française (pas de déclenchement sur événement en Free ni en Go). Business : 20 $ par personne et par mois en annuel, 2 personnes minimum.</dd>
+        <dt>Où il coince</dt><dd>Les GPT personnalisés s'arrêtent le 11 décembre 2026 : si ton équipe en utilise, prévois leur remplacement par des plugins. En Free, Go, Plus et Pro, ton contenu sert à l'entraînement, sauf si tu le refuses dans les réglages. Le détail : <a href="/ressources/chatgpt-ecosysteme-2026">l'écosystème ChatGPT pour dirigeants</a>.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="copilot">
+      <div class="fiche-tete"><h3>M365 Copilot</h3><span class="fiche-ed">Microsoft · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://www.microsoft.com/fr-fr/copilot/solutions/business" target="_blank" rel="noopener">microsoft.com ↗</a></div></div>
+      <p class="quoi">L'IA dans Outlook, Word, Excel, PowerPoint et Teams, qui travaille sur tes données d'entreprise (mails, fichiers, réunions) en respectant les droits de chacun.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Rattraper tes mails, obtenir le récapitulatif d'une réunion Teams avec les actions à mener, faire modifier un document Word ou une analyse Excel par l'agent. Depuis le 22 septembre, il fait tourner les modèles d'OpenAI et ceux d'Anthropic (Claude) dans Word, Excel et PowerPoint. Copilot Studio permet de créer un agent interne, par exemple une FAQ RH.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Ton entreprise vit dans Microsoft 365 : l'IA arrive là où sont déjà tes fichiers et tes droits d'accès, sans nouvel outil à faire adopter. C'est aussi l'option la plus cadrée pour les données, qui restent dans la frontière de données de l'Union européenne.</dd>
+        <dt>Prix</dt><dd><strong>Microsoft 365 Copilot Business</strong> (jusqu'à 300 personnes) : 18,20 € HT par personne et par mois en annuel, en option d'un abonnement Microsoft 365, ou 15,60 € HT en promotion jusqu'au 31 décembre 2026 (première année). Copilot Chat, plus limité, est inclus dans les abonnements Microsoft 365 éligibles.</dd>
+        <dt>Où il coince</dt><dd>Trois produits portent le même nom : Copilot Chat (inclus), Microsoft 365 Copilot (la licence payante, celle qui lit tes données) et l'appli grand public. Claude est aujourd'hui hors de la frontière de données de l'UE et doit y entrer début décembre ; Microsoft prévoit de l'activer par défaut en Europe le 9 décembre 2026, sauf refus de ton administrateur avant cette date. Le détail : <a href="/ressources/claude-microsoft-365">Claude dans l'écosystème Microsoft</a>.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="gemini">
+      <div class="fiche-tete"><h3>Gemini</h3><span class="fiche-ed">Google · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://workspace.google.com/intl/fr/solutions/ai/" target="_blank" rel="noopener">workspace.google.com ↗</a></div></div>
+      <p class="quoi">L'IA de Google dans Gmail, Docs, Sheets et Meet. Si ton entreprise vit dans Google Workspace, c'est l'option la plus naturelle.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Résumer et rédiger tes mails dans Gmail, prendre les notes et traduire dans Meet, analyser un tableau dans Sheets. <strong>Gemini Notebook</strong> (l'ex-NotebookLM) répond sur tes propres documents. <strong>Workspace Studio</strong> crée des agents qui automatisent les tâches récurrentes.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Ton entreprise est sur Google Workspace : rien à installer, et tes données Workspace ne servent pas à entraîner les modèles.</dd>
+        <dt>Prix</dt><dd>Inclus dans Google Workspace, par personne et par mois en annuel : Business Starter 6,80 €, <strong>Business Standard 13,60 €</strong>, Business Plus 21,10 €.</dd>
+        <dt>Où il coince</dt><dd>Business Starter n'a Gemini que dans Gmail et l'appli, pas dans Docs, Sheets ni Meet : il faut Business Standard. Plusieurs nouveautés arrivent d'abord aux États-Unis : vérifie qu'une fonction est disponible en France avant de compter dessus.</dd>
+      </dl>
+    </div>
+    <div class="callout reveal"><b>💡 Lequel choisir ?</b> Regarde où vit ton travail. Microsoft 365 : Copilot. Google Workspace : Gemini. Une équipe déjà sur ChatGPT : ChatGPT Work. Ni l'un ni l'autre, ou un travail surtout fait d'écrit et d'analyse : Claude.</div>
+    <div class="callout warn reveal"><b>⚠️ Le coût caché :</b> un agent de travail refait tout le raisonnement à chaque passage. Une tâche relancée deux cents fois par mois (traiter chaque facture qui arrive) te coûte de l'usage et du temps de supervision à chaque fois. Montée une fois dans un outil de l'étage 2, la même tâche coûte quelques centimes par passage. Ponctuel et varié : un agent de travail. Répétitif et identique : une automatisation.</div>
+
+    <h2 class="reveal" id="etage-2"><span class="fam-n">2</span>Automatisation et orchestration : ça tourne sans toi</h2>
+    <p class="reveal">Juste en dessous, les plateformes qui relient tes outils entre eux et font tourner tes process tout seuls, sur un déclencheur : un mail reçu, un formulaire rempli, une heure fixe. C'est ce qui transforme « l'IA répond quand je lui demande » en « le travail se fait, même quand je ne suis pas devant l'écran ». Toutes se paient à l'usage : c'est leur façon de compter qui fait la différence.</p>
+
+    <div class="fiche reveal" id="n8n">
+      <div class="fiche-tete"><h3>n8n</h3><span class="fiche-ed">n8n GmbH · Allemagne</span><div class="badges"><span class="st st-lc">Low-code</span><a class="lien" href="https://n8n.io/" target="_blank" rel="noopener">n8n.io ↗</a></div></div>
+      <p class="quoi">La plateforme d'automatisation de ceux qui veulent aller loin : un éditeur visuel de workflows, des agents IA, et la possibilité de l'installer sur ton propre serveur.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Relancer les devis, trier les mails entrants, créer les fiches CRM, prévenir quelqu'un quand quelque chose plante. Côté IA : des <strong>agents</strong> (en préversion depuis septembre 2026) qui combinent un modèle, des consignes et des outils, avec une validation humaine possible avant les actions sensibles. Plus de 400 intégrations d'office, et un assistant qui construit le workflow à partir de ta description.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Le volume grimpe, ou tes données doivent rester sur ton serveur. n8n compte un passage complet du workflow, quel que soit le nombre d'étapes, là où Make et Zapier comptent chaque étape : à gros volume, c'est le plus économique.</dd>
+        <dt>Prix</dt><dd>Cloud : <strong>Starter 24 € par mois</strong> (20 € en annuel) pour 2 500 exécutions, Pro à partir de 60 € (50 € en annuel) pour 10 000. Installé sur ton serveur : gratuit pour un usage interne (voir <a href="#hostinger">Hostinger</a>, étage 5).</dd>
+        <dt>Où il coince</dt><dd>Il exécute fidèlement ce que tu lui décris, erreurs comprises : il faut un process clair et des données propres. Ce n'est pas de l'open source au sens strict : sa licence « fair-code » est gratuite pour tes besoins internes, mais interdit de proposer n8n à tes clients pour qu'ils y construisent leurs propres workflows. Pour démarrer : <a href="/ressources/150-templates-n8n-claude">150+ automatisations n8n prêtes à importer</a>.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="make">
+      <div class="fiche-tete"><h3>Make</h3><span class="fiche-ed">Make, groupe Celonis · République tchèque</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://www.make.com/" target="_blank" rel="noopener">make.com ↗</a></div></div>
+      <p class="quoi">L'automatisation visuelle la plus simple à prendre en main : tu assembles des « scénarios » bloc par bloc, sans code, et tu vois ton process dessiné de bout en bout.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Synchroniser formulaire, tableur, CRM et facturation, trier les tickets de support, qualifier un prospect arrivé par mail et préparer la réponse. Plus de 3 000 applications connectables. Des <strong>agents IA</strong> (en bêta) et <strong>Maia</strong>, un assistant qui construit le scénario à partir de ta demande en langage courant.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu veux démarrer seul et vite, avec un plan gratuit permanent. Plutôt que Zapier quand ton scénario a des embranchements et beaucoup d'étapes : l'éditeur de Make les montre mieux, et son premier forfait payant inclut déjà 10 000 crédits.</dd>
+        <dt>Prix</dt><dd>Gratuit jusqu'à 1 000 crédits par mois (2 scénarios actifs). <strong>Core 16 $ par mois</strong> (11 $ en annuel) pour 10 000 crédits, Pro 28 $ (20 $ en annuel). Une action d'un bloc coûte en général 1 crédit.</dd>
+        <dt>Où il coince</dt><dd>Chaque étape consomme des crédits : à gros volume, la facture grimpe plus vite qu'avec n8n, et crédits épuisés, les scénarios s'arrêtent. Pas d'installation sur ton serveur. Zone d'hébergement européenne au choix, mais son IA intégrée passe par OpenAI aux États-Unis.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="zapier">
+      <div class="fiche-tete"><h3>Zapier</h3><span class="fiche-ed">Zapier · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://zapier.com/" target="_blank" rel="noopener">zapier.com ↗</a></div></div>
+      <p class="quoi">Le pionnier de l'automatisation sans code, avec le plus grand catalogue d'applications connectées : plus de 9 000.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>« Quand ceci arrive dans telle appli, fais cela dans telle autre » : un prospect remplit ton formulaire, il part dans le CRM et reçoit un mail de bienvenue. Côté IA : des agents, des chatbots, un assistant (Copilot, en bêta) qui monte l'automatisation à partir de ta description, et un accès qui permet à Claude ou ChatGPT d'agir directement dans tes applis (le « MCP »).</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Une appli dont tu as besoin n'existe que chez lui, ou pour des automatisations courtes, à deux ou trois étapes, quand la rapidité de mise en place compte plus que le coût.</dd>
+        <dt>Prix</dt><dd>Gratuit : 100 tâches par mois, automatisations à 2 étapes seulement. <strong>Professional à partir de 19,99 $ par mois</strong>, Team à partir de 69 $ par mois (jusqu'à 25 utilisateurs). Un tiers de moins en annuel. Essai de 14 jours.</dd>
+        <dt>Où il coince</dt><dd>Chaque étape réussie compte comme une tâche : la facture grimpe vite sur les scénarios longs. Quota atteint, il peut basculer en paiement à la tâche, plus cher : vérifie ce réglage dans ton compte. Données traitées aux États-Unis, sans option d'hébergement en Europe.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="activepieces">
+      <div class="fiche-tete"><h3>Activepieces</h3><span class="fiche-ed">Activepieces · licence MIT</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://www.activepieces.com/" target="_blank" rel="noopener">activepieces.com ↗</a></div></div>
+      <p class="quoi">L'alternative open source à Zapier : la même logique « quand ceci, fais cela », avec un cœur sous licence libre que tu peux installer gratuitement sur ton propre serveur.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Plus de 770 intégrations, des agents IA, des tables, des étapes de validation humaine, et la création d'une automatisation en décrivant ton besoin en langage courant.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu veux la simplicité de Zapier sans dépendre d'un éditeur. Contrairement à n8n, son cœur est vraiment open source (licence MIT), et son cloud est hébergé à Francfort.</dd>
+        <dt>Prix</dt><dd>Cloud : gratuit jusqu'à 1 000 crédits par mois, <strong>Plus 20 $ par mois</strong> (10 000 crédits), Team 200 $ par mois. Installé sur ton serveur : gratuit.</dd>
+        <dt>Où il coince</dt><dd>Catalogue plus petit que Zapier ou Make : vérifie que tes applis y sont. Les étapes d'IA coûtent plusieurs crédits selon le modèle choisi. Connexion unique (SSO) et journal d'audit réservés aux offres payantes.</dd>
+      </dl>
+    </div>
+    <div class="callout reveal"><b>💡 Lequel choisir ?</b> Pour démarrer seul, sans technicien : Make (le plus visuel) ou Zapier (le plus d'applis). Dès que le volume grimpe ou que tes données doivent rester chez toi : n8n. Si tu tiens à l'open source au sens strict : Activepieces. Pour te donner un ordre de grandeur : un process de 10 étapes lancé 10 000 fois par mois tient dans n8n Pro à 50 € par mois en annuel, contre environ 107 $ chez Make.</div>
+
+    <h2 class="reveal" id="etage-3"><span class="fam-n">3</span>Code assisté par IA : on fabrique l'outil</h2>
+    <p class="reveal">Plus bas, ça devient technique. Quand aucun outil du marché ne fait exactement ce dont tu as besoin, on le fabrique : un outil interne, un portail client, un tableau de bord. Ces quatre outils écrivent le code à partir d'une description en français. Ils vont très vite, mais ne remplacent pas le regard de quelqu'un qui sait ce qui part en ligne.</p>
+
+    <div class="fiche reveal" id="claude-code">
+      <div class="fiche-tete"><h3>Claude Code</h3><span class="fiche-ed">Anthropic · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://claude.com/fr/product/claude-code" target="_blank" rel="noopener">claude.com ↗</a></div></div>
+      <p class="quoi">L'agent de code d'Anthropic : tu décris l'outil voulu, il écrit le code, le teste, et demande ton accord avant chaque action risquée.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Un outil interne ou un site simple, construit depuis l'application de bureau Claude (onglet Code), sans passer par le terminal : tu vois l'aperçu et tu valides chaque modification. Des <strong>tâches planifiées</strong>, comme un point du matin tiré de ton agenda et de ta boîte mail. Pour un développeur, il prend une tâche entière et rend une modification à relire.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu veux fabriquer de vrais outils sur mesure et tu es déjà sur Claude : il est inclus dans l'abonnement. C'est celui qu'on utilise au quotidien chez NoesisAI pour construire nos outils.</dd>
+        <dt>Prix</dt><dd>Inclus dès <strong>Claude Pro : 20 $ HT par mois</strong> (17 $ en annuel). Absent de l'offre gratuite.</dd>
+        <dt>En vidéo</dt><dd>▶ <a href="https://www.loom.com/share/96785cd2f3a2480e8f271c98b1fc6150" target="_blank" rel="noopener">Installer Claude Code pas à pas (dans VS Code)</a></dd>
+        <dt>Où il coince</dt><dd>Il faut relire ce qu'il produit : tu restes responsable de ce qui part en ligne. Les quotas sont partagés avec la conversation Claude. Le pas-à-pas écrit : <a href="/blog/installer-claude-code">installer Claude Code sur Windows, Mac ou Linux</a>.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="codex">
+      <div class="fiche-tete"><h3>Codex</h3><span class="fiche-ed">OpenAI · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://openai.com/codex/" target="_blank" rel="noopener">openai.com ↗</a></div></div>
+      <p class="quoi">L'agent de code d'OpenAI : même idée que Claude Code, tu décris, il écrit et exécute le code, sur ta machine ou sur les serveurs d'OpenAI.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Depuis juillet 2026, c'est une vue de l'application de bureau ChatGPT (Mac et Windows), avec aussi une version en ligne de commande, une extension pour éditeurs de code et une version cloud. Il tourne sur les derniers modèles d'OpenAI : GPT-6.2 depuis le 17 novembre.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Ton équipe est déjà sur ChatGPT : il est inclus dans l'abonnement. Entre Claude Code et Codex, prends celui de l'abonnement que tu as déjà : les deux font le même travail.</dd>
+        <dt>Prix</dt><dd>Inclus dès <strong>ChatGPT Plus : 23 € par mois</strong> sur la page française. Pro à partir de 103 € par mois. Accès limité en Free et Go.</dd>
+        <dt>Où il coince</dt><dd>Son quota est partagé avec ChatGPT Work ; au-delà, il faut acheter des crédits. Les fonctions cloud demandent un compte GitHub ou GitLab.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="cursor">
+      <div class="fiche-tete"><h3>Cursor</h3><span class="fiche-ed">Anysphere, propriété de SpaceX · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://cursor.com/" target="_blank" rel="noopener">cursor.com ↗</a></div></div>
+      <p class="quoi">L'éditeur de code où l'IA est partout : le poste de travail des développeurs qui veulent coder plus vite.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Si tu as un développeur ou un prestataire : il confie une correction à un agent qui revient avec une modification à valider, et Bugbot relit automatiquement le code. Depuis le 5 novembre, Cursor sait aussi créer et publier de petites applications internes, avec connexion et hébergement.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Un développeur travaille sur ton projet au quotidien : c'est un outil pensé pour lui. Pour quelqu'un qui ne code pas, Claude Code ou Codex sont plus accessibles.</dd>
+        <dt>Prix</dt><dd>Vendu dans l'abonnement commun de X (Grok et Cursor) : Plus 8 $ par mois (modèles Grok et Composer seulement), <strong>Premium 30 $</strong>, Super 100 $, Ultra 200 $. Les anciens forfaits restent valables pour les clients existants.</dd>
+        <dt>Où il coince</dt><dd>Claude, GPT et Gemini ne sont pas compris dans le forfait : ils sont facturés en plus, au prix de l'API, et seulement à partir de Premium. La facture réelle dépend donc de l'usage. Hébergement aux États-Unis.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="vs-code">
+      <div class="fiche-tete"><h3>VS Code</h3><span class="fiche-ed">Microsoft · gratuit</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://code.visualstudio.com/" target="_blank" rel="noopener">code.visualstudio.com ↗</a></div></div>
+      <p class="quoi">L'éditeur de code gratuit de Microsoft : le socle sur lequel on branche les agents IA.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Sur Mac, Windows et Linux. On y branche l'agent de son choix : GitHub Copilot (l'assistant de GitHub, filiale de Microsoft), Claude ou Codex. C'est l'environnement le plus simple pour suivre ce que fait Claude Code, fichier par fichier.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu veux un poste de travail gratuit pour faire tourner Claude Code ou Codex. Plutôt que Cursor si tu ne veux pas d'abonnement de plus : l'IA vient de l'agent que tu y branches.</dd>
+        <dt>Prix</dt><dd>Gratuit. GitHub Copilot : offre gratuite limitée (2 000 complétions par mois), puis <strong>Pro à 10 $ par mois</strong>, Pro+ à 39 $.</dd>
+        <dt>Où il coince</dt><dd>Seul, il ne fait rien d'intelligent : c'est l'agent que tu y branches qui travaille, et qui se paie.</dd>
+      </dl>
+    </div>
+    <div class="callout reveal"><b>💡 Lequel choisir ?</b> Tu ne codes pas mais tu veux un outil sur mesure : Claude Code (ou Codex si tu es sur ChatGPT), depuis l'application de bureau, accompagné au début. Un développeur dans l'équipe : Cursor, ou VS Code avec l'agent de son choix.</div>
+    <div class="callout warn reveal"><b>⚠️ Avant de mettre en ligne :</b> un outil fabriqué en une après-midi peut exposer des données clients. Vérifie qui y a accès (mots de passe, droits, sauvegardes) avant qu'il quitte ton ordinateur, ou fais-le relire par un technicien. La liste des garde-fous : <a href="/ressources/outils-securite-vibe-coding">10 outils de sécurité pour le code généré par IA</a>.</div>
+
+    <h2 class="reveal" id="etage-4"><span class="fam-n">4</span>Données et back-end : la mémoire du système</h2>
+    <p class="reveal">Un outil sur mesure ou un agent a besoin d'une mémoire : un endroit où ranger les clients, les commandes, les documents, et les retrouver vite. Un mot à connaître : le <strong>RAG</strong>, l'IA qui répond à partir de tes propres documents (procédures, fiches produits, contrats). Pour retrouver le bon passage, les documents sont rangés sous forme de « vecteurs » : c'est ce que proposent Supabase et Pinecone.</p>
+
+    <div class="fiche reveal" id="supabase">
+      <div class="fiche-tete"><h3>Supabase</h3><span class="fiche-ed">Supabase · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://supabase.com/" target="_blank" rel="noopener">supabase.com ↗</a></div></div>
+      <p class="quoi">La base de données des outils sur mesure : une base solide (Postgres), les comptes utilisateurs, le stockage de fichiers et la recherche par vecteurs pour le RAG, au même endroit.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>C'est le moteur caché de la plupart des outils fabriqués à l'étage 3 : ton développeur (ou Claude Code) y range les données de ton appli, gère les connexions de tes utilisateurs et branche ton assistant IA sur tes documents. C'est la base de notre exemple de contrats, plus haut.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu fais construire un outil sur mesure : un seul service couvre la base, les comptes et les vecteurs, avec un hébergement possible à Paris ou à Francfort. Pour le RAG d'une PME, ses vecteurs suffisent dans la plupart des cas, sans abonnement de plus.</dd>
+        <dt>Prix</dt><dd>Gratuit pour démarrer (2 projets, 500 Mo de base). <strong>Pro à partir de 25 $ par mois</strong> par organisation, Team à partir de 599 $.</dd>
+        <dt>Où il coince</dt><dd>Sur l'offre gratuite, un projet inactif pendant une semaine est mis en pause, sans sauvegarde automatique : pas pour un outil en production. Choisis une région précise (Paris ou Francfort) : la région générale « Europe » peut tomber à Londres ou Zurich, hors Union européenne.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="airtable">
+      <div class="fiche-tete"><h3>Airtable</h3><span class="fiche-ed">Airtable · États-Unis</span><div class="badges"><span class="st st-nc">No-code</span><a class="lien" href="https://www.airtable.com/" target="_blank" rel="noopener">airtable.com ↗</a></div></div>
+      <p class="quoi">La base de données façon tableur : des tableaux qu'on relie entre eux pour bâtir un CRM, un suivi de chantiers ou un planning, sans code.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Des vues tableau, calendrier ou kanban, des formulaires, des automatisations simples, et <strong>Omni</strong>, un assistant IA qui construit l'application à partir de ta description. Les lecteurs et les formulaires sont gratuits : seuls ceux qui modifient paient.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu veux gérer toi-même tes données, à plusieurs, sans développeur : c'est la seule base de cet étage avec un badge no-code. Elle se branche facilement sur Make, Zapier ou n8n.</dd>
+        <dt>Prix</dt><dd>Gratuit jusqu'à 1 000 enregistrements par base et 5 éditeurs. <strong>Team 20 $ par éditeur et par mois</strong> en annuel (24 $ en mensuel), Business 45 $ (54 $ en mensuel).</dd>
+        <dt>Où il coince</dt><dd>La limite de 1 000 lignes du gratuit est vite atteinte, et la facture grimpe avec le nombre d'éditeurs. L'hébergement des données en Europe est réservé à l'offre Enterprise.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="firebase">
+      <div class="fiche-tete"><h3>Firebase</h3><span class="fiche-ed">Google · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://firebase.google.com/" target="_blank" rel="noopener">firebase.google.com ↗</a></div></div>
+      <p class="quoi">Le back-end de Google pour les applications web et mobiles : base de données, comptes utilisateurs, hébergement, notifications.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Tout ce qu'il faut pour faire tourner une appli, surtout mobile, avec un accès direct aux modèles Gemini. Les données peuvent être hébergées en Europe, à Paris notamment.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Ton projet est une appli mobile ou s'inscrit dans l'univers Google. Pour un outil interne de PME, Supabase repose sur une base standard (Postgres), plus facile à faire reprendre par un autre prestataire.</dd>
+        <dt>Prix</dt><dd>Gratuit pour démarrer (offre Spark, sans carte bancaire), puis <strong>paiement à l'usage</strong> (offre Blaze), compté en lectures, écritures et volume transféré.</dd>
+        <dt>Où il coince</dt><dd>La facture à l'usage est difficile à prévoir pour un non-technicien. Firebase Studio, son outil de création d'applis par l'IA, n'accepte plus de nouveaux projets depuis juin et ferme le 22 mars 2027 (Google oriente vers AI Studio ou Antigravity) ; les briques de base de Firebase ne sont pas concernées.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="pinecone">
+      <div class="fiche-tete"><h3>Pinecone</h3><span class="fiche-ed">Pinecone · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://www.pinecone.io/" target="_blank" rel="noopener">pinecone.io ↗</a></div></div>
+      <p class="quoi">Une base vectorielle : elle retrouve les passages de tes documents par leur sens, pour qu'un assistant IA réponde à partir de tes propres contenus.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Un assistant qui répond à tes équipes ou à tes clients à partir de milliers de documents internes, avec le bon passage à chaque fois. C'est une brique spécialisée, qu'un développeur intègre à un outil ou à un workflow n8n.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Le volume de documents est très important et la recherche doit rester rapide à grande échelle. Pour la plupart des PME, les vecteurs de Supabase suffisent.</dd>
+        <dt>Prix</dt><dd>Starter gratuit. <strong>Builder 20 $ par mois</strong> (nouveau depuis mai 2026), Standard à partir de 50 $ par mois puis à l'usage, Enterprise à partir de 500 $.</dd>
+        <dt>Où il coince</dt><dd>L'offre gratuite est hébergée aux États-Unis seulement : une région européenne demande au moins Builder. Au-delà, la facture suit le nombre de lectures et d'écritures.</dd>
+      </dl>
+    </div>
+    <div class="callout reveal"><b>💡 Lequel choisir ?</b> Gérer toi-même une base partagée façon tableur : Airtable. Faire construire un outil sur mesure : Supabase (base, comptes et vecteurs au même endroit, hébergement possible à Paris). Une appli mobile ou un projet déjà chez Google : Firebase. Un RAG sur un très gros volume de documents : Pinecone.</div>
+
+    <h2 class="reveal" id="etage-5"><span class="fam-n">5</span>Hébergement et déploiement : en ligne, 24 heures sur 24</h2>
+    <p class="reveal">Dernier étage : là où ton outil tourne, accessible par ton équipe ou tes clients. Sans hébergement, un outil construit à l'étage 3 reste sur l'ordinateur de celui qui l'a fabriqué, et un n8n installé sur ton ordinateur s'arrête quand tu le fermes.</p>
+
+    <div class="fiche reveal" id="hostinger">
+      <div class="fiche-tete"><h3>Hostinger</h3><span class="fiche-ed">Hostinger · Lituanie</span><div class="badges"><span class="st st-lc">Low-code</span><a class="lien" href="https://www.hostinger.com/fr/hebergement-n8n" target="_blank" rel="noopener">hostinger.com ↗</a></div></div>
+      <p class="quoi">Un serveur privé (VPS) avec n8n préinstallé : la façon la plus simple de faire tourner ton propre n8n, sans être administrateur système.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Tu choisis le modèle « n8n » à la commande, et ton n8n est en ligne. Tu ne paies que le serveur : pas de limite d'exécutions autre que sa puissance.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu as choisi n8n et tu veux garder tes données sur ton serveur, ou ton volume rend le cloud n8n trop cher. Plutôt qu'OVHcloud quand tu veux n8n prêt à l'emploi en quelques clics.</dd>
+        <dt>Prix</dt><dd>VPS KVM 1 dès <strong>5,49 € par mois</strong> en promotion (24 mois payés d'avance, soit 131,76 €), puis 11,99 € par mois au renouvellement. KVM 2 : 7,79 €, puis 14,99 €. Prix relevés le 19 novembre 2026, pendant une promotion.</dd>
+        <dt>Où il coince</dt><dd>Le prix d'appel double au renouvellement et suppose 24 mois payés d'avance. Le support couvre le serveur, pas tes workflows. Mises à jour, sauvegardes et sécurité restent à ta charge. Choisis un centre de données en Europe à la commande.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="ovhcloud">
+      <div class="fiche-tete"><h3>OVHcloud</h3><span class="fiche-ed">OVHcloud · France</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://www.ovhcloud.com/fr/" target="_blank" rel="noopener">ovhcloud.com ↗</a></div></div>
+      <p class="quoi">L'hébergeur cloud français : serveurs privés, cloud public, et des modèles d'IA ouverts hébergés en Europe.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Des serveurs (VPS) pour faire tourner n8n, un agent ou une appli, avec des centres de données en France. <strong>AI Endpoints</strong> donne accès à plus de 20 modèles d'IA ouverts, hébergés et opérés dans l'Union européenne, facturés à l'usage. Certaines offres sont qualifiées <strong>SecNumCloud</strong>, le label de l'État (ANSSI) pour les données sensibles.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>La souveraineté compte : données en France, chez un acteur français, hors du champ des lois américaines selon OVHcloud. C'est le choix naturel quand ton activité ou tes clients imposent des exigences fortes sur les données.</dd>
+        <dt>Prix</dt><dd>VPS dès <strong>3,81 € HT par mois</strong> (4,57 € TTC), avec trafic illimité et sauvegarde quotidienne.</dd>
+        <dt>Où il coince</dt><dd>Un VPS demande des bases d'administration serveur : OVHcloud le dit lui-même. Les VPS ne figurent pas parmi les offres qualifiées SecNumCloud.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="vercel">
+      <div class="fiche-tete"><h3>Vercel</h3><span class="fiche-ed">Vercel · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://vercel.com/" target="_blank" rel="noopener">vercel.com ↗</a></div></div>
+      <p class="quoi">La plateforme qui met en ligne les sites et applications web, en particulier celles construites avec Next.js : tu envoies le code, c'est en ligne.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>L'outil fabriqué à l'étage 3 devient une adresse web pour ton équipe ou tes clients, mise à jour automatiquement à chaque modification. C'est là qu'est hébergé noesisai.fr, y compris la page que tu lis. Son assistant <strong>v0</strong> génère une application à partir d'une description, en option payante.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Tu mets en ligne une application web ou un site : c'est le plus simple et le plus rapide. Pour un moteur qui tourne en continu derrière (un agent, une tâche de fond), regarde plutôt Railway.</dd>
+        <dt>Prix</dt><dd>Hobby gratuit. <strong>Pro 20 $ par mois</strong> et par développeur, avec 20 $ d'usage inclus. v0 en option, à partir de 30 $ par mois.</dd>
+        <dt>Où il coince</dt><dd>L'offre gratuite est réservée à un usage personnel ou non commercial (conditions d'utilisation) : pour un outil d'entreprise, compte l'offre Pro. Au-delà de l'usage inclus, la facture suit le trafic.</dd>
+      </dl>
+    </div>
+
+    <div class="fiche reveal" id="railway">
+      <div class="fiche-tete"><h3>Railway</h3><span class="fiche-ed">Railway · États-Unis</span><div class="badges"><span class="st st-tq">Technique</span><a class="lien" href="https://railway.com/" target="_blank" rel="noopener">railway.com ↗</a></div></div>
+      <p class="quoi">L'hébergement des moteurs qui tournent en continu : un agent, une base de données, une tâche de fond, sans serveur à gérer.</p>
+      <dl>
+        <dt>Pour toi</dt><dd>Ton développeur y envoie le code, Railway le fait tourner, et tu paies ce qui est réellement consommé (calcul, mémoire). Pratique pour un agent IA toujours allumé, un n8n, ou la partie cachée d'une appli.</dd>
+        <dt class="choix">Choisis-le si</dt><dd>Il faut faire tourner quelque chose en permanence sans gérer de serveur : plus simple qu'un VPS, mieux adapté que Vercel aux tâches de fond.</dd>
+        <dt>Prix</dt><dd>Essai de 30 jours avec 5 $ de crédit. <strong>Hobby 5 $ par mois</strong>, Pro 20 $ par mois, avec autant d'usage inclus, puis facturation à la consommation.</dd>
+        <dt>Où il coince</dt><dd>Facture variable au-delà du crédit inclus. Pas de région en France : la plus proche est à Amsterdam, dans l'Union européenne.</dd>
+      </dl>
+    </div>
+    <div class="callout reveal"><b>💡 Lequel choisir ?</b> Faire tourner ton propre n8n sans être administrateur système : Hostinger. Mettre en ligne une appli web fabriquée à l'étage 3 : Vercel. Un agent ou un moteur qui tourne en continu : Railway. Une exigence de souveraineté (données en France, chez un acteur français) : OVHcloud.</div>
+
+    <h2 class="reveal" id="tableau">Le tableau final : ton besoin, l'outil</h2>
+    <div class="tscroll reveal">
+    <table class="matrix besoins">
+      <thead><tr><th>Ton besoin</th><th>Étage</th><th>Pour commencer</th></tr></thead>
+      <tbody>
+        <tr><td>Faire rédiger, analyser, préparer un livrable</td><td>1</td><td>L'agent de ton écosystème : Copilot, Gemini, sinon Claude ou ChatGPT Work</td></tr>
+        <tr><td>Relier ton formulaire, ton CRM et ta facturation</td><td>2</td><td>Make, ou Zapier si une appli manque</td></tr>
+        <tr><td>Faire tourner des milliers de passages par mois</td><td>2</td><td>n8n</td></tr>
+        <tr><td>Garder tes automatisations sur ton propre serveur</td><td>2 et 5</td><td>n8n ou Activepieces, chez Hostinger ou OVHcloud</td></tr>
+        <tr><td>Un outil interne sur mesure</td><td>3</td><td>Claude Code, ou Codex si tu es sur ChatGPT</td></tr>
+        <tr><td>Une base partagée façon tableur</td><td>4</td><td>Airtable</td></tr>
+        <tr><td>Un assistant qui répond à partir de tes documents</td><td>4</td><td>Supabase, Pinecone à très gros volume</td></tr>
+        <tr><td>Mettre en ligne une appli web</td><td>5</td><td>Vercel</td></tr>
+        <tr><td>Un agent ou un moteur qui tourne en continu</td><td>5</td><td>Railway</td></tr>
+        <tr><td>Des données en France, chez un acteur français</td><td>5</td><td>OVHcloud</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 class="reveal" id="commencer">Par où commencer selon ton profil</h2>
+    <div class="profils reveal">
+      <div class="profil">
+        <h3>Tu ne codes pas</h3>
+        <p><strong>Cette semaine :</strong> l'agent de travail de ton écosystème (étage 1), sur une vraie tâche entière, pas un bout. <strong>Le mois prochain :</strong> ta première automatisation dans Make ou Zapier, sur la tâche la plus répétitive.</p>
+        <p class="role"><b>Tu pilotes :</b> les étages 1 et 2. <b>Tu délègues :</b> les étages 3 à 5.</p>
+      </div>
+      <div class="profil">
+        <h3>Tu es à l'aise avec les outils</h3>
+        <p>n8n, en cloud ou chez Hostinger pour garder la main. Airtable comme base partagée. Activepieces si tu veux de l'open source au sens strict.</p>
+        <p class="role"><b>Tu pilotes :</b> jusqu'à l'étage 2, plus Airtable et Hostinger. <b>Tu délègues :</b> le code et la sécurité.</p>
+      </div>
+      <div class="profil">
+        <h3>Tu as un développeur, ou tu veux construire</h3>
+        <p>Claude Code ou Codex pour fabriquer, Supabase pour les données, Vercel ou Railway pour la mise en ligne, OVHcloud si la souveraineté compte.</p>
+        <p class="role"><b>Tu pilotes :</b> le besoin, les règles métier, la validation. <b>Tu délègues :</b> l'architecture, les accès, la mise en ligne.</p>
+      </div>
+    </div>
+
+    <h3 class="reveal">La demande à copier pour trouver ton étage</h3>
+    <p class="reveal">Colle ce texte dans Claude, ChatGPT, Gemini ou Copilot, en remplaçant les crochets. Il applique la carte de ce guide à ta propre activité.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À copier dans ton IA</span><button class="copy" type="button">Copier</button></div>
+<pre>Tu es mon conseiller en outils d'IA. Sois concret et honnête, sans jargon.
+
+Mon activité : [ton métier, la taille de l'équipe]
+Ce que j'utilise déjà : [Google ou Microsoft, ton CRM, ton logiciel de facturation, tes abonnements IA]
+Mon niveau technique : [je ne code pas / je suis à l'aise avec les outils / j'ai un développeur]
+
+Mes 3 tâches les plus répétitives :
+1. [tâche]
+2. [tâche]
+3. [tâche]
+
+Voici les 5 étages d'outils, du plus simple au plus technique :
+1. Agents IA au travail : Claude, ChatGPT Work, Microsoft 365 Copilot, Gemini
+2. Automatisation : Make, Zapier, n8n, Activepieces
+3. Code assisté par IA : Claude Code, Codex, Cursor, VS Code
+4. Données : Airtable, Supabase, Firebase, Pinecone
+5. Hébergement : Hostinger, OVHcloud, Vercel, Railway
+
+Pour chaque tâche, dis-moi :
+- l'étage le plus simple qui suffit (commence toujours par l'étage 1) ;
+- l'outil précis à essayer en premier, en partant de ce que j'utilise déjà et de mon niveau technique ;
+- ce que je peux faire seul, et ce que je devrais confier à un technicien ;
+- ce qui doit rester sous validation humaine.
+
+Si une information te manque, pose-moi la question au lieu de supposer. Termine par la tâche à attaquer en premier, et pourquoi.</pre>
+    </div>
+    <div class="callout win reveal"><b>C'est tout.</b> Pas besoin des 20 outils. Un étage, un outil, une tâche, un résultat mesurable.</div>
+
+    <div class="callout reveal"><b>Sources :</b> les pages officielles des éditeurs, relevées les 18 et 19 novembre 2026 : Anthropic (<a href="https://claude.com/fr/pricing" target="_blank" rel="noopener">tarifs</a>), OpenAI (<a href="https://chatgpt.com/fr-FR/pricing/" target="_blank" rel="noopener">tarifs ChatGPT</a>, <a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">Codex</a>), Microsoft (<a href="https://www.microsoft.com/fr-fr/copilot/solutions/business" target="_blank" rel="noopener">Copilot pour les PME</a>), Google (<a href="https://workspace.google.com/pricing?hl=fr" target="_blank" rel="noopener">tarifs Workspace</a>, <a href="https://firebase.google.com/pricing" target="_blank" rel="noopener">tarifs Firebase</a>, <a href="https://firebase.google.com/docs/studio" target="_blank" rel="noopener">Firebase Studio</a>), n8n (<a href="https://n8n.io/pricing/" target="_blank" rel="noopener">tarifs</a>, <a href="https://github.com/n8n-io/n8n/blob/master/LICENSE.md" target="_blank" rel="noopener">licence</a>), Make (<a href="https://www.make.com/en/pricing" target="_blank" rel="noopener">tarifs</a>), Zapier (<a href="https://zapier.com/pricing" target="_blank" rel="noopener">tarifs</a>), Activepieces (<a href="https://www.activepieces.com/pricing" target="_blank" rel="noopener">tarifs</a>, <a href="https://github.com/activepieces/activepieces/blob/main/LICENSE" target="_blank" rel="noopener">licence</a>), Cursor (<a href="https://cursor.com/pricing" target="_blank" rel="noopener">tarifs</a>), GitHub (<a href="https://github.com/features/copilot/plans" target="_blank" rel="noopener">offres Copilot</a>), Supabase (<a href="https://supabase.com/pricing" target="_blank" rel="noopener">tarifs</a>, <a href="https://supabase.com/docs/guides/platform/regions" target="_blank" rel="noopener">régions</a>), Airtable (<a href="https://airtable.com/pricing" target="_blank" rel="noopener">tarifs</a>), Pinecone (<a href="https://www.pinecone.io/pricing/" target="_blank" rel="noopener">tarifs</a>), Hostinger (<a href="https://www.hostinger.com/fr/hebergement-n8n" target="_blank" rel="noopener">hébergement n8n</a>), OVHcloud (<a href="https://www.ovhcloud.com/fr/vps/" target="_blank" rel="noopener">VPS</a>, <a href="https://www.ovhcloud.com/fr/secnumcloud/" target="_blank" rel="noopener">SecNumCloud</a>, <a href="https://www.ovhcloud.com/fr/public-cloud/ai-endpoints/" target="_blank" rel="noopener">AI Endpoints</a>), Vercel (<a href="https://vercel.com/pricing" target="_blank" rel="noopener">tarifs</a>, <a href="https://vercel.com/legal/terms" target="_blank" rel="noopener">conditions d'utilisation</a>), Railway (<a href="https://railway.com/pricing" target="_blank" rel="noopener">tarifs</a>, <a href="https://docs.railway.com/deployments/regions" target="_blank" rel="noopener">régions</a>). Les offres bougent tous les mois : revérifie un prix au moment de payer.</div>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie qu'on le mette en place pour toi ?</b> C'est notre métier chez NoesisAI : on conçoit et on branche ce type d'automatisation directement dans ton entreprise. <a href="/automatisation" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Voir notre offre d'automatisation</a>.</div>
+
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/implementation-ia-parfaite" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Comment réussir une implémentation IA parfaite</a></li>
+    <li><a href="/ressources/implementer-ia-entreprise" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Implémenter l'IA dans ton entreprise sans te tromper de chantier</a></li>
+    <li><a href="/ressources/5-solutions" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Les 5 solutions IA que les entreprises s'arrachent en 2026</a></li>
+    <li><a href="/ressources/cockpit-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Ton cockpit IA : les 5 briques à installer avant de choisir ton modèle</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
