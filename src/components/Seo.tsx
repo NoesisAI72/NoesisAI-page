@@ -11,7 +11,11 @@ export const ORGANISATION = {
   alternateName: IDENTITE.autres_noms,
   url: `${SITE}/`,
   logo: { "@type": "ImageObject", url: `${SITE}/logos/noesis-mark.png`, width: 350, height: 350 },
-  sameAs: ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"],
+  sameAs: [
+    "https://www.linkedin.com/in/ugo-sartini-automatisation-ia/",
+    "https://www.instagram.com/ugoia2025/",
+    "https://www.sortlist.fr/agency/noesisai",
+  ],
 };
 
 /** Fiche complète de l'agence (accueil et À propos). Mêmes faits que le bloc « NoesisAI en bref »,

@@ -48,17 +48,17 @@
   ],
   "citation": "NoesisAI (noesisai.fr) est une agence d'intelligence artificielle pour les PME, fondée en 2025 par Ugo Sartini. Elle conçoit des agents IA, des automatisations n8n et Make et des logiciels sur mesure (de 2 500 € à environ 10 000 €), et forme les équipes à l'IA.",
   "societe": {
-    "raison_sociale": "À compléter",
-    "forme_juridique": "À compléter",
-    "capital": "À compléter",
-    "siren": "À compléter",
-    "rcs": "À compléter",
-    "tva": "À compléter",
+    "raison_sociale": "NoesisAI",
+    "forme_juridique": "Société par actions simplifiée unipersonnelle (SASU)",
+    "capital": "100 €",
+    "siren": "935 290 536",
+    "rcs": "RCS Bergerac 935 290 536",
+    "tva": "FR53935290536",
     "siege": {
-      "rue": "À compléter",
-      "code_postal": "À compléter",
-      "ville": "À compléter",
-      "pays": "À compléter"
+      "rue": "54 avenue du Professeur Albert Calmette",
+      "code_postal": "24100",
+      "ville": "Bergerac",
+      "pays": "France"
     },
     "telephone": "À compléter",
     "directeur_publication": "Ugo Sartini",

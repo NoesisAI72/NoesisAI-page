@@ -244,7 +244,7 @@ export const TESTIMONIALS = {
   rating: { value: 4.8, outOf: 5, label: "de note moyenne sur nos avis clients" },
   /** Badges à lauriers (texte libre ; la partie `strong` est en gras). */
   badges: [
-    { text: "Top 1 % des meilleures agences", strong: "IA de France" },
+    { text: "Plus de 40 projets", strong: "IA livrés" },
   ],
   title: "Ce que disent les entreprises que nous accompagnons",
   subtitle:
