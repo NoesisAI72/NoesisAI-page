@@ -1,0 +1,21 @@
+# Après chaque mise en production par Vercel, signale à Bing et aux moteurs IndexNow les pages du plan
+# du site datées des 2 derniers jours (nouveaux articles, nouvelles ressources, pages mises à jour).
+# Bing alimente Copilot et une partie des recherches de ChatGPT. Aucun secret : la clé IndexNow est publique.
+name: IndexNow
+
+on: deployment_status
+
+permissions:
+  contents: read
+
+jobs:
+  signaler:
+    if: github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.deployment.sha }}
+      - name: Signaler les pages récentes
+        run: python3 scripts/indexnow.py --recents 2
