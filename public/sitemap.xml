@@ -681,9 +681,15 @@
   <!-- blog:debut -->
   <url>
     <loc>https://noesisai.fr/blog</loc>
-    <lastmod>2026-11-18</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://noesisai.fr/blog/skills-claude</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://noesisai.fr/blog/meilleure-ia</loc>
