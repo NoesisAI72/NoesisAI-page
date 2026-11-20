@@ -87,3 +87,23 @@ d'aperçu des pages sont dans `public/og/` (générées par le même script).
 
 `/ressources` est servi en statique : un `<Link>` du routeur afficherait la 404 du site.
 Utiliser un `<a href>` classique, ou `<Button href="/ressources" reload>`.
+
+## Portfolio (/portfolio) : page invisible
+
+Portfolio envoyé en lien direct aux prospects (refonte du portfolio Notion, 20/11/2026). Il garde
+la barre de navigation du site, mais **aucun lien n'y mène** : pas dans le menu, pas dans le pied
+de page, pas dans `public/sitemap.xml` ni `public/llms.txt`, et `noindex` des deux côtés
+(`<Seo noindex>` + en-tête `X-Robots-Tag` dans `vercel.json`). Ne pas l'ajouter au plan du site.
+
+- Contenu : `src/data/portfolio.ts` (textes et cas clients). Un cas = une entrée de
+  `CAS_CLIENTS` ; son `slug` donne `/portfolio/<slug>`, pré-rendue au build (`vite.config.ts`).
+- Source : la base Notion « Réalisations » de la page « 🏆 Portfolio NoesisAI »
+  (https://app.notion.com/p/4ea05dded70f4024a25425962eeccc7e). Une autre copie, plus ancienne, existe
+  sous « [Catalogue] 63 Skills Claude » : ne pas s'en servir. Ordre de la galerie = celui de Notion
+  (date de livraison, les cas sans date à la fin).
+- Noms des interlocuteurs côté client retirés des textes (rôle seulement), comme le nom des clients
+  de nos clients.
+- Logos : `public/portfolio/logos/`, recadrés sur leur contenu ; `ratio` (largeur / hauteur du
+  fichier) donne à chaque logo le même poids visuel, `fond` colore la plaque d'un logo sur fond sombre.
+- Pages : `src/pages/portfolio/` (galerie de logos cliquables, sans filtres à la demande d'Ugo, + fiche détaillée), éléments communs dans
+  `src/components/portfolio/Elements.tsx`.

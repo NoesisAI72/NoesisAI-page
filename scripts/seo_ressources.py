@@ -372,6 +372,8 @@ PAGES_SITE = {
     "projets": "Nos projets clients : logiciels métier, agents vocaux, automatisations",
     "temoignages": "Ce que disent les entreprises que nous accompagnons",
     "a-propos": "L'agence NoesisAI et son fondateur, Ugo Sartini",
+    # /portfolio : page non référencée, mais son lien circule (WhatsApp, LinkedIn, e-mail).
+    "portfolio": "Portfolio : nos cas clients en IA et automatisation",
 }
 
 

@@ -20,6 +20,8 @@ import { TemoignagesPage } from "./pages/TemoignagesPage";
 import { AProposPage } from "./pages/AProposPage";
 import { BlogIndex } from "./pages/blog/BlogIndex";
 import { BlogArticle } from "./pages/blog/BlogArticle";
+import { PortfolioPage } from "./pages/portfolio/PortfolioPage";
+import { CasClientPage } from "./pages/portfolio/CasClientPage";
 
 /** Remonte en haut à chaque changement de route (sauf ancres #). */
 function ScrollToTop() {
@@ -86,6 +88,9 @@ export const routes: RouteRecord[] = [
           { path: "/a-propos", element: <AProposPage /> },
           { path: "/blog", element: <BlogIndex /> },
           { path: "/blog/:slug", element: <BlogArticle /> },
+          // Portfolio : page invisible (hors menu, hors plan du site, noindex), envoyée en lien direct.
+          { path: "/portfolio", element: <PortfolioPage /> },
+          { path: "/portfolio/:slug", element: <CasClientPage /> },
           { path: "/mentions-legales", element: <MentionsLegales /> },
           { path: "/confidentialite", element: <Confidentialite /> },
           { path: "/cgu", element: <Cgu /> },

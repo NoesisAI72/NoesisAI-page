@@ -453,7 +453,7 @@ export function GuidesSection({ title, subtitle, items }: { title: string; subti
 }
 
 /** Appel à l'action final : grande carte claire teintée violet. */
-export function CtaSection({ title, subtitle }: { title: string; subtitle: string }) {
+export function CtaSection({ title, subtitle, cta = "Parler de votre projet" }: { title: string; subtitle: string; cta?: string }) {
   return (
     <Section className="bg-white">
       <Reveal>
@@ -465,7 +465,7 @@ export function CtaSection({ title, subtitle }: { title: string; subtitle: strin
           )}
           <div className="relative mt-8 flex justify-center">
             <BoutonDemande emplacement="bas de page" size="lg" variant="dark">
-              Parler de votre projet <Chevrons />
+              {cta} <Chevrons />
             </BoutonDemande>
           </div>
         </div>

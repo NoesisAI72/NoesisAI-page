@@ -107,16 +107,19 @@ type Props = {
   /** "article" pour les billets du blog */
   type?: "website" | "article";
   jsonLd?: object[];
+  /** Page accessible par lien direct mais tenue hors des moteurs (ex. /portfolio). */
+  noindex?: boolean;
 };
 
 /** Titre, description, canonical, aperçus (Open Graph, X) et données structurées d'une page. */
-export function Seo({ title, description, path, image, imageAlt, type = "website", jsonLd = [] }: Props) {
+export function Seo({ title, description, path, image, imageAlt, type = "website", jsonLd = [], noindex = false }: Props) {
   const url = `${SITE}${path}`;
   const img = `${SITE}${image}`;
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={url} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="NoesisAI" />

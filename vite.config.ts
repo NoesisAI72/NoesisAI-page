@@ -5,6 +5,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Marked } from "marked";
 import { parse as lireYaml } from "yaml";
+import { CAS_CLIENTS } from "./src/data/portfolio";
 
 // =============================================================
 //  Blog : les articles sont des fichiers content/blog/<slug>.md
@@ -102,6 +103,8 @@ export default defineConfig({
         "/404",
         "/blog",
         ...articlesPublies().map((s) => `/blog/${s}`),
+        // /portfolio/<slug> : une fiche par cas client (pages non référencées).
+        ...CAS_CLIENTS.map((c) => `/portfolio/${c.slug}`),
       ]),
     ],
   },
