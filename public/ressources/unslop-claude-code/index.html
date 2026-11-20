@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/unslop-claude-code">
+<title>Unslop : le skill gratuit qui enlève le look « fait à l'IA » de ton site - NoesisAI</title>
+<meta name="description" content="Unslop, le skill gratuit pour Claude Code et Codex qui corrige le look « fait à l'IA » d'un site comme un designer : les 50 signes à repérer et l'installation pas à pas.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Les 50 signes d'un site fait à l'IA, et le skill gratuit qui les corrige">
+<meta property="og:description" content="Unslop, le skill gratuit pour Claude Code et Codex qui corrige le look « fait à l'IA » d'un site comme un designer : les 50 signes à repérer et l'installation pas à pas.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/unslop-claude-code">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/unslop-claude-code.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Unslop : le skill gratuit qui enlève le look « fait à l&#x27;IA » de ton site">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unslop : le skill gratuit qui enlève le look « fait à l&#x27;IA » de ton site">
+<meta name="twitter:description" content="Unslop, le skill gratuit pour Claude Code et Codex qui corrige le look « fait à l&#x27;IA » d&#x27;un site comme un designer : les 50 signes à repérer et l&#x27;installation pas à pas.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/unslop-claude-code.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/unslop-claude-code#article", "headline": "Unslop : le skill gratuit qui enlève le look « fait à l'IA » de ton site", "description": "Unslop, le skill gratuit pour Claude Code et Codex qui corrige le look « fait à l'IA » d'un site comme un designer : les 50 signes à repérer et l'installation pas à pas.", "image": "https://noesisai.fr/ressources/og/unslop-claude-code.jpg", "url": "https://noesisai.fr/ressources/unslop-claude-code", "mainEntityOfPage": "https://noesisai.fr/ressources/unslop-claude-code", "inLanguage": "fr-FR", "datePublished": "2026-11-20", "dateModified": "2026-11-20", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Unslop : le skill gratuit qui enlève le look « fait à l'IA » de ton site", "item": "https://noesisai.fr/ressources/unslop-claude-code"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Unslop : le skill gratuit qui enlève le look « fait à l'IA » de ton site</h1>
+    <p class="sub">Ce que fait unslop, les 50 signes qui trahissent un site fait à l'IA pour les repérer toi-même, et le lien avec l'installation pas à pas dans Claude Code et Codex. À jour au 20 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .wrap li a,main.resource .callout a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .avap{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0 0}
+      .avap figure{margin:0}
+      .avap img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+      .avap figcaption{font-size:13.5px;color:var(--ink-2);margin-top:9px;font-weight:500}
+      .resource p.credit{font-size:13.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.55}
+      .etapes{display:grid;gap:10px;margin:22px 0}
+      .etape{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+      .etape-n{width:36px;height:36px;border-radius:10px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
+      .resource .etape h3{margin:5px 0 4px;font-size:17px}
+      .resource .etape p{margin:0;font-size:15px;line-height:1.6}
+      .famille{margin:30px 0 0}
+      .resource .famille h3{margin:0 0 2px}
+      .resource .famille h3 small{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--ink-3);margin-left:8px;letter-spacing:0}
+      table.signes{margin:8px 0 0}
+      table.signes td{vertical-align:top;width:50%}
+      table.signes td:last-child::before{content:"→ ";color:var(--ink-3)}
+      table.direction{margin:18px 0 6px}
+      table.direction td{vertical-align:top}
+      table.direction td:first-child{width:118px}
+      .cmd{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.9em;background:var(--card-2);border:1px solid var(--line-soft);border-radius:6px;padding:2px 6px;color:var(--ink);word-break:break-word}
+      .resource ul.exemples li{margin:10px 0}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
+      @media(max-width:600px){
+        table.signes,table.signes tbody,table.signes tr,table.direction,table.direction tbody,table.direction tr{display:block;width:auto}
+        table.signes tr,table.direction tr{padding:12px 0;border-bottom:1px solid var(--line-soft)}
+        .resource table.signes td,.resource table.direction td{display:block;width:auto;border:0;padding:0}
+        table.signes td+td,table.direction td+td{margin-top:4px}
+        .resource .famille h3 small{display:block;margin:2px 0 0}
+      }
+    </style>
+
+    <p class="lead reveal">Le dégradé violet. L'emoji devant chaque titre. Le «&nbsp;Welcome back!&nbsp;» géant, et des cartes qui brillent comme une vitrine de Noël. Un site fait à l'IA se reconnaît au premier coup d'œil, et ce n'est pas parce que l'IA dessine mal : c'est parce que presque tout le monde garde ses réglages par défaut.</p>
+    <p class="reveal">Ce guide te donne trois choses : ce que fait <strong>unslop</strong>, le skill gratuit pour Claude Code et Codex qui corrige ces signes à ta place, la liste complète des signes pour les repérer toi-même, et le lien avec l'installation pas à pas.</p>
+
+    <div class="avap reveal">
+      <figure><img style="height:auto" width="1000" height="1000" src="/ressources/img/e6a926669eb2.webp" alt="Tableau de bord fait à l'IA : fond violet, dégradés, lueurs, emoji devant chaque rubrique et titre «&nbsp;Welcome back, Damir!&nbsp;»" decoding="async"><figcaption>Avant</figcaption></figure>
+      <figure><img loading="lazy" style="height:auto" width="1000" height="1000" src="/ressources/img/41ff95dc418a.webp" alt="Le même tableau de bord après unslop : gris graphite, icônes au trait, titre «&nbsp;October 2026&nbsp;», cartes bancaires dessinées et graphique en courbes" decoding="async"><figcaption>Après unslop</figcaption></figure>
+    </div>
+    <p class="credit reveal">Le même tableau de bord, avant et après unslop : mêmes rubriques, même ordre, ce sont les choix de design qui changent. Images : Damir Sokolovsky (@heydamir), licence CC BY 4.0, d'après les exemples de son dépôt.</p>
+
+    <h2 class="reveal" id="methode"><span class="numtag">1</span>Ce que fait unslop, étape par étape</h2>
+    <p class="reveal">unslop est un <strong>skill</strong> : un mode d'emploi que tu ajoutes à Claude Code ou à Codex, les assistants qui écrivent et modifient le code de ton site pour toi. Quand tu lui montres un écran, il ne repeint pas tout au hasard. Il travaille comme un designer qui relit une maquette au stylo rouge : d'abord regarder, ensuite choisir une direction, enfin améliorer couche par couche.</p>
+
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><div><h3>Il regarde l'écran</h3><p>Dans ton code, dans le navigateur, ou à partir d'un simple lien vers ton site en ligne. Une capture d'écran suffit aussi : il refait alors l'écran en code avant de le retravailler.</p></div></div>
+      <div class="etape"><div class="etape-n">2</div><div><h3>Il liste chaque signe</h3><p>C'est l'audit : chaque signe «&nbsp;fait à l'IA&nbsp;», un par ligne, avec l'endroit exact où il se trouve.</p></div></div>
+      <div class="etape"><div class="etape-n">3</div><div><h3>Il propose une direction, et il attend</h3><p>Cinq lignes tirées de ton produit, pas des tendances du moment. Il te montre l'audit et la direction, et ne touche à rien avant ton feu vert.</p></div></div>
+      <div class="etape"><div class="etape-n">4</div><div><h3>Il repasse tout, dans l'ordre d'un designer</h3><p>Neuf passages, chacun sur tout l'écran avant le suivant : espacements, couleurs, icônes, textes, typo, mise en page, détails, visuels et animations.</p></div></div>
+      <div class="etape"><div class="etape-n">5</div><div><h3>Il vérifie, puis il te fait un compte rendu</h3><p>Une liste de contrôle, un nouveau rendu comparé à l'audit, et quelques lignes par passage sur ce qui a changé.</p></div></div>
+    </div>
+
+    <div class="callout win reveal"><b>Ce qu'il garde :</b> tes fonctionnalités, ton contenu et l'ordre de tes sections. <b>Ce qu'il change :</b> chaque taille, chaque couleur, chaque mot et chaque image devient un choix. Et si ton écran est déjà bon, il te le dit et propose deux ou trois retouches au plus.</div>
+    <p class="reveal"><strong>Pourquoi cet ordre ?</strong> Les espacements d'abord, parce que tout se lit autrement une fois le rythme juste. Les textes avant la typo et la mise en page, parce que la longueur d'un titre décide de sa taille et de sa place. Les visuels et les animations en dernier, parce qu'ils doivent s'ajouter à un écran qui marche déjà sans eux.</p>
+
+    <h2 class="reveal" id="signes"><span class="numtag">2</span>Les 50 signes d'un site fait à l'IA, passage par passage</h2>
+    <p class="reveal">Voici la grille d'audit d'unslop, en français, rangée dans l'ordre de ses neuf passages. Passe ton site dessus, ou celui d'un concurrent : chaque signe trouvé est un endroit où le design a gardé un réglage par défaut. En face, ce qu'un designer met à la place.</p>
+    <div class="callout reveal"><b>Le test en 30 secondes :</b> si tu ne regardes que trois familles, prends les couleurs (2), les icônes (3) et les textes (4). Ce sont celles que l'œil remarque avant même de lire.</div>
+
+    <div class="famille reveal">
+      <h3>1. Espacements<small>4 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des écarts pris au hasard, au pixel près : 13 pixels ici, 7 là</td><td>Des valeurs sur une grille régulière, en multiples de 4 pixels</td></tr>
+        <tr><td>Des lignes d'une même liste avec des hauteurs ou des écarts différents</td><td>Une seule hauteur, un seul écart</td></tr>
+        <tr><td>Des groupes plus proches de leurs voisins que de leurs propres éléments</td><td>Moins d'espace à l'intérieur d'un groupe qu'entre deux groupes</td></tr>
+        <tr><td>Des marges intérieures différentes d'une carte à sa voisine</td><td>Une seule marge pour toutes les cartes</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>2. Couleurs<small>8 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Un dégradé violet vers bleu, ou violet vers rose, sur le fond, les cartes, les boutons ou le menu</td><td>Une surface neutre, et la couleur seulement là où elle veut dire quelque chose</td></tr>
+        <tr><td>Du texte en dégradé dans les titres, les chiffres ou le logo</td><td>Une couleur de texte unie</td></tr>
+        <tr><td>Des lueurs colorées autour des cartes, des pastilles ou des emoji</td><td>Aucune lueur : le relief vient de surfaces un peu plus claires et de filets fins</td></tr>
+        <tr><td>Des taches de couleur floues ou des halos derrière le contenu</td><td>Supprimés</td></tr>
+        <tr><td>Des bordures néon ou très contrastées</td><td>Un filet à peine visible</td></tr>
+        <tr><td>Cinq nuances presque identiques de lavande pour le texte</td><td>Trois niveaux de texte, tirés d'une seule gamme de gris</td></tr>
+        <tr><td>Tout est mis en avant, donc plus rien ne ressort</td><td>Une couleur d'accent, utilisée une ou deux fois par écran</td></tr>
+        <tr><td>Des cartes en verre avec un reflet blanc et une ombre colorée</td><td>Une surface simple, bordée d'un filet fin</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>3. Icônes<small>4 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des emoji en guise d'icônes de menu, de décoration ou de statut : 🏠 📥 🚀 💰 ⚠️ 🔥</td><td>Une seule famille d'icônes au trait, ou rien</td></tr>
+        <tr><td>Des emoji dans les pastilles et les compteurs («&nbsp;18 👤&nbsp;»)</td><td>Le nombre seul</td></tr>
+        <tr><td>Des icônes de tailles et de couleurs différentes</td><td>Une taille, une épaisseur de trait, la couleur du texte</td></tr>
+        <tr><td>Une étincelle ✨ dès qu'il s'agit d'IA</td><td>Supprimée, ou une icône simple là où elle explique quelque chose</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>4. Textes<small>6 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Un titre qui salue : «&nbsp;Welcome back, Damir! 👋&nbsp;»</td><td>Le nom de la page ou la période en titre, par exemple «&nbsp;Octobre 2026&nbsp;»</td></tr>
+        <tr><td>Des points d'exclamation, et même des «&nbsp;!!&nbsp;»</td><td>Une phrase posée</td></tr>
+        <tr><td>Des variations sans point de comparaison : «&nbsp;+12%!!&nbsp;», «&nbsp;3 less!!&nbsp;»</td><td>«&nbsp;+12&nbsp;% par rapport au mois dernier&nbsp;»</td></tr>
+        <tr><td>Des textes d'aide bavards : «&nbsp;Search anything...&nbsp;»</td><td>«&nbsp;Rechercher&nbsp;»</td></tr>
+        <tr><td>Des mots gonflés : booster, révolutionner, débloquer, magique, sans effort</td><td>Ce que la chose fait vraiment</td></tr>
+        <tr><td>Des données qui sonnent faux : 123&nbsp;456&nbsp;$, [X]</td><td>Des chiffres plausibles</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>5. Typo<small>5 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des titres très gras, en graisse 800 ou 900</td><td>Une graisse moyenne : la hiérarchie vient de la taille</td></tr>
+        <tr><td>Des étiquettes en majuscules espacées : NAVIGATION, PAID THIS MONTH</td><td>Une majuscule au début seulement : «&nbsp;Payé ce mois-ci&nbsp;»</td></tr>
+        <tr><td>Trop de tailles et de graisses sur un même écran</td><td>Quelques tailles, deux graisses</td></tr>
+        <tr><td>Des chiffres dans des formats mélangés : 48&nbsp;210&nbsp;$ à côté de 124&nbsp;860,40&nbsp;$</td><td>Un seul format, et des chiffres alignés en colonne</td></tr>
+        <tr><td>De l'italique pour insister</td><td>La couleur ou la graisse à la place</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>6. Mise en page<small>7 signes, surtout sur les pages d'accueil</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Une pastille au-dessus du titre : «&nbsp;✨ Découvrez X 2.0&nbsp;»</td><td>Supprimée, ou un lien discret si c'est une vraie nouveauté</td></tr>
+        <tr><td>Un titre qui irait à n'importe quel produit : «&nbsp;Boostez votre productivité grâce à l'IA&nbsp;»</td><td>Ce que fait le produit, et pour qui</td></tr>
+        <tr><td>Des formes qui flottent, des orbes, des grilles et des lignes lumineuses derrière le titre</td><td>Un fond simple, ou un vrai visuel du produit</td></tr>
+        <tr><td>Tout empilé et centré : titre, texte, boutons, puis une image en dessous</td><td>Le texte d'un côté et le visuel de l'autre, ou le texte au-dessus d'une grande vue du produit</td></tr>
+        <tr><td>Trois boutons ou plus, avec des pastilles et des avatars en dessous</td><td>Un bouton principal, au plus un secondaire</td></tr>
+        <tr><td>«&nbsp;Déjà adopté par 10&nbsp;000+ équipes&nbsp;», des rangées d'avatars, cinq étoiles sans source</td><td>Vérifié, puis précis et discret, ou supprimé</td></tr>
+        <tr><td>Des cartes de fonctionnalités : un emoji, un titre gras, une phrase vague</td><td>Moins de fonctionnalités, des phrases concrètes, des icônes au trait ou rien</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>7. Détails<small>7 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des pastilles qui brillent pour les compteurs, les offres ou les raccourcis clavier</td><td>Du texte discret, ou une petite touche de clavier dessinée</td></tr>
+        <tr><td>Des badges «&nbsp;PRO&nbsp;», «&nbsp;New ✨&nbsp;» ou «&nbsp;Beta 🚀&nbsp;» partout</td><td>Supprimés, ou un seul badge discret en texte</td></tr>
+        <tr><td>Tout en forme de pilule, de la recherche aux cartes</td><td>Des coins arrondis proportionnés à la taille de chaque élément</td></tr>
+        <tr><td>Des graphiques arc-en-ciel, des barres qui brillent, des jours en majuscules</td><td>Une ou deux séries, une grille discrète, une seule couleur qui ressort</td></tr>
+        <tr><td>Un mini-graphique ajouté sur chaque carte de chiffres</td><td>Le chiffre, son libellé et son évolution</td></tr>
+        <tr><td>Des cartes identiques côte à côte, chacune avec le même graphique</td><td>Un graphique principal, des chiffres compacts, des largeurs variées</td></tr>
+        <tr><td>Un logo en tuile dégradée avec une étincelle, ou en boule brillante</td><td>Le nom du produit en texte, avec un symbole simple, plat, d'une seule couleur</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>8. Visuels<small>4 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des formes 3D brillantes, des orbes, du chrome liquide ou une nébuleuse violette en visuel principal</td><td>Le produit lui-même, ou une image concrète de ce qu'il fait</td></tr>
+        <tr><td>Des robots, des cerveaux lumineux, des circuits ou des hologrammes pour parler d'IA</td><td>Supprimés, ou ce que l'IA produit vraiment</td></tr>
+        <tr><td>Du texte, de faux boutons ou un faux logo incrustés dans une image</td><td>Du vrai texte dans la page, une image sans texte</td></tr>
+        <tr><td>Un visuel à chaque section</td><td>Un seul visuel là où il aide, souvent en haut de page</td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="famille reveal">
+      <h3>9. Animations<small>5 signes</small></h3>
+      <table class="matrix signes"><tbody>
+        <tr><td>Des éléments qui pulsent ou clignotent alors que rien n'est en direct</td><td>Immobiles</td></tr>
+        <tr><td>Des cartes et des boutons qui grossissent au survol</td><td>Un léger changement de couleur au survol, un petit enfoncement au clic</td></tr>
+        <tr><td>Des rebonds et des effets ressort sur une interface simple</td><td>Une seule courbe de mouvement, douce</td></tr>
+        <tr><td>Tout qui arrive de partout au chargement de la page</td><td>Un seul fondu court pour le contenu principal</td></tr>
+        <tr><td>De la parallaxe et des éléments qui flottent au défilement</td><td>Une mise en page fixe, et du mouvement seulement s'il sert à quelque chose</td></tr>
+      </tbody></table>
+    </div>
+
+    <h2 class="reveal" id="installation"><span class="numtag">3</span>Le lien et l'installation, pas à pas</h2>
+    <p class="reveal"><strong>Le lien :</strong> <a href="https://github.com/heydamir/unslop" target="_blank" rel="noopener">github.com/heydamir/unslop</a>. Le skill est gratuit, créé par Damir Sokolovsky (<a href="https://x.com/heydamir" target="_blank" rel="noopener">@heydamir</a>) et publié le 29 octobre 2026. Au 20 novembre, il dépasse déjà les 18&nbsp;000 étoiles sur GitHub. Il marche dans Claude Code, Codex et Google Antigravity, sur des tableaux de bord, des applis et des pages d'accueil, quel que soit l'outil avec lequel ton écran est construit.</p>
+    <div class="callout reveal"><b>Tu n'as pas encore Claude Code ?</b> Il demande un abonnement Claude payant. Commence par notre guide <a href="/blog/installer-claude-code">Installer Claude Code : Windows, Mac, Linux, pas à pas</a>, ou par ma vidéo <a href="https://www.loom.com/share/96785cd2f3a2480e8f271c98b1fc6150" target="_blank" rel="noopener">Installer Claude Code dans VS Code</a>.</div>
+
+    <h3 class="reveal">Dans Claude Code</h3>
+    <p class="reveal"><strong>Le plus simple : demande-le à Claude Code.</strong> Ouvre une session et colle ce message. Il lance l'installation lui-même, et s'il y a un souci, il le voit et le corrige.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>Installe le plugin unslop de Damir Sokolovsky avec cette commande :
+claude plugin install unslop --marketplace heydamir/unslop
+
+Si l'option --marketplace n'existe pas sur ma version, lance plutôt ces deux commandes :
+claude plugin marketplace add heydamir/unslop
+claude plugin install unslop@heydamir
+
+Confirme quand c'est fait, et dis-moi comment le recharger.</pre>
+    </div>
+    <p class="reveal"><strong>Tu préfères le faire toi-même ?</strong> Une seule ligne à coller dans ton terminal : <span class="cmd">claude plugin install unslop --marketplace heydamir/unslop</span>. Ensuite, ouvre une nouvelle session Claude Code, ou tape <span class="cmd">/reload-plugins</span> dans celle qui est ouverte.</p>
+
+    <h3 class="reveal">Dans Codex</h3>
+    <p class="reveal">Demande à Codex d'installer le skill directement depuis le dépôt, en lui collant ce message :</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Codex</span><button class="copy" type="button">Copier</button></div>
+<pre>$skill-installer install https://github.com/heydamir/unslop/tree/main/skills/unslop</pre>
+    </div>
+
+    <h3 class="reveal">Pour partir d'un lien, ou faire la vidéo</h3>
+    <p class="reveal">Pour analyser un site en ligne à partir de son seul lien, ou pour fabriquer la petite vidéo carrée où l'écran se nettoie tout seul (comme celle du post), le skill a besoin de deux outils en plus : Playwright, un navigateur que l'assistant pilote, et ffmpeg, qui monte la vidéo. Pas besoin de savoir les installer : demande-le.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>Installe Playwright et son navigateur Chromium dans ce dossier, pour que le skill unslop puisse analyser un site en ligne. Vérifie aussi que ffmpeg est installé, et installe-le si besoin.</pre>
+    </div>
+
+    <h2 class="reveal" id="phrases"><span class="numtag">4</span>Les phrases à lui donner</h2>
+    <p class="reveal">Dans Claude Code, tape <span class="cmd">/unslop</span> suivi de ce que tu veux. Dans Codex, c'est <span class="cmd">$unslop</span>. Tu peux aussi le demander avec tes mots : l'assistant reconnaît le besoin et prend le skill tout seul. Trois exemples :</p>
+    <ul class="exemples reveal">
+      <li><span class="cmd">/unslop ce tableau de bord</span></li>
+      <li><span class="cmd">/unslop le haut de page de https://ton-site.fr</span></li>
+      <li><span class="cmd">/unslop ma page d'accueil, et fais la vidéo pour que je puisse la publier</span></li>
+    </ul>
+    <p class="reveal"><strong>Ensuite, c'est toi qui pilotes la direction.</strong> Avant de toucher au code, il te propose cinq lignes. C'est le moment de corriger le tir : changer de direction après coup oblige à tout refaire.</p>
+    <table class="matrix direction reveal"><tbody>
+      <tr><td>Produit</td><td>Ce que fait ton produit, et pour qui, en une phrase simple.</td></tr>
+      <tr><td>Caractère</td><td>Deux ou trois mots concrets, comme «&nbsp;calme, précis, un peu chaleureux&nbsp;». Propre, moderne, épuré, minimaliste et premium sont interdits : ils décrivent tous les modèles.</td></tr>
+      <tr><td>Univers</td><td>Le lieu ou la matière auxquels ton produit appartient : une appli de notes vit près du papier et de l'encre, une appli de voyage près des cartes et de la lumière d'une fenêtre. C'est lui qui donne la teinte des gris, la couleur d'accent et le visuel.</td></tr>
+      <tr><td>Moments</td><td>Les un ou deux endroits qui auront de la couleur et du détail, comme les cartes bancaires dessinées du tableau de bord plus haut.</td></tr>
+      <tr><td>Signature</td><td>Un seul petit détail propre à ton produit, répété là où il a sa place.</td></tr>
+    </tbody></table>
+    <div class="callout reveal"><b>Ton site tourne sur Lovable, Webflow ou WordPress ?</b> Donne-lui juste le lien. Il refait l'écran en code, le retravaille, et te rend une version redessinée à transmettre à la personne qui gère ton site.</div>
+
+    <h2 class="reveal" id="piege"><span class="numtag">5</span>Le piège après le nettoyage</h2>
+    <p class="reveal">Enlever les signes ne suffit pas. Un écran nettoyé sans direction retombe sur un autre modèle : fond gris foncé, police Inter, texte blanc, et l'ancienne couleur de la marque sur un seul bouton. Propre, mais interchangeable. C'est pour ça qu'unslop impose la direction avant les passages : l'écran final doit appartenir à ton produit, et à lui seul.</p>
+    <div class="callout warn reveal"><b>Le test du nom :</b> remplace le nom de ton produit par celui d'un concurrent. Si la page lui irait aussi bien, elle ressemble encore à un modèle. Il faut pousser la direction plus loin, dans les textes, le visuel et le détail signature.</div>
+    <div class="callout win reveal"><b>Ce que tu pilotes :</b> la direction et le feu vert, parce que toi seul connais ton produit. <b>Ce que le skill fait :</b> l'audit et les neuf passages. <b>Ce qui reste humain :</b> vérifier que les chiffres et les promesses affichés sont vrais. unslop te pose d'ailleurs la question pour chaque affirmation qu'il ne peut pas vérifier.</div>
+    <p class="credit reveal">unslop est créé par Damir Sokolovsky (<a href="https://x.com/heydamir" target="_blank" rel="noopener">@heydamir</a>), sous licence <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">CC BY 4.0</a> : tu peux l'utiliser, le modifier et le partager, y compris pour un usage commercial, en le citant. La grille de la partie 2 est traduite et adaptée de la sienne.</p>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie qu'on construise ton outil pour toi ?</b> C'est notre métier chez NoesisAI : on conçoit des logiciels métier sur mesure, branchés sur tes outils et mis en ligne pour ton équipe. <a href="/logiciel-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Voir notre offre de logiciel métier</a>.</div>
+
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/speckit" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">SpecKit : le guide complet pour arrêter de prompter à l'aveugle</a></li>
+    <li><a href="/ressources/mods-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Les mods : Claude construit sous tes yeux les fonctions qui te manquent</a></li>
+    <li><a href="/ressources/codex-orchestration" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Orchestrer plusieurs IA : le principe conseiller / exécutant</a></li>
+    <li><a href="/ressources/kimi-agent-swarm" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Kimi Agent Swarm : 300 agents IA sur une seule tâche</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
