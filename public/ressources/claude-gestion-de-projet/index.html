@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/claude-gestion-de-projet">
+<title>Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture - NoesisAI</title>
+<meta name="description" content="31 skills Claude en français pour mener un projet du cadrage à la clôture, à télécharger gratuitement, et le MCP Task Master installé pas à pas. Testé le 23 novembre 2026.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture">
+<meta property="og:description" content="31 skills Claude en français pour mener un projet du cadrage à la clôture, à télécharger gratuitement, et le MCP Task Master installé pas à pas. Testé le 23 novembre 2026.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/claude-gestion-de-projet">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/claude-gestion-de-projet.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture">
+<meta name="twitter:description" content="31 skills Claude en français pour mener un projet du cadrage à la clôture, à télécharger gratuitement, et le MCP Task Master installé pas à pas. Testé le 23 novembre 2026.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/claude-gestion-de-projet.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/claude-gestion-de-projet#article", "headline": "Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture", "description": "31 skills Claude en français pour mener un projet du cadrage à la clôture, à télécharger gratuitement, et le MCP Task Master installé pas à pas. Testé le 23 novembre 2026.", "image": "https://noesisai.fr/ressources/og/claude-gestion-de-projet.jpg", "url": "https://noesisai.fr/ressources/claude-gestion-de-projet", "mainEntityOfPage": "https://noesisai.fr/ressources/claude-gestion-de-projet", "inLanguage": "fr-FR", "datePublished": "2026-11-23", "dateModified": "2026-11-23", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture", "item": "https://noesisai.fr/ressources/claude-gestion-de-projet"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Claude pour la gestion de projet&nbsp;: 31 skills et un MCP, du cadrage à la clôture</h1>
+    <p class="sub">La bibliothèque complète à télécharger, la phrase à dire pour chaque skill, et Task Master avec les réglages qui marchent vraiment. À jour au 23 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .wrap li a,main.resource .callout a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .carte{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:26px 0 8px}
+      .k{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 12px 14px}
+      .k-h{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink);margin-bottom:9px;line-height:1.2}
+      .k-h span{display:block;font-size:11.5px;color:var(--accent-a);margin-bottom:2px}
+      .k>div+div{font-size:13px;line-height:1.35;color:var(--ink-2);padding:4px 0;border-top:1px solid var(--line-soft)}
+      .k>div.mcp{color:var(--accent-a);font-weight:600}
+      .resource p.legende{font-size:13.5px;color:var(--ink-3);margin:8px 0 0;line-height:1.55}
+      .avant{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:18px 0 0}
+      .avant .lab{font-size:12.5px;font-weight:600;color:var(--ink-3);margin-bottom:6px}
+      .resource .avant p{margin:0;font-size:15.5px;line-height:1.6;font-style:normal}
+      .apres{border-left:3px solid var(--green);margin-top:10px}
+      .resource .apres p+p,.resource .apres table+p{margin-top:10px}
+      .resource .avant table.matrix{margin:10px 0 0;font-size:14px}
+      .avant table.matrix td,.avant table.matrix th{padding:8px 10px 8px 0;vertical-align:top}
+      .resource h3.etape-t{display:flex;align-items:baseline;gap:11px;font-size:22px;margin:44px 0 4px}
+      .etape-t span{font-size:14px;color:var(--accent-a)}
+      .etape-t small{font-family:'Inter',sans-serif;font-size:13px;font-weight:500;color:var(--ink-3);letter-spacing:0;margin-left:auto;white-space:nowrap}
+      .resource p.etape-p{margin:0 0 14px;font-size:15.5px}
+      .fs{display:grid;gap:10px}
+      .f{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px;scroll-margin-top:20px}
+      .f-t{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+      .f-n{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--ink)}
+      .f h4{font-size:16.5px;color:var(--ink)}
+      .resource .f p{margin:3px 0;font-size:14.5px;line-height:1.5}
+      .f p b{color:var(--ink-3);font-weight:500}
+      .f-d{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;background:var(--bg-soft);border:1px solid var(--line-soft);border-radius:10px;padding:9px 10px 9px 12px}
+      .f-d span{font-size:14px;line-height:1.45;color:var(--ink)}
+      .copie,.md,.dl a{flex:0 0 auto;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;text-decoration:none;white-space:nowrap;line-height:1.5}
+      .copie:hover,.md:hover,.dl a:hover{color:var(--ink);border-color:var(--ink-3)}
+      .copie.done,.md.done{color:var(--green);border-color:rgba(52,211,153,.45)}
+      .gros{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 6px}
+      .gros a{flex:1 1 260px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;display:block}
+      .gros a.p{border-color:transparent;background:linear-gradient(var(--card),var(--card)) padding-box,var(--grad) border-box;border:1.5px solid transparent}
+      .gros a:hover{border-color:var(--ink-3)}
+      .gros b{display:block;font-family:'Space Grotesk',sans-serif;font-size:17px;color:var(--ink);margin-bottom:3px}
+      .gros span{font-size:14px;color:var(--ink-2);line-height:1.5;display:block}
+      details.liste{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:16px 0}
+      details.liste summary{cursor:pointer;padding:15px 18px;font-weight:600;color:var(--ink);font-size:15.5px}
+      .dlg{padding:0 18px 12px}
+      .dlg-h{font-size:13px;font-weight:600;color:var(--ink-3);padding:8px 0 4px}
+      .dl{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--line-soft)}
+      .dl span{flex:1;font-size:15px;color:var(--ink)}
+      .pas{display:grid;gap:10px;margin:18px 0}
+      .pas>div{display:grid;grid-template-columns:34px 1fr;gap:13px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 15px}
+      .pas .n{width:34px;height:34px;border-radius:10px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink)}
+      .resource .pas p{margin:4px 0 0;font-size:15px;line-height:1.6}
+      .cmd{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.9em;background:var(--card-2);border:1px solid var(--line-soft);border-radius:6px;padding:2px 6px;color:var(--ink);word-break:break-word}
+      table.bk td:first-child,table.bk th:first-child{width:38px}
+      table.bk td{vertical-align:top}
+      table.quand td:first-child{width:42%}
+      table.quand td{vertical-align:top}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-3);font-weight:600}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
+      @media(max-width:720px){.carte{grid-template-columns:1fr 1fr}}
+      @media(max-width:600px){
+        .f-d{align-items:flex-start}
+        .dl{flex-wrap:wrap}.dl span{flex:1 0 100%}
+        table.quand,table.quand tbody,table.quand tr{display:block}
+        table.quand tr{padding:11px 0;border-bottom:1px solid var(--line-soft)}
+        .resource table.quand td{display:block;width:auto;border:0;padding:0}
+        .resource table.quand td+td{margin-top:3px}
+        .resource table.quand thead{display:none}
+      }
+    </style>
+
+    <p class="lead reveal">Un projet dérape rarement d'un coup. Une date jamais écrite, une validation qui traîne, un ajout accepté sans compter, et un matin il manque deux semaines.</p>
+    <p class="reveal">Cette ressource te donne <strong>31 skills</strong> pour Claude, écrites en français, qui couvrent un projet du premier récit au bilan final, et <strong>Task Master</strong>, le MCP qui découpe un brief en tâches. Une skill, c'est une méthode écrite une fois, que Claude applique à chaque fois. Un MCP, c'est une prise qui branche Claude sur un autre outil.</p>
+
+    <div class="carte reveal" aria-label="Les 31 skills en 7 étapes">
+      <div class="k"><div class="k-h"><span>01</span>Cadrer</div><div>Fiche de cadrage</div><div>Périmètre</div><div>Objectifs</div><div>Parties prenantes</div><div>Budget prévisionnel</div></div>
+      <div class="k"><div class="k-h"><span>02</span>Planifier</div><div>Découpage en tâches</div><div>Jalons</div><div>Rétroplanning</div><div>Dépendances</div><div>Plan de charge</div><div class="mcp">MCP Task Master</div></div>
+      <div class="k"><div class="k-h"><span>03</span>Animer les réunions</div><div>Ordre du jour</div><div>Réunion de lancement</div><div>Point d&#x27;équipe</div><div>Comité de pilotage</div><div>Décision</div></div>
+      <div class="k"><div class="k-h"><span>04</span>Suivre</div><div>Tableau de bord</div><div>Point d&#x27;avancement</div><div>Suivi du budget</div><div>Liste des actions</div><div>Suivi des écarts</div></div>
+      <div class="k"><div class="k-h"><span>05</span>Anticiper les risques</div><div>Registre des risques</div><div>Pré-mortem</div><div>Demande de changement</div><div>Escalade d&#x27;un blocage</div></div>
+      <div class="k"><div class="k-h"><span>06</span>Rendre compte</div><div>Compte rendu de réunion</div><div>Journal des décisions</div><div>Compte rendu client</div><div>Note pour la direction</div></div>
+      <div class="k"><div class="k-h"><span>07</span>Clôturer</div><div>Recette et validation</div><div>Bilan de projet</div><div>Retour d&#x27;expérience</div></div>
+    </div>
+    <p class="legende reveal">Les 31 phrases de cette page ont été testées le 23 novembre 2026 dans Claude Code, avec Sonnet 5.5&nbsp;: les 31 déclenchent la bonne skill.</p>
+
+    <h2 class="reveal" id="exemple"><span class="numtag">1</span>Ce que ça change, sur un vrai essai</h2>
+    <p class="reveal">Voici un récit comme on en entend tous les jours (le projet est inventé), et ce que la skill «&nbsp;Fiche de cadrage&nbsp;» en a fait.</p>
+    <div class="avant reveal"><div class="lab">Ce qu'on lui donne, en vrac</div><p>«&nbsp;Dans notre bureau d'études, les clients appellent tout le temps pour savoir où en est leur dossier, ça rend folle l'accueil. Du coup on veut un espace client en ligne. Marc le gérant est pour, il a dit ok pour 8 000 euros. Claire s'en occupe. Karim, le prestataire, nous a fait un devis à 6 200. On aimerait que ce soit prêt au printemps. Faudrait que ce soit hébergé en France je crois. Ah et les anciens dossiers faudra voir.&nbsp;»</p></div>
+    <div class="avant apres reveal"><div class="lab">Ce qu'il rend (extrait)</div>
+      <p><b>Verdict de démarrage&nbsp;: pas prêt.</b></p>
+      <table class="matrix"><thead><tr><th>Ce qui n'est pas encore décidé</th><th>Pourquoi ça compte</th></tr></thead><tbody>
+        <tr><td>Date butoir exacte</td><td>«&nbsp;Au printemps&nbsp;» n'est pas une date, donc pas de planning possible</td></tr>
+        <tr><td>Appels actuels et cibles</td><td>Sans mesure, on ne saura pas si le projet a réussi</td></tr>
+        <tr><td>Budget HT ou TTC, et ce que couvre le devis</td><td>Peut effacer ou creuser l'écart de 1 800 €</td></tr>
+        <tr><td>Anciens dossiers («&nbsp;faudra voir&nbsp;»)</td><td>Change le coût et le délai</td></tr>
+        <tr><td>Qui met à jour les étapes, et comment</td><td>Sinon l'espace affichera des informations fausses, et les appels continueront</td></tr>
+      </tbody></table>
+      <p>La fiche complète fait deux pages. Il y a ajouté une chose à faire dès cette semaine&nbsp;: compter les appels.</p>
+    </div>
+    <div class="callout win reveal"><b>La règle commune aux 31&nbsp;:</b> Claude n'invente rien. Une date, un nom ou un montant qui manque s'affiche <span class="cmd">À DÉCIDER</span> ou <span class="cmd">À CONFIRMER</span>. Toutes les skills partagent aussi les mêmes numéros (tâches, risques, décisions) et les mêmes seuils vert, orange, rouge&nbsp;: ce que l'une produit, l'autre le reprend.</div>
+
+    <h2 class="reveal" id="skills"><span class="numtag">2</span>Les 31 skills, étape par étape</h2>
+    <p class="reveal">Pour chacune&nbsp;: ce que tu donnes, ce que tu récupères, et la phrase à dire. Remplace ce qui est entre crochets par ta matière, même brouillonne.</p>
+
+    <h3 class="etape-t reveal" id="etape-1"><span>01</span>Cadrer<small>5 skills</small></h3>
+    <p class="reveal etape-p">Avant de promettre quoi que ce soit. Tu racontes, Claude range, et il te dit ce que personne n'a encore décidé.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-fiche-de-cadrage">
+        <div class="f-t"><span class="f-n">1</span><h4>Fiche de cadrage</h4></div>
+        <p><b>Tu lui donnes</b> le projet raconté en vrac, même dicté.</p>
+        <p><b>Il te rend</b> la fiche en deux pages, ce qui n&#x27;est pas encore décidé, et un verdict&nbsp;: prêt à démarrer ou non.</p>
+        <div class="f-d"><span>Voici mon projet en vrac&nbsp;: [ton récit]. Fais-moi la fiche de cadrage et dis-moi ce qui n'est pas encore décidé.</span><button class="copie" type="button" data-t="Voici mon projet en vrac : [ton récit]. Fais-moi la fiche de cadrage et dis-moi ce qui n&#x27;est pas encore décidé.">Copier</button></div>
+      </div>
+      <div class="f" id="s-perimetre-projet">
+        <div class="f-t"><span class="f-n">2</span><h4>Périmètre</h4></div>
+        <p><b>Tu lui donnes</b> le devis, les mails, tes notes.</p>
+        <p><b>Il te rend</b> ce qui est dedans, dehors, à trancher, avec des quantités.</p>
+        <div class="f-d"><span>Écris le périmètre de ce projet, avec tout ce que le client pourrait croire inclus&nbsp;: [tes notes]</span><button class="copie" type="button" data-t="Écris le périmètre de ce projet, avec tout ce que le client pourrait croire inclus : [tes notes]">Copier</button></div>
+      </div>
+      <div class="f" id="s-objectifs-projet">
+        <div class="f-t"><span class="f-n">3</span><h4>Objectifs</h4></div>
+        <p><b>Tu lui donnes</b> une intention, même floue.</p>
+        <p><b>Il te rend</b> un objectif principal mesurable, avec point de départ, cible et date.</p>
+        <div class="f-d"><span>On veut être plus réactifs avec nos clients. Transforme ça en objectifs mesurables pour le projet.</span><button class="copie" type="button" data-t="On veut être plus réactifs avec nos clients. Transforme ça en objectifs mesurables pour le projet.">Copier</button></div>
+      </div>
+      <div class="f" id="s-parties-prenantes">
+        <div class="f-t"><span class="f-n">4</span><h4>Parties prenantes</h4></div>
+        <p><b>Tu lui donnes</b> les personnes concernées, de près ou de loin.</p>
+        <p><b>Il te rend</b> qui décide, qui consulter, qui informer, et les oubliés.</p>
+        <div class="f-d"><span>Dis-moi qui décide, qui consulter et qui informer sur ce projet&nbsp;: [les personnes]</span><button class="copie" type="button" data-t="Dis-moi qui décide, qui consulter et qui informer sur ce projet : [les personnes]">Copier</button></div>
+      </div>
+      <div class="f" id="s-budget-previsionnel">
+        <div class="f-t"><span class="f-n">5</span><h4>Budget prévisionnel</h4></div>
+        <p><b>Tu lui donnes</b> les devis, les jours, les achats prévus.</p>
+        <p><b>Il te rend</b> le budget par poste, en fourchette, avec une réserve justifiée.</p>
+        <div class="f-d"><span>Monte le budget prévisionnel du projet à partir de ces devis&nbsp;: [tes chiffres]</span><button class="copie" type="button" data-t="Monte le budget prévisionnel du projet à partir de ces devis : [tes chiffres]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-2"><span>02</span>Planifier<small>5 skills</small></h3>
+    <p class="reveal etape-p">Du contenu aux dates. Trois de ces skills calculent avec un vrai calendrier&nbsp;: week-ends, jours fériés français et congés déduits.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-decoupage-en-taches">
+        <div class="f-t"><span class="f-n">6</span><h4>Découpage en tâches</h4></div>
+        <p><b>Tu lui donnes</b> le périmètre ou la fiche de cadrage.</p>
+        <p><b>Il te rend</b> les tâches par lot, avec responsable, durée et critère de fin.</p>
+        <div class="f-d"><span>Découpe ce projet en tâches, avec un responsable et un critère de fin pour chacune&nbsp;: [le projet]</span><button class="copie" type="button" data-t="Découpe ce projet en tâches, avec un responsable et un critère de fin pour chacune : [le projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-jalons-projet">
+        <div class="f-t"><span class="f-n">7</span><h4>Jalons</h4></div>
+        <p><b>Tu lui donnes</b> le planning ou les grandes étapes.</p>
+        <p><b>Il te rend</b> quatre à huit jalons, la preuve de passage et qui la prononce.</p>
+        <div class="f-d"><span>Pose les jalons du projet, avec la preuve qui permet de dire que c'est passé&nbsp;: [les étapes]</span><button class="copie" type="button" data-t="Pose les jalons du projet, avec la preuve qui permet de dire que c&#x27;est passé : [les étapes]">Copier</button></div>
+      </div>
+      <div class="f" id="s-retroplanning">
+        <div class="f-t"><span class="f-n">8</span><h4>Rétroplanning</h4></div>
+        <p><b>Tu lui donnes</b> une date butoir et les durées.</p>
+        <p><b>Il te rend</b> le calendrier à rebours, fériés déduits, et si la date tient.</p>
+        <div class="f-d"><span>Fais-moi le rétroplanning pour une mise en ligne le [date]. Est-ce que ça tient&nbsp;? [tâches et durées]</span><button class="copie" type="button" data-t="Fais-moi le rétroplanning pour une mise en ligne le [date]. Est-ce que ça tient ? [tâches et durées]">Copier</button></div>
+      </div>
+      <div class="f" id="s-dependances-projet">
+        <div class="f-t"><span class="f-n">9</span><h4>Dépendances</h4></div>
+        <p><b>Tu lui donnes</b> les tâches et ce que chacune attend.</p>
+        <p><b>Il te rend</b> l&#x27;ordre, le chemin critique, l&#x27;effet d&#x27;un retard.</p>
+        <div class="f-d"><span>Qu'est-ce qui bloque quoi dans ce planning, et que se passe-t-il si [tâche] prend 4 jours de retard&nbsp;? [tâches]</span><button class="copie" type="button" data-t="Qu&#x27;est-ce qui bloque quoi dans ce planning, et que se passe-t-il si [tâche] prend 4 jours de retard ? [tâches]">Copier</button></div>
+      </div>
+      <div class="f" id="s-plan-de-charge">
+        <div class="f-t"><span class="f-n">10</span><h4>Plan de charge</h4></div>
+        <p><b>Tu lui donnes</b> qui fait quoi, et les disponibilités.</p>
+        <p><b>Il te rend</b> semaine par semaine, qui est en surcharge et comment l&#x27;alléger.</p>
+        <div class="f-d"><span>Est-ce que l'équipe peut tenir&nbsp;? Compare le travail aux disponibilités, semaine par semaine&nbsp;: [personnes et tâches]</span><button class="copie" type="button" data-t="Est-ce que l&#x27;équipe peut tenir ? Compare le travail aux disponibilités, semaine par semaine : [personnes et tâches]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-3"><span>03</span>Animer les réunions<small>5 skills</small></h3>
+    <p class="reveal etape-p">Avant&nbsp;: un ordre du jour où chaque sujet est une question. Après&nbsp;: des décisions et des noms.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-ordre-du-jour">
+        <div class="f-t"><span class="f-n">11</span><h4>Ordre du jour</h4></div>
+        <p><b>Tu lui donnes</b> le sujet et les participants.</p>
+        <p><b>Il te rend</b> un ordre du jour minuté, ou la preuve qu&#x27;un message suffit.</p>
+        <div class="f-d"><span>Prépare l'ordre du jour de la réunion de jeudi, une heure, sur le retard des textes du site.</span><button class="copie" type="button" data-t="Prépare l&#x27;ordre du jour de la réunion de jeudi, une heure, sur le retard des textes du site.">Copier</button></div>
+      </div>
+      <div class="f" id="s-reunion-de-lancement">
+        <div class="f-t"><span class="f-n">12</span><h4>Réunion de lancement</h4></div>
+        <p><b>Tu lui donnes</b> la fiche de cadrage.</p>
+        <p><b>Il te rend</b> le déroulé, la trame, les sept points à verrouiller.</p>
+        <div class="f-d"><span>Prépare ma réunion de lancement avec le client, mardi prochain&nbsp;: [le projet]</span><button class="copie" type="button" data-t="Prépare ma réunion de lancement avec le client, mardi prochain : [le projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-point-equipe">
+        <div class="f-t"><span class="f-n">13</span><h4>Point d&#x27;équipe</h4></div>
+        <p><b>Tu lui donnes</b> les tâches et les nouvelles de chacun.</p>
+        <p><b>Il te rend</b> une page d&#x27;exceptions, les blocages, les engagements.</p>
+        <div class="f-d"><span>Prépare le point d'équipe de lundi à partir de ces nouvelles&nbsp;: [les nouvelles]</span><button class="copie" type="button" data-t="Prépare le point d&#x27;équipe de lundi à partir de ces nouvelles : [les nouvelles]">Copier</button></div>
+      </div>
+      <div class="f" id="s-comite-de-pilotage">
+        <div class="f-t"><span class="f-n">14</span><h4>Comité de pilotage</h4></div>
+        <p><b>Tu lui donnes</b> l&#x27;état du projet et les décisions passées.</p>
+        <p><b>Il te rend</b> la synthèse, les arbitrages chiffrés, les questions difficiles.</p>
+        <div class="f-d"><span>Prépare mon comité de pilotage de vendredi&nbsp;: une page, les arbitrages et les questions pièges. [l'état du projet]</span><button class="copie" type="button" data-t="Prépare mon comité de pilotage de vendredi : une page, les arbitrages et les questions pièges. [l&#x27;état du projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-reunion-de-decision">
+        <div class="f-t"><span class="f-n">15</span><h4>Décision</h4></div>
+        <p><b>Tu lui donnes</b> les options sur la table.</p>
+        <p><b>Il te rend</b> la comparaison, la recommandation, ce qui la ferait changer.</p>
+        <div class="f-d"><span>Aide-nous à trancher entre ces deux prestataires, on décide jeudi&nbsp;: [les offres]</span><button class="copie" type="button" data-t="Aide-nous à trancher entre ces deux prestataires, on décide jeudi : [les offres]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-4"><span>04</span>Suivre<small>5 skills</small></h3>
+    <p class="reveal etape-p">Savoir où en est le projet sans attendre qu'on te le dise. La dernière skill de la liste attrape la semaine qui glisse.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-tableau-de-bord">
+        <div class="f-t"><span class="f-n">16</span><h4>Tableau de bord</h4></div>
+        <p><b>Tu lui donnes</b> jalons, budget, actions, risques.</p>
+        <p><b>Il te rend</b> une page, des statuts justifiés, trois choses à regarder.</p>
+        <div class="f-d"><span>Fais-moi le tableau de bord du projet sur une page&nbsp;: [les données]</span><button class="copie" type="button" data-t="Fais-moi le tableau de bord du projet sur une page : [les données]">Copier</button></div>
+      </div>
+      <div class="f" id="s-point-avancement">
+        <div class="f-t"><span class="f-n">17</span><h4>Point d&#x27;avancement</h4></div>
+        <p><b>Tu lui donnes</b> tes notes de la semaine.</p>
+        <p><b>Il te rend</b> ce qui est fini, ce qui reste, l&#x27;aide demandée.</p>
+        <div class="f-d"><span>Rédige le point d'avancement de la semaine à partir de ces notes&nbsp;: [tes notes]</span><button class="copie" type="button" data-t="Rédige le point d&#x27;avancement de la semaine à partir de ces notes : [tes notes]">Copier</button></div>
+      </div>
+      <div class="f" id="s-suivi-du-budget">
+        <div class="f-t"><span class="f-n">18</span><h4>Suivi du budget</h4></div>
+        <p><b>Tu lui donnes</b> budget, factures, commandes, reste à faire.</p>
+        <p><b>Il te rend</b> ce que le projet coûtera vraiment à la fin, poste par poste.</p>
+        <div class="f-d"><span>Est-ce que le budget du projet tient&nbsp;? Voici le dépensé, l'engagé et le reste à faire&nbsp;: [tes chiffres]</span><button class="copie" type="button" data-t="Est-ce que le budget du projet tient ? Voici le dépensé, l&#x27;engagé et le reste à faire : [tes chiffres]">Copier</button></div>
+      </div>
+      <div class="f" id="s-liste-des-actions">
+        <div class="f-t"><span class="f-n">19</span><h4>Liste des actions</h4></div>
+        <p><b>Tu lui donnes</b> notes, mails, comptes rendus.</p>
+        <p><b>Il te rend</b> une seule liste, les retards en tête, les relances prêtes.</p>
+        <div class="f-d"><span>Sors toutes les actions de ces mails, avec qui et pour quand, et prépare les relances&nbsp;: [les mails]</span><button class="copie" type="button" data-t="Sors toutes les actions de ces mails, avec qui et pour quand, et prépare les relances : [les mails]">Copier</button></div>
+      </div>
+      <div class="f" id="s-suivi-des-ecarts">
+        <div class="f-t"><span class="f-n">20</span><h4>Suivi des écarts</h4></div>
+        <p><b>Tu lui donnes</b> les dates prévues et les dates annoncées.</p>
+        <p><b>Il te rend</b> les tâches qui glissent en silence, et l&#x27;effet sur la fin.</p>
+        <div class="f-d"><span>Compare le planning prévu au réel et dis-moi ce qui glisse&nbsp;: [les dates]</span><button class="copie" type="button" data-t="Compare le planning prévu au réel et dis-moi ce qui glisse : [les dates]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-5"><span>05</span>Anticiper les risques<small>4 skills</small></h3>
+    <p class="reveal etape-p">Ce qui peut arriver, ce qui arrive déjà, et quoi répondre quand on te demande «&nbsp;juste un petit ajout&nbsp;».</p>
+    <div class="fs reveal">
+      <div class="f" id="s-registre-des-risques">
+        <div class="f-t"><span class="f-n">21</span><h4>Registre des risques</h4></div>
+        <p><b>Tu lui donnes</b> le projet et son contexte.</p>
+        <p><b>Il te rend</b> huit à douze risques notés, avec parade, plan B et signal.</p>
+        <div class="f-d"><span>Construis le registre des risques de ce projet&nbsp;: [le projet]</span><button class="copie" type="button" data-t="Construis le registre des risques de ce projet : [le projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-pre-mortem">
+        <div class="f-t"><span class="f-n">22</span><h4>Pré-mortem</h4></div>
+        <p><b>Tu lui donnes</b> tout ce que tu as sur le projet.</p>
+        <p><b>Il te rend</b> le récit de l&#x27;échec, les signes déjà visibles, trois corrections.</p>
+        <div class="f-d"><span>Imagine que ce projet a échoué dans six mois et explique-moi pourquoi&nbsp;: [le projet]</span><button class="copie" type="button" data-t="Imagine que ce projet a échoué dans six mois et explique-moi pourquoi : [le projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-demande-de-changement">
+        <div class="f-t"><span class="f-n">23</span><h4>Demande de changement</h4></div>
+        <p><b>Tu lui donnes</b> la demande et le planning actuel.</p>
+        <p><b>Il te rend</b> l&#x27;effet en jours et en euros, les options, la réponse prête.</p>
+        <div class="f-d"><span>Le client veut ajouter un export PDF. Dis-moi ce que ça change sur le délai et le budget, et prépare la réponse. [le projet]</span><button class="copie" type="button" data-t="Le client veut ajouter un export PDF. Dis-moi ce que ça change sur le délai et le budget, et prépare la réponse. [le projet]">Copier</button></div>
+      </div>
+      <div class="f" id="s-escalade-blocage">
+        <div class="f-t"><span class="f-n">24</span><h4>Escalade d&#x27;un blocage</h4></div>
+        <p><b>Tu lui donnes</b> le blocage et ce que tu as tenté.</p>
+        <p><b>Il te rend</b> un message de dix lignes qui permet de débloquer.</p>
+        <div class="f-d"><span>Ça bloque depuis deux semaines malgré deux relances. Rédige l'escalade à ma direction&nbsp;: [les faits]</span><button class="copie" type="button" data-t="Ça bloque depuis deux semaines malgré deux relances. Rédige l&#x27;escalade à ma direction : [les faits]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-6"><span>06</span>Rendre compte<small>4 skills</small></h3>
+    <p class="reveal etape-p">Un même état de projet, quatre lecteurs&nbsp;: l'équipe, la mémoire du projet, le client, la direction.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-compte-rendu-reunion">
+        <div class="f-t"><span class="f-n">25</span><h4>Compte rendu de réunion</h4></div>
+        <p><b>Tu lui donnes</b> tes notes ou la transcription.</p>
+        <p><b>Il te rend</b> décisions, actions, points ouverts, en une page.</p>
+        <div class="f-d"><span>Fais le compte rendu de cette réunion&nbsp;: [notes ou transcription]</span><button class="copie" type="button" data-t="Fais le compte rendu de cette réunion : [notes ou transcription]">Copier</button></div>
+      </div>
+      <div class="f" id="s-journal-des-decisions">
+        <div class="f-t"><span class="f-n">26</span><h4>Journal des décisions</h4></div>
+        <p><b>Tu lui donnes</b> une décision, ou une question.</p>
+        <p><b>Il te rend</b> le choix, la raison, les options écartées, la source.</p>
+        <div class="f-d"><span>Note cette décision dans le journal&nbsp;: on ouvre avec 6 pages sur 8, décidé hier par la direction.</span><button class="copie" type="button" data-t="Note cette décision dans le journal : on ouvre avec 6 pages sur 8, décidé hier par la direction.">Copier</button></div>
+      </div>
+      <div class="f" id="s-compte-rendu-client">
+        <div class="f-t"><span class="f-n">27</span><h4>Compte rendu client</h4></div>
+        <p><b>Tu lui donnes</b> l&#x27;état réel du projet.</p>
+        <p><b>Il te rend</b> le message au client, et ce qui ne doit pas partir.</p>
+        <div class="f-d"><span>Écris le point d'avancement pour le client, il y a 5 jours de retard à annoncer&nbsp;: [l'état]</span><button class="copie" type="button" data-t="Écris le point d&#x27;avancement pour le client, il y a 5 jours de retard à annoncer : [l&#x27;état]">Copier</button></div>
+      </div>
+      <div class="f" id="s-note-direction">
+        <div class="f-t"><span class="f-n">28</span><h4>Note pour la direction</h4></div>
+        <p><b>Tu lui donnes</b> l&#x27;état du projet, ta demande.</p>
+        <p><b>Il te rend</b> une page&nbsp;: le message, trois chiffres, un risque, une décision.</p>
+        <div class="f-d"><span>Rédige une note d'une page pour la direction sur ce projet&nbsp;: [l'état et ta demande]</span><button class="copie" type="button" data-t="Rédige une note d&#x27;une page pour la direction sur ce projet : [l&#x27;état et ta demande]">Copier</button></div>
+      </div>
+    </div>
+
+    <h3 class="etape-t reveal" id="etape-7"><span>07</span>Clôturer<small>3 skills</small></h3>
+    <p class="reveal etape-p">Finir proprement, et ne pas refaire les mêmes erreurs au projet suivant.</p>
+    <div class="fs reveal">
+      <div class="f" id="s-recette-et-validation">
+        <div class="f-t"><span class="f-n">29</span><h4>Recette et validation</h4></div>
+        <p><b>Tu lui donnes</b> ce qui a été promis.</p>
+        <p><b>Il te rend</b> le cahier de tests, les règles d&#x27;acceptation, le procès-verbal.</p>
+        <div class="f-d"><span>Prépare la recette de l'espace client à partir de ce qu'on a promis&nbsp;: [le périmètre]</span><button class="copie" type="button" data-t="Prépare la recette de l&#x27;espace client à partir de ce qu&#x27;on a promis : [le périmètre]">Copier</button></div>
+      </div>
+      <div class="f" id="s-bilan-de-projet">
+        <div class="f-t"><span class="f-n">30</span><h4>Bilan de projet</h4></div>
+        <p><b>Tu lui donnes</b> le prévu et le réalisé.</p>
+        <p><b>Il te rend</b> objectif par objectif, ce qui est tenu, et ce qui reste ouvert.</p>
+        <div class="f-d"><span>Le projet est terminé. Dresse le bilan, prévu contre réalisé&nbsp;: [les données]</span><button class="copie" type="button" data-t="Le projet est terminé. Dresse le bilan, prévu contre réalisé : [les données]">Copier</button></div>
+      </div>
+      <div class="f" id="s-retour-experience">
+        <div class="f-t"><span class="f-n">31</span><h4>Retour d&#x27;expérience</h4></div>
+        <p><b>Tu lui donnes</b> ce que l&#x27;équipe a vécu.</p>
+        <p><b>Il te rend</b> cinq règles au plus, et où les inscrire.</p>
+        <div class="f-d"><span>Organise le retour d'expérience de ce projet, on veut en tirer des règles&nbsp;: [ce qui s'est passé]</span><button class="copie" type="button" data-t="Organise le retour d&#x27;expérience de ce projet, on veut en tirer des règles : [ce qui s&#x27;est passé]">Copier</button></div>
+      </div>
+    </div>
+
+    <h2 class="reveal" id="prefere"><span class="numtag">3</span>Mon préféré&nbsp;: le pré-mortem</h2>
+    <p class="reveal">Claude se place six mois plus tard. Le projet a échoué. Il raconte pourquoi, en s'appuyant sur ce qui se voit déjà. Même projet fictif que plus haut, deux semaines après&nbsp;:</p>
+    <div class="avant apres reveal"><div class="lab">Extrait</div>
+      <p>«&nbsp;Fin mai, l'accueil ne constate aucune baisse, mais personne n'avait de chiffre de départ pour comparer. […] Marc juge que ça n'a pas servi à grand-chose et ne finance pas la suite.&nbsp;»</p>
+      <table class="matrix"><thead><tr><th>Cause</th><th>Signe visible aujourd'hui</th></tr></thead><tbody>
+        <tr><td>Textes sans validation</td><td>Textes envoyés le 02/12, rappel le 09/12, aucune réponse</td></tr>
+        <tr><td>Maquettes qui glissent</td><td>Reportées du 03/12 au 08/12, puis au 15/12</td></tr>
+        <tr><td>Objectif non mesuré</td><td>«&nbsp;Personne n'a compté les appels de l'accueil&nbsp;»</td></tr>
+      </tbody></table>
+      <p><b>La cause que personne ne dit&nbsp;:</b> «&nbsp;Le projet est approuvé mais pas porté par la direction. Marc a dit oui au budget, ce qui était l'étape facile, et pas à ce que le projet demande ensuite&nbsp;: lire, décider, arbitrer.&nbsp;»</p>
+    </div>
+    <p class="reveal">Pas toujours agréable à lire. C'est le but&nbsp;: il termine par trois corrections à faire dans la semaine, avec un nom en face de chacune.</p>
+    <p class="reveal"><strong>Son complément&nbsp;: le suivi des écarts.</strong> Il ne regarde pas les gros retards, que tout le monde voit. Il cherche la tâche reportée trois fois de deux jours, ou bloquée à 80 % depuis trois points. Dans notre essai, il a trouvé les deux sur la même tâche&nbsp;: six jours perdus par petits morceaux.</p>
+
+    <h2 class="reveal" id="telecharger"><span class="numtag">4</span>Télécharger la bibliothèque</h2>
+    <p class="reveal">Gratuite, utilisable dans ton travail, modifiable. Ce sont des fichiers texte, que tu peux ouvrir et lire avant d'installer. Cinq skills contiennent en plus un petit calculateur, qui ne se connecte à rien.</p>
+    <div class="gros reveal">
+      <a class="p" href="/ressources/claude-gestion-de-projet/gestion-projet-noesisai.plugin" download><b>Les 31 skills en un fichier</b><span>À importer en une fois, offres Claude payantes. Fichier .plugin, 98 Ko.</span></a>
+      <a href="/ressources/claude-gestion-de-projet/31-skills-une-par-une.zip" download><b>Les 31 skills séparées</b><span>À importer une par une, toutes les offres. Dossier .zip à ouvrir, 102 Ko.</span></a>
+    </div>
+    <details class="liste reveal"><summary>Choisir dans la liste, skill par skill</summary>
+      <div class="dlg"><div class="dlg-h">Cadrer</div><div class="dl"><span>Fiche de cadrage</span><a href="/ressources/claude-gestion-de-projet/skills/fiche-de-cadrage.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/fiche-de-cadrage.md">Copier la méthode</button></div><div class="dl"><span>Périmètre</span><a href="/ressources/claude-gestion-de-projet/skills/perimetre-projet.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/perimetre-projet.md">Copier la méthode</button></div><div class="dl"><span>Objectifs</span><a href="/ressources/claude-gestion-de-projet/skills/objectifs-projet.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/objectifs-projet.md">Copier la méthode</button></div><div class="dl"><span>Parties prenantes</span><a href="/ressources/claude-gestion-de-projet/skills/parties-prenantes.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/parties-prenantes.md">Copier la méthode</button></div><div class="dl"><span>Budget prévisionnel</span><a href="/ressources/claude-gestion-de-projet/skills/budget-previsionnel.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/budget-previsionnel.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Planifier</div><div class="dl"><span>Découpage en tâches</span><a href="/ressources/claude-gestion-de-projet/skills/decoupage-en-taches.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/decoupage-en-taches.md">Copier la méthode</button></div><div class="dl"><span>Jalons</span><a href="/ressources/claude-gestion-de-projet/skills/jalons-projet.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/jalons-projet.md">Copier la méthode</button></div><div class="dl"><span>Rétroplanning</span><a href="/ressources/claude-gestion-de-projet/skills/retroplanning.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/retroplanning.md">Copier la méthode</button></div><div class="dl"><span>Dépendances</span><a href="/ressources/claude-gestion-de-projet/skills/dependances-projet.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/dependances-projet.md">Copier la méthode</button></div><div class="dl"><span>Plan de charge</span><a href="/ressources/claude-gestion-de-projet/skills/plan-de-charge.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/plan-de-charge.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Animer les réunions</div><div class="dl"><span>Ordre du jour</span><a href="/ressources/claude-gestion-de-projet/skills/ordre-du-jour.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/ordre-du-jour.md">Copier la méthode</button></div><div class="dl"><span>Réunion de lancement</span><a href="/ressources/claude-gestion-de-projet/skills/reunion-de-lancement.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/reunion-de-lancement.md">Copier la méthode</button></div><div class="dl"><span>Point d&#x27;équipe</span><a href="/ressources/claude-gestion-de-projet/skills/point-equipe.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/point-equipe.md">Copier la méthode</button></div><div class="dl"><span>Comité de pilotage</span><a href="/ressources/claude-gestion-de-projet/skills/comite-de-pilotage.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/comite-de-pilotage.md">Copier la méthode</button></div><div class="dl"><span>Décision</span><a href="/ressources/claude-gestion-de-projet/skills/reunion-de-decision.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/reunion-de-decision.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Suivre</div><div class="dl"><span>Tableau de bord</span><a href="/ressources/claude-gestion-de-projet/skills/tableau-de-bord.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/tableau-de-bord.md">Copier la méthode</button></div><div class="dl"><span>Point d&#x27;avancement</span><a href="/ressources/claude-gestion-de-projet/skills/point-avancement.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/point-avancement.md">Copier la méthode</button></div><div class="dl"><span>Suivi du budget</span><a href="/ressources/claude-gestion-de-projet/skills/suivi-du-budget.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/suivi-du-budget.md">Copier la méthode</button></div><div class="dl"><span>Liste des actions</span><a href="/ressources/claude-gestion-de-projet/skills/liste-des-actions.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/liste-des-actions.md">Copier la méthode</button></div><div class="dl"><span>Suivi des écarts</span><a href="/ressources/claude-gestion-de-projet/skills/suivi-des-ecarts.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/suivi-des-ecarts.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Anticiper les risques</div><div class="dl"><span>Registre des risques</span><a href="/ressources/claude-gestion-de-projet/skills/registre-des-risques.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/registre-des-risques.md">Copier la méthode</button></div><div class="dl"><span>Pré-mortem</span><a href="/ressources/claude-gestion-de-projet/skills/pre-mortem.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/pre-mortem.md">Copier la méthode</button></div><div class="dl"><span>Demande de changement</span><a href="/ressources/claude-gestion-de-projet/skills/demande-de-changement.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/demande-de-changement.md">Copier la méthode</button></div><div class="dl"><span>Escalade d&#x27;un blocage</span><a href="/ressources/claude-gestion-de-projet/skills/escalade-blocage.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/escalade-blocage.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Rendre compte</div><div class="dl"><span>Compte rendu de réunion</span><a href="/ressources/claude-gestion-de-projet/skills/compte-rendu-reunion.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/compte-rendu-reunion.md">Copier la méthode</button></div><div class="dl"><span>Journal des décisions</span><a href="/ressources/claude-gestion-de-projet/skills/journal-des-decisions.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/journal-des-decisions.md">Copier la méthode</button></div><div class="dl"><span>Compte rendu client</span><a href="/ressources/claude-gestion-de-projet/skills/compte-rendu-client.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/compte-rendu-client.md">Copier la méthode</button></div><div class="dl"><span>Note pour la direction</span><a href="/ressources/claude-gestion-de-projet/skills/note-direction.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/note-direction.md">Copier la méthode</button></div></div>
+      <div class="dlg"><div class="dlg-h">Clôturer</div><div class="dl"><span>Recette et validation</span><a href="/ressources/claude-gestion-de-projet/skills/recette-et-validation.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/recette-et-validation.md">Copier la méthode</button></div><div class="dl"><span>Bilan de projet</span><a href="/ressources/claude-gestion-de-projet/skills/bilan-de-projet.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/bilan-de-projet.md">Copier la méthode</button></div><div class="dl"><span>Retour d&#x27;expérience</span><a href="/ressources/claude-gestion-de-projet/skills/retour-experience.skill" download>Télécharger</a><button class="md" type="button" data-md="/ressources/claude-gestion-de-projet/skills/retour-experience.md">Copier la méthode</button></div></div>
+    </details>
+
+    <h2 class="reveal" id="installer"><span class="numtag">5</span>Installer en deux minutes</h2>
+    <h3 class="reveal">Tu as une offre Claude payante&nbsp;: tout d'un coup</h3>
+    <div class="pas reveal">
+      <div><div class="n">1</div><p>Sur claude.ai ou dans l'application, ouvre <strong>Plug-ins</strong> dans la barre de gauche. Si ton menu affiche encore «&nbsp;Personnaliser&nbsp;», c'est le même endroit.</p></div>
+      <div><div class="n">2</div><p>Clique sur <strong>Ajouter</strong>, puis <strong>Importer un plug-in</strong>, et choisis le fichier <span class="cmd">gestion-projet-noesisai.plugin</span>. Claude te rappelle de n'importer que des sources de confiance&nbsp;: c'est son message habituel pour tout ce qui vient d'ailleurs.</p></div>
+      <div><div class="n">3</div><p>Ouvre une nouvelle conversation et dis une phrase de la partie 2. Ou tape <span class="cmd">/</span> et choisis la skill dans la liste.</p></div>
+    </div>
+    <p class="reveal">Les skills te suivent ensuite dans Claude, dans Cowork et dans Claude Code, avec le même compte. En offre Team ou Enterprise, tu peux les partager à tes collègues&nbsp;; si l'import n'apparaît pas, c'est ton administrateur qui l'autorise.</p>
+    <h3 class="reveal">Tu es en offre gratuite, ou tu n'en veux que quelques-unes</h3>
+    <div class="pas reveal">
+      <div><div class="n">1</div><p>Dans <strong>Paramètres</strong>, puis <strong>Capacités</strong>, vérifie que l'exécution de code et la création de fichiers sont activées.</p></div>
+      <div><div class="n">2</div><p><strong>Plug-ins</strong>, <strong>Ajouter</strong>, <strong>Importer un Skill</strong>, puis le fichier <span class="cmd">.skill</span> que tu veux.</p></div>
+      <div><div class="n">3</div><p>Commence par cinq&nbsp;: fiche de cadrage, compte rendu de réunion, liste des actions, suivi des écarts, pré-mortem.</p></div>
+    </div>
+    <h3 class="reveal">Tu utilises seulement Claude Code</h3>
+    <p class="reveal">Colle ce message, il s'occupe du reste.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>Télécharge https://noesisai.fr/ressources/claude-gestion-de-projet/gestion-projet-noesisai.zip et décompresse-le dans un dossier temporaire. Lis le README et jette un œil aux scripts pour vérifier qu'il n'y a rien d'anormal. Puis copie les 31 dossiers de skills/ dans ~/.claude/skills, sans écraser ceux qui portent déjà le même nom : dis-moi lesquels, si c'est le cas. Vérifie à la fin qu'il y en a bien 31.</pre>
+    </div>
+    <div class="callout reveal"><b>En vidéo&nbsp;:</b> <a href="https://www.loom.com/share/c44ccf397f0d4e7082aa0ca3f5546884" target="_blank" rel="noopener">Claude Cowork sur de vrais fichiers</a> et <a href="https://www.loom.com/share/96785cd2f3a2480e8f271c98b1fc6150" target="_blank" rel="noopener">installer Claude Code pas à pas</a>. Et pour écrire tes propres skills, notre guide <a href="/blog/skills-claude">Skills Claude</a>.</div>
+
+    <h2 class="reveal" id="task-master"><span class="numtag">6</span>Task Master, le MCP qui découpe le projet</h2>
+    <p class="reveal"><strong>Le lien&nbsp;:</strong> <a href="https://github.com/eyaltoledano/claude-task-master" target="_blank" rel="noopener">github.com/eyaltoledano/claude-task-master</a>, et sa <a href="https://tryhamster.com/docs/taskmaster" target="_blank" rel="noopener">documentation officielle</a>. C'est un outil gratuit, créé par Eyal Toledano et Ralph Khreish, avec plus de 28 000 étoiles sur GitHub. Tu lui donnes un brief, il sort le backlog&nbsp;: les tâches, leur priorité, ce que chacune attend. Une seconde demande découpe une tâche en sous-tâches.</p>
+    <div class="callout reveal"><b>Pour qui&nbsp;?</b> Les projets digitaux (site, application, outil interne), dans Claude Code ou Cursor. Pour un déménagement, un chantier ou une embauche, la skill «&nbsp;Découpage en tâches&nbsp;» suffit et ne demande aucune installation.</div>
+    <h3 class="reveal">Ce qu'il a sorti d'un brief d'une page</h3>
+    <p class="reveal">Notre essai du 23 novembre, sur l'espace client fictif. Dix tâches en deux à trois minutes, en utilisant l'abonnement Claude, sans clé payante&nbsp;:</p>
+    <table class="matrix bk reveal"><thead><tr><th>N°</th><th>Tâche</th><th>Priorité</th><th>Attend</th></tr></thead><tbody>
+      <tr><td>1</td><td>Configurer l'hébergement et l'environnement</td><td>haute</td><td>-</td></tr>
+      <tr><td>2</td><td>Connexion par lien reçu par mail (5 sous-tâches)</td><td>haute</td><td>1</td></tr>
+      <tr><td>3</td><td>Schéma de la base de données</td><td>haute</td><td>1</td></tr>
+      <tr><td>4</td><td>Page dossier du client</td><td>haute</td><td>2, 3</td></tr>
+      <tr><td>5</td><td>Dépôt et téléchargement de documents</td><td>haute</td><td>3, 4</td></tr>
+      <tr><td>6</td><td>Page de l'équipe</td><td>moyenne</td><td>3, 5</td></tr>
+      <tr><td>7</td><td>Mails automatiques</td><td>moyenne</td><td>3, 6</td></tr>
+      <tr><td>8</td><td>Historique</td><td>moyenne</td><td>3, 6</td></tr>
+      <tr><td>9</td><td>Performances et sécurité</td><td>haute</td><td>2, 5, 7</td></tr>
+      <tr><td>10</td><td>Tests réels et mise en ligne</td><td>haute</td><td>4, 6, 7, 8, 9</td></tr>
+    </tbody></table>
+    <p class="legende reveal">Titres raccourcis, priorités et dépendances telles quelles.</p>
+    <div class="callout warn reveal"><b>À relire&nbsp;:</b> il a choisi des technologies et ajouté des éléments absents du brief (un antivirus, une phase de test), alors qu'on lui avait demandé de ne rien ajouter. Passe toujours sa liste au peigne avec la skill «&nbsp;Périmètre&nbsp;».</div>
+
+    <h3 class="reveal">L'installer dans Claude Code, en trois messages</h3>
+    <p class="reveal">Il te faut Claude Code (<a href="/blog/installer-claude-code">notre guide pour l'installer</a>). Ouvre-le dans un dossier vide, qui contient seulement ton brief dans un fichier <span class="cmd">brief.md</span>.</p>
+    <p class="reveal"><strong>1. Brancher Task Master.</strong> Une fois installé, il occupe environ 1,4 Go sur ton disque.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Message 1</span><button class="copy" type="button">Copier</button></div>
+<pre>Ajoute le serveur MCP Task Master à ce dossier avec cette commande :
+claude mcp add task-master-ai --env TASK_MASTER_TOOLS=standard -- npx -y task-master-ai@0.43.1
+
+Vérifie d'abord que Node 20 ou plus est installé et qu'il reste au moins 3 Go d'espace disque.
+Confirme quand c'est fait, et dis-moi comment relancer la session.</pre>
+    </div>
+    <p class="reveal"><strong>2. Régler.</strong> Ferme et rouvre Claude Code, puis colle ce message. Sans cette étape, la génération échoue (les raisons sont plus bas).</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Message 2</span><button class="copy" type="button">Copier</button></div>
+<pre>Initialise Task Master dans ce dossier, pour Claude Code seulement.
+
+Ensuite, dans le fichier .taskmaster/config.json :
+- pour main, research et fallback : fournisseur "claude-code" et modèle "sonnet"
+- responseLanguage : "French"
+- enableCodebaseAnalysis : false
+- anonymousTelemetry : false
+
+Mon brief est dans brief.md. Copie-le dans .taskmaster/docs/prd.txt.
+Ne génère pas encore les tâches : dis-moi juste quand c'est prêt, je relance la session.</pre>
+    </div>
+    <p class="reveal"><strong>3. Générer.</strong> Ferme et rouvre Claude Code une dernière fois&nbsp;: Task Master garde ses anciens réglages en mémoire tant qu'il n'est pas relancé.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Message 3</span><button class="copy" type="button">Copier</button></div>
+<pre>Avec Task Master, génère le backlog à partir de .taskmaster/docs/prd.txt, environ 10 tâches, sans rien ajouter à ce que dit le brief et sans choisir les technologies à ma place. Ensuite découpe la tâche 2 en sous-tâches. Montre-moi tout dans un tableau : numéro, titre, priorité, dépendances. Termine par ce qui ne respecte pas ma consigne.</pre>
+    </div>
+    <h3 class="reveal">Les pièges, vérifiés un par un</h3>
+    <ul class="reveal">
+      <li><strong>Réglé d'origine, il ne marche pas avec ton abonnement.</strong> Il attend une clé Anthropic payante pour un modèle de 2025, et une clé Perplexity. Le message 2 corrige ça.</li>
+      <li><strong>La phrase de sa notice échoue.</strong> «&nbsp;Change the main model to claude-code/sonnet&nbsp;» renvoie une erreur&nbsp;: le nom attendu est «&nbsp;sonnet&nbsp;».</li>
+      <li><strong>Analyse de code à couper.</strong> Laissée active, la génération par le MCP n'a pas abouti dans nos essais, et en ligne de commande elle a proposé des tâches hors du brief.</li>
+      <li><strong>Il parle anglais et envoie des statistiques anonymes par défaut.</strong> Le message 2 le passe en français et coupe l'envoi.</li>
+      <li><strong>Le projet bouge peu.</strong> Dernière version le 31 mars 2026 (0.43.1), plus de 200 sujets ouverts. Il marche, mais ne bâtis pas toute ton organisation dessus.</li>
+      <li><strong>Licence&nbsp;:</strong> libre pour tes projets, même commerciaux. Tu ne peux pas revendre Task Master lui-même.</li>
+    </ul>
+    <p class="reveal"><strong>Dans Cursor&nbsp;:</strong> la <a href="https://github.com/eyaltoledano/claude-task-master#quick-install-for-cursor-10-one-click" target="_blank" rel="noopener">page du projet</a> a un bouton «&nbsp;Add to Cursor&nbsp;». Les mêmes réglages s'appliquent, et il faut soit une clé payante, soit Claude Code installé et connecté sur ton ordinateur. Nos essais portent sur Claude Code seulement.</p>
+
+    <h2 class="reveal" id="quand"><span class="numtag">7</span>Laquelle, à quel moment</h2>
+    <table class="matrix quand reveal"><thead><tr><th>Ce qui se passe</th><th>Les skills à enchaîner</th></tr></thead><tbody>
+      <tr><td>On te parle d'un nouveau projet</td><td>Fiche de cadrage, puis Périmètre et Objectifs</td></tr>
+      <tr><td>On te demande une date</td><td>Découpage en tâches, Rétroplanning, Plan de charge</td></tr>
+      <tr><td>Juste avant de démarrer</td><td>Pré-mortem, Registre des risques, Réunion de lancement</td></tr>
+      <tr><td>Chaque semaine</td><td>Liste des actions, Suivi des écarts, Point d'avancement</td></tr>
+      <tr><td>Chaque mois</td><td>Suivi du budget, Tableau de bord, Comité de pilotage</td></tr>
+      <tr><td>«&nbsp;Tant qu'on y est, on pourrait aussi…&nbsp;»</td><td>Demande de changement, puis Journal des décisions</td></tr>
+      <tr><td>Ça bloque depuis trop longtemps</td><td>Escalade d'un blocage, Note pour la direction</td></tr>
+      <tr><td>On livre</td><td>Recette et validation, Bilan, Retour d'expérience</td></tr>
+    </tbody></table>
+    <div class="callout reveal"><b>L'astuce&nbsp;:</b> crée un Projet dans Claude, dépose dedans la fiche de cadrage, le planning et le journal des décisions. Chaque skill repart alors de tes vrais documents, sans que tu les recolles.</div>
+
+    <h2 class="reveal" id="cap"><span class="numtag">8</span>Claude prépare, tu gardes le cap</h2>
+    <p class="reveal"><strong>Ce que tu pilotes&nbsp;:</strong> les objectifs, les arbitrages, les mots envoyés au client, et tout ce qui reste à décider. <strong>Ce que les skills font&nbsp;:</strong> trier, structurer, calculer, rédiger un brouillon. Elles n'envoient rien et ne valident rien.</p>
+    <p class="reveal"><strong>Ce qui reste à vérifier&nbsp;:</strong> les noms et les chiffres tirés d'une transcription, les estimations, et tout document qui engage ton entreprise. Avant d'y mettre des données sensibles, regarde les réglages de confidentialité de ton offre.</p>
+    <p class="reveal"><strong>Et adapte-les.</strong> Dis à Claude «&nbsp;dans cette skill, remplace nos seuils par…&nbsp;»&nbsp;: la dernière skill, le retour d'expérience, te propose justement les lignes à ajouter après chaque projet.</p>
+    <p class="legende reveal">Les 31 skills sont écrites par NoesisAI, usage libre. Task Master est un logiciel distinct, sous licence MIT avec Commons Clause, de ses auteurs.</p>
+
+    <script>
+      (function(){
+        function copier(text, btn){
+          var done = function(){ var old = btn.dataset.old || btn.textContent; btn.dataset.old = old; btn.textContent = 'Copié'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ repli(text, done); }); } else { repli(text, done); }
+        }
+        function repli(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+        document.querySelectorAll('.prompt .copy').forEach(function(b){ b.addEventListener('click', function(){ copier(b.closest('.prompt').querySelector('pre').innerText, b); }); });
+        document.querySelectorAll('.copie').forEach(function(b){ b.addEventListener('click', function(){ copier(b.dataset.t, b); }); });
+        document.querySelectorAll('.md').forEach(function(b){ b.addEventListener('click', function(){
+          fetch(b.dataset.md).then(function(r){ if(!r.ok) throw 0; return r.text(); }).then(function(t){ copier(t, b); }).catch(function(){ location.href = b.dataset.md; });
+        }); });
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Tu veux que ton équipe s'en serve pour de vrai&nbsp;?</b> On forme les équipes à Claude sur leurs propres projets, avec leurs documents. <a href="/formation-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Voir notre formation IA</a>.</div>
+
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/claude-de-ton-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le Claude de ton métier : la méthode qu&#x27;Anthropic applique au droit et à la finance</a></li>
+    <li><a href="/ressources/outil-metier-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude for Legal : comment marchent les nouveaux outils prêts à l&#x27;emploi</a></li>
+    <li><a href="/ressources/5-briques-claude-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Les 5 briques qui transforment Claude en expert de ton métier</a></li>
+    <li><a href="/ressources/suite-bureautique-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">La suite bureautique de Claude : le guide PME, et ce qu'elle remplace vraiment</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>

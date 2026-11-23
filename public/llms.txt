@@ -5,6 +5,7 @@
 ## En bref
 
 - Création : avril 2025, par Ugo Sartini (fondateur et dirigeant)
+- Société : NoesisAI, SIREN 935 290 536
 - Clients : PME, TPE et indépendants (France, Belgique, Suisse)
 - Références : plus de 40 projets IA livrés
 - Délai : une solution déployée en 2 semaines
@@ -62,6 +63,7 @@ Fiche complète (mise à jour : novembre 2026) : https://noesisai.fr/a-propos#en
 - [Claude en 2026 : la carte complète, sans jargon](https://noesisai.fr/ressources/carte-claude-2026): La carte claire et gratuite de l'écosystème Claude en 2026, pour dirigeants et indépendants : ce que fait chaque outil en langage simple, comment installer un c
 - [Claude for Legal : comment marchent les nouveaux outils prêts à l'emploi](https://noesisai.fr/ressources/outil-metier-claude): Tabular review, playbook deviation board, cite check, horizon scan… Ce que contient la galerie d'outils de Claude for Legal (28 octobre 2026), comment elle fonc
 - [Claude Meetings : le guide pour l'activer et t'en servir en réunion](https://noesisai.fr/ressources/claude-meetings): Claude Meetings pas à pas : qui y a droit, comment l'activer sur Google Meet, les phrases à lui dire en réunion et ce qu'il garde. D'après la doc officielle.
+- [Claude pour la gestion de projet : 31 skills et un MCP, du cadrage à la clôture](https://noesisai.fr/ressources/claude-gestion-de-projet): 31 skills Claude en français pour mener un projet du cadrage à la clôture, à télécharger gratuitement, et le MCP Task Master installé pas à pas. Testé le 23 nov
 - [Claude premier sur Google : les 10 outils SEO à lui brancher](https://noesisai.fr/ressources/claude-seo-10-outils): Le guide pour brancher 10 outils SEO à Claude : Search Console, Keyword Planner, Google Trends, AnswerThePublic, Ubersuggest, Screaming Frog, PageSpeed Insights
 - [Claude relit ta balance comptable en 30 secondes](https://noesisai.fr/ressources/claude-balance-comptable): Installer Claude dans ton tableur, coller un seul prompt, et obtenir un onglet d'anomalies à contrôler avant la révision.
 - [Claude remplit ton fichier de prospection tout seul : le guide ScrapeGraphAI](https://noesisai.fr/ressources/scrapegraph-prospection): Le guide pour faire remplir ton fichier de prospection par Claude avec ScrapeGraphAI, un outil open source gratuit qui tourne en local : installation en une dem

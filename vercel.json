@@ -22,6 +22,10 @@
     {
       "source": "/portfolio/(.*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/ressources/claude-gestion-de-projet/skills/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ],
   "redirects": [{ "source": "/agents-vocaux", "destination": "/automatisation", "permanent": true }],
