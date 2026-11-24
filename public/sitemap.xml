@@ -684,6 +684,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://noesisai.fr/ressources/10-non-negociables-claude</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
   <!-- blog:debut -->
   <url>
     <loc>https://noesisai.fr/blog</loc>

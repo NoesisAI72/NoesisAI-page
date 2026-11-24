@@ -28,7 +28,7 @@ CLUSTERS = {
               "scanner-skills-ia"],
     "memoire": ["10-niveaux-memoire-entreprise", "memoire-entreprise", "memoire-ia", "5-etages-contexte-claude",
                 "llm-wiki", "second-cerveau-claude", "claude-obsidian-boucles", "agent-curator"],
-    "dev": ["claude-code-bonnes-pratiques", "memo-claude-code", "prompts-claude-code", "unlazy-claude-code", "unslop-claude-code",
+    "dev": ["claude-code-bonnes-pratiques", "10-non-negociables-claude", "memo-claude-code", "prompts-claude-code", "unlazy-claude-code", "unslop-claude-code",
             "speckit", "mods-claude-code", "codex-orchestration", "kimi-agent-swarm", "outils-securite-vibe-coding",
             "claudetube", "chatcut-claude-code", "audit-stockage-mac", "kumar-method"],
     "agents": ["6-agents-ia-claude", "equipe-55-agents-claude-code", "3-paliers-agents-ia", "guide-automatisation-2026", "150-templates-n8n-claude",

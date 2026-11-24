@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/10-non-negociables-claude">
+<title>Mes 10 non négociables avec Claude - NoesisAI</title>
+<meta name="description" content="Les 10 non négociables de Claude Code, avec les étapes exactes : projets, skills, subagents, hooks, MCP, choix du modèle, /compact, mode plan, /loop et OpenRouter.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mes 10 non négociables avec Claude">
+<meta property="og:description" content="Les 10 non négociables de Claude Code, avec les étapes exactes : projets, skills, subagents, hooks, MCP, choix du modèle, /compact, mode plan, /loop et OpenRouter.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/10-non-negociables-claude">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/10-non-negociables-claude.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mes 10 non négociables avec Claude">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mes 10 non négociables avec Claude">
+<meta name="twitter:description" content="Les 10 non négociables de Claude Code, avec les étapes exactes : projets, skills, subagents, hooks, MCP, choix du modèle, /compact, mode plan, /loop et OpenRouter.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/10-non-negociables-claude.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/10-non-negociables-claude#article", "headline": "Mes 10 non négociables avec Claude", "description": "Les 10 non négociables de Claude Code, avec les étapes exactes : projets, skills, subagents, hooks, MCP, choix du modèle, /compact, mode plan, /loop et OpenRouter.", "image": "https://noesisai.fr/ressources/og/10-non-negociables-claude.jpg", "url": "https://noesisai.fr/ressources/10-non-negociables-claude", "mainEntityOfPage": "https://noesisai.fr/ressources/10-non-negociables-claude", "inLanguage": "fr-FR", "datePublished": "2026-11-24", "dateModified": "2026-11-24", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Mes 10 non négociables avec Claude", "item": "https://noesisai.fr/ressources/10-non-negociables-claude"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Mes 10 non négociables avec Claude</h1>
+    <p class="sub">Les 10 choses que j'utilise systématiquement dans Claude Code, avec les étapes exactes pour les installer et les activer, de la plus simple à la plus avancée. À jour au 24 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .callout a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .resource h2{scroll-margin-top:24px}
+      .resource .promesse{font-size:18px;color:var(--ink);margin:0 0 18px}
+      .resource .plus{font-size:14.5px;line-height:1.65}
+      .som{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0}
+      .som a{display:flex;gap:13px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;line-height:1.3;transition:border-color .15s}
+      .som a:hover{border-color:var(--ink-3)}
+      .som b{flex:0 0 30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:14px}
+      .som small{display:block;font-weight:400;font-size:13px;color:var(--ink-2);margin-top:2px}
+      .partie{margin:58px 0 -6px;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:var(--card);font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline}
+      .partie span{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent-a)}
+      .etapes{display:grid;gap:10px;margin:18px 0}
+      .etape{display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px 16px}
+      .etape-n{width:32px;height:32px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink)}
+      .resource .etape p{margin:3px 0 0;font-size:15.5px;line-height:1.6;min-width:0}
+      .cmd{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.88em;background:var(--card-2);border:1px solid var(--line-soft);border-radius:6px;padding:2px 6px;color:var(--ink);overflow-wrap:anywhere}
+      .cmd.nw{white-space:nowrap}
+      table.modeles td:first-child{width:96px}
+      table.ordre td:first-child{width:190px}
+      table.modeles td,table.ordre td{vertical-align:top}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;overflow-wrap:anywhere}
+      @media(max-width:600px){
+        .som{grid-template-columns:1fr;gap:8px}
+        table.ordre td:first-child{width:112px}
+      }
+    </style>
+
+    <p class="lead reveal">10 non négociables, 0 blabla, 1 seul endroit où les retrouver. Ce sont les 10 choses que j'utilise systématiquement dans Claude Code, rangées de la plus simple à la plus avancée.</p>
+
+    <p class="reveal">Pour chacune&nbsp;: à quoi elle sert, les étapes exactes, et le plus souvent un message prêt à coller pour que Claude l'installe à ta place. Dans ce cas, tu n'as aucun fichier à écrire à la main.</p>
+
+    <nav class="som reveal" aria-label="Les 10 points">
+      <a href="#projets"><b>1</b><span>Les projets<small>Claude connaît tes règles</small></span></a>
+      <a href="#skills"><b>2</b><span>Les skills<small>Tes consignes, réutilisées d'un mot</small></span></a>
+      <a href="#subagents"><b>3</b><span>Les subagents<small>Plusieurs tâches en parallèle</small></span></a>
+      <a href="#hooks"><b>4</b><span>Les hooks<small>Des règles automatiques</small></span></a>
+      <a href="#mcp"><b>5</b><span>Le MCP<small>Claude branché à tes outils</small></span></a>
+      <a href="#modele"><b>6</b><span>Le bon modèle<small>La bonne puissance par tâche</small></span></a>
+      <a href="#compact"><b>7</b><span>Compacter<small>Garder le fil quand c'est long</small></span></a>
+      <a href="#plan"><b>8</b><span>Le mode plan<small>Voir avant de laisser faire</small></span></a>
+      <a href="#loops"><b>9</b><span>Les loops<small>Des tâches qui se répètent</small></span></a>
+      <a href="#openrouter"><b>10</b><span>OpenRouter<small>Le filet de secours</small></span></a>
+    </nav>
+
+    <div class="callout reveal"><b>Tu n'as pas encore Claude Code&nbsp;?</b> Suis notre guide <a href="/blog/installer-claude-code">Installer Claude Code, pas à pas</a> ou ma vidéo <a href="https://www.loom.com/share/96785cd2f3a2480e8f271c98b1fc6150" target="_blank" rel="noopener">Installer Claude Code dans VS Code</a>. Il marche dans le terminal, dans VS Code et dans l'application Claude de ton ordinateur (onglet Code).</div>
+
+    <div class="partie reveal"><span>Du 1 au 5</span>Les bases pour démarrer</div>
+
+    <h2 class="reveal" id="projets"><span class="numtag">1</span>Créer des projets</h2>
+    <p class="promesse reveal">Pour que Claude connaisse tes règles sans que tu aies à les répéter à chaque fois.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Crée un fichier <span class="cmd nw">CLAUDE.md</span> dans le dossier de ton projet.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Note dedans tes outils, tes conventions, et ce que tu ne veux pas qu'il fasse.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>C'est tout&nbsp;: Claude Code le lit au début de chaque session. Garde-le court, sous 200 lignes, sinon il le suit moins bien.</p></div>
+    </div>
+    <p class="reveal"><strong>Plus rapide&nbsp;:</strong> tape <span class="cmd nw">/init</span>, Claude regarde ton dossier et écrit une première version. Ou réponds à ses questions&nbsp;:</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>Crée le fichier CLAUDE.md de ce projet.
+Avant d'écrire, pose-moi 5 questions, une par une : ce que fait mon activité, les outils que j'utilise, mes règles à respecter, ce que tu ne dois jamais faire sans mon accord, et le ton à employer.
+Garde le fichier sous 100 lignes, puis montre-le-moi avant de l'enregistrer.</pre>
+    </div>
+    <p class="plus reveal">Sur claude.ai, la fonction la plus proche s'appelle <strong>Projets</strong>&nbsp;: tu y mets tes consignes et tes documents. Pour aller plus loin&nbsp;: <a href="/ressources/5-etages-contexte-claude">les 5 étages du contexte dans Claude</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/memory" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="skills"><span class="numtag">2</span>Les skills</h2>
+    <p class="promesse reveal">Des instructions que tu écris une fois et que tu réutilises avec une commande.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Crée le fichier <span class="cmd">.claude/skills/ton-skill/SKILL.md</span>.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Écris le nom, quand l'utiliser, et les étapes à suivre.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Appelle-le en tapant <span class="cmd nw">/ton-skill</span> dans le chat. Claude peut aussi le déclencher seul quand ta demande correspond.</p></div>
+    </div>
+    <p class="reveal">Un exemple complet, à adapter. On le réutilise au point 9&nbsp;:</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">SKILL.md</span><button class="copy" type="button">Copier</button></div>
+<pre>---
+name: verifier-nouveaux-leads
+description: Vérifie les nouvelles demandes de contact et prépare une réponse. À utiliser quand je parle de nouveaux leads ou de demandes entrantes.
+---
+
+1. Cherche les demandes reçues depuis la dernière vérification.
+2. Pour chacune, note le nom, l'entreprise, le besoin et l'urgence.
+3. Prépare un brouillon de réponse en 5 lignes maximum.
+4. N'envoie rien. Termine par un tableau récapitulatif.</pre>
+    </div>
+    <p class="plus reveal">Pour un skill utilisable dans tous tes projets, range-le dans <span class="cmd">~/.claude/skills/</span>. Pour aller plus loin&nbsp;: <a href="/blog/skills-claude">Skills Claude, le guide complet</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/skills" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="subagents"><span class="numtag">3</span>Les subagents</h2>
+    <p class="promesse reveal">Déléguer des tâches en parallèle sans perdre le fil principal.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Crée <span class="cmd">.claude/agents/nom.md</span> avec le nom, la description et les outils autorisés.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>En dessous, écris les instructions&nbsp;: comment cet agent doit travailler.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Appelle-le par son nom, ou laisse Claude le choisir tout seul si la tâche correspond.</p></div>
+    </div>
+    <p class="reveal">Chaque subagent travaille dans sa propre conversation et ne te rapporte que le résultat. Le plus simple est de le décrire&nbsp;:</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>Crée un subagent de projet nommé relecteur-devis.
+Son rôle : relire un devis avant envoi et lister les erreurs de calcul, les lignes manquantes et les formulations ambiguës.
+Il peut lire les fichiers, jamais les modifier.
+Enregistre-le dans .claude/agents/, puis montre-moi le fichier.</pre>
+    </div>
+    <p class="plus reveal">Ne donne à chaque agent que les outils dont il a besoin. Pour aller plus loin&nbsp;: <a href="/ressources/equipe-55-agents-claude-code">monter une équipe d’agents dans Claude Code</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/sub-agents" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="hooks"><span class="numtag">4</span>Les hooks</h2>
+    <p class="promesse reveal">Des règles qui se déclenchent toutes seules quand quelque chose de précis se passe.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Ouvre <span class="cmd">.claude/settings.json</span> (dans le projet), ou <span class="cmd">~/.claude/settings.json</span> pour tous tes projets.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Ajoute une clé <span class="cmd nw">hooks</span> avec l'événement&nbsp;: par exemple <span class="cmd nw">PostToolUse</span> après une modification de fichier, <span class="cmd nw">Notification</span> quand Claude t'attend.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Mets là la commande qui doit tourner toute seule, par exemple tes tests. Tape <span class="cmd nw">/hooks</span> pour vérifier qu'elle est bien prise en compte.</p></div>
+    </div>
+    <p class="reveal">Un bon premier hook&nbsp;: une alerte sur ton Mac dès que Claude a besoin de toi.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">settings.json · Mac</span><button class="copy" type="button">Copier</button></div>
+<pre>{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude a besoin de toi\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+    </div>
+    <div class="callout reveal"><b>Tu es sur Windows, ou ton fichier contient déjà des réglages&nbsp;?</b> Demande simplement&nbsp;: «&nbsp;Ajoute un hook qui m'affiche une notification quand tu attends ma réponse, sans toucher à mes autres réglages.&nbsp;»</div>
+    <p class="plus reveal">Un hook lance une vraie commande sur ton ordinateur&nbsp;: n'en colle jamais un que tu ne comprends pas. Source&nbsp;: <a href="https://code.claude.com/docs/fr/hooks-guide" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="mcp"><span class="numtag">5</span>Le MCP</h2>
+    <p class="promesse reveal">Connecter Claude à tes vrais outils&nbsp;: boîte mail, agenda, CRM, facturation.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Cherche le serveur MCP de l'outil que tu veux ajouter, de préférence celui de l'éditeur.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Dans le terminal&nbsp;: <span class="cmd">claude mcp add nom -- commande</span> pour un serveur installé sur ton ordinateur, ou <span class="cmd">claude mcp add --transport http nom adresse</span> pour un serveur en ligne.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Ouvre une nouvelle session Claude Code, puis tape <span class="cmd nw">/mcp</span>&nbsp;: l'outil apparaît, et c'est là que tu le relies à ton compte si besoin.</p></div>
+    </div>
+    <div class="callout win reveal"><b>Sans terminal&nbsp;:</b> dans l'application Claude, clique sur <b>+</b> à côté de la zone de texte, puis ajoute un connecteur. Un connecteur est un serveur MCP déjà préparé, et ceux de ton compte claude.ai marchent aussi dans Claude Code.</div>
+    <p class="plus reveal">N'ajoute que des serveurs en qui tu as confiance&nbsp;: ils voient ce que tu leur donnes. En vidéo&nbsp;: <a href="https://www.loom.com/share/1de0204dea85417a8331c4b59234e487" target="_blank" rel="noopener">Claude branché sur Google Maps</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/mcp" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <div class="partie reveal"><span>Du 6 au 10</span>Pour vraiment en tirer le maximum</div>
+
+    <h2 class="reveal" id="modele"><span class="numtag">6</span>Choisir le bon modèle</h2>
+    <p class="promesse reveal">Pas toujours le plus cher&nbsp;: celui qui est le plus adapté à la tâche.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Tape <span class="cmd nw">/model</span> pour voir les options de ton abonnement.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Choisis selon la tâche, avec le tableau ci-dessous.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Avant de changer de modèle, essaie <span class="cmd nw">/effort</span>&nbsp;: c'est le réglage qui dit à Claude combien réfléchir.</p></div>
+    </div>
+    <table class="matrix modeles reveal"><thead><tr><th>Modèle</th><th>Pour quoi</th></tr></thead><tbody>
+      <tr><td>Haiku</td><td>Les tâches simples et répétitives&nbsp;: trier, extraire, reformuler. Le plus rapide.</td></tr>
+      <tr><td>Sonnet</td><td>Le quotidien&nbsp;: celui du milieu.</td></tr>
+      <tr><td>Opus</td><td>Les grosses tâches qui demandent du raisonnement.</td></tr>
+      <tr><td>Fable</td><td>Les tâches les plus dures et les plus longues. Le plus puissant, si ton plan l'a&nbsp;: selon l'offre, il consomme des crédits en plus.</td></tr>
+    </tbody></table>
+    <p class="plus reveal">Pour aller plus loin&nbsp;: <a href="/ressources/choisir-modele-claude">quel modèle choisir, tâche par tâche</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/model-config" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="compact"><span class="numtag">7</span>Compacter la conversation</h2>
+    <p class="promesse reveal">Quand la conversation se remplit, la compresser plutôt que tout perdre.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Tape <span class="cmd nw">/compact</span> quand la conversation devient longue.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Claude résume l'essentiel et continue avec ça.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Souvent, ça se déclenche tout seul, sans que tu le demandes.</p></div>
+    </div>
+    <p class="reveal">Le plus utile&nbsp;: lui dire ce qu'il doit absolument garder.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code</span><button class="copy" type="button">Copier</button></div>
+<pre>/compact Garde les décisions prises, les fichiers modifiés et ce qu'il reste à faire.</pre>
+    </div>
+    <p class="plus reveal"><span class="cmd nw">/context</span> montre ce qui prend de la place. <span class="cmd nw">/clear</span> repart de zéro&nbsp;: à utiliser quand tu changes de sujet. Source&nbsp;: <a href="https://code.claude.com/docs/fr/context-window" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="plan"><span class="numtag">8</span>Le mode plan</h2>
+    <p class="promesse reveal">Pour ce qui est risqué&nbsp;: qu'il montre le plan avant de toucher à quoi que ce soit.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Dans le terminal, appuie sur <span class="cmd nw">Shift+Tab</span> jusqu'à voir <span class="cmd nw">plan mode on</span> en bas de l'écran. Le nombre d'appuis dépend du mode de départ&nbsp;: deux depuis le mode manuel.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Vérifie les étapes proposées&nbsp;: à ce stade, il n'a encore rien modifié.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Valide seulement après, pour qu'il exécute.</p></div>
+    </div>
+    <p class="reveal"><strong>Plus direct&nbsp;:</strong> commence ton message par <span class="cmd nw">/plan</span>. Dans l'application Claude, choisis <strong>Plan</strong> dans le sélecteur sous la zone de texte.</p>
+    <p class="plus reveal">À activer dès qu'il y a des données clients, une suppression ou un envoi. Source&nbsp;: <a href="https://code.claude.com/docs/fr/permission-modes" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="loops"><span class="numtag">9</span>Les loops</h2>
+    <p class="promesse reveal">Des tâches qui tournent toutes seules à intervalle régulier.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Tape <span class="cmd nw">/loop</span> + l'intervalle + ce que tu veux qu'il répète.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Exemple&nbsp;: <span class="cmd">/loop 30m /verifier-nouveaux-leads</span>, le skill du point 2.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Pour l'arrêter, demande-le simplement&nbsp;: «&nbsp;arrête la boucle des leads&nbsp;».</p></div>
+    </div>
+    <div class="callout warn reveal"><b>À savoir&nbsp;:</b> une loop ne tourne que si Claude Code est ouvert et ton ordinateur allumé, et elle s'arrête d'elle-même au bout de 7 jours. Chaque passage consomme ton quota&nbsp;: choisis un intervalle assez large.</div>
+    <p class="reveal"><strong>Pour que ça tourne sans toi&nbsp;:</strong> dans l'application Claude, onglet Code, ouvre les tâches planifiées (<strong>Scheduled</strong>, ou <strong>Routines</strong> selon ta version) et crée une tâche. Une tâche locale demande que l'ordinateur soit allumé et l'application ouverte. Une tâche cloud tourne même ordinateur éteint.</p>
+    <p class="plus reveal">En vidéo&nbsp;: <a href="https://www.loom.com/share/bef25578aef547d6864ad80dbd0f798f" target="_blank" rel="noopener">les 5 niveaux d’autonomie des agents IA</a>. Pour aller plus loin&nbsp;: <a href="/ressources/loop-claude-3-prompts">le loop qui corrige son propre travail</a>. Source&nbsp;: <a href="https://code.claude.com/docs/fr/scheduled-tasks" target="_blank" rel="noopener">documentation officielle</a>.</p>
+
+    <h2 class="reveal" id="openrouter"><span class="numtag">10</span>OpenRouter, le filet de secours open source</h2>
+    <p class="promesse reveal">Quand tu n'as plus de tokens, tu continues avec un autre modèle, y compris open source.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><p>Crée un compte sur <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a>, ajoute des crédits et génère ta clé API.</p></div>
+      <div class="etape"><div class="etape-n">2</div><p>Plus besoin de proxy&nbsp;: OpenRouter se branche maintenant en direct. Ajoute le bloc ci-dessous dans <span class="cmd">.claude/settings.local.json</span>, avec ta clé.</p></div>
+      <div class="etape"><div class="etape-n">3</div><p>Tape <span class="cmd nw">/logout</span>, relance Claude Code, puis <span class="cmd nw">/status</span>&nbsp;: l'adresse OpenRouter doit apparaître. Tu choisis ensuite ton modèle avec <span class="cmd nw">/model</span>.</p></div>
+    </div>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">settings.local.json</span><button class="copy" type="button">Copier</button></div>
+<pre>{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
+    "ANTHROPIC_AUTH_TOKEN": "ta-cle-openrouter",
+    "ANTHROPIC_API_KEY": "",
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
+  }
+}</pre>
+    </div>
+    <p class="reveal"><strong>Pour revenir à ton abonnement&nbsp;:</strong> retire ce bloc, relance Claude Code et tape <span class="cmd nw">/login</span>. Le proxy communautaire claude-code-router existe toujours, mais il n'est plus indispensable.</p>
+    <div class="callout warn reveal"><b>Attention&nbsp;:</b> ce n'est pas une fonctionnalité officielle d'Anthropic, qui ne prend pas en charge les modèles autres que Claude dans Claude Code. OpenRouter ne garantit le bon fonctionnement qu'avec les modèles Claude servis par Anthropic. Avec un modèle open source, garde des tâches simples. La consommation est facturée par OpenRouter, en plus de ton abonnement, et ta clé ne se partage jamais.</div>
+    <p class="plus reveal">L'option officielle quand tu atteins ta limite&nbsp;: <span class="cmd nw">/usage-credits</span>, pour continuer avec Claude en crédits payants. Sources&nbsp;: <a href="https://openrouter.ai/docs/guides/guides/claude-code-integration" target="_blank" rel="noopener">guide OpenRouter</a> et <a href="https://code.claude.com/docs/fr/llm-gateway" target="_blank" rel="noopener">position d’Anthropic</a>.</p>
+
+    <h2 class="reveal" id="ordre">Installe-les un par un</h2>
+
+    <p class="reveal">Pas besoin de tout mettre en place le même jour. Commence par les projets et les skills, et ajoute le reste au fur et à mesure que tu en as besoin.</p>
+
+    <table class="matrix ordre reveal"><thead><tr><th>Quand</th><th>Ce que tu installes</th></tr></thead><tbody>
+      <tr><td>Aujourd'hui</td><td>Les projets (1), puis les réflexes sans installation&nbsp;: le modèle (6), /compact (7) et le mode plan (8).</td></tr>
+      <tr><td>Cette semaine</td><td>Ton premier skill (2) et ton premier connecteur (5).</td></tr>
+      <tr><td>Quand tu répètes une tâche</td><td>Les loops (9) et les subagents (3).</td></tr>
+      <tr><td>Plus tard, ou avec un technicien</td><td>Les hooks (4) et OpenRouter (10).</td></tr>
+    </tbody></table>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie de former ton équipe à Claude&nbsp;?</b> NoesisAI anime des formations pratiques, sur tes propres cas. <a href="/formation-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Voir la formation IA</a>.</div>
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/memo-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le mémo Claude Code</a></li>
+    <li><a href="/ressources/prompts-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">La bibliothèque de prompts Claude Code, décodée</a></li>
+    <li><a href="/ressources/unlazy-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Unlazy : la skill gratuite qui empêche Claude Code de dire « c'est fini » trop tôt</a></li>
+    <li><a href="/ressources/unslop-claude-code" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Unslop : le skill gratuit qui enlève le look « fait à l'IA » de ton site</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
