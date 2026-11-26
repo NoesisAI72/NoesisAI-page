@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/claude-transport-clients-a-perte">
+<title>Transport : trouve tes clients à perte avec Claude - NoesisAI</title>
+<meta name="description" content="Cartes carburant, péages, factures : calcule ton coût de revient par client avec Claude, chiffre un appel d'offres, révise le gazole et suis ta marge.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Transport : trouve tes clients à perte avec Claude">
+<meta property="og:description" content="Cartes carburant, péages, factures : calcule ton coût de revient par client avec Claude, chiffre un appel d'offres, révise le gazole et suis ta marge.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/claude-transport-clients-a-perte">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/claude-transport-clients-a-perte.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Transport : trouve tes clients à perte avec Claude">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Transport : trouve tes clients à perte avec Claude">
+<meta name="twitter:description" content="Cartes carburant, péages, factures : calcule ton coût de revient par client avec Claude, chiffre un appel d&#x27;offres, révise le gazole et suis ta marge.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/claude-transport-clients-a-perte.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/claude-transport-clients-a-perte#article", "headline": "Transport : trouve tes clients à perte avec Claude", "description": "Cartes carburant, péages, factures : calcule ton coût de revient par client avec Claude, chiffre un appel d'offres, révise le gazole et suis ta marge.", "image": "https://noesisai.fr/ressources/og/claude-transport-clients-a-perte.jpg", "url": "https://noesisai.fr/ressources/claude-transport-clients-a-perte", "mainEntityOfPage": "https://noesisai.fr/ressources/claude-transport-clients-a-perte", "inLanguage": "fr-FR", "datePublished": "2026-11-26", "dateModified": "2026-11-26", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Transport : trouve tes clients à perte avec Claude", "item": "https://noesisai.fr/ressources/claude-transport-clients-a-perte"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Transport : trouve les clients sur lesquels tu roules à perte</h1>
+    <p class="sub">Cartes carburant, péages, factures : la méthode pas à pas avec Claude, les consignes à copier et les règles à connaître. À jour au 26 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .callout a,main.resource td a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .resource h2{scroll-margin-top:24px}
+      .head::before{max-width:100vw}
+      .resource .plus{font-size:14.5px;line-height:1.65}
+      .som{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:26px 0}
+      .som a{display:flex;gap:13px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;line-height:1.3;transition:border-color .15s}
+      .som a:hover{border-color:var(--ink-3)}
+      .som b{flex:0 0 30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:14px}
+      .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+      .trio div{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 16px;border-top:2px solid var(--accent-a)}
+      .trio div:nth-child(2){border-top-color:var(--accent-b)}
+      .trio div:nth-child(3){border-top-color:var(--green)}
+      .trio b{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;color:var(--ink);margin-bottom:6px}
+      .trio span{display:block;font-size:14px;line-height:1.55;color:var(--ink-2)}
+      .trio em{display:block;font-style:normal;margin-top:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--ink)}
+      .trio em small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:12.5px;color:var(--ink-3)}
+      .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 8px}
+      .duo div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+      .duo small{display:block;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+      .duo strong.montant{display:block;font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,6vw,34px);line-height:1.2;margin:8px 0 6px}
+      .resource .duo .ok strong.montant{color:var(--green)}
+      .resource .duo .ko strong.montant{color:var(--rose)}
+      .duo span{display:block;font-size:14px;line-height:1.55;color:var(--ink-2)}
+      .formule{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:20px 0;text-align:center}
+      .formule b{display:block;font-family:'Space Grotesk',sans-serif;font-size:19px;color:var(--ink);line-height:1.45}
+      .formule span{display:block;font-size:14.5px;color:var(--ink-2);margin-top:8px}
+      table.fichiers td,table.causes td,table.delais td{vertical-align:top}
+      table.fichiers td:first-child{width:200px}
+      table.causes td:first-child,table.delais td:first-child{width:230px}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-2);font-weight:600}
+      .prompt-tag::before{content:"";flex:0 0 7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;overflow-wrap:anywhere}
+      /* aperçus de l'outil */
+      .apercu{margin:30px 0}
+      .apercu.large{--l:min(1040px,calc(100vw - 32px));width:var(--l);margin-left:calc(50% - var(--l) / 2)}
+      .apercu.panneau{max-width:600px;margin-left:auto;margin-right:auto}
+      .apercu button{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#0a0c12;cursor:zoom-in;position:relative;box-shadow:0 34px 70px -34px rgba(0,0,0,.9),0 0 0 6px rgba(255,255,255,.025);transition:border-color .15s}
+      .apercu button:hover{border-color:var(--ink-3)}
+      .apercu img{width:100%;height:auto;display:block}
+      .apercu button::after{content:"Agrandir";position:absolute;right:10px;bottom:10px;font:600 12px 'Inter',sans-serif;color:#fff;background:rgba(8,11,20,.8);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:5px 11px}
+      .apercu figcaption{margin-top:14px;font-size:13.5px;line-height:1.55;color:var(--ink-3);text-align:center}
+      .apercu figcaption b{color:var(--ink-2);font-weight:600}
+      .loupe{border:0;padding:0;margin:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;background:rgba(5,7,13,.97);color:var(--ink)}
+      .loupe::backdrop{background:rgba(5,7,13,.97)}
+      .loupe-zone{width:100%;height:100%;overflow:auto;display:flex;-webkit-overflow-scrolling:touch}
+      .loupe-zone img{margin:auto;padding:64px 16px 24px;box-sizing:content-box;width:min(2000px,calc(100% - 32px));height:auto;max-width:none;flex:0 0 auto}
+      .loupe.etroit .loupe-zone img{width:min(960px,calc(100% - 32px))}
+      .loupe-fermer{position:fixed;top:14px;right:14px;z-index:2;font:600 13.5px 'Inter',sans-serif;color:var(--ink);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer}
+      @media(max-width:700px){
+        .som,.trio,.duo{grid-template-columns:1fr;gap:8px}
+        .loupe-zone img{width:1300px}
+        .loupe.etroit .loupe-zone img{width:calc(100% - 32px)}
+        .apercu button::after{font-size:10.5px;padding:2px 8px;right:6px;bottom:6px}
+        table.fichiers td:first-child,table.causes td:first-child,table.delais td:first-child{width:118px}
+      }
+    </style>
+
+    <p class="lead reveal">Ton bilan te dit si l'année a été bonne. Il ne te dit pas quel client t'a coûté de l'argent. Tes cartes carburant, tes péages et ta facturation peuvent le dire&nbsp;: il faut les croiser, avec le coût de tes conducteurs et de tes camions. Claude fait ce travail avec toi.</p>
+
+    <nav class="som reveal" aria-label="Sommaire">
+      <a href="#cout"><b>1</b>Le coût de revient par client</a>
+      <a href="#appel-offres"><b>2</b>L'appel d'offres</a>
+      <a href="#conso"><b>3</b>Le suivi conso</a>
+      <a href="#gazole"><b>4</b>La surcharge gazole</a>
+      <a href="#litige"><b>5</b>Le litige</a>
+      <a href="#agent"><b>6</b>La compétence puis l'agent</a>
+    </nav>
+
+    <h2 class="reveal" id="avant">Avant de commencer&nbsp;: 3 réglages</h2>
+    <div class="trio reveal">
+      <div><b>Les fichiers</b><span>Dans Paramètres puis Capacités, vérifie que «&nbsp;Créer et modifier des fichiers&nbsp;» est activé. Claude lit tes Excel et t'en rend. 30&nbsp;Mo maximum par fichier.</span></div>
+      <div><b>La confidentialité</b><span>Sur un compte personnel, dans Paramètres puis Confidentialité, coupe «&nbsp;Aider à améliorer nos modèles d'IA&nbsp;» si tes conversations ne doivent pas servir à l'entraînement.</span></div>
+      <div><b>Les noms</b><span>Remplace les noms des conducteurs par des codes (C01, C02…) quand le calcul n'en a pas besoin. La correspondance reste chez toi.</span></div>
+    </div>
+
+    <h2 class="reveal" id="cout"><span class="numtag">1</span>Le coût de revient par client</h2>
+
+    <p class="reveal"><strong>Pourquoi un prix au kilomètre te trompe.</strong> Le Comité national routier (CNR) chiffre un transport de 300&nbsp;km dans deux situations. Ce qui change&nbsp;: le temps de conduite et 10&nbsp;km à vide.</p>
+    <div class="duo reveal">
+      <div class="ok"><small>Quand ça roule</small><strong class="montant">562&nbsp;€</strong><span>4&nbsp;h&nbsp;42 de conduite, 3&nbsp;h de chargement et déchargement, 50&nbsp;km à vide. Soit 1,61&nbsp;€ du kilomètre.</span></div>
+      <div class="ko"><small>Quand ça coince</small><strong class="montant">687&nbsp;€</strong><span>7&nbsp;h&nbsp;12 de conduite, 3&nbsp;h de chargement et déchargement, 60&nbsp;km à vide. Soit 1,91&nbsp;€ du kilomètre.</span></div>
+    </div>
+    <p class="plus reveal">125&nbsp;€ d'écart sur la même distance de transport. Exemple publié par le CNR, longue distance, valeurs 2025, péages compris&nbsp;: <a href="https://www.cnr.fr/app/uploads/2026/06/CNR-Enquete-longue-distance-2025.pdf" target="_blank" rel="noopener">enquête longue distance, annexe 2</a>.</p>
+
+    <p class="reveal"><strong>La méthode du CNR&nbsp;: trois coûts au lieu d'un.</strong> C'est elle que tu demandes à Claude d'appliquer à tes propres chiffres.</p>
+    <div class="trio reveal">
+      <div><b>Au kilomètre</b><span>Carburant, pneus, entretien, réparations et péages. Kilomètres à vide compris.</span><em>0,474&nbsp;€<small>par km, hors péages</small></em></div>
+      <div><b>À l'heure</b><span>Le conducteur&nbsp;: salaire, charges, déplacements. On compte tout le temps de service, attente comprise.</span><em>28,23&nbsp;€<small>par heure</small></em></div>
+      <div><b>Au jour</b><span>Le véhicule (achat ou loyer), l'assurance et les frais de structure.</span><em>216,07&nbsp;€<small>par jour d'utilisation</small></em></div>
+    </div>
+    <div class="callout warn reveal"><b>Ces trois montants sont des repères, pas tes coûts.</b> Ce sont les moyennes CNR 2025 en longue distance. Et 2026 coûte plus cher&nbsp;: le CNR annonce <a href="https://www.cnr.fr/espaces/16/indicateurs/26" target="_blank" rel="noopener">+8,8&nbsp;% en moyenne annuelle</a> sur le coût de revient d'un poids lourd gazole, poussé notamment par le gazole professionnel (+36,4&nbsp;%).</div>
+
+    <h3 class="reveal">Les fichiers à réunir</h3>
+    <div class="tscroll reveal"><table class="matrix fichiers"><thead><tr><th>Fichier</th><th>Ce qu'il doit contenir</th></tr></thead><tbody>
+      <tr><td>Cartes carburant</td><td>Date, véhicule, litres, montant hors taxes, kilométrage saisi à la pompe</td></tr>
+      <tr><td>Péages</td><td>Date, véhicule, montant hors taxes</td></tr>
+      <tr><td>Facturation du mois</td><td>Client, prestation, montant hors taxes</td></tr>
+      <tr><td>Tournées</td><td>Quel camion a roulé pour quel client, les kilomètres, les heures de conduite et d'attente</td></tr>
+      <tr><td>Conducteurs</td><td>Coût chargé et indemnités, à demander à la paie ou à ton comptable</td></tr>
+      <tr><td>Véhicules et structure</td><td>Amortissements ou loyers, assurances, entretien, pneus, frais fixes</td></tr>
+    </tbody></table></div>
+    <p class="reveal"><strong>Celui qu'on oublie&nbsp;: les tournées.</strong> Sans savoir quel camion a fait quoi, et en combien de temps, aucun calcul par client ne tient. Un planning, tes lettres de voiture ou un export de ta télématique permettent de démarrer.</p>
+
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 1 · le coût de revient par client</span><button type="button" class="copy">Copier</button></div>
+<pre>Tu es contrôleur de gestion dans une entreprise de transport routier.
+Je te joins mes cartes carburant, mes péages, ma facturation du mois, mon fichier de tournées, le coût de mes conducteurs et mes charges véhicules et structure.
+
+Avant tout calcul :
+1. Liste les fichiers reçus, les colonnes utilisées et ce qui manque.
+2. Signale les saisies impossibles : kilométrage qui recule, consommation aberrante, plein sans véhicule, doublons.
+3. Travaille hors taxes. N'invente aucune valeur : si une donnée manque, demande-la.
+
+Calcule ensuite mon coût de revient en trois parts :
+- au kilomètre : carburant, pneus, entretien, péages, kilomètres à vide compris ;
+- à l'heure : conducteur (conduite, attente, chargement) ;
+- au jour : véhicule, assurance, frais de structure.
+Pour les véhicules de 7,5 t et plus, compte le gazole net du remboursement partiel de l'accise, avec le taux que je te donne.
+
+Répartis ce coût sur chaque client et compare-le au montant facturé.
+Rends-moi un fichier Excel, une ligne par client, du moins rentable au plus rentable : chiffre d'affaires, coût de revient, marge en euros et en %, kilomètres à vide, heures d'attente. Laisse les formules visibles.
+Termine par les 3 hypothèses qui pèsent le plus sur le résultat.</pre>
+    </div>
+
+    <div class="callout win reveal"><b>L'accise, à ne pas oublier.</b> Pour 2026, un véhicule de 7,5&nbsp;t ou plus ouvre droit à un remboursement de 15,56&nbsp;€ par hectolitre de gazole (14,21&nbsp;€ en Corse), sur la consommation réelle. La demande passe par l'annexe 3310-TIC de la déclaration de TVA. <a href="https://www.justice.fr/fiche/remboursement-partiel-accise-energies-gazole-transporteurs-routiers-marchandises-personnes-ex-ticpe" target="_blank" rel="noopener">La fiche officielle</a>.</div>
+
+    <p class="reveal"><strong>Vérifie avant d'y croire.</strong> La somme des coûts répartis doit retomber sur tes charges du mois, ou l'écart doit être expliqué. Puis refais un client à la main, du début à la fin.</p>
+
+    <figure class="apercu panneau reveal">
+      <button type="button" aria-label="Agrandir l'aperçu du prix décomposé"><img src="/ressources/img/c3ac784a17e8.webp" width="958" height="976" style="height:auto" loading="lazy" alt="Détail d'une ligne : prix par jour décomposé en gazole, conducteur, usure et marge, contrôles du temps de conduite et formules de calcul"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> Le prix d'une ligne s'ouvre en gazole, conducteur, usure et marge, formules à l'appui. Données de démonstration.</figcaption>
+    </figure>
+
+    <p class="reveal"><strong>Un client à perte, ce n'est pas forcément un client à quitter.</strong> Regarde d'abord d'où vient la perte.</p>
+    <div class="tscroll reveal"><table class="matrix causes"><thead><tr><th>Ce que montre le calcul</th><th>Ce que tu peux faire</th></tr></thead><tbody>
+      <tr><td>Beaucoup d'attente</td><td>Chiffrer les heures perdues, renégocier les créneaux ou les facturer</td></tr>
+      <tr><td>Beaucoup de kilomètres à vide</td><td>Chercher un fret retour ou regrouper avec une autre tournée</td></tr>
+      <tr><td>Gazole non répercuté</td><td>Appliquer la révision de la partie 4</td></tr>
+      <tr><td>Prix trop bas dès le départ</td><td>Renégocier, le détail des trois coûts à l'appui</td></tr>
+    </tbody></table></div>
+
+    <h2 class="reveal" id="appel-offres"><span class="numtag">2</span>L'appel d'offres</h2>
+    <p class="reveal">Tu déposes le cahier des charges et ton historique de tournées. Claude chiffre chaque ligne avec tes péages réellement payés et la consommation réelle de tes camions sur des trajets proches. Fini le prix au kilomètre sorti au doigt mouillé un dimanche soir.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 2 · chiffrer un appel d'offres</span><button type="button" class="copy">Copier</button></div>
+<pre>Voici le cahier des charges et le bordereau de prix de l'appel d'offres, mon historique de tournées, mes péages et mes cartes carburant des derniers mois, et mes trois coûts (kilomètre, heure, jour).
+
+Pour chaque ligne du bordereau :
+- cherche dans mon historique les trajets les plus proches (mêmes zones, même type de véhicule) et dis lesquels tu utilises ;
+- reprends les péages réellement payés et la consommation réelle de ces trajets ;
+- compte l'attente, les chargements, le retour à vide et les heures de nuit ;
+- calcule le coût de revient, puis le prix avec ma marge cible de [X] %.
+
+Marque « estimé » toute valeur qui ne vient pas de mes fichiers.
+Liste à part les exigences du cahier des charges qui changent le coût : pénalités, délais, durée, clause d'indexation.
+Remplis le bordereau sans en changer la structure.</pre>
+    </div>
+    <p class="reveal">Avant d'envoyer, relis chaque ligne marquée «&nbsp;estimé&nbsp;». C'est ton nom qui est en bas de l'offre.</p>
+
+    <figure class="apercu large reveal">
+      <button type="button" aria-label="Agrandir l'aperçu du chiffrage"><img src="/ressources/img/9a217b016693.webp" width="2000" height="1039" style="height:auto" loading="lazy" alt="Tableau de chiffrage d'un appel d'offres : trajets, kilomètres, péages, coût de revient par jour, prix conseillé, forfait mensuel et alertes"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> Le bordereau déposé devient un tableau&nbsp;: en jaune ce qui reste à confirmer, en bas le forfait et la marge. Données de démonstration.</figcaption>
+    </figure>
+    <figure class="apercu panneau reveal">
+      <button type="button" aria-label="Agrandir l'aperçu de l'itinéraire"><img src="/ressources/img/26f82fcc1ce8.webp" width="954" height="972" style="height:auto" loading="lazy" alt="Réglages d'une ligne : véhicule, itinéraire poids lourd sur une carte, distances et péages à l'aller et au retour"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> Chaque ligne a son itinéraire, ses péages et l'origine de chaque estimation. Données de démonstration.</figcaption>
+    </figure>
+
+    <h2 class="reveal" id="conso"><span class="numtag">3</span>Le suivi conso</h2>
+    <p class="reveal">Toutes tes cartes dans un seul tableau, par véhicule et par conducteur. La comparaison n'a de sens qu'entre camions du même type, sur la même activité.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 3 · le suivi conso</span><button type="button" class="copy">Copier</button></div>
+<pre>Rassemble tous mes exports de cartes carburant dans un seul tableau.
+Calcule la consommation aux 100 km par véhicule et par conducteur, à partir des litres et du kilométrage saisi à la pompe.
+Écarte et liste les pleins dont le kilométrage est incohérent.
+Compare uniquement des véhicules de même catégorie sur la même activité.
+Signale les écarts de plus de [10] % et les pleins inhabituels : heure, lieu, volume supérieur à la capacité du réservoir.
+N'accuse personne : pour chaque écart, propose les explications possibles et la vérification à faire.</pre>
+    </div>
+    <div class="callout warn reveal"><b>Suivi par conducteur&nbsp;: préviens avant.</b> Aucune information concernant personnellement un salarié ne peut être collectée par un dispositif qui n'a pas été porté à sa connaissance au préalable (Code du travail, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006900861" target="_blank" rel="noopener">L.1222-4</a>). À partir de 50 salariés, le CSE est informé et consulté avant la mise en place d'un moyen de contrôle de l'activité (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000035610275" target="_blank" rel="noopener">L.2312-38</a>).</div>
+
+    <figure class="apercu large reveal">
+      <button type="button" aria-label="Agrandir l'aperçu de la consommation"><img src="/ressources/img/4f7495299085.webp" width="2000" height="1041" style="height:auto" loading="lazy" alt="Consommation aux 100 km par type de véhicule, classement des conducteurs, les plus sobres et ceux à accompagner"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> La consommation par catégorie, le classement et les conducteurs à accompagner. Données de démonstration.</figcaption>
+    </figure>
+
+    <h2 class="reveal" id="gazole"><span class="numtag">4</span>La surcharge gazole</h2>
+    <p class="reveal"><strong>En France, la révision gazole est de droit.</strong> Quand le contrat indique les charges de carburant, le prix est révisé pour couvrir leur variation entre la date du contrat et la date du transport. Quand il ne les indique pas, la loi renvoie aux indices du CNR. Dans les deux cas, la facture fait apparaître ces charges (Code des transports, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046194417" target="_blank" rel="noopener">L.3222-1</a> et <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000046194412" target="_blank" rel="noopener">L.3222-2</a>).</p>
+    <div class="formule reveal">
+      <b>Révision = prix du transport × part du carburant × variation de l'indice</b>
+      <span>Exemple inventé pour montrer le calcul&nbsp;: 1&nbsp;000&nbsp;€ HT, 25&nbsp;% de carburant, un indice en hausse de 8&nbsp;%, soit 20&nbsp;€ à ajouter.</span>
+    </div>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 4 · la révision du mois</span><button type="button" class="copy">Copier</button></div>
+<pre>Voici le contrat (ou les conditions acceptées) avec ce client et les indices gazole du CNR que j'ai téléchargés.
+Retrouve la clause d'indexation : indice de référence, part du carburant, date de départ, rythme de révision.
+S'il n'y a pas de clause, dis-le et applique la méthode prévue par le Code des transports avec les indices du CNR.
+Calcule la révision du mois en montrant chaque chiffre et sa source, puis prépare la ligne de facture avec les charges de carburant apparentes.
+N'utilise aucun indice que je ne t'ai pas fourni.</pre>
+    </div>
+    <p class="plus reveal">Les <a href="https://www.cnr.fr/espaces/16/indicateurs/26" target="_blank" rel="noopener">indices gazole du CNR</a> sont en accès libre. Prends celui que désigne ta clause&nbsp;: il en existe plusieurs.</p>
+
+    <h2 class="reveal" id="litige"><span class="numtag">5</span>Le litige</h2>
+    <p class="reveal">Tu déposes la lettre de voiture avec les réserves et les photos, Claude rédige le courrier. Avant la première ligne, fais-lui vérifier les dates&nbsp;: elles peuvent changer toute l'issue du dossier.</p>
+    <div class="tscroll reveal"><table class="matrix delais"><thead><tr><th>Situation</th><th>Le délai</th></tr></thead><tbody>
+      <tr><td>En France, avarie ou perte partielle</td><td>Le destinataire a 3 jours après la réception, jours fériés non compris, pour notifier une protestation motivée par lettre recommandée ou acte de commissaire de justice. Sinon son action contre le transporteur s'éteint (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021486442" target="_blank" rel="noopener">Code de commerce, L.133-3</a>)</td></tr>
+      <tr><td>En France, pour agir en justice</td><td>1 an pour les avaries, pertes ou retards (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000017853204" target="_blank" rel="noopener">L.133-6</a>)</td></tr>
+      <tr><td>À l'international (convention CMR)</td><td>Dommage apparent&nbsp;: réserves à la livraison. Dommage non apparent&nbsp;: réserves écrites sous 7 jours, dimanches et jours fériés non compris (<a href="https://unidroit.org/french/conventions/1956cmr/cmr_f.pdf" target="_blank" rel="noopener">article 30</a>)</td></tr>
+    </tbody></table></div>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 5 · répondre à une réclamation</span><button type="button" class="copy">Copier</button></div>
+<pre>Voici la lettre de voiture avec les réserves, les photos, les échanges avec le client et sa réclamation.
+1. Fais la chronologie datée : chargement, livraison, réserves, courriers reçus.
+2. Dis si les délais de protestation sont respectés (transport national ou CMR) et montre le calcul.
+3. Sépare ce que les pièces prouvent de ce qu'elles ne prouvent pas.
+4. Rédige un courrier de réponse factuel et ferme, sans reconnaître de responsabilité à ma place.
+Termine par les points à faire valider par mon assureur ou un avocat.</pre>
+    </div>
+    <div class="callout warn reveal"><b>Préviens ton assureur avant d'envoyer.</b> Un contrat d'assurance de responsabilité peut prévoir qu'une reconnaissance de responsabilité faite sans l'assureur ne lui est pas opposable (Code des assurances, <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006792606" target="_blank" rel="noopener">L.124-2</a>).</div>
+
+    <h2 class="reveal" id="agent"><span class="numtag">6</span>La compétence puis l'agent</h2>
+    <p class="reveal"><strong>D'abord, figer la méthode.</strong> Une compétence (skill) est un mode d'emploi que Claude garde et ressort quand il le faut&nbsp;: tes coûts, tes contrôles, ta trame de réponse. Demande-la dans la conversation où le calcul a fonctionné, puis enregistre le fichier qu'il te propose.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 6 · créer la compétence</span><button type="button" class="copy">Copier</button></div>
+<pre>Transforme ce qu'on vient de faire en compétence appelée « rentabilité transport ».
+Elle doit contenir : mes trois coûts (kilomètre, heure, jour) avec leur date, les colonnes attendues dans chaque fichier, les contrôles à faire avant le calcul, ma marge minimale de [X] % et ma trame de réponse aux appels d'offres.
+Si un coût a plus de 3 mois, préviens-moi avant de l'utiliser.</pre>
+    </div>
+    <p class="reveal"><strong>Ensuite, l'agent.</strong> Les relevés tombent chaque semaine dans un dossier partagé, Claude fait le rapprochement et met en tête les clients passés sous ta marge. Relie ton Google Drive ou ton SharePoint à Claude, envoie la consigne ci-dessous, relis ce qu'il propose et valide la planification.</p>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">Consigne 7 · le contrôle du lundi</span><button type="button" class="copy">Copier</button></div>
+<pre>Chaque lundi à 7 h, ouvre le dossier partagé « Relevés transport », prends les nouveaux relevés carburant, les péages et les factures, et applique la compétence « rentabilité transport ».
+Commence ton compte rendu par les clients passés sous ma marge minimale, avec la cause principale : attente, kilomètres à vide, gazole ou prix.
+Liste les fichiers manquants ou illisibles au lieu de les ignorer.
+N'envoie rien à personne : prépare seulement le compte rendu.</pre>
+    </div>
+    <p class="plus reveal">Les tâches planifiées demandent une offre payante (Pro ou plus). Elles tournent même ordinateur éteint, avec tes connecteurs et les fichiers enregistrés dans ton compte Claude. Au premier passage, vérifie qu'il a bien lu chaque fichier. <a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-claude-cowork" target="_blank" rel="noopener">La page d'aide officielle</a> (en anglais).</p>
+
+    <h2 class="reveal" id="outil">Quand tout vit au même endroit</h2>
+    <p class="reveal">La méthode ci-dessus marche avec des fichiers. L'étape d'après, une fois qu'elle a fait ses preuves, c'est un outil à ton nom, branché sur tes données&nbsp;: la flotte, les échéances, les chiffrages et les consommations au même endroit.</p>
+
+    <figure class="apercu large reveal">
+      <button type="button" aria-label="Agrandir l'aperçu de la flotte"><img src="/ressources/img/4a017a0da08d.webp" width="2000" height="1036" style="height:auto" loading="lazy" alt="Carte des véhicules en direct avec les trajets du jour, les véhicules au garage et les alertes d'échéance"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> Les camions sur la route, les retards, le garage et les échéances. Données de démonstration.</figcaption>
+    </figure>
+    <figure class="apercu large reveal">
+      <button type="button" aria-label="Agrandir l'aperçu des échéances"><img src="/ressources/img/19edf038c2f8.webp" width="2000" height="1050" style="height:auto" loading="lazy" alt="Tableau des conducteurs avec les dates de validité du permis, de la FCO, de la carte conducteur et des formations"></button>
+      <figcaption><b>Aperçu d'un outil sur mesure.</b> Permis, FCO, cartes conducteur&nbsp;: les échéances de chacun sur une ligne, et un filtre pour ce qui est à traiter sous 30 jours. Données de démonstration.</figcaption>
+    </figure>
+
+    <p class="reveal">L'idée, c'est d'arrêter de découvrir au bilan qu'un client te coûtait de l'argent depuis six mois.</p>
+    <p class="plus reveal">Vérifié le 26 novembre 2026. Les taux, les indices et les menus de Claude changent&nbsp;: contrôle les sources liées avant d'appliquer. Ce guide ne remplace ni ton expert-comptable ni ton avocat.</p>
+
+    <dialog class="loupe" aria-label="Aperçu agrandi">
+      <button type="button" class="loupe-fermer">Fermer ✕</button>
+      <div class="loupe-zone"><img alt=""></div>
+    </dialog>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+
+        var loupe = document.querySelector('.loupe');
+        if (!loupe || !loupe.showModal) return;
+        var grand = loupe.querySelector('img');
+        document.querySelectorAll('.apercu button').forEach(function(b){
+          b.addEventListener('click', function(){
+            var im = b.querySelector('img');
+            grand.src = im.currentSrc || im.src;
+            grand.alt = im.alt;
+            loupe.classList.toggle('etroit', !!b.closest('.panneau'));
+            loupe.showModal();
+            loupe.querySelector('.loupe-zone').scrollTo(0, 0);
+          });
+        });
+        loupe.addEventListener('click', function(e){ if (e.target !== grand) loupe.close(); });
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Tu veux ce type d'outil, branché sur tes données&nbsp;?</b> NoesisAI conçoit des logiciels et des agents IA sur mesure. <a href="/automatisation">Voir l'automatisation sur mesure</a>.</div>
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/claude-de-ton-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Le Claude de ton métier : la méthode qu&#x27;Anthropic applique au droit et à la finance</a></li>
+    <li><a href="/ressources/outil-metier-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Claude for Legal : comment marchent les nouveaux outils prêts à l&#x27;emploi</a></li>
+    <li><a href="/ressources/5-briques-claude-metier" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Les 5 briques qui transforment Claude en expert de ton métier</a></li>
+    <li><a href="/ressources/suite-bureautique-claude" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">La suite bureautique de Claude : le guide PME, et ce qu'elle remplace vraiment</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>
