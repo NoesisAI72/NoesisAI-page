@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://noesisai.fr/ressources/claude-visibilite-google-ia">
+<title>Search Skill : le skill gratuit qui vérifie si l'IA de Google te recommande - NoesisAI</title>
+<meta name="description" content="Le Search Skill pour Claude Code vérifie en 12 contrôles si les réponses IA de Google citent ton entreprise ou tes concurrents, prépare chaque correction et mesure l'avant / après. Coûts, garde-fous et installation.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="L'IA de Google cite-t-elle ton entreprise ? Le skill gratuit qui vérifie en 12 points">
+<meta property="og:description" content="Le Search Skill pour Claude Code vérifie en 12 contrôles si les réponses IA de Google citent ton entreprise ou tes concurrents, prépare chaque correction et mesure l'avant / après. Coûts, garde-fous et installation.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  /* Swappe ces 2 valeurs pour changer tout l'accent (ex: orange) */
+  --accent-a:#21B6FF;
+  --accent-b:#8B5CF6;
+  --grad:linear-gradient(135deg,var(--accent-a) 0%,var(--accent-b) 100%);
+
+  --bg:#070A12;
+  --bg-soft:#0C1120;
+  --card:#10172A;
+  --card-2:#151D33;
+  --line:#222C44;
+  --line-soft:#1a2236;
+  --ink:#EAEEF7;
+  --ink-2:#9AA6BE;
+  --ink-3:#6B768D;
+  --green:#34D399;
+  --cyan:#22D3EE;
+  --rose:#FB7185;
+
+  --maxprose:720px;
+  --maxwide:1080px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;line-height:1.15;letter-spacing:-0.02em;font-weight:700}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--maxprose);margin:0 auto;padding:0 24px}
+.wide{max-width:var(--maxwide);margin:0 auto;padding:0 24px}
+
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- top bar ---------- */
+.topbar{padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.back{color:var(--ink-3);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color .2s}
+.back:hover{color:var(--ink-2)}
+
+/* ---------- hero / header ---------- */
+.head{position:relative;padding:64px 0 36px}
+.head::before{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:760px;height:380px;max-width:120vw;
+  background:radial-gradient(closed,ellipse);
+  background:radial-gradient(60% 60% at 50% 40%,rgba(33,182,255,.16),rgba(139,92,246,.10) 45%,transparent 70%);
+  filter:blur(8px);pointer-events:none;z-index:0;
+}
+.head .wrap{position:relative;z-index:1}
+.doc-ico{width:46px;height:46px;border-radius:13px;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.doc-ico svg{width:24px;height:24px}
+.eyebrow{display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:18px}
+.head h1{font-size:clamp(30px,5.2vw,46px);margin-bottom:18px}
+.head .sub{font-size:19px;color:var(--ink-2);max-width:600px}
+.byline{margin-top:26px;display:flex;align-items:center;gap:11px;font-size:14.5px;color:var(--ink-2)}
+.byline .av{width:34px;height:34px;border-radius:50%;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink-2);font-weight:600}
+.byline b{color:var(--ink);font-weight:600}
+
+/* ---------- prose (la ressource) ---------- */
+.resource{padding:18px 0 8px}
+.resource h2{font-size:27px;margin:48px 0 16px}
+.resource h3{font-size:19px;margin:30px 0 8px;color:var(--ink)}
+.resource p{color:var(--ink-2);margin:14px 0}
+.resource strong{color:var(--ink);font-weight:600}
+.resource ul{margin:14px 0 14px 2px;list-style:none}
+.resource ul li{position:relative;padding-left:24px;color:var(--ink-2);margin:9px 0}
+.resource ul li::before{content:"";position:absolute;left:2px;top:11px;width:7px;height:7px;border-radius:50%;background:var(--grad)}
+.lead{font-size:19px;color:var(--ink)!important}
+
+.numtag{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:var(--card-2);border:1px solid var(--line);font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--ink);margin-right:12px;vertical-align:middle}
+
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent-a);border-radius:12px;padding:16px 18px;margin:20px 0;color:var(--ink-2);font-size:15.5px}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:var(--rose)}
+.callout.win{border-left-color:var(--green)}
+
+table.matrix{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px}
+table.matrix th,table.matrix td{text-align:left;padding:12px 12px;border-bottom:1px solid var(--line-soft)}
+table.matrix th{color:var(--ink-3);font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em}
+table.matrix td{color:var(--ink-2)}
+table.matrix td:first-child{color:var(--ink);font-weight:500}
+.star{color:var(--accent-a)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:22px 0}
+.tscroll table.matrix{margin:0}
+@media (max-width:480px){.tscroll table.matrix{font-size:13.5px}
+.tscroll table.matrix th,.tscroll table.matrix td{padding:10px 6px}}
+
+/* ---------- the seam (signature: free -> paid) ---------- */
+.seam{position:relative;margin:72px 0 0;height:2px;background:var(--grad);opacity:.9}
+.seam::after{content:"";position:absolute;inset:-60px 0;background:radial-gradient(50% 100% at 50% 0,rgba(139,92,246,.18),transparent 70%);pointer-events:none}
+
+/* ---------- pitch ---------- */
+.pitch{padding:60px 0 10px;text-align:center}
+.pitch h2{font-size:clamp(28px,4.8vw,40px);max-width:760px;margin:0 auto 20px}
+.pitch p{color:var(--ink-2);max-width:620px;margin:0 auto;font-size:18px}
+.stats{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 18px;font-size:14px;color:var(--ink-2)}
+.stat b{color:var(--ink);font-weight:600}
+
+/* placeholder visuals */
+.ph{border:1px dashed #3a4straté;border:1px dashed #3a4a6a;background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 14px,transparent 14px 28px);border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--ink-3);font-size:14px;padding:28px}
+.ph .tag{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-a);border:1px solid var(--line);border-radius:6px;padding:3px 8px;margin-bottom:8px}
+.platform{position:relative;max-width:1000px;margin:46px auto 0;height:540px}.platform-glow{position:absolute;inset:-40px 8% 0;background:radial-gradient(60% 60% at 50% 30%,rgba(33,182,255,.14),rgba(139,92,246,.10) 50%,transparent 75%);filter:blur(10px);pointer-events:none}.shot{position:absolute;width:64%;border-radius:14px;border:1px solid var(--line);box-shadow:0 40px 90px -30px rgba(0,0,0,.85)}.shot-back{top:0;left:0;transform:rotate(-3deg)}.shot-front{bottom:0;right:0;transform:rotate(2.5deg);z-index:2}@media(max-width:720px){.platform{height:auto}.shot{position:static;width:100%;transform:none;margin-bottom:16px;box-shadow:0 20px 50px -24px rgba(0,0,0,.8)}.platform-glow{display:none}}
+
+/* ---------- section heads ---------- */
+.sec{padding:64px 0}
+.sec h2{font-size:clamp(24px,4vw,32px);margin-bottom:8px}
+.sec .sec-sub{color:var(--ink-2);margin-bottom:30px}
+.center{text-align:center}
+
+/* pains */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pain{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px;align-items:flex-start}
+.pain .x{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:rgba(251,113,133,.12);color:var(--rose);display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px}
+.pain p{color:var(--ink-2);font-size:15.5px}
+
+/* outcomes */
+.outcome{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;border-top:2px solid var(--accent-a)}
+.outcome:nth-child(2){border-top-color:var(--violet)}
+.outcome:nth-child(3){border-top-color:var(--green)}
+.outcome:nth-child(4){border-top-color:var(--cyan)}
+.outcome h3{font-size:18px;margin-bottom:8px}
+.outcome p{color:var(--ink-2);font-size:15px}
+
+/* included */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.feat .ic{width:42px;height:42px;border-radius:11px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feat .ic svg{width:21px;height:21px;stroke:var(--accent-a)}
+.feat h3{font-size:17px;margin-bottom:8px}
+.feat p{color:var(--ink-2);font-size:14.5px}
+
+/* social proof */
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.tcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#fff;line-height:0}.tcard img{width:100%;height:auto;display:block}.videos{margin:24px auto 0;display:flex;flex-direction:column;align-items:center;gap:22px}.vid{position:relative;width:100%;border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 54px -30px rgba(0,0,0,.75);background:#0b0f1a;background-size:cover;background-position:center;cursor:pointer}.vid iframe{position:absolute;inset:0;width:100%;height:100%;display:block;border:0}.vid::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,11,20,.15),rgba(8,11,20,.55));transition:background .2s}.vid:hover::before{background:linear-gradient(180deg,rgba(8,11,20,.05),rgba(8,11,20,.4))}.vid.playing::before,.vid.playing .vid-play,.vid.playing .vid-tag{display:none}.vid-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(0,0,0,.6);transition:transform .15s}.vid:hover .vid-play{transform:translate(-50%,-50%) scale(1.08)}.vid-play svg{width:26px;height:26px;margin-left:3px;fill:#fff}.vid-tag{position:absolute;left:12px;bottom:12px;z-index:1;font-size:12px;font-weight:600;color:#fff;background:rgba(8,11,20,.6);border:1px solid rgba(255,255,255,.18);padding:5px 10px;border-radius:999px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}.vid-vert{max-width:300px;aspect-ratio:9/16}.vid-wide{max-width:620px;aspect-ratio:16/9}
+
+/* author */
+.author{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;gap:22px;align-items:flex-start}
+.author .pic{flex:0 0 auto;width:92px;height:92px;border-radius:14px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;text-align:center;padding:8px}
+.author h3{font-size:20px;margin-bottom:3px}
+.author .role{color:var(--accent-a);font-size:13.5px;margin-bottom:14px;font-weight:500}
+.author p{color:var(--ink-2);font-size:15px;margin-bottom:10px}
+
+/* pricing */
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.price{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.price.feature{border-color:transparent;background:
+  linear-gradient(var(--card),var(--card)) padding-box,
+  var(--grad) border-box;border:1.5px solid transparent}
+.badge{position:absolute;top:18px;right:18px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:#fff;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price .plan{font-size:15px;color:var(--ink-2);margin-bottom:10px;font-weight:600}
+.price .amt{font-family:'Space Grotesk';font-weight:700;font-size:40px}
+.price .amt span{font-size:16px;color:var(--ink-3);font-weight:500}
+.price .note{color:var(--ink-3);font-size:14px;margin-top:8px}.amt .old{font-size:22px;color:var(--ink-3);text-decoration:line-through;margin-right:8px;font-weight:600}.scarcity{display:inline-block;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--rose);background:rgba(251,113,133,.12);border:1px solid rgba(251,113,133,.32);padding:7px 13px;border-radius:999px}
+
+.cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;border-radius:12px;padding:15px 22px;cursor:pointer;text-decoration:none;margin-top:20px;transition:transform .15s ease,box-shadow .2s ease;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.cta-btn:hover{transform:translateY(-1px);box-shadow:0 16px 40px -12px rgba(139,92,246,.6)}
+.cta-btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--ink)}
+.cta-btn.ghost:hover{border-color:var(--ink-3);transform:none}
+.reassure{text-align:center;color:var(--ink-3);font-size:13px;margin-top:16px}
+
+/* FAQ */
+.faq{max-width:var(--maxprose);margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;background:var(--card);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:600;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .chev{flex:0 0 auto;transition:transform .25s;color:var(--ink-3)}
+.faq details[open] summary .chev{transform:rotate(180deg)}
+.faq .ans{padding:0 20px 18px;color:var(--ink-2);font-size:15.5px}
+
+/* final cta */
+.final{margin:70px 0;padding:48px 28px;text-align:center;border-radius:22px;position:relative;overflow:hidden;
+  background:
+   radial-gradient(70% 120% at 50% 0,rgba(139,92,246,.16),transparent 60%),
+   var(--card);border:1px solid var(--line)}
+.final h2{font-size:clamp(26px,4.2vw,36px);margin-bottom:14px}
+.final p{color:var(--ink-2);max-width:520px;margin:0 auto 8px}
+.final .cta-btn{width:auto;padding:16px 34px;margin-top:24px}
+
+footer{border-top:1px solid var(--line-soft);padding:34px 0 60px;text-align:center;color:var(--ink-3);font-size:13.5px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:720px){
+  body{font-size:16px}
+  .grid2,.grid3,.proof,.prices{grid-template-columns:1fr}
+  .author{flex-direction:column}
+  .head{padding:44px 0 28px}
+}
+
+/* ---------- expertises (figé) ---------- */
+.expertise{padding:58px 0 8px;text-align:center}
+.expertise .eyebrow-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;font-size:13.5px;color:var(--ink-2);font-weight:500;margin-bottom:22px}
+.expertise .eyebrow-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-b)}
+.expertise h2{font-size:clamp(28px,4.8vw,42px);max-width:760px;margin:0 auto 16px}
+.expertise .lead-sub{color:var(--ink-2);max-width:680px;margin:0 auto 44px;font-size:18px}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;text-align:left}
+.exp-col{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px}
+.exp-col>h3{display:flex;align-items:center;gap:14px;font-size:23px;margin-bottom:22px}
+.exp-col>h3::before{content:"";flex:0 0 auto;width:5px;height:24px;border-radius:3px;background:var(--grad)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.exp-card{background:var(--card-2);border:1px solid var(--line-soft);border-radius:14px;padding:18px}
+.exp-card h4{font-size:16px;margin-bottom:8px;color:var(--ink)}
+.exp-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;margin:0}
+
+/* ---------- trust marquee (figé) ---------- */
+.trust{padding:48px 0 8px;text-align:center}
+.trust .lbl{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-bottom:28px}
+.marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee .track{display:flex;width:max-content;gap:60px;animation:scroll-x 30s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.logo-chip{flex:0 0 auto;height:36px;display:flex;align-items:center;color:var(--ink-2);opacity:.6;font-weight:700;font-size:18px;white-space:nowrap;transition:opacity .2s}
+.logo-chip:hover{opacity:1}
+.logo-chip img{height:36px;width:auto;opacity:.9}
+.logo-chip.wordmark{font-size:23px;letter-spacing:.01em}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:36px 60px}}
+@media(max-width:860px){.exp-cols{grid-template-columns:1fr}.exp-grid{grid-template-columns:1fr}}
+
+/* ---------- lead gate (formulaire de contact au scroll ~48%) ---------- */
+#lead-gate{position:fixed;inset:0;z-index:9999;display:none;opacity:0;transition:opacity .35s ease;
+  align-items:flex-end;justify-content:center;padding:0 20px 8vh;
+  background:linear-gradient(to bottom,rgba(7,10,18,0) 0%,rgba(7,10,18,.55) 12%,var(--bg) 34%,var(--bg) 100%)}
+body.gate-on{overflow:hidden}
+body.gate-on #lead-gate{display:flex;opacity:1}
+.gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:18px;
+  padding:26px 24px 22px;transform:translateY(14px);transition:transform .35s ease;
+  box-shadow:0 -10px 60px -20px rgba(0,0,0,.9),0 30px 70px -30px rgba(0,0,0,.85)}
+body.gate-on .gate-card{transform:none}
+.gate-lock{width:44px;height:44px;border-radius:12px;background:var(--grad);display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:14px;box-shadow:0 10px 30px -10px rgba(33,182,255,.5)}
+.gate-card h3{font-size:21px;color:var(--ink);margin-bottom:8px}
+.gate-card .gate-sub{font-size:14.5px;color:var(--ink-2);margin-bottom:18px}
+.gate-field{margin-bottom:12px}
+.gate-field label{display:block;font-size:12.5px;color:var(--ink-3);margin-bottom:6px;font-weight:600}
+.gate-field input{width:100%;background:var(--bg-soft);border:1px solid var(--line);border-radius:11px;
+  padding:13px 14px;color:var(--ink);font-size:15.5px;font-family:inherit;transition:border-color .15s}
+.gate-field input:focus{outline:none;border-color:var(--accent-a)}
+.gate-field input::placeholder{color:var(--ink-3)}
+.gate-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-height:700px){.gate-card{padding:18px 22px 16px}.gate-lock{display:none}
+  .gate-card .gate-sub{margin-bottom:12px}.gate-field{margin-bottom:8px}}
+.gate-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
+.gate-submit{width:100%;margin-top:6px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;border:none;
+  border-radius:12px;padding:15px 22px;cursor:pointer;font-family:inherit;
+  transition:transform .15s,box-shadow .2s,opacity .2s;box-shadow:0 12px 34px -12px rgba(33,182,255,.55)}
+.gate-submit:hover{transform:translateY(-1px)}
+.gate-submit:disabled{opacity:.6;cursor:default;transform:none}
+.gate-err{font-size:13.5px;color:var(--rose);margin-top:10px;min-height:18px;text-align:center}
+.gate-note{font-size:12px;color:var(--ink-3);margin-top:12px;text-align:center;line-height:1.5}
+@media (max-width:520px){.gate-card{max-width:none}#lead-gate{padding-bottom:5vh}}
+</style>
+<!-- seo:debut -->
+<meta property="og:url" content="https://noesisai.fr/ressources/claude-visibilite-google-ia">
+<meta property="og:site_name" content="NoesisAI">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://noesisai.fr/ressources/og/claude-visibilite-google-ia.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Search Skill : le skill gratuit qui vérifie si l&#x27;IA de Google te recommande">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search Skill : le skill gratuit qui vérifie si l&#x27;IA de Google te recommande">
+<meta name="twitter:description" content="Le Search Skill pour Claude Code vérifie en 12 contrôles si les réponses IA de Google citent ton entreprise ou tes concurrents, prépare chaque correction et mesure l&#x27;avant / après. Coûts, garde-fous et installation.">
+<meta name="twitter:image" content="https://noesisai.fr/ressources/og/claude-visibilite-google-ia.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Article", "@id": "https://noesisai.fr/ressources/claude-visibilite-google-ia#article", "headline": "Search Skill : le skill gratuit qui vérifie si l'IA de Google te recommande", "description": "Le Search Skill pour Claude Code vérifie en 12 contrôles si les réponses IA de Google citent ton entreprise ou tes concurrents, prépare chaque correction et mesure l'avant / après. Coûts, garde-fous et installation.", "image": "https://noesisai.fr/ressources/og/claude-visibilite-google-ia.jpg", "url": "https://noesisai.fr/ressources/claude-visibilite-google-ia", "mainEntityOfPage": "https://noesisai.fr/ressources/claude-visibilite-google-ia", "inLanguage": "fr-FR", "datePublished": "2026-11-27", "dateModified": "2026-11-27", "author": {"@type": "Person", "name": "Ugo Sartini", "url": "https://noesisai.fr/a-propos", "sameAs": ["https://www.linkedin.com/in/ugo-sartini-automatisation-ia/", "https://www.instagram.com/ugoia2025/"]}, "publisher": {"@type": "Organization", "name": "NoesisAI", "url": "https://noesisai.fr/", "logo": {"@type": "ImageObject", "url": "https://noesisai.fr/logos/noesis-mark.png", "width": 350, "height": 350}}, "isAccessibleForFree": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://noesisai.fr/"}, {"@type": "ListItem", "position": 2, "name": "Ressources", "item": "https://noesisai.fr/ressources"}, {"@type": "ListItem", "position": 3, "name": "Search Skill : le skill gratuit qui vérifie si l'IA de Google te recommande", "item": "https://noesisai.fr/ressources/claude-visibilite-google-ia"}]}]}</script>
+<!-- seo:fin -->
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wide">
+    <a href="/ressources" class="back">← Toutes les ressources</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="head">
+  <div class="wrap">
+    <div class="doc-ico" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <span class="eyebrow">Ressource gratuite · NoesisAI</span>
+    <h1>Search Skill : le skill gratuit qui vérifie si l'IA de Google te recommande</h1>
+    <p class="sub">Ce que vérifient ses 12 contrôles, ce que coûtent ses deux versions, ce qu'il ne touche jamais sans ton accord, et le lien vers le fichier original avec l'installation pas à pas. À jour au 27 novembre 2026.</p>
+    <div class="byline">
+      <span class="av">US</span>
+      <span>Par <b>Ugo Sartini</b></span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LA RESSOURCE (valeur gratuite) ============ -->
+<main class="resource">
+  <div class="wrap">
+    <style>
+      /* --- spécifique à cette ressource (scoping local) --- */
+      main.resource .wrap p a,main.resource .wrap li a,main.resource .callout a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+      .resource p.credit{font-size:13.5px;color:var(--ink-3);margin:10px 0 0;line-height:1.55}
+      .etapes{display:grid;gap:10px;margin:22px 0}
+      .etape{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+      .etape-n{width:36px;height:36px;border-radius:10px;background:var(--card-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
+      .resource .etape h3{margin:5px 0 4px;font-size:17px}
+      .resource .etape p{margin:0;font-size:15px;line-height:1.6}
+      table.controles td{vertical-align:top}
+      table.controles td:first-child{width:38%}
+      table.controles td:first-child{position:relative;padding-left:40px}
+      table.controles .n{position:absolute;left:12px;color:var(--ink-3);font-family:'Space Grotesk',sans-serif;font-weight:700}
+      table.couts td{vertical-align:top}
+      table.couts td:first-child{width:27%}
+      table.couts td:last-child{width:30%}
+      .chip{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:600;letter-spacing:.02em;color:var(--ink-2);background:var(--card-2);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+      .chip.simple{color:var(--green);border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.08)}
+      .chip.complete{color:var(--accent-a);border-color:rgba(33,182,255,.35);background:rgba(33,182,255,.08)}
+      .cmd{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:.9em;background:var(--card-2);border:1px solid var(--line-soft);border-radius:6px;padding:2px 6px;color:var(--ink);word-break:break-word}
+      .resource ul.exemples li{margin:12px 0}
+      .lien-source{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:20px 0}
+      .lien-source b{display:block;color:var(--ink);font-family:'Space Grotesk',sans-serif;font-size:18px}
+      .lien-source span{color:var(--ink-3);font-size:14px}
+      .lien-source a.btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#fff;text-decoration:none;font-weight:600;font-size:15px;border-radius:11px;padding:11px 18px;box-shadow:0 12px 30px -14px rgba(33,182,255,.6)}
+      .prompt{background:#0a0f1e;border:1px solid var(--line);border-radius:13px;margin:16px 0 22px;overflow:hidden;box-shadow:0 18px 44px -30px rgba(0,0,0,.85)}
+      .prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 13px;background:var(--card-2);border-bottom:1px solid var(--line-soft)}
+      .prompt-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+      .prompt-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+      .prompt .copy{font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+      .prompt .copy:hover{color:var(--ink);border-color:var(--ink-3)}
+      .prompt .copy.done{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.10)}
+      .prompt pre{margin:0;padding:16px 16px 18px;font-family:ui-monospace,'SFMono-Regular','JetBrains Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.62;color:#d8dff0;white-space:pre-wrap;word-break:break-word}
+      @media(max-width:600px){
+        table.controles,table.controles tbody,table.controles tr,table.couts,table.couts tbody,table.couts tr{display:block;width:auto}
+        table.controles tr,table.couts tr{padding:12px 0;border-bottom:1px solid var(--line-soft)}
+        .resource table.controles td,.resource table.couts td{display:block;width:auto;border:0;padding:0}
+        .resource table.controles td{padding-left:30px}
+        table.controles .n{left:0}
+        table.controles td+td,table.couts td+td{margin-top:4px}
+        table.couts td:last-child{color:var(--ink)}
+      }
+    </style>
+
+    <p class="lead reveal">Tape «&nbsp;plombier Lyon&nbsp;3&nbsp;» ou «&nbsp;comptable pour indépendant à Nantes&nbsp;» sur Google. De plus en plus souvent, la première chose affichée n'est plus une liste de liens : c'est une réponse écrite par l'IA de Google, qui cite deux ou trois entreprises. Si elle nomme un concurrent et pas toi, ce client ne descendra peut-être jamais jusqu'à ton site.</p>
+    <p class="reveal">Le <strong>Search Skill</strong> fait ce diagnostic à ta place. Tu lui donnes l'adresse de ton site : il pose à Google les questions que posent tes clients, regarde qui l'IA recommande, cherche ce qui te manque, prépare chaque correction et attend ton feu vert. Quelques semaines plus tard, il repose les mêmes questions et te montre l'avant et l'après.</p>
+    <div class="callout reveal"><b>Un skill, c'est quoi ?</b> Un mode d'emploi que tu ajoutes à Claude Code, l'assistant de Claude qui travaille directement sur ton ordinateur. Celui-ci est gratuit : il a été créé par Champ McCorkle et publié le 12 novembre 2026. Le lien vers son fichier original est dans la partie 5.</div>
+
+    <h2 class="reveal" id="outils"><span class="numtag">1</span>Trois outils, un aller-retour complet</h2>
+    <p class="reveal">Le skill n'est pas un simple audit qu'on lit puis qu'on range. Il couvre tout le chemin, du constat jusqu'à la preuve que ça a bougé.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><div><h3>La vérification</h3><p>Tu tapes <span class="cmd">/search</span> et l'adresse de ton site. Douze contrôles partent en même temps, chacun confié à un assistant différent. Tu reçois un rapport : ce qui va, ce qui manque, par ordre d'importance.</p></div></div>
+      <div class="etape"><div class="etape-n">2</div><div><h3>Les corrections</h3><p>Il rédige chaque correction : le texte d'une page, la description de ta fiche Google, la réponse à une question que tes clients posent souvent. Il ne l'applique qu'après ton oui, correction par correction.</p></div></div>
+      <div class="etape"><div class="etape-n">3</div><div><h3>Le suivi avant / après</h3><p>Il repose les mêmes questions, de la même façon, et compare. Comme les réponses de l'IA varient d'une recherche à l'autre, il te dit aussi à quel point tu peux te fier à chaque changement.</p></div></div>
+    </div>
+
+    <h2 class="reveal" id="controles"><span class="numtag">2</span>Les 12 contrôles, en clair</h2>
+    <p class="reveal">Les deux premiers regardent ce que l'IA de Google répond. Les dix autres regardent ce qu'elle trouve sur toi pour répondre : ta fiche, tes avis, ton site, ce que les autres disent de toi.</p>
+    <table class="matrix controles reveal"><tbody>
+      <tr><td><span class="n">1</span>Les réponses de l'IA</td><td>Pour chaque question que posent tes clients, la réponse de l'IA de Google te cite-t-elle, ou te nomme-t-elle&nbsp;?</td></tr>
+      <tr><td><span class="n">2</span>Qui est cité à ta place</td><td>Les entreprises et les sites que l'IA nomme à ta place, et ce qu'ils ont que tu n'as pas.</td></tr>
+      <tr><td><span class="n">3</span>Les avis</td><td>Combien, quelle note, et de quand, à côté des concurrents qui sont cités.</td></tr>
+      <tr><td><span class="n">4</span>Ta fiche Google</td><td>La fiche qui apparaît sur Google Maps : catégorie, description, horaires, site, services, photos.</td></tr>
+      <tr><td><span class="n">5</span>Les pages de services</td><td>Une page claire pour chaque chose que tu vends.</td></tr>
+      <tr><td><span class="n">6</span>Les pages par ville</td><td>Les villes où tu interviens vraiment, dites simplement, sans pages copiées-collées qui ne changent que le nom de la ville.</td></tr>
+      <tr><td><span class="n">7</span>Les réponses aux questions des clients</td><td>Chaque question fréquente a sa réponse en mots simples sur ton site.</td></tr>
+      <tr><td><span class="n">8</span>Les étiquettes invisibles</td><td>Ton nom, ton adresse, tes horaires et ton activité écrits dans le format que Google lit directement, en coulisse de tes pages.</td></tr>
+      <tr><td><span class="n">9</span>Les annuaires</td><td>Le même nom, la même adresse et le même téléphone partout où tu es listé.</td></tr>
+      <tr><td><span class="n">10</span>Google peut-il lire ton site&nbsp;?</td><td>Rien ne bloque Google, et aucun réglage ne t'exclut des réponses de son IA.</td></tr>
+      <tr><td><span class="n">11</span>La vitesse</td><td>Le temps que mettent tes pages à s'afficher sur un téléphone.</td></tr>
+      <tr><td><span class="n">12</span>Les mentions de ta marque</td><td>Qui d'autre parle de toi sur le web : presse locale, partenaires, forums.</td></tr>
+    </tbody></table>
+    <div class="callout win reveal"><b>Le test en 2 minutes, sans rien installer :</b> tape sur Google trois questions que tes clients posent vraiment, avec ta ville. Regarde si le paragraphe écrit par l'IA, tout en haut, te cite. Note les noms cités à ta place. Tu viens de faire les contrôles 1 et 2 à la main : le skill fait la même chose sur 20 questions, puis cherche pourquoi.</div>
+
+    <h2 class="reveal" id="couts"><span class="numtag">3</span>Version simple ou complète : ce que ça coûte</h2>
+    <p class="reveal">Au moment de l'installation, Claude te demande quelle version tu veux. La <strong>simple</strong> est gratuite et fait déjà les douze contrôles avec les vraies réponses de l'IA de Google. La <strong>complète</strong> ajoute les chiffres d'avis de chaque concurrent, la lecture de ta fiche Google et les corrections faites directement sur ton site. Prix vérifiés sur les sites officiels le 27&nbsp;novembre 2026.</p>
+    <table class="matrix couts reveal"><tbody>
+      <tr><td>Claude Code<br><span class="chip">Les deux</span></td><td>Fait tourner le skill, sur Mac ou Windows. Il ne marche pas dans la conversation Claude classique ni dans Cowork.</td><td>Ton abonnement Claude payant</td></tr>
+      <tr><td>SerpApi, offre gratuite<br><span class="chip simple">Simple</span></td><td>Lit les vraies réponses de l'IA de Google pour tes questions.</td><td>Gratuit, 250 recherches par mois</td></tr>
+      <tr><td>Google Search Console<br><span class="chip">Les deux</span></td><td>Les chiffres de Google sur ton site, dont un rapport qui compte tes apparitions dans les réponses de son IA, ouvert à tous les sites depuis le 31&nbsp;août 2026.</td><td>Gratuit</td></tr>
+      <tr><td>SerpApi payant ou DataForSEO<br><span class="chip complete">Complète</span></td><td>Plus de questions, et la note et le nombre d'avis des entreprises qui apparaissent sur la carte.</td><td>SerpApi : 25&nbsp;$ par mois pour 1&nbsp;000 recherches. DataForSEO : moins d'un centime par question, payé à l'usage.</td></tr>
+      <tr><td>Clé Google Places<br><span class="chip complete">Complète</span></td><td>Nombre d'avis, note et avis récents, pour toi et pour chaque concurrent que l'IA cite.</td><td>Gratuit jusqu'à 1&nbsp;000 recherches par mois : le skill s'arrête à 900 pour ne rien te facturer.</td></tr>
+      <tr><td>Connexion à ta fiche Google<br><span class="chip complete">Complète</span></td><td>Lire toute ta fiche et la mettre à jour après ton oui. Sans elle, tu remplis une courte liste en lisant ta fiche toi-même.</td><td>Gratuit, mais Google doit valider l'accès.</td></tr>
+      <tr><td>Accès à ton site<br><span class="chip">Conseillé</span></td><td>Claude applique lui-même les corrections de pages, si ton site est un dossier sur ton ordinateur ou un WordPress. Sinon, il te donne le texte exact à coller.</td><td>Gratuit</td></tr>
+    </tbody></table>
+    <div class="callout reveal"><b>Un exemple chiffré :</b> avec DataForSEO, une vérification de 20 questions coûte au plus 16 centimes, et une nouvelle vérification autant. Le skill t'affiche chaque prix avant de dépenser quoi que ce soit.</div>
+    <div class="callout win reveal"><b>Notre conseil :</b> commence par la version simple. Elle coûte 0&nbsp;€ et suffit pour savoir si l'IA de Google te cite, et qui elle cite à ta place. Passe à la complète seulement si le rapport pointe un vrai sujet d'avis ou de fiche Google.</div>
+
+    <h2 class="reveal" id="garde-fous"><span class="numtag">4</span>Ce qu'il ne fait jamais sans toi</h2>
+    <p class="reveal">Un outil qui touche à ton site et à ta fiche Google doit être tenu en laisse. Celui-ci l'est, sur cinq points.</p>
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><div><h3>Rien ne change sans ton oui</h3><p>Chaque correction attend ton accord, pour cette correction précise. Ce que tes clients voient tout de suite, une page en ligne ou ta fiche Google, demande en plus un code qui ne s'affiche que sur ton écran.</p></div></div>
+      <div class="etape"><div class="etape-n">2</div><div><h3>Les nouvelles pages arrivent en brouillon</h3><p>Tu les relis et tu les publies toi-même.</p></div></div>
+      <div class="etape"><div class="etape-n">3</div><div><h3>Il n'envoie rien</h3><p>Les demandes d'avis sont rédigées pour que tu les envoies toi-même. Il ne propose jamais de récompense contre un avis, et ne vise jamais seulement les clients contents : Google supprime les avis obtenus dans ces deux cas.</p></div></div>
+      <div class="etape"><div class="etape-n">4</div><div><h3>Tes clés restent chez toi</h3><p>Les codes d'accès aux services sont rangés dans un fichier sur ton ordinateur, jamais dans la conversation. Ce fichier fixe aussi un plafond de dépense par mois et par service.</p></div></div>
+      <div class="etape"><div class="etape-n">5</div><div><h3>Il ne touche pas aux autres sites</h3><p>Il ne peut pas modifier tes fiches sur les annuaires en ligne : il t'indique où cliquer, et tu fais la modification toi-même.</p></div></div>
+    </div>
+    <div class="callout warn reveal"><b>Le vrai cadenas, c'est toi qui le poses.</b> Le plafond du fichier est une consigne que Claude respecte, pas un verrou. Les vraies limites se règlent dans tes comptes : une alerte de budget dans Google Cloud, et pas de recharge DataForSEO au-delà de ce que tu veux dépenser.</div>
+    <div class="callout win reveal"><b>Ce que tu pilotes :</b> les questions de tes clients, chaque oui et chaque publication. <b>Ce que le skill fait :</b> les douze contrôles, les brouillons de corrections et la mesure avant / après. <b>Ce qui reste humain :</b> demander des avis à tes clients et faire vivre ta fiche Google.</div>
+
+    <h2 class="reveal" id="installation"><span class="numtag">5</span>Le lien et l'installation, pas à pas</h2>
+    <div class="lien-source reveal">
+      <div><b>Search Skill, de Champ McCorkle</b><span>Un seul fichier gratuit, sur sa page de skills, à l'étape «&nbsp;Get Found&nbsp;»</span></div>
+      <a class="btn" href="https://champmack.ai/skills.html" target="_blank" rel="noopener">Ouvrir sa page →</a>
+    </div>
+    <p class="reveal">Le lien direct vers le fichier : <a href="https://champmack.ai/search-skill.md" target="_blank" rel="noopener">champmack.ai/search-skill.md</a>. Il est en anglais, mais Claude te parle en français pendant toute l'installation.</p>
+    <div class="callout reveal"><b>Tu n'as pas encore Claude Code ?</b> Il demande un abonnement Claude payant. Commence par notre guide <a href="/blog/installer-claude-code">Installer Claude Code : Windows, Mac, Linux, pas à pas</a>, ou par ma vidéo <a href="https://www.loom.com/share/96785cd2f3a2480e8f271c98b1fc6150" target="_blank" rel="noopener">Installer Claude Code dans VS Code</a>.</div>
+
+    <div class="etapes reveal">
+      <div class="etape"><div class="etape-n">1</div><div><h3>Télécharge le fichier</h3><p>Sur la page de Champ McCorkle, ou avec le lien direct ci-dessus. C'est un fichier texte : tu peux l'ouvrir et le lire.</p></div></div>
+      <div class="etape"><div class="etape-n">2</div><div><h3>Ouvre l'onglet Code</h3><p>Dans l'application Claude sur ton ordinateur, clique sur l'onglet Code.</p></div></div>
+      <div class="etape"><div class="etape-n">3</div><div><h3>Glisse le fichier et colle le message</h3><p>Dépose le fichier dans la conversation, puis colle le message ci-dessous.</p></div></div>
+      <div class="etape"><div class="etape-n">4</div><div><h3>Laisse-toi guider</h3><p>Claude installe ce qu'il faut, te demande la version simple ou complète, et t'accompagne pour créer chaque compte. Il te demande ton accord avant d'installer ou de brancher quoi que ce soit.</p></div></div>
+      <div class="etape"><div class="etape-n">5</div><div><h3>Donne l'adresse de ton site</h3><p>C'est la dernière question de l'installation. La première vérification peut démarrer.</p></div></div>
+    </div>
+    <div class="prompt reveal">
+      <div class="prompt-bar"><span class="prompt-tag">À coller dans Claude Code, avec le fichier</span><button class="copy" type="button">Copier</button></div>
+<pre>Installe ce skill et guide-moi pas à pas, en français.
+Avant de commencer, résume-moi en 5 lignes ce que fait ce fichier et à quels services il se connecte.
+Je veux d'abord la version simple, gratuite.
+Ne me demande jamais de clé ou de mot de passe dans la conversation.</pre>
+    </div>
+    <div class="callout reveal"><b>On l'a lu avant toi.</b> Le fichier ne se connecte qu'à Google, SerpApi, DataForSEO, et à ton WordPress si tu le branches. Il n'envoie rien à son auteur. Télécharge-le depuis la page de Champ McCorkle : une copie qui circule ailleurs a pu être modifiée.</div>
+
+    <h2 class="reveal" id="phrases"><span class="numtag">6</span>Les phrases à lui donner</h2>
+    <p class="reveal">Une fois installé, le skill marche aussi dans chaque nouvelle session de Claude Code. Trois phrases suffisent pour tout le parcours :</p>
+    <ul class="exemples reveal">
+      <li><span class="cmd">/search https://ton-site.fr</span> : la vérification complète, avec le rapport.</li>
+      <li><span class="cmd">Corrige les trois points les plus importants du rapport</span> : il prépare les corrections et te les montre une par une.</li>
+      <li><span class="cmd">Refais la vérification et montre-moi l'avant / après</span> : à lancer quelques semaines plus tard, le temps que Google relise tes pages.</li>
+    </ul>
+    <p class="reveal"><strong>Le réglage qui change tout : tes questions.</strong> Le skill te propose une liste de questions de clients. Remplace-les par celles que tu entends vraiment au téléphone ou dans tes mails, avec tes mots et ta ville. C'est sur ces questions-là que se joue ta place dans les réponses de l'IA.</p>
+
+    <h2 class="reveal" id="limite"><span class="numtag">7</span>La limite honnête</h2>
+    <div class="callout warn reveal"><b>Il ne peut pas forcer Google à te citer en premier.</b> Personne en dehors de Google ne contrôle ce que répond son IA, et Google affirme qu'il n'existe pas d'astuce spéciale pour y apparaître.</div>
+    <p class="reveal">Ce que font les corrections, c'est améliorer ce dans quoi l'IA de Google puise pour répondre : des pages qui répondent aux questions de tes clients, une fiche complète, des avis, des annuaires qui disent tous la même chose, et un site que Google lit sans obstacle. Le suivi te montre ensuite ce qui a bougé.</p>
+    <p class="reveal">Garde aussi en tête qu'il lit chaque réponse une seule fois, depuis un seul endroit et sur un seul type d'appareil. Tes clients, ailleurs ou sur leur téléphone, peuvent voir une réponse un peu différente.</p>
+    <p class="credit reveal">Le Search Skill est créé par Champ McCorkle (<a href="https://champmack.ai" target="_blank" rel="noopener">champmack.ai</a>), qui le distribue gratuitement sur son site. Il n'indique pas de licence de réutilisation : on ne l'héberge donc pas chez nous, on renvoie vers son fichier original. Les explications de cette page sont les nôtres.</p>
+
+    <script>
+      (function(){
+        document.querySelectorAll('.prompt .copy').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var pre = btn.closest('.prompt').querySelector('pre');
+            var text = pre.innerText;
+            var done = function(){ var old = btn.textContent; btn.textContent = 'Copié ✓'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = old; btn.classList.remove('done'); }, 1700); };
+            if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); }); }
+            else { fallback(text, done); }
+          });
+        });
+        function fallback(text, done){ var ta = document.createElement('textarea'); ta.value = text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){} document.body.removeChild(ta); }
+      })();
+    </script>
+
+    <!-- lien service noesisai.fr -->
+    <div class="callout reveal"><b>Envie d'aller plus loin ?</b> On forme les dirigeants et leurs équipes à Claude, ChatGPT et Gemini, directement sur leurs propres cas. <a href="/formation-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Découvrir la formation IA NoesisAI</a>.</div>
+  </div>
+</main>
+
+<!-- ============ À LIRE AUSSI : maillage interne ============ -->
+<nav class="resource" aria-label="À lire aussi"><div class="wrap">
+  <h2>À lire aussi</h2>
+  <ul>
+    <li><a href="/ressources/16-canaux-acquisition" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Trouver des clients : les 16 canaux d'acquisition triés</a></li>
+    <li><a href="/ressources/7-canaux-clients-ia" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Décrocher tes premiers clients IA : les 7 canaux triés</a></li>
+    <li><a href="/ressources/attirer-clients-sans-demarcher" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Attirer des clients qualifiés sans démarcher à froid</a></li>
+    <li><a href="/ressources/prospects-google-maps" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Google Maps, ta base de prospection locale</a></li>
+  </ul>
+  <p><a href="/ressources" style="color:var(--ink);text-decoration:underline;text-underline-offset:3px">Toutes les ressources NoesisAI →</a></p>
+</div></nav>
+<!-- ============ /À LIRE AUSSI ============ -->
+
+
+<!-- ============ SEAM : ressource -> appel ============ -->
+<div class="seam" role="separator" aria-hidden="true"></div>
+
+<!-- ============ CE QUE NOUS CONCEVONS (figé) ============ -->
+<section class="expertise">
+  <div class="wide">
+    <span class="eyebrow-pill reveal">Nos expertises</span>
+    <h2 class="reveal">Ce que nous concevons pour vous</h2>
+    <p class="lead-sub reveal">De l'application métier sur-mesure aux systèmes d'IA les plus avancés : nous couvrons toute la chaîne, du produit digital à l'intelligence artificielle.</p>
+    <div class="exp-cols">
+      <div class="exp-col reveal">
+        <h3>Produits digitaux</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Logiciel métier</h4><p>Des outils internes sur-mesure qui digitalisent vos processus spécifiques.</p></div>
+          <div class="exp-card"><h4>Application web &amp; SaaS</h4><p>Plateformes web performantes, du MVP au produit SaaS multi-utilisateurs.</p></div>
+          <div class="exp-card"><h4>Automatisation</h4><p>Workflows n8n / Make qui connectent vos outils et éliminent les tâches manuelles.</p></div>
+          <div class="exp-card"><h4>API &amp; microservices</h4><p>Architectures modulaires et intégrations robustes entre vos systèmes.</p></div>
+        </div>
+      </div>
+      <div class="exp-col reveal">
+        <h3>Solutions IA</h3>
+        <div class="exp-grid">
+          <div class="exp-card"><h4>Agents autonomes &amp; multi-agents</h4><p>Des agents IA qui exécutent des tâches complexes et collaborent entre eux.</p></div>
+          <div class="exp-card"><h4>Agentic Workflows</h4><p>Des chaînes de décision intelligentes orchestrant IA, outils et données.</p></div>
+          <div class="exp-card"><h4>AI Engineering</h4><p>Intégration de LLM, RAG et fine-tuning au cœur de vos applications.</p></div>
+          <div class="exp-card"><h4>Computer Vision</h4><p>Analyse d'images et de vidéos pour automatiser le contrôle et la détection.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ILS NOUS FONT CONFIANCE (figé) ============ -->
+<!-- 🖼️ LOGOS : remplacer chaque pastille texte par <span class="logo-chip"><img src="data:image/png;base64,…" alt="Nom"></span> dès que les fichiers sont fournis. GARDER les deux jeux identiques (set 1 + set 2) : le défilement sans couture en dépend. -->
+<section class="trust">
+  <div class="wide">
+    <div class="lbl reveal">Ils nous font confiance</div>
+    <div class="marquee reveal">
+      <div class="track">
+        <!-- set 1 -->
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark">FastParts</span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+        <!-- set 2 (copie pour la boucle) -->
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/8418921106b6.png" alt="Homelok"></span>
+        <span class="logo-chip wordmark" aria-hidden="true">FastParts</span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/92ae38f2395e.png" alt="BT Propre"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/67e044be4937.png" alt="Bungazur"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/81db2c4b8841.png" alt="NRGY UP"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/3aae3b1fa2f7.png" alt="Bunker Game"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/db4fdf9b1c0d.png" alt="ISCI"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/20bba4f74955.png" alt="Muller"></span>
+        <span class="logo-chip" aria-hidden="true"><img loading="lazy" decoding="async" src="/ressources/img/9516e3d16127.png" alt="Client à confirmer"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA COURT (LinkedIn) ============ -->
+<!-- Bloc figé : ne pas le réécrire à chaque ressource. -->
+<section class="sec center">
+  <div class="wrap">
+    <h2 class="reveal">Tu veux appliquer ça dans ton activité ?</h2>
+    <p class="reveal" style="color:var(--ink-2);max-width:560px;margin:14px auto 0;font-size:18px">
+      On fait le point sur ta situation et sur les endroits où l'IA peut concrètement te faire gagner du temps. Sans engagement.
+    </p>
+    <!-- 🔗 LIEN APPEL — change UNIQUEMENT cette URL iClosed si LinkedIn doit pointer vers un autre événement (ex. appel d'audit B2B dédié). -->
+    <a class="cta-btn reveal" style="width:auto;padding:16px 34px" href="https://app.iclosed.io/e/NoesisAI/30min">Réserver un appel →</a>
+    <div class="reassure reveal">Échange 1:1 avec Ugo Sartini · sans engagement</div>
+  </div>
+</section>
+
+<footer>
+  Ressource produite par NoesisAI, agence d'implémentation IA. Paris · Bruxelles · Genève · Montréal.
+</footer>
+
+<script>
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els=document.querySelectorAll('.reveal');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  els.forEach(function(el){io.observe(el)});
+})();
+</script>
+<!-- ===== LEAD GATE : formulaire de contact au scroll (~48% de la ressource) ===== -->
+<div id="lead-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-card" id="lead-form" novalidate>
+    <div class="gate-lock" aria-hidden="true">🔒</div>
+    <h3 id="gate-title">La suite est réservée</h3>
+    <p class="gate-sub">Il te reste la moitié à découvrir. Dis-moi qui tu es et où te joindre, et je débloque le reste tout de suite.</p>
+    <div class="gate-row">
+      <div class="gate-field">
+        <label for="gate-firstname">Ton prénom</label>
+        <input id="gate-firstname" name="firstName" type="text" autocomplete="given-name" placeholder="Marie" required>
+      </div>
+      <div class="gate-field">
+        <label for="gate-lastname">Ton nom</label>
+        <input id="gate-lastname" name="lastName" type="text" autocomplete="family-name" placeholder="Dupont" required>
+      </div>
+    </div>
+    <div class="gate-field">
+      <label for="gate-email">Ton email</label>
+      <input id="gate-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="prenom@entreprise.com" required>
+    </div>
+    <div class="gate-field">
+      <label for="gate-phone">Ton téléphone</label>
+      <input id="gate-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" required>
+    </div>
+    <input class="gate-hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button class="gate-submit" type="submit">Débloquer la suite →</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+    <p class="gate-note">En validant, tu acceptes d'être recontacté·e par NoesisAI. Pas de spam, désinscription à tout moment.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var KEY='noesis_lead_ok';
+  var gate=document.getElementById('lead-gate');
+  var form=document.getElementById('lead-form');
+  var errBox=document.getElementById('gate-err');
+  var article=document.querySelector('main.resource');
+  if(!gate||!form||!article) return;
+
+  // Déjà inscrit une fois : on ne regate plus.
+  try{ if(localStorage.getItem(KEY)==='1') return; }catch(e){}
+
+  var triggered=false;
+  function trigger(){
+    if(triggered) return; triggered=true;
+    document.body.classList.add('gate-on');
+    var f=document.getElementById('gate-firstname');
+    if(f){ setTimeout(function(){ try{f.focus();}catch(e){} },400); }
+  }
+  // Sentinelle placée à ~48% de la ressource, détectée via IntersectionObserver
+  // (robuste quel que soit le conteneur de scroll).
+  function placeSentinel(){
+    var content=article.querySelector('.wrap')||article;
+    var kids=Array.prototype.slice.call(content.children);
+    var target=article.getBoundingClientRect().top+window.pageYOffset+article.offsetHeight*0.48;
+    var s=document.createElement('div');
+    s.setAttribute('aria-hidden','true'); s.style.cssText='width:1px;height:1px;pointer-events:none';
+    for(var i=0;i<kids.length;i++){
+      if(kids[i].getBoundingClientRect().top+window.pageYOffset>=target){ content.insertBefore(s,kids[i]); return s; }
+    }
+    content.appendChild(s); return s;
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ trigger(); io.disconnect(); } });
+    },{root:null,threshold:0});
+    io.observe(placeSentinel());
+  } else {
+    var tp=article.offsetTop+article.offsetHeight*0.48;
+    var onScroll=function(){ if(window.scrollY+window.innerHeight*0.5>=tp){ trigger(); window.removeEventListener('scroll',onScroll);} };
+    window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+
+  function unlock(persist){
+    if(persist){ try{localStorage.setItem(KEY,'1');}catch(e){} }
+    document.body.classList.remove('gate-on');
+    gate.style.display='none';
+  }
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    errBox.textContent='';
+    var firstName=(form.firstName.value||'').trim();
+    var lastName=(form.lastName.value||'').trim();
+    var email=(form.email.value||'').trim();
+    var phone=(form.phone.value||'').trim();
+    if(firstName.length<2){ errBox.textContent='Il me faut ton prénom.'; return; }
+    if(lastName.length<2){ errBox.textContent='Il me faut ton nom.'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ errBox.textContent='Ton email n’a pas l’air valide.'; return; }
+    if(phone.replace(/[^\d]/g,'').length<6){ errBox.textContent='Ton numéro n’a pas l’air valide.'; return; }
+    var btn=form.querySelector('.gate-submit');
+    btn.disabled=true; btn.textContent='Envoi…';
+    var payload={
+      firstName:firstName, lastName:lastName,
+      email:email, phone:phone,
+      company:(form.company.value||''),
+      ressource:(document.title||'').replace(/\s*[—-]\s*NoesisAI.*$/i,'').trim(),
+      source:'LinkedIn'
+    };
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ if(!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(){ unlock(true); })
+      .catch(function(){ unlock(false); }); // souci backend : on ne bloque pas le visiteur, mais on pourra le re-capter
+  });
+})();
+</script>
+</body>
+</html>

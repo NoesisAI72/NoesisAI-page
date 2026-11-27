@@ -38,7 +38,8 @@ CLUSTERS = {
                "agent-whatsapp-claude-kapso", "whatsapp-registres-etat", "agent-reach", "cowork-sans-toi"],
     "clients": ["16-canaux-acquisition", "7-canaux-clients-ia", "attirer-clients-sans-demarcher",
                 "prospects-google-maps", "scrapegraph-prospection", "scraping-open-source", "obscura-scraper",
-                "linkedin-skills-claude", "monetiser-competences-ia", "niches-ia-2026", "marche-formation-conseil-ia"],
+                "linkedin-skills-claude", "monetiser-competences-ia", "niches-ia-2026", "marche-formation-conseil-ia",
+                "claude-visibilite-google-ia"],
 }
 N_RELATED = 4
 START = "<!-- ============ À LIRE AUSSI : maillage interne ============ -->"
